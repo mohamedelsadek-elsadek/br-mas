@@ -971,7 +971,16 @@ function go(pg){
   const R={owner:renderOwner,dash:renderDash,daily:renderDaily,farms:renderFarms,feed:renderFeed,
     meds:renderMeds,sales:renderSales,transfer:renderTransfer,reports:renderReports,
     ross:renderRoss,yearly:renderYearly,users:renderUsers,settings:renderSettings};
-  (R[pg]||(()=>$('#main').innerHTML='<div class="empty">قريباً</div>'))();
+  try{
+    (R[pg]||(()=>$('#main').innerHTML='<div class="empty">قريباً</div>'))();
+  }catch(err){
+    console.error('render error on page',pg,err);
+    $('#main').innerHTML=`<div class="card"><div class="empty"><div class="ic">⚠️</div>
+      <b>حصل خطأ مؤقت في عرض هذه الصفحة</b><br>
+      <span style="font-size:12px;color:var(--txt3)">${esc(String(err&&err.message||err))}</span><br><br>
+      <button class="btn btn-sm" onclick="go('${pg}')">إعادة المحاولة</button>
+      <button class="btn-sec btn-sm" onclick="go('daily')">العودة للتقرير اليومي</button></div></div>`;
+  }
 }
 function accessDenied(){return `<div class="access-deny"><div class="ic">🔒</div>
   <h3>لا تملك صلاحية الوصول لهذه الصفحة</h3>
@@ -1249,7 +1258,7 @@ function renderDash(){
   }
   html+=`</div>`;
   $('#main').innerHTML=html;
-  if(DB.cycles.length&&dashState.cycleId)drawDashChart();
+  if(DB.cycles.length&&dashState.cycleId){try{drawDashChart();}catch(e){console.warn("dashChart",e);}}
 }
 let dashState={cycleId:null,metric:'weight'};
 function drawDashChart(){
@@ -2405,8 +2414,8 @@ function renderOwner(){
   html+=`</div>`;
   $('#main').innerHTML=html;
   // تشغيل الحركات والرسوم
-  runCountUps();
-  drawOwnerBar(); drawOwnerLine();
+  try{runCountUps();}catch(e){console.warn("countup",e);}
+  try{drawOwnerBar();}catch(e){console.warn("ownerBar",e);} try{drawOwnerLine();}catch(e){console.warn("ownerLine",e);}
 }
 
 /* عدّاد تصاعدي للأرقام */
