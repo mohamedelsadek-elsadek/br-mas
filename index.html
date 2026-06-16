@@ -443,7 +443,7 @@ const ROLES={
   owner:{name:'المالك (Owner)',color:'#eab308',perms:['owner','dash','reports','yearly']},
   admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','transfer','reports','yearly','users','settings']},
   acct:{name:'محاسب',color:'#22c55e',perms:['dash','sales','feed','reports','transfer']},
-  farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily']},
+  farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales']},
   view:{name:'مشاهد',color:'#06b6d4',perms:['dash','reports','yearly']}
 };
 
@@ -879,6 +879,13 @@ function cycleDayData(cyc,dateISO){
 /* قائمة المزارع النشطة (لها دورة نشطة) */
 function activeFarms(){return DB.farms.filter(f=>DB.cycles.some(c=>c.farm===f.id&&c.status!=='مغلقة'));}
 function activeCycleOfFarm(farmId){return DB.cycles.find(c=>c.farm===farmId&&c.status!=='مغلقة');}
+/* ===== صلاحيات مدير المزرعة ===== */
+function isManager(){return ME&&ME.role==='farm';}
+function myFarm(){ if(!ME||!ME.farm)return null; return farmById(ME.farm); }
+function myActiveCycle(){ const f=myFarm(); return f?activeCycleOfFarm(f.id):null; }
+// هل ما زال يمكن تعديل سجل (خلال 24 ساعة من إنشائه)؟ للمدير فقط
+function within24h(rec){ if(!rec||!rec._ts)return false; return (Date.now()-rec._ts) < 24*60*60*1000; }
+function canMgrEdit(rec){ if(!isManager())return true; return within24h(rec); }
 
 /* ---- التراكمي للنافق ---- */
 function deadCumulative(cycleId){
@@ -1491,15 +1498,18 @@ function saveExpenses(){
 
 /* ===================== 🌾 إدارة العلف ===================== */
 function renderFeed(){
-  let html=pageHead('🌾','إدارة العلف','الوارد يُضاف للمخزون والمستهلك اليومي يُخصم — والمتبقي يُحسب تلقائياً');
+  const mgr=isManager();
+  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
+  let html=pageHead('🌾','إدارة العلف', mgr?('مزرعتك: '+esc(myFarm().name)+' — أضف العلف الوارد فقط. المستهلك يُخصم تلقائياً من التقرير اليومي'):'الوارد يُضاف للمخزون والمستهلك اليومي يُخصم — والمتبقي يُحسب تلقائياً');
+  const myCycles = mgr ? DB.cycles.filter(c=>c.farm===ME.farm) : DB.cycles;
   // ملخص لكل دورة
   html+=`<div class="card"><div class="card-title">📊 أرصدة العلف حسب الدورة</div>`;
-  if(!DB.cycles.length){html+=emptyState('🌾','لا توجد دورات بعد.');}
+  if(!myCycles.length){html+=emptyState('🌾','لا توجد دورات بعد.');}
   else{
     html+=`<div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>المزرعة</th>
       <th class="num">إجمالي الوارد</th><th class="num">المستهلك</th><th class="num">محوّل/مرتجع</th>
       <th class="num">المتبقي</th></tr></thead><tbody>`;
-    DB.cycles.forEach(c=>{
+    myCycles.forEach(c=>{
       const moves=DB.feedMoves.filter(m=>m.cycleId===c.id);
       const inn=moves.filter(m=>m.type==='in'||m.type==='transfer_in').reduce((s,m)=>s+(Number(m.qty)||0),0);
       const out=moves.filter(m=>m.type==='transfer_out'||m.type==='return').reduce((s,m)=>s+(Number(m.qty)||0),0);
@@ -1512,23 +1522,58 @@ function renderFeed(){
   }
   html+=`</div>`;
   // حركات العلف
-  html+=`<div class="card"><div class="card-title">🔁 حركات العلف <div class="spacer" style="flex:1"></div>
-    <button class="btn btn-sm" onclick="feedMoveModal()">+ حركة علف</button></div>`;
-  if(!DB.feedMoves.length){html+=emptyState('📦','لا توجد حركات علف.');}
+  const addBtn = mgr
+    ? `<button class="btn btn-sm" onclick="feedInModal()">+ علف وارد</button>`
+    : `<button class="btn btn-sm" onclick="feedMoveModal()">+ حركة علف</button>`;
+  html+=`<div class="card"><div class="card-title">🔁 حركات العلف <div class="spacer" style="flex:1"></div>${addBtn}</div>`;
+  let moves = mgr ? DB.feedMoves.filter(m=>m.farmId===ME.farm || myCycles.some(c=>c.id===m.cycleId)) : DB.feedMoves;
+  if(!moves.length){html+=emptyState('📦','لا توجد حركات علف.');}
   else{
     const T={'in':'وارد','transfer_in':'محوّل وارد','transfer_out':'محوّل صادر','return':'مرتجع'};
     html+=`<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الدورة</th>
       <th class="num">الكمية</th><th>التفاصيل</th><th></th></tr></thead><tbody>`;
-    DB.feedMoves.slice().reverse().forEach(m=>{
-      html+=`<tr><td>${esc(m.date)}</td><td><span class="badge b-info">${T[m.type]}</span></td>
+    moves.slice().reverse().forEach(m=>{
+      let actions;
+      if(mgr){
+        actions = within24h(m)
+          ? `<button class="btn-sec btn-xs" onclick="feedInModal('${m.id}')">✏️ تعديل</button> <button class="btn-red btn-xs" onclick="delFeedMove('${m.id}')">حذف</button>`
+          : `<span class="badge b-mut">مُقفل</span>`;
+      } else {
+        actions = `<button class="btn-red btn-xs" onclick="delFeedMove('${m.id}')">حذف</button>`;
+      }
+      html+=`<tr><td>${esc(m.date)}</td><td><span class="badge b-info">${T[m.type]||m.type}</span></td>
         <td>${esc(cycleById(m.cycleId)?.code||'')}</td><td class="num">${fmt(m.qty)} كجم</td>
         <td>${esc(m.note||'')}</td>
-        <td class="num"><button class="btn-red btn-xs" onclick="delFeedMove('${m.id}')">حذف</button></td></tr>`;
+        <td class="num">${actions}</td></tr>`;
     });
     html+=`</tbody></table></div>`;
   }
   html+=`</div>`;
   $('#main').innerHTML=html;
+}
+/* مودال مدير المزرعة: علف وارد فقط، المزرعة والدورة تلقائياً */
+function feedInModal(id){
+  const cyc=myActiveCycle();
+  if(!cyc){toast('لا توجد دورة نشطة في مزرعتك',1);return;}
+  const m=id?DB.feedMoves.find(x=>x.id===id):null;
+  if(id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
+  openModal(id?'تعديل علف وارد':'تسجيل علف وارد',
+    `<div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm().name)}</b> — الدورة: <b>${esc(cyc.code)}</b></div>
+     <div class="row-fields g2">
+       <div class="field"><label>الكمية الواردة (كجم)</label><input type="number" min="0" id="fdQty" value="${m?m.qty:''}" placeholder="0"></div>
+       <div class="field"><label>التاريخ</label><input type="date" id="fdDate" value="${m?m.date:todayISO()}"></div>
+     </div>
+     <div class="field"><label>ملاحظات</label><input id="fdNote" value="${m?esc(m.note||''):''}" placeholder="..."></div>`,
+    `<button class="btn btn-green" onclick="saveFeedIn('${id||''}')">حفظ</button>
+     <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function saveFeedIn(id){
+  const cyc=myActiveCycle();if(!cyc){toast('لا توجد دورة نشطة',1);return;}
+  const qty=Number($('#fdQty').value)||0;if(qty<=0){toast('أدخل كمية صحيحة',1);return;}
+  const data={date:$('#fdDate').value,type:'in',cycleId:cyc.id,farmId:cyc.farm,qty,other:null,note:$('#fdNote').value};
+  if(id){const m=DB.feedMoves.find(x=>x.id===id);if(!within24h(m)){toast('انتهت مهلة التعديل',1);return;}Object.assign(m,data);}
+  else{DB.feedMoves.push({id:uid('fm'),_ts:Date.now(),...data});}
+  save();closeModal();toast('تم تسجيل العلف الوارد ✓');renderFeed();
 }
 function feedMoveModal(){
   if(!DB.cycles.length){toast('أضف دورة أولاً',1);return;}
@@ -1554,32 +1599,44 @@ function saveFeedMove(){
   const qty=Number($('#fdQty').value)||0;if(qty<=0){toast('أدخل كمية صحيحة',1);return;}
   const type=$('#fdType').value;
   DB.feedMoves.push({id:uid('fm'),date:$('#fdDate').value,type,cycleId:$('#fdCycle').value,
-    farmId:cycleById($('#fdCycle').value)?.farm,qty,
+    farmId:cycleById($('#fdCycle').value)?.farm,qty,_ts:Date.now(),
     other:(type.startsWith('transfer'))?$('#fdOther').value:null,note:$('#fdNote').value});
   save();closeModal();toast('تم تسجيل حركة العلف ✓');renderFeed();
 }
-function delFeedMove(id){if(!confirm('حذف الحركة؟'))return;DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();}
+function delFeedMove(id){const m=DB.feedMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف الحركة؟'))return;DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();}
 
 /* ===================== 💉 الأدوية والتحصينات ===================== */
 function renderMeds(){
-  let html=pageHead('💉','الأدوية والتحصينات','برنامج التحصين بالعمر — عدد الأمبولات والأسعار وتكلفة الطائر');
+  const mgr=isManager();
+  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
+  let html=pageHead('💉','الأدوية والتحصينات', mgr?('مزرعتك: '+esc(myFarm().name)+' — سجّل الدواء/التحصين المستخدم اليوم (يمكن التعديل خلال 24 ساعة)'):'برنامج التحصين بالعمر — عدد الأمبولات والأسعار وتكلفة الطائر');
+  const myCycleIds = mgr ? DB.cycles.filter(c=>c.farm===ME.farm).map(c=>c.id) : null;
+  let meds = mgr ? DB.medMoves.filter(m=>myCycleIds.includes(m.cycleId)) : DB.medMoves;
   html+=`<div class="card"><div class="card-title">💊 سجل التحصينات والأدوية <div class="spacer" style="flex:1"></div>
     <button class="btn btn-sm" onclick="medModal()">+ تسجيل تحصين/دواء</button></div>`;
-  if(!DB.medMoves.length){html+=emptyState('💉','لا توجد سجلات.');}
+  if(!meds.length){html+=emptyState('💉','لا توجد سجلات.');}
   else{
     html+=`<div class="tbl-wrap"><table><thead><tr><th class="num">العمر</th><th>اللقاح/الدواء</th><th>الدورة</th>
       <th class="num">عدد الأمبولات</th><th class="num">سعر الأمبولة</th><th class="num">إجمالي السعر</th>
       <th class="num">تكلفة الطائر</th><th>التاريخ</th><th></th></tr></thead><tbody>`;
     let tAmp=0,tTotal=0;
-    DB.medMoves.slice().sort((a,b)=>(a.age||0)-(b.age||0)).forEach(m=>{
+    meds.slice().sort((a,b)=>(a.age||0)-(b.age||0)).forEach(m=>{
       const cyc=cycleById(m.cycleId);const placed=cyc?cyclePlaced(cyc):0;
       const total=Number(m.total)||((Number(m.qty)||0)*(Number(m.price)||0));
       const perBird=placed?(total/placed):0;
       tAmp+=Number(m.qty)||0;tTotal+=total;
+      let actions;
+      if(mgr){
+        actions = within24h(m)
+          ? `<button class="btn-sec btn-xs" onclick="medModal('${m.id}')">✏️ تعديل</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`
+          : `<span class="badge b-mut">مُقفل</span>`;
+      } else {
+        actions = `<button class="btn-sec btn-xs" onclick="medModal('${m.id}')">✏️</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`;
+      }
       html+=`<tr><td class="num">${m.age!=null?m.age:'-'}</td><td><b>${esc(m.item)}</b></td><td>${esc(cyc?.code||'')}</td>
         <td class="num">${fmt(m.qty)}</td><td class="num">${fmt(m.price,2)}</td><td class="num">${fmt(total)}</td>
         <td class="num">${fmt(perBird,2)}</td><td>${esc(m.date)}</td>
-        <td class="num"><button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button></td></tr>`;
+        <td class="num">${actions}</td></tr>`;
     });
     html+=`<tr class="tbl-total"><td colspan="3">الإجمالي</td><td class="num">${fmt(tAmp)}</td><td></td>
       <td class="num">${fmt(tTotal)}</td><td colspan="3"></td></tr>`;
@@ -1588,39 +1645,58 @@ function renderMeds(){
   html+=`</div>`;
   $('#main').innerHTML=html;
 }
-function medModal(){
-  if(!DB.cycles.length){toast('أضف دورة أولاً',1);return;}
-  const cycOpts=DB.cycles.map(c=>`<option value="${c.id}">${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
-  openModal('تسجيل تحصين/دواء',
-    `<div class="row-fields g2">
-       <div class="field"><label>اسم اللقاح/الدواء</label><input id="mdItem" placeholder="مثال: فاكستيك"></div>
-       <div class="field"><label>الدورة</label><select id="mdCycle">${cycOpts}</select></div>
-       <div class="field"><label>العمر (يوم)</label><input type="number" min="0" id="mdAge" placeholder="0"></div>
-       <div class="field"><label>التاريخ</label><input type="date" id="mdDate" value="${todayISO()}"></div>
-       <div class="field"><label>عدد الأمبولات/الكمية</label><input type="number" min="0" id="mdQty" placeholder="0" oninput="mdCalc()"></div>
-       <div class="field"><label>سعر الأمبولة/الوحدة</label><input type="number" min="0" step="0.01" id="mdPrice" placeholder="0" oninput="mdCalc()"></div>
-       <div class="field"><label>إجمالي السعر</label><input type="number" id="mdTotal" placeholder="0"></div>
+function medModal(id){
+  const mgr=isManager();
+  const m=id?DB.medMoves.find(x=>x.id===id):null;
+  if(mgr&&id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
+  let cycField;
+  if(mgr){
+    const cyc=myActiveCycle();
+    if(!cyc){toast('لا توجد دورة نشطة في مزرعتك',1);return;}
+    cycField=`<input type="hidden" id="mdCycle" value="${cyc.id}">
+      <div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm().name)}</b> — الدورة: <b>${esc(cyc.code)}</b></div>`;
+  }else{
+    if(!DB.cycles.length){toast('أضف دورة أولاً',1);return;}
+    const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${m&&m.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
+    cycField=`<div class="field"><label>الدورة</label><select id="mdCycle">${cycOpts}</select></div>`;
+  }
+  openModal(id?'تعديل تحصين/دواء':'تسجيل تحصين/دواء',
+    `${cycField}
+     <div class="row-fields g2">
+       <div class="field"><label>اسم اللقاح/الدواء</label><input id="mdItem" value="${m?esc(m.item):''}" placeholder="مثال: فاكستيك"></div>
+       <div class="field"><label>العمر (يوم)</label><input type="number" min="0" id="mdAge" value="${m&&m.age!=null?m.age:''}" placeholder="0"></div>
+       <div class="field"><label>التاريخ</label><input type="date" id="mdDate" value="${m?m.date:todayISO()}"></div>
+       <div class="field"><label>عدد الأمبولات/الكمية</label><input type="number" min="0" id="mdQty" value="${m?m.qty:''}" placeholder="0" oninput="mdCalc()"></div>
+       <div class="field"><label>سعر الأمبولة/الوحدة</label><input type="number" min="0" step="0.01" id="mdPrice" value="${m?m.price:''}" placeholder="0" oninput="mdCalc()"></div>
+       <div class="field"><label>إجمالي السعر</label><input type="number" id="mdTotal" value="${m?m.total:''}" placeholder="0"></div>
      </div>
-     <div class="field"><label>ملاحظات</label><input id="mdNote" placeholder="..."></div>`,
-    `<button class="btn" onclick="saveMed()">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+     <div class="field"><label>ملاحظات</label><input id="mdNote" value="${m?esc(m.note||''):''}" placeholder="..."></div>`,
+    `<button class="btn" onclick="saveMed('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
 }
 function mdCalc(){const q=Number($('#mdQty').value)||0,p=Number($('#mdPrice').value)||0;$('#mdTotal').value=(q*p).toFixed(2);}
-function saveMed(){
+function saveMed(id){
   const item=$('#mdItem').value.trim();if(!item){toast('أدخل اسم الصنف',1);return;}
   const qty=Number($('#mdQty').value)||0,price=Number($('#mdPrice').value)||0;
   const total=Number($('#mdTotal').value)||(qty*price);
-  DB.medMoves.push({id:uid('md'),date:$('#mdDate').value,item,cycleId:$('#mdCycle').value,
-    age:$('#mdAge').value!==''?Number($('#mdAge').value):null,qty,price,total,note:$('#mdNote').value});
+  const data={date:$('#mdDate').value,item,cycleId:$('#mdCycle').value,
+    age:$('#mdAge').value!==''?Number($('#mdAge').value):null,qty,price,total,note:$('#mdNote').value};
+  if(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة التعديل',1);return;}Object.assign(m,data);}
+  else{DB.medMoves.push({id:uid('md'),_ts:Date.now(),...data});}
   save();closeModal();toast('تم الحفظ ✓');renderMeds();
 }
-function delMed(id){if(!confirm('حذف السجل؟'))return;DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();}
+function delMed(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف السجل؟'))return;DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();}
 
 /* ===================== 💰 مركز المبيعات (شاشة منفصلة بصلاحية) ===================== */
 function renderSales(){
-  let html=pageHead('💰','مركز المبيعات','تسجيل المبيعات اليومية وإجمالي مبيعات الدورة');
+  const mgr=isManager();
+  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
+  let html=pageHead('💰','مركز المبيعات', mgr?('مزرعتك: '+esc(myFarm().name)+' — سجّل البيع اليومي (يمكن التعديل خلال 24 ساعة)'):'تسجيل المبيعات اليومية وإجمالي مبيعات الدورة');
+  const myCycles = mgr ? DB.cycles.filter(c=>c.farm===ME.farm) : DB.cycles;
+  const myCycleIds = myCycles.map(c=>c.id);
+  const salesScope = mgr ? DB.sales.filter(s=>myCycleIds.includes(s.cycleId)||s.farmId===ME.farm) : DB.sales;
   // ملخص اليوم
   const td=todayISO();
-  const today=DB.sales.filter(s=>s.date===td);
+  const today=salesScope.filter(s=>s.date===td);
   const tc=today.reduce((s,x)=>s+(Number(x.count)||0),0);
   const tw=today.reduce((s,x)=>s+(Number(x.weight)||0),0);
   const ta=today.reduce((s,x)=>s+(Number(x.amount)||0),0);
@@ -1633,12 +1709,12 @@ function renderSales(){
     </div></div>`;
   // إجمالي لكل دورة
   html+=`<div class="card"><div class="card-title">📊 إجمالي المبيعات حسب الدورة</div>`;
-  if(!DB.cycles.length){html+=emptyState('💰','لا توجد دورات.');}
+  if(!myCycles.length){html+=emptyState('💰','لا توجد دورات.');}
   else{
     html+=`<div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th class="num">عدد مُباع</th>
       <th class="num">نسبة النافق</th><th class="num">المتبقي</th><th class="num">إجمالي الوزن</th>
       <th class="num">إجمالي المبلغ</th><th class="num">متوسط السعر</th></tr></thead><tbody>`;
-    DB.cycles.forEach(c=>{
+    myCycles.forEach(c=>{
       const sales=DB.sales.filter(s=>s.cycleId===c.id);
       const cnt=sales.reduce((s,x)=>s+(Number(x.count)||0),0);
       const wt=sales.reduce((s,x)=>s+(Number(x.weight)||0),0);
@@ -1655,17 +1731,24 @@ function renderSales(){
   // سجل المبيعات
   html+=`<div class="card"><div class="card-title">🧾 سجل المبيعات <div class="spacer" style="flex:1"></div>
     <button class="btn btn-sm" onclick="saleModal()">+ بيع جديد</button></div>`;
-  if(!DB.sales.length){html+=emptyState('🧾','لا توجد مبيعات.');}
+  if(!salesScope.length){html+=emptyState('🧾','لا توجد مبيعات.');}
   else{
     html+=`<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th>الدورة</th><th>العنبر</th><th class="num">العدد</th>
       <th class="num">الوزن</th><th class="num">السعر</th><th class="num">المبلغ</th><th></th></tr></thead><tbody>`;
-    DB.sales.slice().reverse().forEach(s=>{
+    salesScope.slice().reverse().forEach(s=>{
       const farm=farmById(s.farmId);const hn=farm?.houses.find(h=>h.id===s.houseId)?.name||'-';
+      let actions;
+      if(mgr){
+        actions = within24h(s)
+          ? `<button class="btn-sec btn-xs" onclick="saleModal('${s.id}')">✏️ تعديل</button> <button class="btn-red btn-xs" onclick="delSale('${s.id}')">حذف</button>`
+          : `<span class="badge b-mut">مُقفل</span>`;
+      } else {
+        actions = `<button class="btn-sec btn-xs" onclick="saleModal('${s.id}')">✏️ تعديل</button> <button class="btn-red btn-xs" onclick="delSale('${s.id}')">حذف</button>`;
+      }
       html+=`<tr><td>${esc(s.date)}</td><td>${esc(cycleById(s.cycleId)?.code||'')}</td><td>${esc(hn)}</td>
         <td class="num">${fmt(s.count)}</td><td class="num">${fmt(s.weight,1)}</td>
         <td class="num">${fmt(s.price,2)}</td><td class="num"><b>${fmt(s.amount)}</b></td>
-        <td class="num"><button class="btn-sec btn-xs" onclick="saleModal('${s.id}')">✏️ تعديل</button>
-        <button class="btn-red btn-xs" onclick="delSale('${s.id}')">حذف</button></td></tr>`;
+        <td class="num">${actions}</td></tr>`;
     });
     html+=`</tbody></table></div>`;
   }
@@ -1674,10 +1757,21 @@ function renderSales(){
 }
 function saleModal(id){
   if(!DB.cycles.length){toast('أضف دورة أولاً',1);return;}
+  const mgr=isManager();
   const s=id?DB.sales.find(x=>x.id===id):null;
-  const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${s&&s.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
+  if(mgr&&id&&!within24h(s)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
+  let cycField;
+  if(mgr){
+    const cyc=myActiveCycle();
+    if(!cyc){toast('لا توجد دورة نشطة في مزرعتك',1);return;}
+    cycField=`<input type="hidden" id="slCycle" value="${cyc.id}">
+      <div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm().name)}</b> — الدورة: <b>${esc(cyc.code)}</b></div>`;
+  }else{
+    const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${s&&s.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
+    cycField=`<div class="field"><label>الدورة</label><select id="slCycle" onchange="slHouses()">${cycOpts}</select></div>`;
+  }
   openModal(id?'تعديل بيع':'تسجيل بيع',
-    `<div class="field"><label>الدورة</label><select id="slCycle" onchange="slHouses()">${cycOpts}</select></div>
+    `${cycField}
      <div class="field"><label>العنبر</label><select id="slHouse"></select></div>
      <div class="row-fields g2">
        <div class="field"><label>العدد</label><input type="number" min="0" id="slCount" value="${s?s.count:''}" placeholder="0" oninput="slCalc()"></div>
@@ -1689,7 +1783,6 @@ function saleModal(id){
      </div>`,
     `<button class="btn btn-green" onclick="saveSale('${id||''}')">${id?'حفظ التعديل':'حفظ البيع'}</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
   slHouses(s?s.houseId:null);
-  // عند فتح تعديل: لا تُعِد حساب المبلغ المحفوظ، فقط احسب متوسط الطائر
   const c0=Number($('#slCount').value)||0,w0=Number($('#slWeight').value)||0;
   $('#slAvg').value=c0?(w0/c0*1000).toFixed(0)+' جم':'0';
 }
@@ -1706,11 +1799,11 @@ function saveSale(id){
     farmId:cycleById($('#slCycle').value)?.farm,houseId:$('#slHouse').value||null,count:cnt,
     weight:Number($('#slWeight').value)||0,price:Number($('#slPrice').value)||0,
     amount:Number($('#slAmount').value)||0};
-  if(id){Object.assign(DB.sales.find(x=>x.id===id),data);}
-  else{DB.sales.push({id:uid('s'),...data});}
+  if(id){const ex=DB.sales.find(x=>x.id===id);if(isManager()&&!within24h(ex)){toast('انتهت مهلة التعديل',1);return;}Object.assign(ex,data);}
+  else{DB.sales.push({id:uid('s'),_ts:Date.now(),...data});}
   save();closeModal();toast(id?'تم تعديل البيع ✓':'تم تسجيل البيع ✓');renderSales();
 }
-function delSale(id){if(!confirm('حذف البيع؟'))return;DB.sales=DB.sales.filter(s=>s.id!==id);save();renderSales();}
+function delSale(id){const s=DB.sales.find(x=>x.id===id);if(isManager()&&!within24h(s)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف البيع؟'))return;DB.sales=DB.sales.filter(s=>s.id!==id);save();renderSales();}
 
 /* ===================== 🔁 التحويلات (علف + أدوية + طيور) ===================== */
 function renderTransfer(){
@@ -2789,7 +2882,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v4';
+    const C='brmas-v5';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
