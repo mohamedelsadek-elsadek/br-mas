@@ -519,7 +519,7 @@ function fbInit(){
       const incoming=JSON.stringify(data);
       if(incoming===JSON.stringify(DB)){updateSyncBadge('متزامن ✓');return;} // لا تغيير فعلي — لا تعيد الرسم
       FB_REMOTE=true;
-      DB=data; if(!DB.yearlyRef)DB.yearlyRef=[];
+      DB=normalizeDB(data);
       invalidateCache();
       localStorage.setItem(DBKEY,incoming);
       FB_REMOTE=false;
@@ -559,7 +559,7 @@ function cloudPullNow(){
   if(!confirm('جلب البيانات من السحابة؟ ستحل محل البيانات المحلية.'))return;
   FB_DB.ref('erp').once('value').then(snap=>{const d=snap.val();
     if(!d){toast('لا توجد بيانات في السحابة',1);return;}
-    DB=d;if(!DB.yearlyRef)DB.yearlyRef=[];localStorage.setItem(DBKEY,JSON.stringify(DB));
+    DB=normalizeDB(d);localStorage.setItem(DBKEY,JSON.stringify(DB));
     toast('تم جلب البيانات من السحابة ✓');renderApp();});
 }
 function updateSyncBadge(txt,err){
@@ -570,7 +570,22 @@ function updateSyncBadge(txt,err){
 
 /* ---- تحميل / حفظ ---- */
 let DB=load();
-function load(){try{const r=localStorage.getItem(DBKEY);const d=r?JSON.parse(r):defaultDB();if(!d.yearlyRef)d.yearlyRef=[];return d;}catch(e){return defaultDB();}}
+function load(){try{const r=localStorage.getItem(DBKEY);const d=r?JSON.parse(r):defaultDB();return normalizeDB(d);}catch(e){return defaultDB();}}
+/* يضمن وجود كل الحقول الأساسية مهما كانت البيانات قديمة أو ناقصة */
+function normalizeDB(d){
+  if(!d||typeof d!=='object')return defaultDB();
+  const def=defaultDB();
+  // الحقول التي يجب أن تكون مصفوفات
+  ['users','farms','cycles','daily','feedMoves','medMoves','birdMoves','sales','yearlyRef'].forEach(k=>{
+    if(!Array.isArray(d[k]))d[k]=[];
+  });
+  // الكائنات
+  if(!d.labels||typeof d.labels!=='object')d.labels=def.labels;
+  if(!d.settings||typeof d.settings!=='object')d.settings=def.settings;
+  // لو مفيش مستخدمين خالص، ارجّع المستخدمين الافتراضيين
+  if(!d.users.length)d.users=def.users;
+  return d;
+}
 function save(){invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));autoBackup();if(FB_ON)fbPush();}
 
 /* ---- النسخ الاحتياطي التلقائي اليومي (جوه المتصفح، آخر 30 يوم) ---- */
@@ -2774,7 +2789,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v3';
+    const C='brmas-v4';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
