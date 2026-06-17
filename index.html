@@ -2619,35 +2619,55 @@ function repPriceCmp(){
 }
 
 /* ===== تقرير السبلة (الفرشة) ===== */
-let litterDensity=0.75;
-let litterFactor=0.70;
+let litterDensity=0.65;   // طن/م³ — قيمة واقعية للسبلة شبه الجافة (مرجع: 0.5–0.65)
+let litterFactor=0.70;    // نسبة السبلة من العلف المستهلك (رطوبة ~80%)
 function repLitter(){
   let h=`<div class="card"><div class="toolbar">
+    <label style="color:var(--txt2)">معامل السبلة (من العلف):</label>
+    <input type="number" step="0.01" value="${litterFactor}" style="width:90px" onchange="litterFactor=Number(this.value)||0.70;renderReports()">
     <label style="color:var(--txt2)">كثافة السبلة (طن/م³):</label>
-    <input type="number" step="0.01" value="${litterDensity}" style="width:100px" onchange="litterDensity=Number(this.value)||0.75;renderReports()">
-    <label style="color:var(--txt2)">معامل السبلة:</label>
-    <input type="number" step="0.01" value="${litterFactor}" style="width:100px" onchange="litterFactor=Number(this.value)||0.70;renderReports()">
-    <span class="hint">وزن السبلة (طن) = عدد الطيور × الوزن النهائي × FCR × ${litterFactor} ÷ 1000 — والحجم = الوزن ÷ الكثافة</span></div></div>
+    <input type="number" step="0.01" value="${litterDensity}" style="width:90px" onchange="litterDensity=Number(this.value)||0.65;renderReports()">
+    <span class="hint">وزن السبلة (طن) = عدد الطيور × الوزن النهائي × FCR × ${litterFactor} ÷ 1000 &nbsp;•&nbsp; الحجم = الوزن ÷ الكثافة</span>
+  </div></div>
     <div class="card"><div class="card-title">🪵 تقرير السبلة المتوقعة لكل دورة</div>
     <div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>المزرعة</th><th class="num">عدد الطيور</th>
-      <th class="num">الوزن النهائي (كجم)</th><th class="num">FCR</th>
-      <th class="num">وزن السبلة (طن)</th><th class="num">كثافة</th><th class="num">حجم السبلة (م³)</th></tr></thead><tbody>`;
-  let Twt=0,Tvol=0;
+      <th class="num">الوزن النهائي (كجم)</th><th class="num">FCR</th><th class="num">العلف المستهلك (طن)</th>
+      <th class="num">وزن السبلة (طن)</th><th class="num">سبلة/طائر (كجم)</th><th class="num">الحجم (م³)</th></tr></thead><tbody>`;
+  let Tplaced=0,Tfeed=0,Twt=0,Tvol=0;
   DB.cycles.forEach(c=>{
     const F=cycleFinal(c);
     const placed=cyclePlaced(c)||0;
     const finalW=F.avgWeightBird||0;       // كجم
     const fcr=F.fcr||0;
+    const feedTon=(F.feed||0)/1000;        // طن (العلف الفعلي المسجّل)
     const litterTon = placed*finalW*fcr*litterFactor/1000;   // طن
+    const perBird = placed? (litterTon*1000/placed) : 0;     // كجم/طائر
     const vol = litterDensity? (litterTon/litterDensity) : 0; // م³
-    Twt+=litterTon;Tvol+=vol;
+    Tplaced+=placed;Tfeed+=feedTon;Twt+=litterTon;Tvol+=vol;
     h+=`<tr><td><b>${esc(c.code)}</b></td><td>${esc(farmById(c.farm)?.name||'')}</td>
       <td class="num">${fmt(placed)}</td><td class="num">${fmt(finalW,2)}</td><td class="num">${fcr.toFixed(3)}</td>
-      <td class="num"><b>${fmt(litterTon,2)}</b></td><td class="num">${litterDensity}</td>
-      <td class="num">${fmt(vol,0)}</td></tr>`;
+      <td class="num">${fmt(feedTon,1)}</td>
+      <td class="num"><b>${fmt(litterTon,2)}</b></td><td class="num">${fmt(perBird,2)}</td>
+      <td class="num">${fmt(vol,1)}</td></tr>`;
   });
-  h+=`<tr class="tbl-total"><td colspan="5">الإجمالي</td><td class="num">${fmt(Twt,2)} طن</td><td></td><td class="num">${fmt(Tvol,0)} م³</td></tr>`;
-  return h+`</tbody></table></div></div>`;
+  const avgPerBird=Tplaced?(Twt*1000/Tplaced):0;
+  h+=`<tr class="tbl-total"><td colspan="6">الإجمالي</td>
+    <td class="num">${fmt(Twt,2)} طن</td><td class="num">${fmt(avgPerBird,2)}</td><td class="num">${fmt(Tvol,0)} م³</td></tr>`;
+  h+=`</tbody></table></div></div>`;
+  // بطاقة المنهجية والمراجع
+  h+=`<div class="card"><div class="card-title">📚 منهجية الحساب والمراجع</div>
+    <div style="font-size:13px;line-height:1.9;color:var(--txt2)">
+      <b>المعادلة:</b><br>
+      • وزن السبلة (طن) = عدد الطيور × متوسط الوزن النهائي (كجم) × معامل التحويل FCR × ${litterFactor} ÷ 1000<br>
+      • وهي تعادل تقريباً: العلف المستهلك × ${litterFactor} (لأن العلف = عدد × وزن × FCR).<br>
+      • الحجم (م³) = وزن السبلة (طن) ÷ كثافة السبلة (${litterDensity} طن/م³).<br><br>
+      <b>الأساس العلمي:</b><br>
+      • قاعدة عامة في صناعة الدواجن: كمية السبلة الناتجة تقارب كمية العلف المستهلك عند رطوبة ~80%، وتقل كلما جفّت. معامل ${litterFactor} يمثّل صافي السبلة بعد فقد جزء بالتبخّر والكبس.<br>
+      • الكثافة الواقعية للسبلة تتراوح بين 0.5 طن/م³ (جافة) و1.0 طن/م³ (طازجة رطبة)؛ والقيمة الافتراضية ${litterDensity} تمثّل سبلة شبه جافة ممزوجة بالنشارة. عدّلها حسب نوع الفرشة ورطوبتها.<br>
+      • أرقام مرجعية للمقارنة: ~1.5–1.7 كجم سبلة لكل طائر في دورة كاملة (≈6–7 أسابيع) وفق دراسات منشورة — راجع عمود «سبلة/طائر» لتقييم منطقية النتائج.<br><br>
+      <span class="hint">المصادر: PoultryHub Australia · Sunco Machinery (كثافة السبلة) · Poultry Performance Plus (قاعدة العلف≈السبلة). الأرقام تقديرية وتتأثر بنوع الفرشة والتهوية والرطوبة وعدد الدورات على نفس الفرشة.</span>
+    </div></div>`;
+  return h;
 }
 
 /* ===== برنامج التحصين المجمّع ===== */
@@ -3237,7 +3257,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v10';
+    const C='brmas-v11';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
