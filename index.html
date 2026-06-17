@@ -471,7 +471,9 @@ const PERM_KEYS=['daily','dash','owner','farms','feed','meds','sales','transfer'
 const DEFAULT_LABELS={
   company:'الشركة المصرية للاستصلاح الزراعي والإنتاج الحيواني والداجني',
   dead:'النافق', feed:'العلف', water:'المياه', weight:'الوزن',
-  house:'العنبر', farm:'المزرعة', cycle:'الدورة'
+  house:'العنبر', farm:'المزرعة', cycle:'الدورة',
+  meds:'الأدوية', vaccine:'التحصين', sales:'المبيعات', culls:'السقاوات',
+  chick:'الكتكوت', breed:'السلالة', age:'العمر', litter:'السبلة'
 };
 
 /* ---- قاعدة البيانات الافتراضية (هيكل فقط — أرقام صفرية) ---- */
@@ -606,6 +608,7 @@ function normalizeDB(d){
   });
   // الكائنات
   if(!d.labels||typeof d.labels!=='object')d.labels=def.labels;
+  else{Object.keys(DEFAULT_LABELS).forEach(k=>{if(d.labels[k]===undefined)d.labels[k]=DEFAULT_LABELS[k];});}
   if(!d.settings||typeof d.settings!=='object')d.settings=def.settings;
   if(!Array.isArray(d.settings.medTypes)||!d.settings.medTypes.length)d.settings.medTypes=def.settings.medTypes;
   if(!Array.isArray(d.settings.medUnits)||!d.settings.medUnits.length)d.settings.medUnits=def.settings.medUnits;
@@ -1216,7 +1219,7 @@ function renderDaily(){
       <div class="field"><label>💦 الرطوبة %</label><input type="number" step="0.1" id="clHum" value="${close.humidity??''}" placeholder="0"></div>
       <div class="field"><label>⚖️ متوسط الوزن (جم) <span class="hint">يدوي</span></label><input type="number" id="clWeight" value="${close.weight??''}" placeholder="0">
         ${ref?`<div class="hint">المرجعي: <b>${fmt(ref.w)} جم</b> ${close.weight?(close.weight>=ref.w?'<span class=ref-good>✓ مطابق</span>':'<span class=ref-bad>دون المرجع</span>'):''}</div>`:''}</div>
-      <div class="field"><label>🚮 عدد السقاوات (المستبعد)</label><input type="number" min="0" id="clCulls" value="${close.culls??''}" placeholder="0"></div>
+      <div class="field"><label>🚮 عدد السقاوات</label><input type="number" min="0" id="clCulls" value="${close.culls??''}" placeholder="0"></div>
       <div class="field"><label>👷 عدد العمال</label><input type="number" min="0" id="clWork" value="${close.workers??''}" placeholder="0"></div>
       <div class="field"><label>🛌 إجازات</label><input type="number" min="0" id="clVac" value="${close.vacation??''}" placeholder="0"></div>
       <div class="field"><label>⛽ تراكمي الغاز</label><input type="number" step="0.1" id="clGasCum" value="${close.gasCum??''}" placeholder="0"></div>
@@ -2185,20 +2188,32 @@ function repWeekCat(){
   let h=`<div class="card"><div class="toolbar">${cycSelect()}</div></div>
     <div class="card"><div class="card-title">📅 مقارنة أسبوعية مقابل Ross 308 — ${esc(cyc.code)}</div>`;
   if(!dates.length)return h+emptyState('📅','لا توجد سجلات.')+`</div>`;
-  // جمّع حسب الأسبوع
+  const placed=cyclePlaced(cyc)||0;
+  // جمّع حسب الأسبوع: نافق الأسبوع، علف الأسبوع، وآخر وزن مُسجّل وعمره داخل الأسبوع
   const weeks={};
   dates.forEach(dt=>{const d=cycleDayData(cyc,dt);const w=Math.ceil(d.age/7);
-    if(!weeks[w])weeks[w]={dead:0,feed:0,wSum:0,wCnt:0,lastAge:0};
+    if(!weeks[w])weeks[w]={dead:0,feed:0,lastWeight:0,lastWeightAge:0,lastAge:0};
     weeks[w].dead+=d.dead;weeks[w].feed+=d.feed;
-    if(d.weight){weeks[w].wSum+=d.weight;weeks[w].wCnt++;}weeks[w].lastAge=Math.max(weeks[w].lastAge,d.age);});
+    weeks[w].lastAge=Math.max(weeks[w].lastAge,d.age);
+    if(d.weight){ if(d.age>=weeks[w].lastWeightAge){weeks[w].lastWeight=d.weight;weeks[w].lastWeightAge=d.age;} }
+  });
   h+=`<div class="tbl-wrap"><table><thead><tr><th class="num">الأسبوع</th><th class="num">نافق الأسبوع</th>
-    <th class="num">علف الأسبوع</th><th class="num">متوسط الوزن</th><th class="num">وزن المرجع (آخر يوم)</th>
+    <th class="num">علف الأسبوع</th><th class="num">علف تراكمي/طائر (جم)</th>
+    <th class="num">آخر وزن مُسجّل</th><th class="num">وزن المرجع (نفس العمر)</th>
     <th class="num">% للمرجع</th></tr></thead><tbody>`;
+  let cumFeedKg=0;
   Object.keys(weeks).map(Number).sort((a,b)=>a-b).forEach(w=>{
-    const x=weeks[w];const avgW=x.wCnt?(x.wSum/x.wCnt):0;const ref=rossRow(x.lastAge);
-    const pct=ref&&avgW?(avgW/ref.w*100):0;
+    const x=weeks[w];
+    cumFeedKg+=x.feed;
+    // علف تراكمي للطائر بالجرام (لمقارنته بمنطق الكتالوج) = (إجمالي العلف كجم ÷ عدد الطيور) × 1000
+    const feedPerBird = placed? (cumFeedKg/placed*1000) : 0;
+    const refAge = x.lastWeightAge || x.lastAge;
+    const ref=rossRow(refAge);
+    const wt=x.lastWeight;
+    const pct=ref&&wt?(wt/ref.w*100):0;
     h+=`<tr><td class="num"><b>أسبوع ${w}</b></td><td class="num">${fmt(x.dead)}</td>
-      <td class="num">${fmt(x.feed)} كجم</td><td class="num">${avgW?fmt(avgW):'-'}</td>
+      <td class="num">${fmt(x.feed)} كجم</td><td class="num">${feedPerBird?fmt(feedPerBird,0):'-'}</td>
+      <td class="num">${wt?fmt(wt):'-'}${wt?` <span class="hint">(يوم ${refAge})</span>`:''}</td>
       <td class="num">${ref?fmt(ref.w):'-'}</td>
       <td class="num">${pct?`<span class="badge ${pct>=98?'b-ok':pct>=92?'b-warn':'b-bad'}">${pct.toFixed(0)}%</span>`:'-'}</td></tr>`;
   });
@@ -2605,24 +2620,33 @@ function repPriceCmp(){
 
 /* ===== تقرير السبلة (الفرشة) ===== */
 let litterDensity=0.75;
+let litterFactor=0.70;
 function repLitter(){
   let h=`<div class="card"><div class="toolbar">
     <label style="color:var(--txt2)">كثافة السبلة (طن/م³):</label>
-    <input type="number" step="0.01" value="${litterDensity}" style="width:110px" onchange="litterDensity=Number(this.value)||0.75;renderReports()">
-    <span class="hint">الافتراضي 0.75 — حجم السبلة المتوقع = كمية العلف ÷ الكثافة</span></div></div>
+    <input type="number" step="0.01" value="${litterDensity}" style="width:100px" onchange="litterDensity=Number(this.value)||0.75;renderReports()">
+    <label style="color:var(--txt2)">معامل السبلة:</label>
+    <input type="number" step="0.01" value="${litterFactor}" style="width:100px" onchange="litterFactor=Number(this.value)||0.70;renderReports()">
+    <span class="hint">وزن السبلة (طن) = عدد الطيور × الوزن النهائي × FCR × ${litterFactor} ÷ 1000 — والحجم = الوزن ÷ الكثافة</span></div></div>
     <div class="card"><div class="card-title">🪵 تقرير السبلة المتوقعة لكل دورة</div>
-    <div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>المزرعة</th><th class="num">كمية العلف (كجم)</th>
-      <th class="num">FCR</th><th class="num">حجم السبلة (م³)</th><th class="num">كثافة</th>
-      <th class="num">وزن السبلة (كجم)</th></tr></thead><tbody>`;
+    <div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>المزرعة</th><th class="num">عدد الطيور</th>
+      <th class="num">الوزن النهائي (كجم)</th><th class="num">FCR</th>
+      <th class="num">وزن السبلة (طن)</th><th class="num">كثافة</th><th class="num">حجم السبلة (م³)</th></tr></thead><tbody>`;
+  let Twt=0,Tvol=0;
   DB.cycles.forEach(c=>{
-    const F=cycleFinal(c);const feedTon=F.feed/1000;
-    const vol=litterDensity?(feedTon/litterDensity):0;
-    const wt=vol*litterDensity*1000; // كجم
+    const F=cycleFinal(c);
+    const placed=cyclePlaced(c)||0;
+    const finalW=F.avgWeightBird||0;       // كجم
+    const fcr=F.fcr||0;
+    const litterTon = placed*finalW*fcr*litterFactor/1000;   // طن
+    const vol = litterDensity? (litterTon/litterDensity) : 0; // م³
+    Twt+=litterTon;Tvol+=vol;
     h+=`<tr><td><b>${esc(c.code)}</b></td><td>${esc(farmById(c.farm)?.name||'')}</td>
-      <td class="num">${fmt(F.feed)}</td><td class="num">${F.fcr.toFixed(3)}</td>
-      <td class="num">${fmt(vol,0)}</td><td class="num">${litterDensity}</td>
-      <td class="num">${fmt(wt)}</td></tr>`;
+      <td class="num">${fmt(placed)}</td><td class="num">${fmt(finalW,2)}</td><td class="num">${fcr.toFixed(3)}</td>
+      <td class="num"><b>${fmt(litterTon,2)}</b></td><td class="num">${litterDensity}</td>
+      <td class="num">${fmt(vol,0)}</td></tr>`;
   });
+  h+=`<tr class="tbl-total"><td colspan="5">الإجمالي</td><td class="num">${fmt(Twt,2)} طن</td><td></td><td class="num">${fmt(Tvol,0)} م³</td></tr>`;
   return h+`</tbody></table></div></div>`;
 }
 
@@ -2981,10 +3005,17 @@ function renderSettings(){
       <div class="field"><label>السلالة الافتراضية</label><input id="stBreed" value="${esc(DB.settings.breedDefault)}" ${isSuper?'':'disabled'}></div>
     </div></div>`;
   if(isSuper){
-    html+=`<div class="card"><div class="card-title">🏷️ تعديل المسميات</div>
+    const lblKeys=Object.keys(DB.labels).filter(k=>k!=='company');
+    html+=`<div class="card"><div class="card-title">🏷️ تعديل المسميات
+      <div class="spacer" style="flex:1"></div>
+      <button class="btn-sec btn-sm" onclick="addLabel()">➕ إضافة مسمى</button></div>
+      <div class="hint" style="margin-bottom:12px">عدّل أي مسمى مستخدم في البرنامج، أو أضف مسميات جديدة خاصة بك.</div>
       <div class="row-fields g3">
-        ${['dead','feed','water','weight','house','farm','cycle'].map(k=>
-          `<div class="field"><label>${k}</label><input id="lbl_${k}" value="${esc(L(k))}"></div>`).join('')}
+        ${lblKeys.map(k=>
+          `<div class="field"><label>${esc(k)}</label>
+            <div class="pill-row" style="gap:6px">
+              <input id="lbl_${k}" value="${esc(L(k))}" style="flex:1">
+              <button class="btn-red btn-xs" onclick="removeLabel('${k}')">×</button></div></div>`).join('')}
       </div>
       <button class="btn btn-sm" onclick="saveLabels()">حفظ المسميات</button></div>`;
     // ---- إدارة القوائم المنسدلة ----
@@ -3127,7 +3158,19 @@ function saveSettings(){
   if(ME.role==='super'){DB.labels.company=$('#stCompany').value;DB.settings.currency=$('#stCurr').value;DB.settings.breedDefault=$('#stBreed').value;}
   save();toast('تم حفظ الإعدادات ✓');
 }
-function saveLabels(){['dead','feed','water','weight','house','farm','cycle'].forEach(k=>{DB.labels[k]=$('#lbl_'+k).value;});save();toast('تم حفظ المسميات ✓');renderSettings();}
+function saveLabels(){Object.keys(DB.labels).filter(k=>k!=='company').forEach(k=>{const el=$('#lbl_'+k);if(el)DB.labels[k]=el.value;});save();toast('تم حفظ المسميات ✓');renderSettings();}
+function addLabel(){
+  const key=prompt('اسم المسمى (مفتاح بالإنجليزي بدون مسافات، مثل: zone):');if(!key)return;
+  const k=key.trim().replace(/\s+/g,'_');if(!k)return;
+  if(DB.labels[k]!==undefined){toast('موجود بالفعل',1);return;}
+  const val=prompt('النص الظاهر للمسمى:')||k;
+  DB.labels[k]=val.trim();save();toast('تمت الإضافة ✓');renderSettings();
+}
+function removeLabel(k){
+  if(['dead','feed','water','weight','house','farm','cycle'].includes(k)){toast('مسمى أساسي لا يمكن حذفه — يمكنك تعديله فقط',1);return;}
+  if(!confirm('حذف المسمى "'+k+'"؟'))return;
+  delete DB.labels[k];save();toast('تم الحذف ✓');renderSettings();
+}
 function settingsAddItem(key){
   const t=prompt('أضف عنصر جديد للقائمة:');if(!t)return;
   const v=t.trim();if(!v)return;
@@ -3194,7 +3237,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v9';
+    const C='brmas-v10';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
