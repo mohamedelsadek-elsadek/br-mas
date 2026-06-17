@@ -551,6 +551,7 @@ function fbInit(){
       updateSyncBadge('متزامن ✓');
     },err=>{console.warn('FB read error',err);updateSyncBadge('خطأ اتصال',true);});
     updateSyncBadge('متصل ☁️');
+    startCloudBackupTimer();
     return true;
   }catch(e){console.error('FB init',e);return false;}
 }
@@ -644,6 +645,46 @@ function restoreBackup(day){
 function deleteBackup(day){
   const baks=loadBackups();delete baks[day];localStorage.setItem(BAKKEY,JSON.stringify(baks));
   toast('تم حذف النسخة');renderSettings();
+}
+/* ===== النسخ الاحتياطية اليومية في Firebase (الساعة 3 صباحاً) ===== */
+// تُكتب نسخة ليوم معيّن مرة واحدة، أول ما يفتح أي جهاز النظام بعد 3ص ولا توجد نسخة لليوم.
+function cloudBackupKey(){ return todayISO(); }
+function maybeCloudBackup(){
+  if(!FB_ON||!FB_DB)return;
+  const now=new Date();
+  if(now.getHours()<3)return;            // قبل الساعة 3 صباحاً لا نأخذ نسخة اليوم
+  const day=cloudBackupKey();
+  FB_DB.ref('backups/'+day).once('value').then(snap=>{
+    if(snap.exists())return;             // نسخة اليوم موجودة بالفعل
+    const payload={ts:Date.now(),by:(ME&&ME.name)||'auto',data:DB};
+    FB_DB.ref('backups/'+day).set(payload).then(()=>{
+      // احتفظ بآخر 30 نسخة فقط
+      FB_DB.ref('backups').once('value').then(s=>{
+        const all=s.val()||{};const days=Object.keys(all).sort();
+        while(days.length>30){const d=days.shift();FB_DB.ref('backups/'+d).remove();}
+      });
+    }).catch(()=>{});
+  }).catch(()=>{});
+}
+let _cloudBakTimer=null;
+function startCloudBackupTimer(){
+  if(_cloudBakTimer)return;
+  maybeCloudBackup();                       // فحص فوري عند الفتح
+  _cloudBakTimer=setInterval(maybeCloudBackup, 30*60*1000); // كل 30 دقيقة
+}
+function listCloudBackups(cb){
+  if(!FB_ON||!FB_DB){cb({});return;}
+  FB_DB.ref('backups').once('value').then(s=>cb(s.val()||{})).catch(()=>cb({}));
+}
+function restoreCloudBackup(day){
+  if(!FB_ON||!FB_DB)return;
+  if(!confirm('استرجاع نسخة سحابية ليوم '+day+'؟ سيتم استبدال البيانات الحالية على كل الأجهزة.'))return;
+  FB_DB.ref('backups/'+day).once('value').then(snap=>{
+    const b=snap.val();if(!b||!b.data){toast('النسخة غير موجودة',1);return;}
+    DB=normalizeDB(b.data);invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));
+    if(FB_ON)fbPush();
+    toast('تم استرجاع نسخة '+day+' ✓');renderApp();
+  });
 }
 function uid(p){return (p||'id')+Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-3);}
 
@@ -3017,6 +3058,16 @@ function renderSettings(){
     }
   }
   html+=`</div>`;
+  // ---- النسخ الاحتياطية السحابية (Firebase) ----
+  if(isSuper){
+    html+=`<div class="card"><div class="card-title">☁️🗓️ النسخ الاحتياطية السحابية
+      <span class="badge b-info" style="margin-right:8px">يومياً 3 صباحاً · آخر 30 نسخة</span>
+      <div class="spacer" style="flex:1"></div>
+      <button class="btn-sec btn-sm" onclick="maybeCloudBackup();toast('تم فحص/أخذ نسخة سحابية ✓');setTimeout(loadCloudBakUI,1000)">📸 نسخة الآن</button></div>
+      <div class="hint" style="margin-bottom:12px">تُحفظ نسخة كاملة في السحابة تلقائياً كل يوم بعد الساعة 3 صباحاً (أول ما يفتح أي جهاز النظام)، ومتاحة للاسترجاع من أي مكان.</div>
+      <div id="cloudBakList">${FB_ON?'<div class="hint">جارٍ التحميل…</div>':'<div class="hint">غير متصل بالسحابة.</div>'}</div>
+    </div>`;
+  }
   if(isSuper){
     html+=`<div class="card"><div class="card-title">☁️ المزامنة السحابية (Firebase)</div>
       <div class="statrow ${FB_ON?'st-green':'st-slate'}" style="margin-bottom:14px">
@@ -3043,6 +3094,25 @@ function renderSettings(){
   }
   html+=`<button class="btn" onclick="saveSettings()">حفظ الإعدادات</button>`;
   $('#main').innerHTML=html;
+  if(ME.role==='super'&&FB_ON)loadCloudBakUI();
+}
+function loadCloudBakUI(){
+  const el=document.getElementById('cloudBakList');if(!el)return;
+  listCloudBackups(all=>{
+    const el2=document.getElementById('cloudBakList');if(!el2)return;
+    const days=Object.keys(all).sort().reverse();
+    if(!days.length){el2.innerHTML='<div class="empty"><div class="ic">☁️</div>لا توجد نسخ سحابية بعد — ستُؤخذ تلقائياً بعد 3 صباحاً.</div>';return;}
+    let h=`<div class="tbl-wrap"><table><thead><tr><th>اليوم</th><th>وقت النسخة</th><th>بواسطة</th>
+      <th class="num">سجلات يومية</th><th class="num">مبيعات</th><th></th></tr></thead><tbody>`;
+    days.forEach(d=>{const b=all[d];const dt=b&&b.ts?new Date(b.ts):null;
+      const nd=(b&&b.data&&b.data.daily||[]).length,ns=(b&&b.data&&b.data.sales||[]).length;
+      h+=`<tr><td><b>${esc(d)}</b></td><td>${dt?dt.toLocaleString('ar-EG'):'-'}</td><td>${esc(b&&b.by||'auto')}</td>
+        <td class="num">${fmt(nd)}</td><td class="num">${fmt(ns)}</td>
+        <td class="num"><button class="btn-sec btn-xs" onclick="restoreCloudBackup('${d}')">↩️ استرجاع</button></td></tr>`;
+    });
+    h+=`</tbody></table></div>`;
+    el2.innerHTML=h;
+  });
 }
 function saveFbConfig(){
   const map={apiKey:'#fbApiKey',databaseURL:'#fbDbUrl',authDomain:'#fbAuth',projectId:'#fbProj',
@@ -3124,7 +3194,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v8';
+    const C='brmas-v9';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
