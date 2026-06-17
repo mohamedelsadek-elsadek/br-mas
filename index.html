@@ -446,6 +446,26 @@ const ROLES={
   farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales']},
   view:{name:'مشاهد',color:'#06b6d4',perms:['dash','reports','yearly']}
 };
+/* الأدوار المخصّصة (يضيفها السوبر أدمن) مخزّنة في DB.settings.customRoles */
+function customRoles(){ return (DB.settings&&Array.isArray(DB.settings.customRoles))?DB.settings.customRoles:[]; }
+function roleDef(roleId){
+  if(ROLES[roleId])return ROLES[roleId];
+  const c=customRoles().find(r=>r.id===roleId);
+  if(c)return c;
+  return {name:roleId||'—',color:'#9095af',perms:[]};
+}
+function allRolesList(){ // [ {id,name,color,perms,shifts?} ]
+  const built=Object.keys(ROLES).map(k=>({id:k,...ROLES[k]}));
+  return built.concat(customRoles());
+}
+// شيفتات مسموحة للدور الحالي (لرئيس الوردية وغيره). فارغة = كل الشيفتات.
+function roleShifts(roleId){ const r=roleDef(roleId); return Array.isArray(r.shifts)?r.shifts:[]; }
+function myAllowedShifts(){ const s=roleShifts(ME&&ME.role); return s.length?SHIFTS.filter(x=>s.includes(x.id)):SHIFTS; }
+/* الصلاحيات المتاحة لبناء الأدوار المخصّصة */
+const PERM_LABEL={dash:'لوحة التحكم',owner:'داش بورد المالك',daily:'التقرير اليومي',farms:'المزارع والدورات',
+  feed:'إدارة العلف',meds:'الأدوية والتحصينات',sales:'مركز المبيعات',transfer:'التحويلات',
+  reports:'التقارير',yearly:'البيانات السنوية',ross:'مرجع Ross',users:'المستخدمون',settings:'الإعدادات'};
+const PERM_KEYS=['daily','dash','owner','farms','feed','meds','sales','transfer','reports','yearly','ross','users','settings'];
 
 /* ---- مسميات قابلة للتعديل من Super Admin ---- */
 const DEFAULT_LABELS={
@@ -478,7 +498,11 @@ function defaultDB(){
     birdMoves:[],    // {id,date,type,fromFarm,toFarm,cycleId,qty,note}
     sales:[],        // {id,date,cycleId,farmId,count,weight,amount,price,note}
     yearlyRef:[],    // بيانات سنوية مرجعية مستقلة {id,year,farm,placed,sold,deadPct,salePrice,chickPrice,feedPrice,costKg,feed,meat,avgWeight,avgAge,fcr,cfcr,epef,netCycles,rof,roKgFeed,roCp}
-    settings:{currency:'ج.م',breedDefault:'Ross 308'}
+    settings:{currency:'ج.م',breedDefault:'Ross 308',
+      medTypes:['مضاد حيوي','مضاد كوكسيديا','مضاد كولستريديا','فيتامينات','مطهر','محفز مناعة','أحماض عضوية','أخرى'],
+      medUnits:['لتر','سم','جم','كجم'],
+      diseases:['التهاب تنفسي','نيوكاسل','جامبورو','كوكسيديا','كولستريديا','إي كولاي','كوريزا','إسهال','ضعف عام','وقائي'],
+      customRoles:[]}  // أدوار يضيفها السوبر أدمن: {id,name,color,perms:[],shifts:[]}
   };
 }
 
@@ -582,6 +606,10 @@ function normalizeDB(d){
   // الكائنات
   if(!d.labels||typeof d.labels!=='object')d.labels=def.labels;
   if(!d.settings||typeof d.settings!=='object')d.settings=def.settings;
+  if(!Array.isArray(d.settings.medTypes)||!d.settings.medTypes.length)d.settings.medTypes=def.settings.medTypes;
+  if(!Array.isArray(d.settings.medUnits)||!d.settings.medUnits.length)d.settings.medUnits=def.settings.medUnits;
+  if(!Array.isArray(d.settings.diseases)||!d.settings.diseases.length)d.settings.diseases=def.settings.diseases;
+  if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
   // لو مفيش مستخدمين خالص، ارجّع المستخدمين الافتراضيين
   if(!d.users.length)d.users=def.users;
   return d;
@@ -621,7 +649,7 @@ function uid(p){return (p||'id')+Math.random().toString(36).slice(2,8)+Date.now(
 
 /* ---- المستخدم الحالي ---- */
 let ME=null;
-function can(p){if(!ME)return false;const r=ROLES[ME.role];return r.perms==='*'||r.perms.includes(p);}
+function can(p){if(!ME)return false;const r=roleDef(ME.role);return r.perms==="*"||(Array.isArray(r.perms)&&r.perms.includes(p));}
 function L(k){return DB.labels[k]||k;}
 
 /* ---- أدوات مساعدة ---- */
@@ -911,7 +939,7 @@ $('#modalBg').addEventListener('click',e=>{if(e.target.id==='modalBg')closeModal
 
 /* ===================== شاشة الدخول ===================== */
 function renderLogin(){
-  const opts=DB.users.map(u=>`<option value="${u.id}">${esc(u.name)} — ${ROLES[u.role].name}</option>`).join('');
+  const opts=DB.users.map(u=>`<option value="${u.id}">${esc(u.name)} — ${roleDef(u.role).name}</option>`).join('');
   $('#login').innerHTML=`
     <div class="login-card">
       <div class="logo">🐔</div>
@@ -961,7 +989,7 @@ const NAV=[
 ];
 let CUR='dash';
 function renderApp(){
-  const r=ROLES[ME.role];
+  const r=roleDef(ME.role);
   const nav=NAV.map(grp=>{
     const items=grp.items.filter(it=>can(it.id));
     if(!items.length)return '';
@@ -1072,9 +1100,11 @@ function renderDaily(){
     ${kpi('p','🎯 الوزن المرجعي',ref?fmt(ref.w)+' جم':'-','Ross 308 — اليوم '+age)}
   </div>`;
 
-  // تبويبات الفترات الأربع
+  // تبويبات الفترات (مقيّدة بصلاحية الدور — رئيس الوردية يرى شيفتاته فقط)
+  const shiftsAllowed=myAllowedShifts();
+  if(!shiftsAllowed.some(s=>s.id===dailyState.shift))dailyState.shift=(shiftsAllowed[0]||SHIFTS[0]).id;
   html+=`<div class="card"><div class="card-title">⏱️ فترات اليوم (كل 6 ساعات)</div><div class="shift-tabs">`;
-  SHIFTS.forEach(s=>{
+  shiftsAllowed.forEach(s=>{
     const recs=DB.daily.filter(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===s.id);
     const done=recs.some(r=>(Number(r.dead)||0)+(Number(r.feed)||0)+(Number(r.water)||0)>0);
     html+=`<div class="shift-tab ${s.id===dailyState.shift?'active':''} ${done?'done':''}" onclick="dailyState.shift='${s.id}';renderDaily()">
@@ -1606,83 +1636,209 @@ function saveFeedMove(){
 function delFeedMove(id){const m=DB.feedMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف الحركة؟'))return;DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();}
 
 /* ===================== 💉 الأدوية والتحصينات ===================== */
+let medFilter={type:'',item:'',disease:''};
+function medKind(m){return m.kind||'vaccine';} // السجلات القديمة = تحصين
 function renderMeds(){
   const mgr=isManager();
+  const isSuper=ME.role==='super'||ME.role==='admin';
   if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
-  let html=pageHead('💉','الأدوية والتحصينات', mgr?('مزرعتك: '+esc(myFarm().name)+' — سجّل الدواء/التحصين المستخدم اليوم (يمكن التعديل خلال 24 ساعة)'):'برنامج التحصين بالعمر — عدد الأمبولات والأسعار وتكلفة الطائر');
+  let html=pageHead('💉','الأدوية والتحصينات', mgr?('مزرعتك: '+esc(myFarm().name)+' — سجّل الدواء/التحصين المستخدم اليوم (يمكن التعديل خلال 24 ساعة)'):'برنامج التحصين بالعمر + سجل الأدوية والاستهلاك اليومي');
   const myCycleIds = mgr ? DB.cycles.filter(c=>c.farm===ME.farm).map(c=>c.id) : null;
-  let meds = mgr ? DB.medMoves.filter(m=>myCycleIds.includes(m.cycleId)) : DB.medMoves;
-  html+=`<div class="card"><div class="card-title">💊 سجل التحصينات والأدوية <div class="spacer" style="flex:1"></div>
-    <button class="btn btn-sm" onclick="medModal()">+ تسجيل تحصين/دواء</button></div>`;
-  if(!meds.length){html+=emptyState('💉','لا توجد سجلات.');}
+  let recs = mgr ? DB.medMoves.filter(m=>myCycleIds.includes(m.cycleId)) : DB.medMoves;
+  const vaccines = recs.filter(m=>medKind(m)==='vaccine');
+  let drugs = recs.filter(m=>medKind(m)==='drug');
+
+  /* أزرار الإضافة */
+  html+=`<div class="card"><div class="toolbar">
+    <button class="btn btn-sm" onclick="vacModal()">+ تسجيل تحصين</button>
+    <button class="btn-green btn-sm" onclick="drugModal()">+ تسجيل دواء</button>
+  </div></div>`;
+
+  /* ====== جدول التحصينات ====== */
+  html+=`<div class="card"><div class="card-title">💉 سجل التحصينات</div>`;
+  if(!vaccines.length){html+=emptyState('💉','لا توجد تحصينات مسجّلة.');}
   else{
-    html+=`<div class="tbl-wrap"><table><thead><tr><th class="num">العمر</th><th>اللقاح/الدواء</th><th>الدورة</th>
+    html+=`<div class="tbl-wrap"><table><thead><tr><th class="num">العمر</th><th>اللقاح</th><th>الدورة</th>
       <th class="num">عدد الأمبولات</th><th class="num">سعر الأمبولة</th><th class="num">إجمالي السعر</th>
       <th class="num">تكلفة الطائر</th><th>التاريخ</th><th></th></tr></thead><tbody>`;
     let tAmp=0,tTotal=0;
-    meds.slice().sort((a,b)=>(a.age||0)-(b.age||0)).forEach(m=>{
+    vaccines.slice().sort((a,b)=>(a.age||0)-(b.age||0)).forEach(m=>{
       const cyc=cycleById(m.cycleId);const placed=cyc?cyclePlaced(cyc):0;
       const total=Number(m.total)||((Number(m.qty)||0)*(Number(m.price)||0));
       const perBird=placed?(total/placed):0;
       tAmp+=Number(m.qty)||0;tTotal+=total;
-      let actions;
-      if(mgr){
-        actions = within24h(m)
-          ? `<button class="btn-sec btn-xs" onclick="medModal('${m.id}')">✏️ تعديل</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`
-          : `<span class="badge b-mut">مُقفل</span>`;
-      } else {
-        actions = `<button class="btn-sec btn-xs" onclick="medModal('${m.id}')">✏️</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`;
-      }
       html+=`<tr><td class="num">${m.age!=null?m.age:'-'}</td><td><b>${esc(m.item)}</b></td><td>${esc(cyc?.code||'')}</td>
         <td class="num">${fmt(m.qty)}</td><td class="num">${fmt(m.price,2)}</td><td class="num">${fmt(total)}</td>
         <td class="num">${fmt(perBird,2)}</td><td>${esc(m.date)}</td>
-        <td class="num">${actions}</td></tr>`;
+        <td class="num">${medActions(m,mgr,'vacModal')}</td></tr>`;
     });
     html+=`<tr class="tbl-total"><td colspan="3">الإجمالي</td><td class="num">${fmt(tAmp)}</td><td></td>
       <td class="num">${fmt(tTotal)}</td><td colspan="3"></td></tr>`;
     html+=`</tbody></table></div>`;
   }
   html+=`</div>`;
+
+  /* ====== فلاتر الأدوية (للسوبر/أدمن فقط) ====== */
+  if(isSuper){
+    const types=DB.settings.medTypes||[];
+    const drugItems=[...new Set(DB.medMoves.filter(m=>medKind(m)==='drug').map(m=>m.item))].filter(Boolean);
+    const diseases=[...new Set(DB.medMoves.filter(m=>medKind(m)==='drug').map(m=>m.disease))].filter(Boolean);
+    html+=`<div class="card"><div class="card-title">🔎 فلترة تقارير الأدوية</div><div class="toolbar">
+      <select onchange="medFilter.type=this.value;renderMeds()"><option value="">كل الأنواع</option>
+        ${types.map(t=>`<option ${medFilter.type===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+      <select onchange="medFilter.item=this.value;renderMeds()"><option value="">كل الأدوية</option>
+        ${drugItems.map(t=>`<option ${medFilter.item===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+      <select onchange="medFilter.disease=this.value;renderMeds()"><option value="">كل الحالات المرضية</option>
+        ${diseases.map(t=>`<option ${medFilter.disease===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+      ${(medFilter.type||medFilter.item||medFilter.disease)?`<button class="btn-sec btn-sm" onclick="medFilter={type:'',item:'',disease:''};renderMeds()">مسح الفلتر</button>`:''}
+    </div></div>`;
+    if(medFilter.type)drugs=drugs.filter(m=>m.medType===medFilter.type);
+    if(medFilter.item)drugs=drugs.filter(m=>m.item===medFilter.item);
+    if(medFilter.disease)drugs=drugs.filter(m=>m.disease===medFilter.disease);
+  }
+
+  /* ====== جدول الأدوية ====== */
+  const dTotalCost=drugs.reduce((s,m)=>s+(Number(m.total)||0),0);
+  html+=`<div class="card"><div class="card-title">💊 سجل الأدوية
+    ${isSuper?`<div class="spacer" style="flex:1"></div><span class="badge b-info">إجمالي التكلفة: ${fmt(dTotalCost)} ${esc(DB.settings.currency)}</span>`:''}</div>`;
+  if(!drugs.length){html+=emptyState('💊','لا توجد أدوية مسجّلة.');}
+  else{
+    html+=`<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th class="num">العمر</th><th>الدواء</th><th>النوع</th>
+      <th>الحالة المرضية</th><th>الدورة</th><th class="num">السقوة</th><th class="num">عدد السقوات</th>
+      <th class="num">إجمالي مستهلك/يوم</th><th class="num">السعر</th><th class="num">إجمالي السعر</th><th></th></tr></thead><tbody>`;
+    drugs.slice().reverse().forEach(m=>{
+      const cyc=cycleById(m.cycleId);
+      const dayQty=(Number(m.dose)||0)*(Number(m.doses)||0);
+      html+=`<tr><td>${esc(m.date)}</td><td class="num">${m.age!=null?m.age:'-'}</td>
+        <td><b>${esc(m.item)}</b></td><td><span class="badge b-info">${esc(m.medType||'-')}</span></td>
+        <td>${esc(m.disease||'-')}</td><td>${esc(cyc?.code||'')}</td>
+        <td class="num">${fmt(m.dose,3)} ${esc(m.unit||'')}</td><td class="num">${fmt(m.doses)}</td>
+        <td class="num"><b>${fmt(dayQty,3)} ${esc(m.unit||'')}</b></td>
+        <td class="num">${fmt(m.price,2)}</td><td class="num">${fmt(m.total)}</td>
+        <td class="num">${medActions(m,mgr,'drugModal')}</td></tr>`;
+    });
+    html+=`<tr class="tbl-total"><td colspan="10">إجمالي تكلفة الأدوية</td><td class="num">${fmt(dTotalCost)}</td><td></td></tr>`;
+    html+=`</tbody></table></div>`;
+  }
+  html+=`</div>`;
   $('#main').innerHTML=html;
 }
-function medModal(id){
-  const mgr=isManager();
-  const m=id?DB.medMoves.find(x=>x.id===id):null;
-  if(mgr&&id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
-  let cycField;
+function medActions(m,mgr,modalFn){
   if(mgr){
-    const cyc=myActiveCycle();
-    if(!cyc){toast('لا توجد دورة نشطة في مزرعتك',1);return;}
-    cycField=`<input type="hidden" id="mdCycle" value="${cyc.id}">
-      <div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm().name)}</b> — الدورة: <b>${esc(cyc.code)}</b></div>`;
-  }else{
-    if(!DB.cycles.length){toast('أضف دورة أولاً',1);return;}
-    const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${m&&m.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
-    cycField=`<div class="field"><label>الدورة</label><select id="mdCycle">${cycOpts}</select></div>`;
+    return within24h(m)
+      ? `<button class="btn-sec btn-xs" onclick="${modalFn}('${m.id}')">✏️</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`
+      : `<span class="badge b-mut">مُقفل</span>`;
   }
-  openModal(id?'تعديل تحصين/دواء':'تسجيل تحصين/دواء',
+  return `<button class="btn-sec btn-xs" onclick="${modalFn}('${m.id}')">✏️</button> <button class="btn-red btn-xs" onclick="delMed('${m.id}')">حذف</button>`;
+}
+function mdCycleField(m){
+  if(isManager()){
+    const cyc=myActiveCycle();
+    if(!cyc)return null;
+    return `<input type="hidden" id="mdCycle" value="${cyc.id}">
+      <div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm().name)}</b> — الدورة: <b>${esc(cyc.code)}</b></div>`;
+  }
+  if(!DB.cycles.length)return null;
+  const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${m&&m.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
+  return `<div class="field"><label>الدورة</label><select id="mdCycle">${cycOpts}</select></div>`;
+}
+/* ===== نموذج التحصين (زي السابق) ===== */
+function vacModal(id){
+  const m=id?DB.medMoves.find(x=>x.id===id):null;
+  if(isManager()&&id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
+  const cycField=mdCycleField(m);
+  if(cycField===null){toast(isManager()?'لا توجد دورة نشطة في مزرعتك':'أضف دورة أولاً',1);return;}
+  openModal(id?'تعديل تحصين':'تسجيل تحصين',
     `${cycField}
      <div class="row-fields g2">
-       <div class="field"><label>اسم اللقاح/الدواء</label><input id="mdItem" value="${m?esc(m.item):''}" placeholder="مثال: فاكستيك"></div>
+       <div class="field"><label>اسم اللقاح</label><input id="mdItem" value="${m?esc(m.item):''}" placeholder="مثال: فاكستيك"></div>
        <div class="field"><label>العمر (يوم)</label><input type="number" min="0" id="mdAge" value="${m&&m.age!=null?m.age:''}" placeholder="0"></div>
        <div class="field"><label>التاريخ</label><input type="date" id="mdDate" value="${m?m.date:todayISO()}"></div>
-       <div class="field"><label>عدد الأمبولات/الكمية</label><input type="number" min="0" id="mdQty" value="${m?m.qty:''}" placeholder="0" oninput="mdCalc()"></div>
-       <div class="field"><label>سعر الأمبولة/الوحدة</label><input type="number" min="0" step="0.01" id="mdPrice" value="${m?m.price:''}" placeholder="0" oninput="mdCalc()"></div>
+       <div class="field"><label>عدد الأمبولات</label><input type="number" min="0" id="mdQty" value="${m?m.qty:''}" placeholder="0" oninput="mdCalc()"></div>
+       <div class="field"><label>سعر الأمبولة</label><input type="number" min="0" step="0.01" id="mdPrice" value="${m?m.price:''}" placeholder="0" oninput="mdCalc()"></div>
        <div class="field"><label>إجمالي السعر</label><input type="number" id="mdTotal" value="${m?m.total:''}" placeholder="0"></div>
      </div>
      <div class="field"><label>ملاحظات</label><input id="mdNote" value="${m?esc(m.note||''):''}" placeholder="..."></div>`,
-    `<button class="btn" onclick="saveMed('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+    `<button class="btn" onclick="saveVac('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
 }
 function mdCalc(){const q=Number($('#mdQty').value)||0,p=Number($('#mdPrice').value)||0;$('#mdTotal').value=(q*p).toFixed(2);}
-function saveMed(id){
-  const item=$('#mdItem').value.trim();if(!item){toast('أدخل اسم الصنف',1);return;}
+function saveVac(id){
+  const item=$('#mdItem').value.trim();if(!item){toast('أدخل اسم اللقاح',1);return;}
   const qty=Number($('#mdQty').value)||0,price=Number($('#mdPrice').value)||0;
   const total=Number($('#mdTotal').value)||(qty*price);
-  const data={date:$('#mdDate').value,item,cycleId:$('#mdCycle').value,
+  const data={kind:'vaccine',date:$('#mdDate').value,item,cycleId:$('#mdCycle').value,
     age:$('#mdAge').value!==''?Number($('#mdAge').value):null,qty,price,total,note:$('#mdNote').value};
   if(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة التعديل',1);return;}Object.assign(m,data);}
   else{DB.medMoves.push({id:uid('md'),_ts:Date.now(),...data});}
-  save();closeModal();toast('تم الحفظ ✓');renderMeds();
+  save();closeModal();toast('تم حفظ التحصين ✓');renderMeds();
+}
+/* ===== نموذج الدواء (جديد) ===== */
+function drugModal(id){
+  const m=id?DB.medMoves.find(x=>x.id===id):null;
+  if(isManager()&&id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
+  const cycField=mdCycleField(m);
+  if(cycField===null){toast(isManager()?'لا توجد دورة نشطة في مزرعتك':'أضف دورة أولاً',1);return;}
+  const units=DB.settings.medUnits||['لتر','سم','جم','كجم'];
+  const types=DB.settings.medTypes||[];
+  const diseases=DB.settings.diseases||[];
+  // أضف القيمة المحفوظة للقائمة مؤقتاً لو مش موجودة (للسجلات القديمة)
+  const uList=[...units], tList=[...types], dList=[...diseases];
+  if(m&&m.unit&&!uList.includes(m.unit))uList.unshift(m.unit);
+  if(m&&m.medType&&!tList.includes(m.medType))tList.unshift(m.medType);
+  if(m&&m.disease&&!dList.includes(m.disease))dList.unshift(m.disease);
+  openModal(id?'تعديل دواء':'تسجيل دواء',
+    `${cycField}
+     <div class="row-fields g2">
+       <div class="field"><label>اسم الدواء</label><input id="drItem" value="${m?esc(m.item):''}" placeholder="مثال: إنروفلوكساسين"></div>
+       <div class="field"><label>الوحدة
+         <button type="button" class="btn-xs btn-sec" style="margin-right:6px" onclick="addListItem('medUnits','drUnit')">+</button></label>
+         <select id="drUnit">${uList.map(u=>`<option ${m&&m.unit===u?'selected':''}>${esc(u)}</option>`).join('')}</select></div>
+       <div class="field"><label>العمر (يوم)</label><input type="number" min="0" id="drAge" value="${m&&m.age!=null?m.age:''}" placeholder="0"></div>
+       <div class="field"><label>نوع الدواء
+         <button type="button" class="btn-xs btn-sec" style="margin-right:6px" onclick="addListItem('medTypes','drType')">+ نوع</button></label>
+         <select id="drType">${tList.map(t=>`<option ${m&&m.medType===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div>
+       <div class="field"><label>الحالة المرضية
+         <button type="button" class="btn-xs btn-sec" style="margin-right:6px" onclick="addListItem('diseases','drDisease')">+ حالة</button></label>
+         <select id="drDisease">${dList.map(t=>`<option ${m&&m.disease===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div>
+       <div class="field"><label>التاريخ</label><input type="date" id="drDate" value="${m?m.date:todayISO()}"></div>
+       <div class="field"><label>الكمية المستهلكة في السقوة</label><input type="number" min="0" step="0.001" id="drDose" value="${m?m.dose:''}" placeholder="0" oninput="drCalc()"></div>
+       <div class="field"><label>عدد السقوات في اليوم</label><input type="number" min="0" id="drDoses" value="${m?m.doses:''}" placeholder="0" oninput="drCalc()"></div>
+       <div class="field"><label>إجمالي المستهلك في اليوم</label><input id="drDayQty" readonly placeholder="0"></div>
+       <div class="field"><label>السعر (للوحدة)</label><input type="number" min="0" step="0.01" id="drPrice" value="${m?m.price:''}" placeholder="0" oninput="drCalc()"></div>
+       <div class="field"><label>إجمالي السعر</label><input type="number" step="0.01" id="drTotal" value="${m?m.total:''}" placeholder="0" oninput="this.dataset.touched='1'"></div>
+     </div>
+     <div class="field"><label>ملاحظات</label><input id="drNote" value="${m?esc(m.note||''):''}" placeholder="..."></div>`,
+    `<button class="btn btn-green" onclick="saveDrug('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+  drCalc();
+}
+function drCalc(){
+  const dose=Number($('#drDose').value)||0, doses=Number($('#drDoses').value)||0;
+  const day=dose*doses; const dq=$('#drDayQty'); if(dq)dq.value=day.toFixed(3);
+  const price=Number($('#drPrice').value)||0; const tot=$('#drTotal');
+  if(tot&&!tot.dataset.touched)tot.value=(day*price).toFixed(2);
+}
+/* إضافة عنصر لأي قائمة منسدلة + تحديث الـ select فوراً */
+function addListItem(listKey,selId){
+  const t=prompt('أضف عنصر جديد:');if(!t)return;
+  const v=t.trim();if(!v)return;
+  if(!Array.isArray(DB.settings[listKey]))DB.settings[listKey]=[];
+  if(!DB.settings[listKey].includes(v)){DB.settings[listKey].push(v);save();}
+  const sel=$('#'+selId);if(sel){sel.innerHTML=DB.settings[listKey].map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('');}
+  toast('تمت الإضافة ✓');
+}
+function saveDrug(id){
+  const item=$('#drItem').value.trim();if(!item){toast('أدخل اسم الدواء',1);return;}
+  const dose=Number($('#drDose').value)||0, doses=Number($('#drDoses').value)||0;
+  const dayQty=dose*doses;
+  const price=Number($('#drPrice').value)||0;
+  const total=Number($('#drTotal').value)|| (dayQty*price);
+  const data={kind:'drug',date:$('#drDate').value,item,cycleId:$('#mdCycle').value,
+    unit:$('#drUnit').value, medType:$('#drType').value, disease:$('#drDisease').value.trim(),
+    age:$('#drAge').value!==''?Number($('#drAge').value):null,
+    dose,doses,qty:dayQty,price,total,note:$('#drNote').value};
+  if(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة التعديل',1);return;}Object.assign(m,data);}
+  else{DB.medMoves.push({id:uid('md'),_ts:Date.now(),...data});}
+  save();closeModal();toast('تم حفظ الدواء ✓');renderMeds();
 }
 function delMed(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف السجل؟'))return;DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();}
 
@@ -2739,7 +2895,7 @@ function renderUsers(){
     <th>المزرعة</th><th></th></tr></thead><tbody>`;
   DB.users.forEach(u=>{
     html+=`<tr><td><b>${esc(u.name)}</b></td><td>${esc(u.username)}</td>
-      <td><span class="badge b-info" style="background:${ROLES[u.role].color}22;color:${ROLES[u.role].color}">${ROLES[u.role].name}</span></td>
+      <td><span class="badge b-info" style="background:${roleDef(u.role).color}22;color:${roleDef(u.role).color}">${roleDef(u.role).name}</span></td>
       <td>${esc(farmById(u.farm)?.name||'—')}</td>
       <td class="num"><button class="btn-sec btn-xs" onclick="userModal('${u.id}')">تعديل</button>
       ${u.id!=='u1'?`<button class="btn-red btn-xs" onclick="delUser('${u.id}')">حذف</button>`:''}</td></tr>`;
@@ -2749,7 +2905,7 @@ function renderUsers(){
 }
 function userModal(id){
   const u=id?DB.users.find(x=>x.id===id):{name:'',username:'',pass:'',role:'farm',farm:null};
-  const roleOpts=Object.entries(ROLES).map(([k,r])=>`<option value="${k}" ${u.role===k?'selected':''}>${r.name}</option>`).join('');
+  const roleOpts=allRolesList().map(r=>`<option value="${r.id}" ${u.role===r.id?'selected':''}>${esc(r.name)}</option>`).join('');
   const farmOpts='<option value="">—</option>'+DB.farms.map(f=>`<option value="${f.id}" ${u.farm===f.id?'selected':''}>${esc(f.name)}</option>`).join('');
   openModal(id?'تعديل مستخدم':'مستخدم جديد',
     `<div class="row-fields g2">
@@ -2790,6 +2946,42 @@ function renderSettings(){
           `<div class="field"><label>${k}</label><input id="lbl_${k}" value="${esc(L(k))}"></div>`).join('')}
       </div>
       <button class="btn btn-sm" onclick="saveLabels()">حفظ المسميات</button></div>`;
+    // ---- إدارة القوائم المنسدلة ----
+    const lists=[['medTypes','أنواع الأدوية'],['medUnits','وحدات القياس'],['diseases','الحالات المرضية']];
+    html+=`<div class="card"><div class="card-title">📋 إدارة القوائم المنسدلة</div>
+      <div class="hint" style="margin-bottom:12px">أضف أو احذف عناصر القوائم المستخدمة في النماذج (أنواع الأدوية، الوحدات، الحالات المرضية).</div>
+      <div class="grid g3">`;
+    lists.forEach(([key,title])=>{
+      const items=DB.settings[key]||[];
+      html+=`<div class="card" style="box-shadow:none;border:1px solid var(--border)">
+        <div class="card-title" style="font-size:14px">${title}
+          <div class="spacer" style="flex:1"></div>
+          <button class="btn-xs btn-sec" onclick="settingsAddItem('${key}')">+ إضافة</button></div>
+        <div class="pill-row" style="flex-direction:column;align-items:stretch;gap:6px">
+        ${items.length?items.map((it,i)=>`<div class="statrow st-slate" style="padding:8px 12px;margin:0">
+          <span class="lab">${esc(it)}</span>
+          <button class="btn-xs btn-red" onclick="settingsRemoveItem('${key}',${i})">حذف</button></div>`).join(''):'<div class="hint">فارغة</div>'}
+        </div></div>`;
+    });
+    html+=`</div></div>`;
+    // ---- إدارة الأدوار والوظائف ----
+    html+=`<div class="card"><div class="card-title">👤 الأدوار والوظائف
+      <div class="spacer" style="flex:1"></div>
+      <button class="btn btn-sm" onclick="roleModal()">+ وظيفة جديدة</button></div>
+      <div class="hint" style="margin-bottom:12px">الأدوار الأساسية ثابتة. يمكنك إضافة وظائف مخصّصة (مثل رئيس وردية) وتحديد صلاحياتها والفترات المسموح بها.</div>
+      <div class="tbl-wrap"><table><thead><tr><th>الوظيفة</th><th>الصلاحيات</th><th>الفترات المسموحة</th><th></th></tr></thead><tbody>`;
+    allRolesList().forEach(r=>{
+      const isBuiltin=!!ROLES[r.id];
+      const permTxt=r.perms==='*'?'كل الصلاحيات':(Array.isArray(r.perms)?r.perms.map(p=>PERM_LABEL[p]||p).join('، '):'-');
+      const shiftTxt=(Array.isArray(r.shifts)&&r.shifts.length)?r.shifts.map(sid=>(SHIFTS.find(s=>s.id===sid)||{}).name||sid).join('، '):'الكل';
+      html+=`<tr><td><span class="badge" style="background:${r.color}22;color:${r.color}">${esc(r.name)}</span></td>
+        <td style="white-space:normal;font-size:12px">${esc(permTxt)}</td>
+        <td style="font-size:12px">${esc(shiftTxt)}</td>
+        <td class="num">${isBuiltin?'<span class="badge b-mut">أساسي</span>':
+          `<button class="btn-sec btn-xs" onclick="roleModal('${r.id}')">تعديل</button>
+           <button class="btn-red btn-xs" onclick="roleDelete('${r.id}')">حذف</button>`}</td></tr>`;
+    });
+    html+=`</tbody></table></div></div>`;
   }
   html+=`<div class="card"><div class="card-title">💾 النسخ الاحتياطي</div>
     <div class="toolbar">
@@ -2866,6 +3058,56 @@ function saveSettings(){
   save();toast('تم حفظ الإعدادات ✓');
 }
 function saveLabels(){['dead','feed','water','weight','house','farm','cycle'].forEach(k=>{DB.labels[k]=$('#lbl_'+k).value;});save();toast('تم حفظ المسميات ✓');renderSettings();}
+function settingsAddItem(key){
+  const t=prompt('أضف عنصر جديد للقائمة:');if(!t)return;
+  const v=t.trim();if(!v)return;
+  if(!Array.isArray(DB.settings[key]))DB.settings[key]=[];
+  if(DB.settings[key].includes(v)){toast('موجود بالفعل',1);return;}
+  DB.settings[key].push(v);save();toast('تمت الإضافة ✓');renderSettings();
+}
+function settingsRemoveItem(key,i){
+  if(!Array.isArray(DB.settings[key]))return;
+  if(!confirm('حذف "'+DB.settings[key][i]+'" من القائمة؟'))return;
+  DB.settings[key].splice(i,1);save();toast('تم الحذف ✓');renderSettings();
+}
+/* ===== إدارة الأدوار المخصّصة ===== */
+function roleModal(id){
+  const r=id?customRoles().find(x=>x.id===id):{name:'',color:'#0ea5e9',perms:[],shifts:[]};
+  if(!r){toast('غير موجود',1);return;}
+  const permBoxes=PERM_KEYS.map(p=>`<label class="pill-row" style="gap:6px;font-size:13px;font-weight:600;cursor:pointer">
+    <input type="checkbox" class="roleperm" value="${p}" ${(r.perms||[]).includes(p)?'checked':''} style="width:auto"> ${PERM_LABEL[p]}</label>`).join('');
+  const shiftBoxes=SHIFTS.map(s=>`<label class="pill-row" style="gap:6px;font-size:13px;font-weight:600;cursor:pointer">
+    <input type="checkbox" class="roleshift" value="${s.id}" ${(r.shifts||[]).includes(s.id)?'checked':''} style="width:auto"> ${s.name} <span class="hint">(${s.time})</span></label>`).join('');
+  openModal(id?'تعديل وظيفة':'وظيفة جديدة',
+    `<div class="row-fields g2">
+       <div class="field"><label>اسم الوظيفة</label><input id="roleName" value="${esc(r.name)}" placeholder="مثال: رئيس وردية"></div>
+       <div class="field"><label>اللون</label><input type="color" id="roleColor" value="${r.color||'#0ea5e9'}" style="height:42px"></div>
+     </div>
+     <div class="divider"></div>
+     <div class="field"><label>الصلاحيات (الصفحات المسموح بها)</label>
+       <div class="grid g2" style="gap:6px">${permBoxes}</div></div>
+     <div class="divider"></div>
+     <div class="field"><label>الفترات المسموح بها في التقرير اليومي <span class="hint">(لو لم تختر شيئاً = كل الفترات)</span></label>
+       <div class="grid g2" style="gap:6px">${shiftBoxes}</div></div>`,
+    `<button class="btn btn-green" onclick="roleSave('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function roleSave(id){
+  const name=$('#roleName').value.trim();if(!name){toast('أدخل اسم الوظيفة',1);return;}
+  const perms=[...document.querySelectorAll('.roleperm:checked')].map(c=>c.value);
+  const shifts=[...document.querySelectorAll('.roleshift:checked')].map(c=>c.value);
+  const color=$('#roleColor').value||'#0ea5e9';
+  if(!DB.settings.customRoles)DB.settings.customRoles=[];
+  if(id){const r=customRoles().find(x=>x.id===id);Object.assign(r,{name,color,perms,shifts});}
+  else{DB.settings.customRoles.push({id:'role_'+uid(''),name,color,perms,shifts});}
+  save();closeModal();toast('تم حفظ الوظيفة ✓');renderSettings();
+}
+function roleDelete(id){
+  // امنع الحذف لو فيه مستخدمين على هذا الدور
+  const used=DB.users.filter(u=>u.role===id);
+  if(used.length){toast('لا يمكن الحذف — '+used.length+' مستخدم على هذه الوظيفة. غيّر دورهم أولاً.',1);return;}
+  if(!confirm('حذف الوظيفة؟'))return;
+  DB.settings.customRoles=customRoles().filter(r=>r.id!==id);save();toast('تم الحذف ✓');renderSettings();
+}
 function exportDB(){const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='poultry_backup_'+todayISO()+'.json';a.click();toast('تم تصدير النسخة ✓');}
 function importDB(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();
@@ -2882,7 +3124,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v5';
+    const C='brmas-v8';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
