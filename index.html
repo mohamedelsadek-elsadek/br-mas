@@ -217,11 +217,12 @@ button{font-family:inherit;cursor:pointer;border:none;transition:transform .15s 
 .kpi.lift:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
 
 /* ===================== Tables ===================== */
-.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-xs);background:var(--surface)}
-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+.tbl-wrap{overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-xs);background:var(--surface);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;white-space:nowrap}
 thead th{
   background:var(--grad2);color:var(--txt-on);font-weight:700;padding:13px 15px;text-align:right;
-  position:sticky;top:0;font-size:var(--fs-sm);letter-spacing:.2px;
+  position:sticky;top:0;z-index:5;font-size:var(--fs-sm);letter-spacing:.2px;
+  box-shadow:0 2px 0 rgba(0,0,0,.06);
 }
 thead th:first-child{border-top-right-radius:var(--r-md)}
 thead th:last-child{border-top-left-radius:var(--r-md)}
@@ -366,6 +367,14 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 @keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 @keyframes growBar{from{width:0!important}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,91,255,.45)}50%{box-shadow:0 0 0 9px rgba(99,91,255,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-left:5px}
+/* مؤشر الحفظ العائم */
+#saveInd{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);
+  background:var(--grad2);color:#fff;padding:10px 20px;border-radius:var(--r-pill);font-weight:700;font-size:13px;
+  z-index:600;opacity:0;transition:.3s var(--ease-out);box-shadow:var(--sh-lg);display:flex;align-items:center;gap:4px}
+#saveInd.show{transform:translateX(-50%) translateY(0);opacity:1}
+#saveInd.done{background:var(--grad-green)}
 .anim-kpi{animation:popIn .5s var(--ease-out) both}
 .anim-kpi:nth-child(1){animation-delay:.04s}.anim-kpi:nth-child(2){animation-delay:.1s}
 .anim-kpi:nth-child(3){animation-delay:.16s}.anim-kpi:nth-child(4){animation-delay:.22s}
@@ -441,9 +450,9 @@ const SHIFTS=[
 const ROLES={
   super:{name:'Super Admin',color:'#a855f7',perms:'*'},
   owner:{name:'المالك (Owner)',color:'#eab308',perms:['owner','dash','reports','yearly']},
-  admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','transfer','reports','yearly','users','settings']},
+  admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','transfer','reports','yearly','workers','users','settings']},
   acct:{name:'محاسب',color:'#22c55e',perms:['dash','sales','feed','reports','transfer']},
-  farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales']},
+  farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales','workers']},
   view:{name:'مشاهد',color:'#06b6d4',perms:['dash','reports','yearly']}
 };
 /* الأدوار المخصّصة (يضيفها السوبر أدمن) مخزّنة في DB.settings.customRoles */
@@ -500,6 +509,8 @@ function defaultDB(){
     birdMoves:[],    // {id,date,type,fromFarm,toFarm,cycleId,qty,note}
     sales:[],        // {id,date,cycleId,farmId,count,weight,amount,price,note}
     yearlyRef:[],    // بيانات سنوية مرجعية مستقلة {id,year,farm,placed,sold,deadPct,salePrice,chickPrice,feedPrice,costKg,feed,meat,avgWeight,avgAge,fcr,cfcr,epef,netCycles,rof,roKgFeed,roCp}
+    workers:[],      // العمال {id,name,job,farm,startDate,active,history:[{farm,from}]}
+    wAbsence:[],     // الغياب/الإجازات {id,workerId,farm,type,from,to,reason,_ts}
     settings:{currency:'ج.م',breedDefault:'Ross 308',
       medTypes:['مضاد حيوي','مضاد كوكسيديا','مضاد كولستريديا','فيتامينات','مطهر','محفز مناعة','أحماض عضوية','أخرى'],
       medUnits:['لتر','سم','جم','كجم'],
@@ -563,14 +574,21 @@ function fbPush(){
   if(!FB_ON||FB_REMOTE)return;
   clearTimeout(_fbPushT);
   updateSyncBadge('جارٍ الحفظ…');
+  showSaving();
   _fbPushT=setTimeout(()=>{
     FB_SYNCING=true;
     FB_DB.ref('erp').set(DB)
-      .then(()=>{updateSyncBadge('متزامن ✓');})
-      .catch(e=>{console.warn('FB write',e);updateSyncBadge('فشل الحفظ السحابي',true);})
+      .then(()=>{updateSyncBadge('متزامن ✓');showSaved();})
+      .catch(e=>{console.warn('FB write',e);updateSyncBadge('فشل الحفظ السحابي',true);hideSaving();})
       .finally(()=>{setTimeout(()=>FB_SYNCING=false,400);});
   },700); // اجمع التعديلات المتتابعة في كتابة واحدة
 }
+/* مؤشر الحفظ العائم (دائرة تلف ثم ✓) */
+function ensureSaveInd(){let el=document.getElementById('saveInd');if(!el){el=document.createElement('div');el.id='saveInd';document.body.appendChild(el);}return el;}
+let _saveHideT=null;
+function showSaving(){const el=ensureSaveInd();clearTimeout(_saveHideT);el.className='show';el.innerHTML='<span class="spin"></span> جارٍ الحفظ…';}
+function showSaved(){const el=ensureSaveInd();el.className='show done';el.innerHTML='✓ تم الحفظ';_saveHideT=setTimeout(()=>{el.className='';},1400);}
+function hideSaving(){const el=ensureSaveInd();_saveHideT=setTimeout(()=>{el.className='';},600);}
 /* رفع البيانات الحالية يدوياً (زر صريح) */
 function cloudUploadNow(){
   if(!fbReady()){toast('أدخل إعدادات Firebase أولاً في الإعدادات',1);return;}
@@ -603,7 +621,7 @@ function normalizeDB(d){
   if(!d||typeof d!=='object')return defaultDB();
   const def=defaultDB();
   // الحقول التي يجب أن تكون مصفوفات
-  ['users','farms','cycles','daily','feedMoves','medMoves','birdMoves','sales','yearlyRef'].forEach(k=>{
+  ['users','farms','cycles','daily','feedMoves','medMoves','birdMoves','sales','yearlyRef','workers','wAbsence'].forEach(k=>{
     if(!Array.isArray(d[k]))d[k]=[];
   });
   // الكائنات
@@ -618,7 +636,7 @@ function normalizeDB(d){
   if(!d.users.length)d.users=def.users;
   return d;
 }
-function save(){invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));autoBackup();if(FB_ON)fbPush();}
+function save(){invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));autoBackup();if(FB_ON)fbPush();else if(typeof showSaved==='function')showSaved();}
 
 /* ---- النسخ الاحتياطي التلقائي اليومي (جوه المتصفح، آخر 30 يوم) ---- */
 function loadBackups(){try{return JSON.parse(localStorage.getItem(BAKKEY))||{};}catch(e){return {};}}
@@ -1025,6 +1043,7 @@ const NAV=[
     {id:'reports',ic:'📈',name:'التقارير'},
     {id:'ross',ic:'📐',name:'مرجع Ross 308'},
     {id:'yearly',ic:'📅',name:'البيانات السنوية المرجعية'},
+    {id:'workers',ic:'👷',name:'حضور العمال'},
   ]},
   {g:'الإدارة',items:[
     {id:'users',ic:'👥',name:'المستخدمون'},
@@ -1064,7 +1083,7 @@ function go(pg){
   $('#sb').classList.remove('open');
   const R={owner:renderOwner,dash:renderDash,daily:renderDaily,farms:renderFarms,feed:renderFeed,
     meds:renderMeds,sales:renderSales,transfer:renderTransfer,reports:renderReports,
-    ross:renderRoss,yearly:renderYearly,users:renderUsers,settings:renderSettings};
+    ross:renderRoss,yearly:renderYearly,workers:renderWorkers,users:renderUsers,settings:renderSettings};
   try{
     (R[pg]||(()=>$('#main').innerHTML='<div class="empty">قريباً</div>'))();
   }catch(err){
@@ -2147,12 +2166,18 @@ function repDailyLog(){
     const d=cycleDayData(cyc,dt);cumDead+=d.dead;
     const ref=rossRow(d.age);const close=DB.daily.find(r=>r.cycleId===cyc.id&&r.date===dt&&r.closed)||{};
     const wOk=d.weight&&ref?(d.weight>=ref.w):null;
+    const diff=(d.weight&&ref)?(d.weight-ref.w):0;
+    const wBadge = wOk===true
+      ? `<span class="badge b-ok" title="أعلى من المرجع بـ ${fmt(diff)} جم">▲ ${fmt(Math.abs(diff))}</span>`
+      : wOk===false
+      ? `<span class="badge b-bad" title="أقل من المرجع بـ ${fmt(Math.abs(diff))} جم">▼ ${fmt(Math.abs(diff))}</span>`
+      : '';
     h+=`<tr><td class="num">${d.age}</td><td>${esc(dt)}</td><td class="num">${fmt(d.dead)}</td>
       <td class="num">${fmt(cumDead)}</td><td class="num">${fmt(d.feed)}</td><td class="num">${fmt(d.water)}</td>
       <td class="num">${d.weight?fmt(d.weight):'-'}</td><td class="num">${ref?fmt(ref.w):'-'}</td>
       <td class="num">${close.temp||'-'}</td><td class="num">${close.humidity||'-'}</td>
       <td>${close.closed?'<span class="badge b-ok">مقفل</span>':'<span class="badge b-warn">مفتوح</span>'}
-      ${wOk===true?'<span class="badge b-ok">✓</span>':wOk===false?'<span class="badge b-warn">↓</span>':''}</td></tr>`;
+      ${wBadge}</td></tr>`;
   });
   return h+`</tbody></table></div></div>`;
 }
@@ -2971,6 +2996,209 @@ function yrImport(inp){const f=inp.files[0];if(!f)return;const r=new FileReader(
     save();toast('تم استيراد '+arr.length+' سجل ✓');renderYearly();
   }catch(err){toast('ملف غير صالح',1);}};r.readAsText(f);}
 
+/* ===================== 👷 حضور العمال ===================== */
+const WJOBS=['عامل','مشرف','سايس','حارس','سائق','فني'];
+const ABS_TYPES={absence:'غياب',leave:'إجازة',mission:'مأمورية'};
+let workersTab='list';
+function workerById(id){return DB.workers.find(w=>w.id===id);}
+function farmWorkers(farmId){return DB.workers.filter(w=>w.active!==false && w.farm===farmId);}
+// هل العامل غائب في يوم معيّن؟
+function isAbsentOn(workerId,dateISO){
+  return DB.wAbsence.find(a=>a.workerId===workerId && dateISO>=a.from && dateISO<=(a.to||a.from));
+}
+function renderWorkers(){
+  const mgr=isManager();
+  const isSuper=ME.role==='super'||ME.role==='admin';
+  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد.')}</div>`; return; }
+  const scopeFarm = mgr ? ME.farm : null;
+  let html=pageHead('👷','حضور العمال', mgr?('مزرعتك: '+esc(myFarm().name)):'تتبّع حضور وغياب وإجازات العمال المقيمين، والتنقلات بين المزارع');
+  // تبويبات
+  const tabs=[['list','👥 العمال والحضور']];
+  if(isSuper)tabs.push(['absence','📋 سجل الغياب والإجازات'],['moves','🔄 سجل التنقلات'],['report','📊 تقرير الحضور']);
+  html+=`<div class="card"><div class="toolbar">${tabs.map(([k,t])=>
+    `<button class="btn-sm ${workersTab===k?'btn':'btn-sec'}" onclick="workersTab='${k}';renderWorkers()">${t}</button>`).join('')}</div></div>`;
+  if(workersTab==='list')html+=wTabList(mgr,scopeFarm,isSuper);
+  else if(workersTab==='absence')html+=wTabAbsence();
+  else if(workersTab==='moves')html+=wTabMoves();
+  else if(workersTab==='report')html+=wTabReport();
+  $('#main').innerHTML=html;
+}
+/* ---- تبويب العمال والحضور اليومي ---- */
+let wAttDate=null;
+function wTabList(mgr,scopeFarm,isSuper){
+  if(!wAttDate)wAttDate=todayISO();
+  let workers = mgr ? farmWorkers(scopeFarm) : DB.workers.filter(w=>w.active!==false);
+  let h=`<div class="card"><div class="card-title">👥 العمال
+    <div class="spacer" style="flex:1"></div>
+    <label style="color:var(--txt2);font-size:13px">يوم:</label>
+    <input type="date" value="${wAttDate}" onchange="wAttDate=this.value;renderWorkers()" style="width:150px">
+    <button class="btn btn-sm" onclick="workerModal()">+ عامل جديد</button></div>`;
+  if(!workers.length){h+=emptyState('👷','لا يوجد عمال مسجّلون.'+(mgr?'':' أضف أول عامل.'));return h+`</div>`;}
+  h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>الوظيفة</th>${mgr?'':'<th>المزرعة</th>'}
+    <th>الحالة اليوم (${esc(wAttDate)})</th><th></th></tr></thead><tbody>`;
+  workers.forEach(w=>{
+    const ab=isAbsentOn(w.id,wAttDate);
+    const status = ab? `<span class="badge ${ab.type==='leave'?'b-info':ab.type==='mission'?'b-warn':'b-bad'}">${ABS_TYPES[ab.type]||'غياب'}${ab.to&&ab.to!==ab.from?` (حتى ${esc(ab.to)})`:''}</span>`
+      : `<span class="badge b-ok">✅ حاضر</span>`;
+    h+=`<tr><td><b>${esc(w.name)}</b></td><td>${esc(w.job||'-')}</td>${mgr?'':`<td>${esc(farmById(w.farm)?.name||'-')}</td>`}
+      <td>${status}</td>
+      <td class="num">
+        ${ab?`<button class="btn-sec btn-xs" onclick="delAbsence('${ab.id}')">إلغاء الغياب</button>`
+            :`<button class="btn-amber btn-xs" onclick="absenceModal('${w.id}')">تسجيل غياب/إجازة</button>`}
+        ${isSuper?`<button class="btn-sec btn-xs" onclick="workerModal('${w.id}')">تعديل</button>
+          <button class="btn-sec btn-xs" onclick="moveWorkerModal('${w.id}')">🔄 نقل</button>`:''}
+      </td></tr>`;
+  });
+  h+=`</tbody></table></div>
+    <div class="hint" style="margin-top:8px">العمال حاضرون افتراضياً. سجّل الغياب أو الإجازة فقط عند حدوثه.</div></div>`;
+  return h;
+}
+function workerModal(id){
+  const isSuper=ME.role==='super'||ME.role==='admin';
+  const w=id?workerById(id):{name:'',job:'عامل',farm:isManager()?ME.farm:(DB.farms[0]?.id||''),startDate:todayISO()};
+  if(!w){toast('غير موجود',1);return;}
+  const jobOpts=WJOBS.map(j=>`<option ${w.job===j?'selected':''}>${j}</option>`).join('');
+  let farmField;
+  if(isManager()){
+    farmField=`<input type="hidden" id="wkFarm" value="${ME.farm}">
+      <div class="hint" style="margin-bottom:10px">المزرعة: <b>${esc(myFarm()?.name||'')}</b></div>`;
+  }else{
+    farmField=`<div class="field"><label>المزرعة</label><select id="wkFarm">${DB.farms.map(f=>`<option value="${f.id}" ${w.farm===f.id?'selected':''}>${esc(f.name)}</option>`).join('')}</select></div>`;
+  }
+  openModal(id?'تعديل عامل':'عامل جديد',
+    `<div class="row-fields g2">
+       <div class="field"><label>الاسم</label><input id="wkName" value="${esc(w.name)}" placeholder="اسم العامل"></div>
+       <div class="field"><label>الوظيفة</label><select id="wkJob">${jobOpts}</select></div>
+     </div>
+     ${farmField}
+     <div class="field"><label>تاريخ بداية العمل</label><input type="date" id="wkStart" value="${w.startDate||todayISO()}"></div>`,
+    `<button class="btn btn-green" onclick="saveWorker('${id||''}')">حفظ</button>
+     ${id&&isSuper?`<button class="btn-red" onclick="deactivateWorker('${id}')">إنهاء العمل</button>`:''}
+     <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function saveWorker(id){
+  const name=$('#wkName').value.trim();if(!name){toast('أدخل اسم العامل',1);return;}
+  const farm=$('#wkFarm').value, job=$('#wkJob').value, startDate=$('#wkStart').value;
+  if(id){const w=workerById(id);Object.assign(w,{name,job,farm,startDate});}
+  else{DB.workers.push({id:uid('wk'),name,job,farm,startDate,active:true,history:[{farm,from:startDate}]});}
+  save();closeModal();toast('تم الحفظ ✓');renderWorkers();
+}
+function deactivateWorker(id){
+  if(!confirm('إنهاء عمل هذا العامل؟ سيُخفى من القوائم مع الاحتفاظ بسجله.'))return;
+  const w=workerById(id);if(w){w.active=false;w.endDate=todayISO();}
+  save();closeModal();toast('تم إنهاء العمل');renderWorkers();
+}
+/* ---- نقل عامل بين المزارع ---- */
+function moveWorkerModal(id){
+  const w=workerById(id);if(!w)return;
+  openModal('نقل عامل: '+esc(w.name),
+    `<div class="hint" style="margin-bottom:10px">المزرعة الحالية: <b>${esc(farmById(w.farm)?.name||'-')}</b></div>
+     <div class="field"><label>المزرعة الجديدة</label>
+       <select id="mvFarm">${DB.farms.filter(f=>f.id!==w.farm).map(f=>`<option value="${f.id}">${esc(f.name)}</option>`).join('')}</select></div>
+     <div class="field"><label>تاريخ النقل</label><input type="date" id="mvDate" value="${todayISO()}"></div>`,
+    `<button class="btn btn-green" onclick="doMoveWorker('${id}')">تأكيد النقل</button>
+     <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function doMoveWorker(id){
+  const w=workerById(id);if(!w)return;
+  const newFarm=$('#mvFarm').value, date=$('#mvDate').value;
+  if(!newFarm){toast('اختر مزرعة',1);return;}
+  if(!Array.isArray(w.history))w.history=[];
+  // أغلق الفترة السابقة وافتح جديدة
+  const last=w.history[w.history.length-1]; if(last&&!last.to)last.to=date;
+  w.history.push({farm:newFarm,from:date});
+  w.farm=newFarm;
+  save();closeModal();toast('تم نقل العامل ✓');renderWorkers();
+}
+/* ---- تسجيل غياب/إجازة ---- */
+function absenceModal(workerId){
+  const w=workerById(workerId);if(!w)return;
+  openModal('تسجيل غياب/إجازة: '+esc(w.name),
+    `<div class="field"><label>النوع</label>
+       <select id="abType">${Object.entries(ABS_TYPES).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div>
+     <div class="row-fields g2">
+       <div class="field"><label>من تاريخ</label><input type="date" id="abFrom" value="${wAttDate||todayISO()}"></div>
+       <div class="field"><label>إلى تاريخ <span class="hint">(اتركه فارغاً ليوم واحد)</span></label><input type="date" id="abTo" value=""></div>
+     </div>
+     <div class="field"><label>السبب / ملاحظات</label><input id="abReason" placeholder="..."></div>`,
+    `<button class="btn btn-amber" onclick="saveAbsence('${workerId}')">حفظ</button>
+     <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function saveAbsence(workerId){
+  const w=workerById(workerId);if(!w)return;
+  const from=$('#abFrom').value; if(!from){toast('اختر التاريخ',1);return;}
+  let to=$('#abTo').value||from;
+  if(to<from){toast('تاريخ النهاية قبل البداية',1);return;}
+  DB.wAbsence.push({id:uid('ab'),workerId,farm:w.farm,type:$('#abType').value,from,to,reason:$('#abReason').value.trim(),_ts:Date.now()});
+  save();closeModal();toast('تم التسجيل ✓');renderWorkers();
+}
+function delAbsence(id){
+  const a=DB.wAbsence.find(x=>x.id===id);
+  if(isManager()&&a&&!within24h(a)){ if(!confirm('هذا السجل أقدم من 24 ساعة. متأكد من الإلغاء؟'))return; }
+  else if(!confirm('إلغاء هذا الغياب/الإجازة؟'))return;
+  DB.wAbsence=DB.wAbsence.filter(x=>x.id!==id);save();toast('تم الإلغاء');renderWorkers();
+}
+/* ---- تبويب سجل الغياب والإجازات (سوبر) ---- */
+function wTabAbsence(){
+  let h=`<div class="card"><div class="card-title">📋 سجل الغياب والإجازات</div>`;
+  if(!DB.wAbsence.length){return h+emptyState('📋','لا توجد سجلات.')+`</div>`;}
+  h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>المزرعة</th><th>النوع</th>
+    <th>من</th><th>إلى</th><th class="num">عدد الأيام</th><th>السبب</th><th></th></tr></thead><tbody>`;
+  DB.wAbsence.slice().sort((a,b)=>b.from.localeCompare(a.from)).forEach(a=>{
+    const w=workerById(a.workerId);
+    const days=Math.round((new Date(a.to||a.from)-new Date(a.from))/86400000)+1;
+    h+=`<tr><td><b>${esc(w?.name||'-')}</b></td><td>${esc(farmById(a.farm)?.name||'-')}</td>
+      <td><span class="badge ${a.type==='leave'?'b-info':a.type==='mission'?'b-warn':'b-bad'}">${ABS_TYPES[a.type]||'غياب'}</span></td>
+      <td>${esc(a.from)}</td><td>${esc(a.to||a.from)}</td><td class="num">${days}</td><td>${esc(a.reason||'-')}</td>
+      <td class="num"><button class="btn-red btn-xs" onclick="delAbsence('${a.id}')">حذف</button></td></tr>`;
+  });
+  return h+`</tbody></table></div></div>`;
+}
+/* ---- تبويب سجل التنقلات (سوبر) ---- */
+function wTabMoves(){
+  let h=`<div class="card"><div class="card-title">🔄 سجل تنقلات العمال بين المزارع</div>`;
+  const moved=DB.workers.filter(w=>Array.isArray(w.history)&&w.history.length>1);
+  if(!moved.length){return h+emptyState('🔄','لا توجد تنقلات مسجّلة.')+`</div>`;}
+  h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>المسار (من → إلى)</th><th>المزرعة الحالية</th></tr></thead><tbody>`;
+  moved.forEach(w=>{
+    const path=w.history.map(seg=>`${esc(farmById(seg.farm)?.name||'-')} <span class="hint">(${esc(seg.from)})</span>`).join(' ← ');
+    h+=`<tr><td><b>${esc(w.name)}</b></td><td style="white-space:normal">${path}</td>
+      <td>${esc(farmById(w.farm)?.name||'-')}</td></tr>`;
+  });
+  return h+`</tbody></table></div></div>`;
+}
+/* ---- تبويب تقرير الحضور (سوبر) ---- */
+let wRepMonth=null;
+function wTabReport(){
+  if(!wRepMonth)wRepMonth=todayISO().slice(0,7); // YYYY-MM
+  const [yy,mm]=wRepMonth.split('-').map(Number);
+  const daysInMonth=new Date(yy,mm,0).getDate();
+  let h=`<div class="card"><div class="toolbar">
+    <label style="color:var(--txt2)">الشهر:</label>
+    <input type="month" value="${wRepMonth}" onchange="wRepMonth=this.value;renderWorkers()" style="width:160px"></div></div>
+    <div class="card"><div class="card-title">📊 تقرير الحضور الشهري — ${esc(wRepMonth)}</div>`;
+  const workers=DB.workers.filter(w=>w.active!==false);
+  if(!workers.length){return h+emptyState('📊','لا يوجد عمال.')+`</div>`;}
+  h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>المزرعة</th><th class="num">أيام الشهر</th>
+    <th class="num">غياب</th><th class="num">إجازة</th><th class="num">مأمورية</th><th class="num">حضور</th>
+    <th class="num">نسبة الحضور</th></tr></thead><tbody>`;
+  workers.forEach(w=>{
+    let absD=0,leaveD=0,missD=0;
+    for(let d=1;d<=daysInMonth;d++){
+      const dateISO=`${yy}-${String(mm).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const a=isAbsentOn(w.id,dateISO);
+      if(a){if(a.type==='leave')leaveD++;else if(a.type==='mission')missD++;else absD++;}
+    }
+    const present=daysInMonth-absD-leaveD-missD;
+    const pct=daysInMonth?(present/daysInMonth*100):0;
+    h+=`<tr><td><b>${esc(w.name)}</b></td><td>${esc(farmById(w.farm)?.name||'-')}</td>
+      <td class="num">${daysInMonth}</td><td class="num">${absD}</td><td class="num">${leaveD}</td><td class="num">${missD}</td>
+      <td class="num">${present}</td>
+      <td class="num"><span class="badge ${pct>=95?'b-ok':pct>=85?'b-warn':'b-bad'}">${pct.toFixed(0)}%</span></td></tr>`;
+  });
+  return h+`</tbody></table></div></div>`;
+}
+
 /* ===================== 👥 المستخدمون ===================== */
 function renderUsers(){
   let html=pageHead('👥','المستخدمون','إدارة المستخدمين والصلاحيات');
@@ -3257,7 +3485,7 @@ try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 /* تسجيل Service Worker لتفعيل PWA (يعمل أوف لاين + تثبيت على الموبايل) */
 if('serviceWorker' in navigator && location.protocol==='https:'){
   const swCode = `
-    const C='brmas-v11';
+    const C='brmas-v13';
     self.addEventListener('install',e=>{self.skipWaiting();});
     self.addEventListener('activate',e=>{e.waitUntil((async()=>{
       const keys=await caches.keys();
