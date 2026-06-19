@@ -79,6 +79,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;max-width:100%}
 body{
   font-family:'Inter','Segoe UI','Helvetica Neue',Tahoma,Arial,sans-serif;
   background:
@@ -125,6 +126,7 @@ input,select,textarea{
   background:var(--surface);border:1.5px solid var(--border);color:var(--txt);
   padding:11px 13px;border-radius:var(--r-sm);font-family:inherit;font-size:var(--fs-base);
   outline:none;transition:border-color .18s var(--ease),box-shadow .18s var(--ease),background .18s;
+  max-width:100%;
 }
 input:hover,select:hover,textarea:hover{border-color:var(--border2)}
 input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:var(--sh-focus)}
@@ -192,7 +194,7 @@ button{font-family:inherit;cursor:pointer;border:none;transition:transform .15s 
 
 /* ===================== Cards ===================== */
 .card{background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:22px;box-shadow:var(--sh-sm);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+  padding:22px;box-shadow:var(--sh-sm);transition:box-shadow .25s var(--ease),transform .25s var(--ease);min-width:0;max-width:100%}
 .card:hover{box-shadow:var(--sh-md)}
 .card+.card{margin-top:18px}
 .card-title{font-size:var(--fs-md);font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:-.3px}
@@ -249,10 +251,11 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 /* ===================== Toolbar / search / fields ===================== */
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
 .toolbar input,.toolbar select{padding:9px 12px;font-size:13px}
-.field{margin-bottom:14px}
+.field{margin-bottom:14px;min-width:0}
 .field label{display:block;font-size:var(--fs-sm);color:var(--txt2);margin-bottom:6px;font-weight:600}
 .field input,.field select,.field textarea{width:100%}
 .row-fields{display:grid;gap:14px}
+.row-fields>*{min-width:0}
 .hint{font-size:var(--fs-xs);color:var(--txt3);margin-top:5px;line-height:1.5}
 .divider{height:1px;background:var(--border);margin:18px 0}
 .pill-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -435,7 +438,7 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
 
 /* ---- مفتاح التخزين ---- */
-const APP_VERSION='14';
+const APP_VERSION='16';
 const DBKEY='poultry_erp_db_v1';
 const BAKKEY='poultry_erp_backups_v1';   // نسخ احتياطية تلقائية يومية (آخر 30 يوم)
 
@@ -517,6 +520,7 @@ function defaultDB(){
       medTypes:['مضاد حيوي','مضاد كوكسيديا','مضاد كولستريديا','فيتامينات','مطهر','محفز مناعة','أحماض عضوية','أخرى'],
       medUnits:['لتر','سم','جم','كجم'],
       diseases:['التهاب تنفسي','نيوكاسل','جامبورو','كوكسيديا','كولستريديا','إي كولاي','كوريزا','إسهال','ضعف عام','وقائي'],
+      workerJobs:['عامل','مشرف','سايس','حارس','سائق','فني','مهندس','فني صيانة'],
       customRoles:[]}  // أدوار يضيفها السوبر أدمن: {id,name,color,perms:[],shifts:[]}
   };
 }
@@ -633,6 +637,7 @@ function normalizeDB(d){
   if(!Array.isArray(d.settings.medTypes)||!d.settings.medTypes.length)d.settings.medTypes=def.settings.medTypes;
   if(!Array.isArray(d.settings.medUnits)||!d.settings.medUnits.length)d.settings.medUnits=def.settings.medUnits;
   if(!Array.isArray(d.settings.diseases)||!d.settings.diseases.length)d.settings.diseases=def.settings.diseases;
+  if(!Array.isArray(d.settings.workerJobs)||!d.settings.workerJobs.length)d.settings.workerJobs=def.settings.workerJobs;
   if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
   // لو مفيش مستخدمين خالص، ارجّع المستخدمين الافتراضيين
   if(!d.users.length)d.users=def.users;
@@ -3154,7 +3159,7 @@ function yrImport(inp){const f=inp.files[0];if(!f)return;const r=new FileReader(
   }catch(err){toast('ملف غير صالح',1);}};r.readAsText(f);}
 
 /* ===================== 👷 حضور العمال ===================== */
-const WJOBS=['عامل','مشرف','سايس','حارس','سائق','فني'];
+function WJOBS(){return (DB.settings&&Array.isArray(DB.settings.workerJobs)&&DB.settings.workerJobs.length)?DB.settings.workerJobs:['عامل','مشرف','سايس','حارس','سائق','فني'];}
 const ABS_TYPES={absence:'غياب',leave:'إجازة',mission:'مأمورية'};
 let workersTab='list';
 function workerById(id){return DB.workers.find(w=>w.id===id);}
@@ -3214,7 +3219,9 @@ function workerModal(id){
   const isSuper=ME.role==='super'||ME.role==='admin';
   const w=id?workerById(id):{name:'',job:'عامل',farm:isManager()?ME.farm:(DB.farms[0]?.id||''),startDate:todayISO()};
   if(!w){toast('غير موجود',1);return;}
-  const jobOpts=WJOBS.map(j=>`<option ${w.job===j?'selected':''}>${j}</option>`).join('');
+  const jobs=WJOBS().slice();
+  if(w.job&&!jobs.includes(w.job))jobs.unshift(w.job);
+  const jobOpts=jobs.map(j=>`<option ${w.job===j?'selected':''}>${esc(j)}</option>`).join('');
   let farmField;
   if(isManager()){
     farmField=`<input type="hidden" id="wkFarm" value="${ME.farm}">
@@ -3225,7 +3232,9 @@ function workerModal(id){
   openModal(id?'تعديل عامل':'عامل جديد',
     `<div class="row-fields g2">
        <div class="field"><label>الاسم</label><input id="wkName" value="${esc(w.name)}" placeholder="اسم العامل"></div>
-       <div class="field"><label>الوظيفة</label><select id="wkJob">${jobOpts}</select></div>
+       <div class="field"><label>الوظيفة
+         <button type="button" class="btn-xs btn-sec" style="margin-right:6px" onclick="addListItem('workerJobs','wkJob')">+ وظيفة</button></label>
+         <select id="wkJob">${jobOpts}</select></div>
      </div>
      ${farmField}
      <div class="field"><label>تاريخ بداية العمل</label><input type="date" id="wkStart" value="${w.startDate||todayISO()}"></div>`,
@@ -3424,7 +3433,7 @@ function renderSettings(){
       </div>
       <button class="btn btn-sm" onclick="saveLabels()">حفظ المسميات</button></div>`;
     // ---- إدارة القوائم المنسدلة ----
-    const lists=[['medTypes','أنواع الأدوية'],['medUnits','وحدات القياس'],['diseases','الحالات المرضية']];
+    const lists=[['medTypes','أنواع الأدوية'],['medUnits','وحدات القياس'],['diseases','الحالات المرضية'],['workerJobs','وظائف العمال']];
     html+=`<div class="card"><div class="card-title">📋 إدارة القوائم المنسدلة</div>
       <div class="hint" style="margin-bottom:12px">أضف أو احذف عناصر القوائم المستخدمة في النماذج (أنواع الأدوية، الوحدات، الحالات المرضية).</div>
       <div class="grid g3">`;
