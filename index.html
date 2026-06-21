@@ -259,6 +259,9 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .hint{font-size:var(--fs-xs);color:var(--txt3);margin-top:5px;line-height:1.5}
 .divider{height:1px;background:var(--border);margin:18px 0}
 .pill-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:var(--r-pill);overflow:hidden}
+.seg-b{background:var(--surface);color:var(--txt2);padding:6px 14px;font-size:13px;font-weight:700}
+.seg-b.on{background:var(--primary);color:#fff}
 
 .empty{text-align:center;padding:52px 20px;color:var(--txt3)}
 .empty .ic{font-size:50px;margin-bottom:14px;opacity:.55;display:block}
@@ -438,7 +441,7 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
 
 /* ---- مفتاح التخزين ---- */
-const APP_VERSION='18';
+const APP_VERSION='19';
 const BUILD_DATE='2026-06-20';
 const DBKEY='poultry_erp_db_v1';
 const BAKKEY='poultry_erp_backups_v1';   // نسخ احتياطية تلقائية يومية (آخر 30 يوم)
@@ -527,6 +530,8 @@ function defaultDB(){
       disinfectUses:['تطهير عنبر','مياه شرب','معدات','أحواض','ممرات','مركبات','وقائي عام'],
       equipTypes:['دفاية','مروحة','معلف','مشرب','مولّد كهرباء','ماتور رش','بوابة','خط مياه','خزان مياه','حساس حرارة','إضاءة','أخرى'],
       faultTypes:['كهرباء','ميكانيكا','تهوية','تغذية','مياه','تحكم/حساسات','أخرى'],
+      fanCapacity:36000,   // سعة المروحة الواحدة م³/ساعة
+      summerFactor:4,      // مضاعف تهوية الصيف (النفق) مقابل التهوية الدنيا
       customRoles:[]}  // أدوار يضيفها السوبر أدمن: {id,name,color,perms:[],shifts:[]}
   };
 }
@@ -647,6 +652,8 @@ function normalizeDB(d){
   if(!Array.isArray(d.settings.disinfectUses)||!d.settings.disinfectUses.length)d.settings.disinfectUses=def.settings.disinfectUses;
   if(!Array.isArray(d.settings.equipTypes)||!d.settings.equipTypes.length)d.settings.equipTypes=def.settings.equipTypes;
   if(!Array.isArray(d.settings.faultTypes)||!d.settings.faultTypes.length)d.settings.faultTypes=def.settings.faultTypes;
+  if(d.settings.fanCapacity==null)d.settings.fanCapacity=36000;
+  if(d.settings.summerFactor==null)d.settings.summerFactor=4;
   if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
   // لو مفيش مستخدمين خالص، ارجّع المستخدمين الافتراضيين
   if(!d.users.length)d.users=def.users;
@@ -734,6 +741,26 @@ function L(k){return DB.labels[k]||k;}
 function fmt(n,d=0){if(n==null||isNaN(n))return '0';return Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function todayISO(){return new Date().toISOString().slice(0,10);}
 function rossRow(day){return ROSS308.find(r=>r.d===day)||null;}
+/* ===== مرجع التهوية والحرارة (Aviagen/Ross) ===== */
+// معدل التهوية الأدنى (م³/ساعة لكل طائر) حسب الوزن الحي بالكجم — جدول Aviagen 2018
+const VENT_MIN=[[0.05,0.080],[0.10,0.141],[0.15,0.208],[0.20,0.258],[0.25,0.305],[0.30,0.350],[0.35,0.393],[0.40,0.435],[0.45,0.475],[0.50,0.514],[0.55,0.552],[0.60,0.589],[0.65,0.625],[0.70,0.661],[0.75,0.696],[0.80,0.731],[0.85,0.765],[0.90,0.799],[0.95,0.832],[1.00,0.865],[1.20,0.994],[1.40,1.118],[1.60,1.237],[1.80,1.352],[2.00,1.464],[2.20,1.573],[2.40,1.680],[2.60,1.784],[2.80,1.886],[3.00,1.986],[3.20,2.085],[3.50,2.230]];
+// الحرارة المستهدفة والرطوبة حسب العمر (Ross) — تقريب من دليل الإدارة
+const TEMP_REF=[[0,33,32],[3,31,30],[6,30,28],[9,29,27],[12,28,26],[15,27,25],[18,25,24],[21,24,22],[24,23,21],[28,22,20],[35,21,20],[42,20,19]];
+function ventRateForWeight(kg){ // م³/ساعة لكل طائر (تهوية دنيا)
+  if(kg<=VENT_MIN[0][0])return VENT_MIN[0][1];
+  for(let i=0;i<VENT_MIN.length-1;i++){
+    if(kg>=VENT_MIN[i][0]&&kg<=VENT_MIN[i+1][0]){
+      const [w1,r1]=VENT_MIN[i],[w2,r2]=VENT_MIN[i+1];
+      return r1+(r2-r1)*(kg-w1)/(w2-w1); // استيفاء خطي
+    }
+  }
+  return VENT_MIN[VENT_MIN.length-1][1];
+}
+function tempRefForAge(age){
+  let best=TEMP_REF[0];
+  for(const row of TEMP_REF){ if(age>=row[0])best=row; }
+  return {tHigh:best[1],tLow:best[2]}; // نطاق الحرارة المستهدف
+}
 function cycleById(id){return DB.cycles.find(c=>c.id===id);}
 function farmById(id){return DB.farms.find(f=>f.id===id);}
 
@@ -1269,7 +1296,75 @@ function renderDaily(){
     ${close.closed?'<span class="badge b-ok" style="margin-right:10px">اليوم مُقفل ✓</span>':''}
   </div>`;
 
+  // ===== دليل التهوية والحرارة المرجعي (يحسب من الوزن) =====
+  html+=ventGuideCard(cyc,age,remain,(close.weight||(ref?ref.w:0)));
+
   $('#main').innerHTML=html;
+  // اربط إعادة حساب التهوية بإدخال الوزن مباشرة
+  const wEl=document.getElementById('clWeight');
+  if(wEl)wEl.addEventListener('input',()=>updateVentGuide(cyc,age,remain));
+}
+/* بطاقة دليل التهوية */
+let ventSeason='summer';
+function ventGuideCard(cyc,age,remain,weightG){
+  const birds=remain||cyclePlaced(cyc)||0;
+  return `<div class="card" id="ventCard"><div class="card-title">🌬️ دليل التهوية والحرارة المرجعي
+    <div class="spacer" style="flex:1"></div>
+    <div class="seg">
+      <button class="seg-b ${ventSeason==='winter'?'on':''}" onclick="ventSeason='winter';updateVentGuide()">❄️ شتاء</button>
+      <button class="seg-b ${ventSeason==='summer'?'on':''}" onclick="ventSeason='summer';updateVentGuide()">☀️ صيف</button>
+    </div></div>
+    <div class="hint" style="margin-bottom:10px">يُحسب تلقائياً من متوسط الوزن وعدد الطيور — مرجع Aviagen/Ross. عدّل الوزن بالأعلى ليُعاد الحساب فوراً.</div>
+    <div id="ventBody">${ventBodyHTML(cyc,age,birds,weightG)}</div>
+  </div>`;
+}
+function ventBodyHTML(cyc,age,birds,weightG){
+  const kg=(Number(weightG)||0)/1000;
+  const fanCap=Number(DB.settings.fanCapacity)||36000;
+  const sf=Number(DB.settings.summerFactor)||4;
+  const t=tempRefForAge(age);
+  if(!kg||!birds){return `<div class="hint">⚠️ أدخل متوسط الوزن وعدد الطيور لعرض الاحتياجات.</div>`;}
+  const ratePerBird=ventRateForWeight(kg);          // م³/ساعة لكل طائر (دنيا)
+  const minTotal=ratePerBird*birds;                  // تهوية دنيا (شتاء)
+  const maxTotal=minTotal*sf;                         // تهوية قصوى (صيف/نفق)
+  const target = ventSeason==='summer'?maxTotal:minTotal;
+  const fans = fanCap>0?Math.ceil(target/fanCap):0;
+  const seasonName = ventSeason==='summer'?'صيف (تهوية نفق قصوى)':'شتاء (تهوية دنيا)';
+  return `
+    <div class="grid g4" style="margin-bottom:12px">
+      ${kpi('c','🌡️ الحرارة المستهدفة',t.tLow+'–'+t.tHigh+' °م','عمر '+age+' يوم')}
+      ${kpi('p','💦 الرطوبة المثالية','60–70%','تجنّب >70%')}
+      ${kpi('a','🐔 الوزن الحالي',fmt(kg,3)+' كجم',fmt(birds)+' طائر')}
+      ${kpi('','🔢 معدل/طائر',fmt(ratePerBird,3)+' م³/س','تهوية دنيا')}
+    </div>
+    <div class="tbl-wrap"><table><thead><tr><th>الموسم</th><th class="num">التهوية المطلوبة (م³/س)</th>
+      <th class="num">سعة المروحة</th><th class="num">عدد المراوح المطلوبة</th></tr></thead><tbody>
+      <tr class="${ventSeason==='winter'?'tbl-total':''}"><td>❄️ شتاء (دنيا)</td><td class="num">${fmt(minTotal,0)}</td>
+        <td class="num">${fmt(fanCap,0)}</td><td class="num"><b>${fanCap>0?Math.ceil(minTotal/fanCap):'-'}</b></td></tr>
+      <tr class="${ventSeason==='summer'?'tbl-total':''}"><td>☀️ صيف (نفق ×${sf})</td><td class="num">${fmt(maxTotal,0)}</td>
+        <td class="num">${fmt(fanCap,0)}</td><td class="num"><b>${fanCap>0?Math.ceil(maxTotal/fanCap):'-'}</b></td></tr>
+    </tbody></table></div>
+    <div class="statrow st-green" style="margin-top:12px">
+      <span class="lab">✅ التوصية الآن (${seasonName})</span>
+      <span class="num">شغّل <b style="font-size:18px">${fans}</b> مروحة (${fmt(target,0)} م³/س)</span></div>
+    <div class="hint" style="margin-top:10px">القيم إرشادية وفق معدلات Aviagen 2018 للتهوية الدنيا؛ تهوية الصيف مضاعِف نفق (قابل للتعديل من الإعدادات). راقب سلوك الطيور والأمونيا وعدّل فعلياً. سعة المروحة ومضاعف الصيف يُعدّلان من ⚙️ الإعدادات.</div>`;
+}
+function updateVentGuide(cyc,age,remain){
+  // أعد بناء البطاقة بالكامل (يُستدعى عند تغيير الموسم أو الوزن)
+  const c=cyc||cycleById(dailyState.cycleId);if(!c)return;
+  const a=(typeof age==='number')?age:ageOnDate(c,dailyState.date);
+  const rem=(typeof remain==='number')?remain:(birdsRemaining(c.id)||cyclePlaced(c)||0);
+  const w=Number((document.getElementById('clWeight')||{}).value)||0;
+  const ref=rossRow(a);
+  const body=document.getElementById('ventBody');
+  const card=document.getElementById('ventCard');
+  if(card){ // حدّث أزرار الموسم
+    card.querySelectorAll('.seg-b').forEach(b=>{
+      const isW=b.textContent.includes('شتاء');
+      b.classList.toggle('on',(isW&&ventSeason==='winter')||(!isW&&ventSeason==='summer'));
+    });
+  }
+  if(body)body.innerHTML=ventBodyHTML(c,a,rem,w||(ref?ref.w:0));
 }
 
 function saveShift(){
@@ -3660,6 +3755,12 @@ function renderSettings(){
     <div class="row-fields g2">
       <div class="field"><label>العملة</label><input id="stCurr" value="${esc(DB.settings.currency)}" ${isSuper?'':'disabled'}></div>
       <div class="field"><label>السلالة الافتراضية</label><input id="stBreed" value="${esc(DB.settings.breedDefault)}" ${isSuper?'':'disabled'}></div>
+    </div>
+    <div class="card-title" style="font-size:14px;margin-top:14px">🌬️ إعدادات التهوية</div>
+    <div class="row-fields g2">
+      <div class="field"><label>سعة المروحة الواحدة (م³/ساعة)</label><input type="number" id="stFanCap" value="${Number(DB.settings.fanCapacity)||36000}" ${isSuper?'':'disabled'}></div>
+      <div class="field"><label>مضاعف تهوية الصيف (نفق)</label><input type="number" step="0.5" id="stSummerF" value="${Number(DB.settings.summerFactor)||4}" ${isSuper?'':'disabled'}>
+        <div class="hint">تهوية الصيف = التهوية الدنيا × هذا المضاعف</div></div>
     </div></div>`;
   if(isSuper){
     const lblKeys=Object.keys(DB.labels).filter(k=>k!=='company');
@@ -3812,7 +3913,9 @@ function saveFbConfig(){
   else{toast('تعذّر الاتصال — تحقق من القيم',1);}
 }
 function saveSettings(){
-  if(ME.role==='super'){DB.labels.company=$('#stCompany').value;DB.settings.currency=$('#stCurr').value;DB.settings.breedDefault=$('#stBreed').value;}
+  if(ME.role==='super'){DB.labels.company=$('#stCompany').value;DB.settings.currency=$('#stCurr').value;DB.settings.breedDefault=$('#stBreed').value;
+    if($('#stFanCap'))DB.settings.fanCapacity=Number($('#stFanCap').value)||36000;
+    if($('#stSummerF'))DB.settings.summerFactor=Number($('#stSummerF').value)||4;}
   save();toast('تم حفظ الإعدادات ✓');
 }
 function saveLabels(){Object.keys(DB.labels).filter(k=>k!=='company').forEach(k=>{const el=$('#lbl_'+k);if(el)DB.labels[k]=el.value;});save();toast('تم حفظ المسميات ✓');renderSettings();}
