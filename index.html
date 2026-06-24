@@ -331,21 +331,23 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 
 /* ===================== Stat rows (colored key/value) ===================== */
 .statrow{display:flex;align-items:center;justify-content:space-between;border-radius:var(--r-md);
-  padding:13px 17px;margin-bottom:10px;color:#fff;box-shadow:var(--sh-sm);transition:transform .18s var(--ease),box-shadow .18s}
-.statrow:hover{transform:translateX(-3px);box-shadow:var(--sh-md)}
-.statrow .lab{font-size:var(--fs-sm);font-weight:700;opacity:.96}
-.statrow .num{font-size:var(--fs-lg);font-weight:800;font-variant-numeric:tabular-nums}
-.st-blue{background:linear-gradient(120deg,#3551d6,#5b8def)}
-.st-green{background:linear-gradient(120deg,#0f9d58,#16c172)}
-.st-amber{background:linear-gradient(120deg,#c06f0a,#f5a623)}
-.st-cyan{background:linear-gradient(120deg,#0a7f9c,#22d3ee)}
-.st-purple{background:linear-gradient(120deg,#7a2fd6,#a855f7)}
-.st-rose{background:linear-gradient(120deg,#c81e3f,#fb5a6f)}
-.st-teal{background:linear-gradient(120deg,#0c7a70,#2dd4bf)}
-.st-slate{background:linear-gradient(120deg,#475063,#7c889e)}
-.st-indigo{background:linear-gradient(120deg,#3d34c9,#818cf8)}
-.st-orange{background:linear-gradient(120deg,#cc4a08,#fb923c)}
-.st-trader{background:linear-gradient(120deg,#9333ea,#c084fc)}
+  padding:12px 16px;margin-bottom:8px;background:var(--surface);border:1px solid var(--border);
+  border-right:4px solid var(--primary);transition:border-color .18s var(--ease),box-shadow .18s;box-shadow:var(--sh-xs)}
+.statrow:hover{box-shadow:var(--sh-sm);border-right-color:var(--primary)}
+.statrow .lab{font-size:var(--fs-sm);font-weight:600;color:var(--txt2)}
+.statrow .num{font-size:var(--fs-lg);font-weight:800;font-variant-numeric:tabular-nums;color:var(--txt)}
+/* ألوان الشريط الجانبي (border-right) — هادئة ومحددة */
+.st-blue{border-right-color:#3b82f6}.st-blue .num{color:#1d4ed8}
+.st-green{border-right-color:#16a34a}.st-green .num{color:#15803d}
+.st-amber{border-right-color:#d97706}.st-amber .num{color:#b45309}
+.st-cyan{border-right-color:#0891b2}.st-cyan .num{color:#0e7490}
+.st-purple{border-right-color:#9333ea}.st-purple .num{color:#7e22ce}
+.st-rose{border-right-color:#e11d48}.st-rose .num{color:#be123c}
+.st-teal{border-right-color:#0d9488}.st-teal .num{color:#0f766e}
+.st-slate{border-right-color:#64748b}.st-slate .num{color:#475569}
+.st-indigo{border-right-color:#4f46e5}.st-indigo .num{color:#3730a3}
+.st-orange{border-right-color:#ea580c}.st-orange .num{color:#c2410c}
+.st-trader{border-right-color:#9333ea}.st-trader .num{color:#7e22ce}
 
 /* ===================== Owner hero ===================== */
 .owner-hero{background:var(--grad);border-radius:var(--r-xl);padding:26px 28px;margin-bottom:20px;
@@ -441,7 +443,7 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
 
 /* ---- مفتاح التخزين ---- */
-const APP_VERSION='22';
+const APP_VERSION='23';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
 const BAKKEY='poultry_erp_backups_v1';   // نسخ احتياطية تلقائية يومية (آخر 30 يوم)
@@ -2764,29 +2766,41 @@ function repSalesDaily(){
   const age=ageOnDate(cyc,salesDay);
   const feedTot=cycleFeedUsed(cyc.id);
 
+  // ===== علف وارد لليوم =====
+  const feedInDay=DB.feedMoves.filter(m=>m.cycleId===cyc.id&&m.date===salesDay&&(m.type==='in'||m.type==='transfer_in'));
+  const feedInQty=feedInDay.reduce((s,m)=>s+(Number(m.qty)||0),0);
+  // علف تراكمي وارد للدورة كلها
+  const feedInTotal=DB.feedMoves.filter(m=>m.cycleId===cyc.id&&(m.type==='in'||m.type==='transfer_in')).reduce((s,m)=>s+(Number(m.qty)||0),0);
+
   h+=`<div class="grid g2">`;
-  const sr=(cls,lab,val)=>`<div class="statrow ${cls}"><span class="lab">${lab}</span><span class="num">${val}</span></div>`;
+  const sr=(cls,lab,val,sub)=>`<div class="statrow ${cls}"><span class="lab">${lab}${sub?`<span class="hint" style="font-weight:400;margin-right:6px">${sub}</span>`:''}</span><span class="num">${val}</span></div>`;
   // لوح: المبيعات يوميا
-  h+=`<div class="card"><div class="card-title" style="color:var(--cyan)">📅 المبيعات يوميا — ${esc(farmById(cyc.farm)?.name||'')} — ${esc(salesDay)}</div>
-    ${sr('st-blue','العدد',fmt(tCount))}
-    ${sr('st-teal','الوزن',fmt(tWeight,1))}
-    ${sr('st-green','المبلغ',fmt(tAmount))}
-    ${sr('st-purple','متوسط اليوم (وزن/طائر)',fmt(tAvgBird,2))}
-    ${sr('st-amber','السعر (للكيلو)',fmt(tPrice,2))}
+  h+=`<div class="card"><div class="card-title" style="color:var(--primary)">📅 ${esc(salesDay)} — ${esc(farmById(cyc.farm)?.name||'')}</div>
+    ${sr('st-blue','العدد المباع',fmt(tCount),'طائر')}
+    ${sr('st-teal','الوزن المباع',fmt(tWeight,1),'كجم')}
+    ${sr('st-green','المبلغ',fmt(tAmount),DB.settings.currency)}
+    ${sr('st-slate','متوسط وزن الطائر',fmt(tAvgBird,2),'كجم')}
+    ${sr('st-amber','السعر / كجم',fmt(tPrice,2),DB.settings.currency)}
+    <div class="divider" style="margin:10px 0"></div>
+    <div class="card-title" style="font-size:13px;color:var(--txt2);margin-bottom:6px">🌾 العلف الوارد</div>
+    ${sr('st-orange','وارد اليوم',feedInQty?fmt(feedInQty)+' كجم':'—')}
+    ${sr('st-orange','وارد الدورة (إجمالي)',fmt(feedInTotal)+' كجم')}
+    ${feedInDay.length?`<div class="tbl-wrap" style="margin-top:8px"><table><thead><tr><th>نوع الحركة</th><th class="num">الكمية (كجم)</th><th>ملاحظات</th></tr></thead><tbody>
+      ${feedInDay.map(m=>`<tr><td>${m.type==='transfer_in'?'محوّل وارد':'وارد مباشر'}</td><td class="num">${fmt(m.qty)}</td><td>${esc(m.note||'—')}</td></tr>`).join('')}
+    </tbody></table></div>`:''}
   </div>`;
   // لوح: إجمالي المبيعات
-  h+=`<div class="card"><div class="card-title" style="color:var(--green)">📊 إجمالي المبيعات (تراكمي)</div>
+  h+=`<div class="card"><div class="card-title" style="color:var(--txt)">📊 إجمالي الدورة (تراكمي)</div>
     ${sr('st-slate','العمر',age>0?age+' يوم':'-')}
-    ${sr('st-indigo','العدد (التسكين)',fmt(F.placed))}
-    ${sr('st-rose','النافق',fmt(F.dead))}
-    ${sr('st-rose','نسبة النافق',F.deadPct.toFixed(2)+'%')}
-    ${sr('st-blue','المبيعات (عدد)',fmt(F.sales.count))}
-    ${sr(F.remain<0?'st-rose':'st-green','العدد المتبقي',fmt(F.remain))}
-    ${sr('st-orange','العلف الكلي',fmt(feedTot))}
-    ${sr('st-purple','متوسط الوزن',fmt(F.avgWeightBird,2))}
-    ${sr('st-teal','إجمالي الوزن',fmt(F.sales.weight,1))}
-    ${sr('st-green','إجمالي المبلغ',fmt(F.sales.amount))}
-    ${sr('st-amber','متوسط السعر',fmt(F.avgPrice,2))}
+    ${sr('st-indigo','التسكين',fmt(F.placed),'طائر')}
+    ${sr('st-rose','النافق',fmt(F.dead)+'  ('+F.deadPct.toFixed(1)+'%)')}
+    ${sr('st-blue','المبيعات',fmt(F.sales.count),'طائر')}
+    ${sr(F.remain<0?'st-rose':'st-green','المتبقي',fmt(F.remain),'طائر')}
+    ${sr('st-amber','متوسط الوزن',fmt(F.avgWeightBird,2),'كجم')}
+    ${sr('st-teal','إجمالي اللحم',fmt(F.totalMeat,1),'كجم')}
+    ${sr('st-green','إجمالي المبلغ',fmt(F.sales.amount),DB.settings.currency)}
+    ${sr('st-slate','متوسط السعر',fmt(F.avgPrice,2),DB.settings.currency+'/كجم')}
+    ${sr('st-orange','العلف المستهلك',fmt(feedTot),'كجم')}
   </div>`;
   h+=`</div>`;
 
