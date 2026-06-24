@@ -4144,7 +4144,17 @@ function printChecklist(){
 
 let guideSheetIdx=0;
 function renderGuide(){
-  $('#main').innerHTML=pageHead('📖','دليل Ross الإرشادي','')+'<div class="card">'+emptyState('📖','دليل Ross الإرشادي (22 إنفوجراف) متاح في الملف guide.html المنفصل — افتحه بجانب النظام')+'</div>';
+  $('#main').innerHTML=pageHead('📖','دليل Ross الإرشادي','22 إنفوجراف مبنية على دليل إدارة Ross 308 من Aviagen')+
+    `<div class="card" style="text-align:center;padding:36px 24px">
+      <div style="font-size:48px;margin-bottom:12px">📖</div>
+      <h2 style="font-size:20px;font-weight:800;margin-bottom:8px">دليل Ross الإرشادي الكامل</h2>
+      <p style="color:var(--txt2);margin-bottom:6px;font-size:14px">22 إنفوجراف تفصيلية: النظافة، التحضين، التغذية، الإضاءة، التهوية، الصحة، البيع وحل المشاكل</p>
+      <p class="hint" style="margin-bottom:20px">يفتح في صفحة منفصلة — مع إمكانية الطباعة كـ PDF</p>
+      <a href="guide.html" target="_blank" rel="noopener" class="btn btn-lg" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        📖 فتح الدليل الإرشادي
+      </a>
+      <div class="hint" style="margin-top:16px">لو لم يفتح، تأكد أن ملف <b>guide.html</b> مرفوع بجانب النظام في نفس المجلد.</div>
+    </div>`;
 }
 
 
@@ -4439,6 +4449,8 @@ function resetDB(){if(!confirm('تصفير كل البيانات؟ لا يمكن
 const SHEETS=[];
 
 try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
+
+renderLogin();
 
 </script>
 <script>
