@@ -204,19 +204,19 @@ button{font-family:inherit;cursor:pointer;border:none;transition:transform .15s 
 .g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
 
 /* ---- KPI ---- */
-.kpi{background:var(--grad2);border:none;border-radius:var(--r-lg);padding:20px;position:relative;overflow:hidden;
-  box-shadow:var(--sh-md);color:var(--txt-on);transition:transform .25s var(--ease-out),box-shadow .25s}
-.kpi::before{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;
-  background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);border-radius:50%}
-.kpi.g{background:var(--grad-green)}
-.kpi.r{background:var(--grad-red)}
-.kpi.a{background:linear-gradient(135deg,#d68310,#f5a623)}
-.kpi.c{background:linear-gradient(135deg,#0e9bbd,#22d3ee)}
-.kpi.p{background:linear-gradient(135deg,#8b3ff0,#a855f7)}
-.kpi .lbl{font-size:var(--fs-sm);color:rgba(255,255,255,.9);margin-bottom:9px;display:flex;align-items:center;gap:7px;font-weight:600}
-.kpi .val{font-size:var(--fs-2xl);font-weight:800;letter-spacing:-1px;color:#fff;font-variant-numeric:tabular-nums;line-height:1.15}
-.kpi .sub{font-size:var(--fs-xs);color:rgba(255,255,255,.78);margin-top:6px;font-weight:500}
-.kpi.lift:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;position:relative;overflow:hidden;
+  border-top:3px solid var(--primary);box-shadow:var(--sh-xs);transition:transform .25s var(--ease-out),box-shadow .25s}
+.kpi::before{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px;
+  background:radial-gradient(circle,var(--primary),transparent 70%);border-radius:50%;opacity:.06}
+.kpi.g{border-top-color:#16a34a}.kpi.g .val{color:#15803d}.kpi.g::before{background:radial-gradient(circle,#16a34a,transparent 70%)}
+.kpi.r{border-top-color:#e11d48}.kpi.r .val{color:#be123c}.kpi.r::before{background:radial-gradient(circle,#e11d48,transparent 70%)}
+.kpi.a{border-top-color:#d97706}.kpi.a .val{color:#b45309}.kpi.a::before{background:radial-gradient(circle,#d97706,transparent 70%)}
+.kpi.c{border-top-color:#0891b2}.kpi.c .val{color:#0e7490}.kpi.c::before{background:radial-gradient(circle,#0891b2,transparent 70%)}
+.kpi.p{border-top-color:#9333ea}.kpi.p .val{color:#7e22ce}.kpi.p::before{background:radial-gradient(circle,#9333ea,transparent 70%)}
+.kpi .lbl{font-size:var(--fs-sm);color:var(--txt2);margin-bottom:8px;display:flex;align-items:center;gap:7px;font-weight:600}
+.kpi .val{font-size:var(--fs-2xl);font-weight:800;letter-spacing:-1px;color:var(--txt);font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi .sub{font-size:var(--fs-xs);color:var(--txt3);margin-top:6px;font-weight:500}
+.kpi.lift:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
 
 /* ===================== Tables ===================== */
 .tbl-wrap{overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-xs);background:var(--surface);-webkit-overflow-scrolling:touch}
@@ -443,7 +443,7 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
 
 /* ---- مفتاح التخزين ---- */
-const APP_VERSION='23';
+const APP_VERSION='25';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
 const BAKKEY='poultry_erp_backups_v1';   // نسخ احتياطية تلقائية يومية (آخر 30 يوم)
@@ -537,9 +537,10 @@ function defaultDB(){
       faultTypes:['كهرباء','ميكانيكا','تهوية','تغذية','مياه','تحكم/حساسات','أخرى'],
       manufacturers:['أفيمكو','فايزر','MSD','سيفا','إنتيرفيت','فيركون','أخرى'],
       cleaningActs:['إخراج السبلة','كنس وتنظيف جاف','غسيل بالماء','غسيل بالصابون/الديترجنت','تطهير بالمطهر','تجفيف','تجير (جير)','تبخير (فورمالين)','رش مبيد حشري','مكافحة قوارض','تركيب فرشة جديدة','راحة العنبر (فاضي)'],
-      fanCapacity:36000,   // سعة المروحة الواحدة م³/ساعة
-      summerFactor:4,      // مضاعف تهوية الصيف (النفق) مقابل التهوية الدنيا
-      customRoles:[]}  // أدوار يضيفها السوبر أدمن: {id,name,color,perms:[],shifts:[]}
+      fanCapacity:36000,
+      summerFactor:4,
+      fcrTarget:2.0,     // الوزن المستهدف للمقارنة (كجم) لحساب Adjusted FCR — Ross 2025
+      customRoles:[]}
   };
 }
 
@@ -664,6 +665,7 @@ function normalizeDB(d){
   if(!Array.isArray(d.settings.cleaningActs)||!d.settings.cleaningActs.length)d.settings.cleaningActs=def.settings.cleaningActs;
   if(d.settings.fanCapacity==null)d.settings.fanCapacity=36000;
   if(d.settings.summerFactor==null)d.settings.summerFactor=4;
+  if(d.settings.fcrTarget==null)d.settings.fcrTarget=2.0;
   if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
   // لو مفيش مستخدمين خالص، ارجّع المستخدمين الافتراضيين
   if(!d.users.length)d.users=def.users;
@@ -914,13 +916,21 @@ function _cycleFinalCompute(cyc){
   const costPerKg=totalMeat>0?(totalCost/totalMeat):0;
   const profitPerKg=totalMeat>0?(profit/totalMeat):0;   // RO on kg = الربح لكل كيلو لحم
   const rofFeed=feed>0?(profit/feed):0;                  // ROF on kg feed = الربح لكل كيلو علف
-  const cfcr=fcr>0?(fcr+((2-avgWeightBird)/4)):0;        // cfcr = FCR + (2 − متوسط الوزن) ÷ 4
+  const cfcr=fcr>0?(fcr+((2-avgWeightBird)/4)):0;        // معادلة قديمة (محفوظة للتوافق)
+  // ===== معامل التحويل المعدّل (Adjusted FCR) — معادلة Ross 2025 =====
+  // adjFCR = actualFCR + (targetWeight_kg - actualWeight_kg) / 4.5
+  // شرط الدقة: الفارق لا يتجاوز 0.227 كجم (227 جم)
+  const fcrTargetKg=Number(DB.settings.fcrTarget)||2.0;
+  const fcrDiff=fcrTargetKg-avgWeightBird;               // موجب = أثقل من الهدف، سالب = أخف
+  const adjFCR=fcr>0?(fcr+(fcrDiff/4.5)):0;
+  const adjFCRValid=Math.abs(fcrDiff)<=0.227;            // الفارق في النطاق المسموح (≤227جم)
   // عامل الكفاءة الأوروبي EPEF = (الحياتية% × متوسط الوزن كجم) ÷ (العمر × FCR) × 100
   const epefAge=ages.avg||ageOnDate(cyc,todayISO());
   const epef=(epefAge>0&&fcr>0)?((livability*avgWeightBird)/(epefAge*fcr)*100):0;
   const R={placed,dead,culls,sales,feed,remain,lw,deadPct,livability,avgFeedBird,
     liveMeat,totalMeat,avgWeightBird,fcr,ages,chickCost,feedCost,expenses,totalCost,
-    revenue,traderDiscount,profit,avgPrice,costPerKg,profitPerKg,rofFeed,cfcr,epef,costs};
+    revenue,traderDiscount,profit,avgPrice,costPerKg,profitPerKg,rofFeed,
+    cfcr,adjFCR,adjFCRValid,fcrTargetKg,epef,costs};
   // طبقة التجاوز اليدوي (Super Admin): أي قيمة محفوظة في cyc.overrides تتقفّل
   const ov=cyc.overrides||{};
   R._ov={}; // أي حقول متجاوَزة (لتلوينها)
@@ -934,7 +944,7 @@ function isOverridden(cyc,key){return cyc.overrides&&cyc.overrides[key]!=null&&c
 const OV_FIELDS=[
   ['placed','عدد التسكين'],['dead','إجمالي النافق'],['deadPct','نسبة النافق %'],
   ['livability','الحياتية %'],['feed','العلف المستهلك'],['totalMeat','إجمالي اللحم'],
-  ['avgWeightBird','متوسط وزن الطائر'],['fcr','معامل التحويل FCR'],['cfcr','cfcr'],
+  ['avgWeightBird','متوسط وزن الطائر'],['fcr','معامل التحويل FCR'],['adjFCR','FCR المعدّل (Adj.FCR)'],['cfcr','cfcr'],
   ['epef','EPEF'],['revenue','الإيراد'],['totalCost','إجمالي التكلفة'],
   ['profit','صافي الربح'],['costPerKg','تكلفة الكيلو'],['profitPerKg','الربح للكيلو'],
   ['rofFeed','ROF/kg علف'],['traderDiscount','خصم التجار'],['remain','العدد المتبقي'],
@@ -1006,6 +1016,11 @@ function aggregateCycles(cycList){
   A.profitPerKg=A.totalMeat>0?(A.profit/A.totalMeat):0;
   A.rofFeed=A.feed>0?(A.profit/A.feed):0;
   A.cfcr=A.fcr>0?(A.fcr+((2-A.avgWeight)/4)):0;
+  const _fcrT=Number(DB.settings.fcrTarget)||2.0;
+  const _fcrD=_fcrT-A.avgWeight;
+  A.adjFCR=A.fcr>0?(A.fcr+(_fcrD/4.5)):0;
+  A.adjFCRValid=Math.abs(_fcrD)<=0.227;
+  A.fcrTargetKg=_fcrT;
   return A;
 }
 /* بيانات يوم واحد مجمّعة لدورة (للمقارنة بالكتالوج) */
@@ -2864,15 +2879,17 @@ function repPostSale(){
     ['🔴','عمر نهاية البيع',F.ages.end||'-','st-cyan'],
     ['📆','متوسط العمر',F.ages.avg||'-','st-slate'],
     ['🔄','معامل التحويل FCR',ovCell(F,'fcr',F.fcr.toFixed(3)),'st-purple'],
+    ['📊','FCR المعدّل (Adj. FCR)',`${ovCell(F,'adjFCR',F.adjFCR.toFixed(3))} <span class="hint" style="font-size:11px">عند ${F.fcrTargetKg} كجم${!F.adjFCRValid?' ⚠️ فارق > 227جم':''}</span>`,'st-indigo'],
+    ['⚡','EPEF',ovCell(F,'epef',F.epef.toFixed(0)),'st-cyan'],
   ];
+  const adjNote=!F.adjFCRValid?'<div class="hint" style="margin-top:6px;color:var(--amber)">⚠️ الفارق بين الوزن الفعلي والمستهدف يتجاوز 227 جم — القيمة تقديرية وقد تكون أقل دقة (حسب تنبيه دليل Ross 2025).</div>':'';
   h+=`<div class="card"><div class="card-title">🧾 تقرير ما بعد البيع — ${esc(farm?.name||'')} / ${esc(cyc.code)}</div>
-    ${statGrid(srows,'g2')}</div>`;
-  // الربحية
-  h+=`<div class="card"><div class="card-title">💵 الربحية</div><div class="grid g4" style="margin-bottom:12px">
+    ${statGrid(srows,'g2')}${adjNote}</div>`;
+  // الربحية — بدون EPEF هنا (انتقلت للأعلى)
+  h+=`<div class="card"><div class="card-title">💵 الربحية</div><div class="grid g3" style="margin-bottom:12px">
     ${kpi('','الإيراد',fmt(F.revenue)+' '+DB.settings.currency,'متوسط سعر: '+fmt(F.avgPrice,2))}
     ${kpi('a','إجمالي التكلفة',fmt(F.totalCost)+' '+DB.settings.currency,'كتاكيت+علف+مصاريف')}
     ${kpi('c','تكلفة الكيلو',fmt(F.costPerKg,2)+' '+DB.settings.currency,'')}
-    ${kpi('p','EPEF',F.epef.toFixed(0),'الكفاءة الأوروبية')}
   </div>
   <div class="grid g3">
     ${kpi(F.profit>=0?'g':'r',F.profit>=0?'صافي الربح':'صافي الخسارة',fmt(F.profit)+' '+DB.settings.currency,F.traderDiscount?('بعد خصم تجار: '+fmt(F.traderDiscount)):'')}
@@ -2920,17 +2937,19 @@ function repFarmTotal(){
     <div class="grid g4">
       ${kpi('a','العلف الكلي',fmt(A.feed)+' كجم','')}
       ${kpi('c','FCR إجمالي',A.fcr.toFixed(3),'')}
-      ${kpi('p','متوسط الوزن',fmt(A.avgWeight,2)+' كجم','')}
+      ${kpi('p','FCR المعدّل',A.adjFCR>0?A.adjFCR.toFixed(3):'—','عند '+A.fcrTargetKg+' كجم')}
       ${kpi('','حياتية',A.livability.toFixed(1)+'%','')}
     </div></div>`;
   // تفصيل الدورات
   h+=`<div class="card"><div class="card-title">📑 دورات ${esc(farm.name)}</div>
     <div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>الحالة</th><th class="num">تسكين</th>
-      <th class="num">نافق%</th><th class="num">مبيعات</th><th class="num">FCR</th><th class="num">الربح</th></tr></thead><tbody>`;
+      <th class="num">نافق%</th><th class="num">وزن (كجم)</th><th class="num">FCR</th><th class="num">FCR المعدّل</th><th class="num">الربح</th></tr></thead><tbody>`;
   cycs.forEach(c=>{const F=cycleFinal(c);
+    const adjBadge=!F.adjFCRValid?'<span title="فارق > 227جم" style="color:var(--amber)">⚠️</span>':'';
     h+=`<tr><td><b>${esc(c.code)}</b></td><td><span class="badge ${c.status==='مغلقة'?'b-mut':'b-ok'}">${esc(c.status)}</span></td>
       <td class="num">${fmt(F.placed)}</td><td class="num">${F.deadPct.toFixed(1)}%</td>
-      <td class="num">${fmt(F.revenue)}</td><td class="num">${F.fcr.toFixed(3)}</td>
+      <td class="num">${fmt(F.avgWeightBird,2)}</td><td class="num">${F.fcr.toFixed(3)}</td>
+      <td class="num">${F.adjFCR>0?F.adjFCR.toFixed(3):'—'}${adjBadge}</td>
       <td class="num"><b class="${F.profit>=0?'ref-good':'ref-bad'}">${fmt(F.profit)}</b></td></tr>`;});
   return h+`</tbody></table></div></div>`;
 }
@@ -2948,18 +2967,18 @@ function repCompany(){
     <div class="grid g4">
       ${kpi('a','العلف الكلي',fmt(A.feed)+' كجم','')}
       ${kpi('c','FCR إجمالي',A.fcr.toFixed(3),'')}
-      ${kpi('p','متوسط الوزن',fmt(A.avgWeight,2)+' كجم','')}
+      ${kpi('p','FCR المعدّل',A.adjFCR>0?A.adjFCR.toFixed(3):'—','عند '+A.fcrTargetKg+' كجم')}
       ${kpi('','حياتية',A.livability.toFixed(1)+'%','')}
     </div></div>`;
   h+=`<div class="card"><div class="card-title">📊 أداء المزارع (ترتيب حسب الربح)</div>
     <div class="tbl-wrap"><table><thead><tr><th>المزرعة</th><th class="num">دورات</th><th class="num">تسكين</th>
-      <th class="num">نافق%</th><th class="num">مبيعات</th><th class="num">FCR</th><th class="num">الربح</th></tr></thead><tbody>`;
+      <th class="num">نافق%</th><th class="num">FCR</th><th class="num">FCR المعدّل</th><th class="num">الربح</th></tr></thead><tbody>`;
   const rows=DB.farms.map(f=>{const cs=DB.cycles.filter(c=>c.farm===f.id);return {f,A:aggregateCycles(cs)};})
     .sort((a,b)=>b.A.profit-a.A.profit);
   rows.forEach(({f,A})=>{
     h+=`<tr><td><b>${esc(f.name)}</b></td><td class="num">${A.n}</td><td class="num">${fmt(A.placed)}</td>
-      <td class="num">${A.deadPct.toFixed(1)}%</td><td class="num">${fmt(A.salesAmount)}</td>
-      <td class="num">${A.fcr.toFixed(3)}</td>
+      <td class="num">${A.deadPct.toFixed(1)}%</td><td class="num">${A.fcr.toFixed(3)}</td>
+      <td class="num">${A.adjFCR>0?A.adjFCR.toFixed(3):'—'}</td>
       <td class="num"><b class="${A.profit>=0?'ref-good':'ref-bad'}">${fmt(A.profit)}</b></td></tr>`;
   });
   return h+`</tbody></table></div></div>`;
@@ -3034,7 +3053,9 @@ function repCompare(){
   h+=`<div class="tbl-wrap"><table><thead><tr><th>المزرعة</th><th class="num">الوارد</th><th class="num">المباع</th>
     <th class="num">نسبة النافق</th><th class="num">سعر البيع</th><th class="num">تكلفة الكيلو</th>
     <th class="num">العلف</th><th class="num">إجمالي اللحم</th><th class="num">متوسط الوزن</th>
-    <th class="num">متوسط العمر</th><th class="num">FCR</th><th class="num">cfcr</th><th class="num">EPEF</th>
+    <th class="num">متوسط العمر</th><th class="num">FCR</th>
+    <th class="num" title="معامل التحويل المعدّل — Ross 2025">FCR معدّل <span class="hint">(عند ${(DB.settings.fcrTarget||2.0)}كجم)</span></th>
+    <th class="num">EPEF</th>
     <th class="num">RO/kg لحم</th><th class="num">ROF/kg علف</th>
     <th class="num">صافي الدورات</th></tr></thead><tbody>`;
   let T={placed:0,sold:0,feed:0,meat:0,profit:0};
@@ -3052,7 +3073,7 @@ function repCompare(){
       <td class="num">${fmt(A.feed)} كجم</td><td class="num">${fmt(A.totalMeat)} كجم</td>
       <td class="num">${fmt(A.avgWeight,2)}</td><td class="num">${avgAge?avgAge.toFixed(1):'-'}</td>
       <td class="num"><span class="badge ${clr(2-A.fcr,0.45,0.35)}">${A.fcr.toFixed(2)}</span></td>
-      <td class="num"><span class="badge ${clr(2-A.cfcr,0.45,0.35)}">${A.cfcr.toFixed(2)}</span></td>
+      <td class="num"><span class="badge ${A.adjFCR>0?(clr(2-A.adjFCR,0.45,0.35)):'b-mut'}" title="${A.adjFCRValid?'':'فارق > 227جم'}">${A.adjFCR>0?A.adjFCR.toFixed(2):'—'}${!A.adjFCRValid?'⚠️':''}</span></td>
       <td class="num"><span class="badge ${clr(avgEpef,380,330)}">${avgEpef?avgEpef.toFixed(0):'-'}</span></td>
       <td class="num"><b class="${A.profitPerKg>=0?'ref-good':'ref-bad'}">${fmt(A.profitPerKg,2)}</b></td>
       <td class="num"><b class="${A.rofFeed>=0?'ref-good':'ref-bad'}">${fmt(A.rofFeed,2)}</b></td>
@@ -3063,13 +3084,15 @@ function repCompare(){
     <td class="num">${Tall.deadPct.toFixed(1)}%</td><td class="num">${fmt(Tall.avgPrice,1)}</td><td class="num">${fmt(Tall.costPerKg,1)}</td>
     <td class="num">${fmt(T.feed)} كجم</td><td class="num">${fmt(T.meat)} كجم</td>
     <td class="num">${fmt(Tall.avgWeight,2)}</td><td class="num">-</td>
-    <td class="num">${Tall.fcr.toFixed(2)}</td><td class="num">${Tall.cfcr.toFixed(2)}</td><td class="num">-</td>
+    <td class="num">${Tall.fcr.toFixed(2)}</td><td class="num">${Tall.adjFCR>0?Tall.adjFCR.toFixed(2):'—'}</td><td class="num">-</td>
     <td class="num">${fmt(Tall.profitPerKg,2)}</td><td class="num">${fmt(Tall.rofFeed,2)}</td>
     <td class="num">${fmt(T.profit)}</td></tr>`;
   h+=`</tbody></table></div>
     <div class="card" style="margin-top:0"><div class="hint">
-    <b>cfcr</b> = FCR + (2 − متوسط الوزن) ÷ 4. <b>RO/kg لحم</b> = صافي الربح ÷ إجمالي اللحم. <b>ROF/kg علف</b> = صافي الربح ÷ العلف المستهلك.<br>
-    FCR/cfcr: أخضر ≤1.55 / أصفر ≤1.65 / أحمر >1.65 — EPEF: أخضر ≥380 / أصفر ≥330 / أحمر <330.</div></div>`;
+    <b>FCR معدّل (Adjusted FCR)</b> = FCR الفعلي + (الوزن المستهدف − الوزن الفعلي) ÷ 4.5 — معادلة Ross 2025 للمقارنة العادلة بين القطعان ذات الأوزان المختلفة. ⚠️ تفقد دقتها إذا تجاوز الفارق 227 جم.
+    الوزن المستهدف للمقارنة: <b>${(DB.settings.fcrTarget||2.0)} كجم</b> (قابل للتغيير من ⚙️ الإعدادات).<br>
+    <b>RO/kg لحم</b> = صافي الربح ÷ إجمالي اللحم. <b>ROF/kg علف</b> = صافي الربح ÷ العلف المستهلك.<br>
+    FCR: أخضر ≤1.55 / أصفر ≤1.65 / أحمر >1.65 — EPEF: أخضر ≥380 / أصفر ≥330 / أحمر <330.</div></div>`;
   return h;
 }
 
@@ -4291,6 +4314,12 @@ function renderSettings(){
       <div class="field"><label>سعة المروحة الواحدة (م³/ساعة)</label><input type="number" id="stFanCap" value="${Number(DB.settings.fanCapacity)||36000}" ${isSuper?'':'disabled'}></div>
       <div class="field"><label>مضاعف تهوية الصيف (نفق)</label><input type="number" step="0.5" id="stSummerF" value="${Number(DB.settings.summerFactor)||4}" ${isSuper?'':'disabled'}>
         <div class="hint">تهوية الصيف = التهوية الدنيا × هذا المضاعف</div></div>
+    </div>
+    <div class="card-title" style="font-size:14px;margin-top:14px">📊 إعدادات معامل التحويل المعدّل (Adjusted FCR)</div>
+    <div class="row-fields g2">
+      <div class="field"><label>الوزن المستهدف للمقارنة (كجم)</label>
+        <input type="number" step="0.1" min="0.5" max="4" id="stFcrTarget" value="${Number(DB.settings.fcrTarget)||2.0}" ${isSuper?'':'disabled'}>
+        <div class="hint">الوزن المرجعي الذي يُعدَّل عليه FCR للمقارنة العادلة بين الدورات ذات الأوزان المختلفة — معادلة Ross 2025: FCR معدّل = FCR + (الوزن المستهدف - الوزن الفعلي) ÷ 4.5</div></div>
     </div></div>`;
   if(isSuper){
     const lblKeys=Object.keys(DB.labels).filter(k=>k!=='company');
@@ -4445,7 +4474,8 @@ function saveFbConfig(){
 function saveSettings(){
   if(ME.role==='super'){DB.labels.company=$('#stCompany').value;DB.settings.currency=$('#stCurr').value;DB.settings.breedDefault=$('#stBreed').value;
     if($('#stFanCap'))DB.settings.fanCapacity=Number($('#stFanCap').value)||36000;
-    if($('#stSummerF'))DB.settings.summerFactor=Number($('#stSummerF').value)||4;}
+    if($('#stSummerF'))DB.settings.summerFactor=Number($('#stSummerF').value)||4;
+    if($('#stFcrTarget'))DB.settings.fcrTarget=Number($('#stFcrTarget').value)||2.0;}
   save();toast('تم حفظ الإعدادات ✓');
 }
 function saveLabels(){Object.keys(DB.labels).filter(k=>k!=='company').forEach(k=>{const el=$('#lbl_'+k);if(el)DB.labels[k]=el.value;});save();toast('تم حفظ المسميات ✓');renderSettings();}
