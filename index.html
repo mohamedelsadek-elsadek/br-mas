@@ -5,113 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نظام إدارة مزارع الدواجن - الشركة المصرية</title>
 <style>:root{
---bg:#f6f7fb;
---bg2:#eef0f7;
---surface:#ffffff;
---card:#ffffff;
---card2:#f8f9fd;
---border:#e7e9f2;
---border2:#d8dbe9;
---ring:rgba(99,91,255,.35);
---primary:#635bff;        
---primary-d:#5147e6;
---primary-l:#8b85ff;
---primary-soft:#eef0ff;
---txt:#1a1c2e;
---txt2:#5b607a;
---txt3:#9095af;
---txt-on:#ffffff;
---green:#0f9d58; --green-l:#16c172;
---red:#e23048;   --red-l:#fb5a6f;
---amber:#d68310; --amber-l:#f5a623;
---cyan:#0e9bbd;  --cyan-l:#22d3ee;
---purple:#8b3ff0;--purple-l:#a855f7;
---blue:#2f6bff;  --blue-l:#5b8def;
---orange:#e8590c;--orange-l:#fb923c;
---pink:#d6457f;  --pink-l:#ec4899;
---teal:#0d9488;  --teal-l:#2dd4bf;
---slate:#566073; --slate-l:#7c889e;
---indigo:#4f46e5;--indigo-l:#818cf8;
---ok-bg:rgba(15,157,88,.12);
---warn-bg:rgba(214,131,16,.14);
---bad-bg:rgba(226,48,72,.12);
---info-bg:rgba(99,91,255,.12);
---grad:linear-gradient(135deg,#635bff,#8b85ff 55%,#a855f7);
---grad2:linear-gradient(135deg,#5147e6,#7c5cff);
---grad-green:linear-gradient(135deg,#0f9d58,#16c172);
---grad-red:linear-gradient(135deg,#e23048,#fb5a6f);
---grad-blue:linear-gradient(135deg,#2f6bff,#5b8def);
---grad-surface:linear-gradient(180deg,#ffffff,#fbfbfe);
---r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px;
---s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px;
---sh-xs:0 1px 2px rgba(26,28,46,.06);
---sh-sm:0 2px 6px rgba(26,28,46,.07),0 1px 2px rgba(26,28,46,.05);
---sh-md:0 8px 24px rgba(26,28,46,.09),0 2px 6px rgba(26,28,46,.05);
---sh-lg:0 18px 48px rgba(26,28,46,.14),0 6px 16px rgba(26,28,46,.08);
---sh-primary:0 8px 24px rgba(99,91,255,.32);
---sh-focus:0 0 0 4px var(--ring);
---fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px; --fs-md:15px;
---fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:34px;
---ease:cubic-bezier(.4,0,.2,1);
---ease-out:cubic-bezier(.16,1,.3,1);
-}
+--bg:#f6f7fb; --bg2:#eef0f7; --surface:#ffffff; --card:#ffffff; --card2:#f8f9fd; --border:#e7e9f2; --border2:#d8dbe9; --ring:rgba(99,91,255,.35); --primary:#635bff; --primary-d:#5147e6; --primary-l:#8b85ff; --primary-soft:#eef0ff; --txt:#1a1c2e; --txt2:#5b607a; --txt3:#9095af; --txt-on:#ffffff; --green:#0f9d58; --green-l:#16c172; --red:#e23048;   --red-l:#fb5a6f; --amber:#d68310; --amber-l:#f5a623; --cyan:#0e9bbd;  --cyan-l:#22d3ee; --purple:#8b3ff0;--purple-l:#a855f7; --blue:#2f6bff;  --blue-l:#5b8def; --orange:#e8590c;--orange-l:#fb923c; --pink:#d6457f;  --pink-l:#ec4899; --teal:#0d9488;  --teal-l:#2dd4bf; --slate:#566073; --slate-l:#7c889e; --indigo:#4f46e5;--indigo-l:#818cf8; --ok-bg:rgba(15,157,88,.12); --warn-bg:rgba(214,131,16,.14); --bad-bg:rgba(226,48,72,.12); --info-bg:rgba(99,91,255,.12); --grad:linear-gradient(135deg,#635bff,#8b85ff 55%,#a855f7); --grad2:linear-gradient(135deg,#5147e6,#7c5cff); --grad-green:linear-gradient(135deg,#0f9d58,#16c172); --grad-red:linear-gradient(135deg,#e23048,#fb5a6f); --grad-blue:linear-gradient(135deg,#2f6bff,#5b8def); --grad-surface:linear-gradient(180deg,#ffffff,#fbfbfe); --r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px; --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --sh-xs:0 1px 2px rgba(26,28,46,.06); --sh-sm:0 2px 6px rgba(26,28,46,.07),0 1px 2px rgba(26,28,46,.05); --sh-md:0 8px 24px rgba(26,28,46,.09),0 2px 6px rgba(26,28,46,.05); --sh-lg:0 18px 48px rgba(26,28,46,.14),0 6px 16px rgba(26,28,46,.08); --sh-primary:0 8px 24px rgba(99,91,255,.32); --sh-focus:0 0 0 4px var(--ring); --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px; --fs-md:15px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:34px; --ease:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(.16,1,.3,1); }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 html,body{overflow-x:hidden;max-width:100%}
 body{
-font-family:'Inter','Segoe UI','Helvetica Neue',Tahoma,Arial,sans-serif;
-background:
+font-family:'Inter','Segoe UI','Helvetica Neue',Tahoma,Arial,sans-serif; background:
 radial-gradient(900px 500px at 88% -8%,#eceaff,transparent 60%),
 radial-gradient(700px 500px at -5% 0%,#e7f6ff,transparent 55%),
-var(--bg);
-background-attachment:fixed;
-color:var(--txt);
-font-size:var(--fs-base);
-line-height:1.6;
--webkit-font-smoothing:antialiased;
-text-rendering:optimizeLegibility;
-}
+var(--bg); background-attachment:fixed; color:var(--txt); font-size:var(--fs-base); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
 ::-webkit-scrollbar{width:11px;height:11px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:var(--r-pill);border:3px solid var(--bg)}
 ::-webkit-scrollbar-thumb:hover{background:var(--primary-l)}
 ::selection{background:var(--primary-soft);color:var(--primary-d)}
 #login{
-position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;
-background:
+position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px; background:
 radial-gradient(800px 500px at 75% -10%,#e4e1ff,transparent 60%),
 radial-gradient(700px 500px at 10% 110%,#dff3ff,transparent 55%),
-var(--bg);
-}
+var(--bg); }
 .login-card{
-background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-xl);
-padding:44px 38px;width:100%;max-width:430px;box-shadow:var(--sh-lg);position:relative;overflow:hidden;
-animation:popIn .5s var(--ease-out) both;
-}
+background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-xl); padding:44px 38px;width:100%;max-width:430px;box-shadow:var(--sh-lg);position:relative;overflow:hidden; animation:popIn .5s var(--ease-out) both; }
 .login-card::before{content:'';position:absolute;inset:0 0 auto 0;height:5px;background:var(--grad)}
 .login-card .logo{font-size:54px;text-align:center;margin-bottom:10px;filter:drop-shadow(0 6px 14px rgba(99,91,255,.3))}
-.login-card h1{font-size:var(--fs-xl);text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:-.5px;
-background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.login-card h1{font-size:var(--fs-xl);text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:-.5px; background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .login-card .sub{text-align:center;color:var(--txt2);font-size:var(--fs-sm);margin-bottom:30px}
 .login-card label{display:block;font-size:var(--fs-sm);color:var(--txt2);margin:16px 0 7px;font-weight:600}
 .login-card select,.login-card input{width:100%}
 .login-err{color:var(--red);font-size:var(--fs-sm);text-align:center;margin-top:14px;min-height:16px;font-weight:600}
 input,select,textarea{
-background:var(--surface);border:1.5px solid var(--border);color:var(--txt);
-padding:11px 13px;border-radius:var(--r-sm);font-family:inherit;font-size:var(--fs-base);
-outline:none;transition:border-color .18s var(--ease),box-shadow .18s var(--ease),background .18s;
-max-width:100%;
-}
+background:var(--surface);border:1.5px solid var(--border);color:var(--txt); padding:11px 13px;border-radius:var(--r-sm);font-family:inherit;font-size:var(--fs-base); outline:none;transition:border-color .18s var(--ease),box-shadow .18s var(--ease),background .18s; max-width:100%; }
 input:hover,select:hover,textarea:hover{border-color:var(--border2)}
 input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:var(--sh-focus)}
 input::placeholder{color:var(--txt3)}
 select{cursor:pointer}
 button{font-family:inherit;cursor:pointer;border:none;transition:transform .15s var(--ease),box-shadow .2s var(--ease),filter .2s,background .2s}
 .btn{
-background:var(--grad);color:var(--txt-on);padding:11px 20px;border-radius:var(--r-sm);
-font-size:var(--fs-base);font-weight:600;box-shadow:var(--sh-primary);letter-spacing:.1px;
-display:inline-flex;align-items:center;gap:7px;
-}
+background:var(--grad);color:var(--txt-on);padding:11px 20px;border-radius:var(--r-sm); font-size:var(--fs-base);font-weight:600;box-shadow:var(--sh-primary);letter-spacing:.1px; display:inline-flex;align-items:center;gap:7px; }
 .btn:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 12px 28px rgba(99,91,255,.42)}
 .btn:active{transform:translateY(0);filter:brightness(.98)}
 .btn-lg{width:100%;padding:14px;font-size:var(--fs-md);margin-top:24px;justify-content:center}
@@ -125,32 +55,22 @@ display:inline-flex;align-items:center;gap:7px;
 .btn-xs{padding:5px 10px;font-size:var(--fs-xs);border-radius:var(--r-xs);box-shadow:none}
 #app{display:none;min-height:100vh}
 .topbar{
-position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:12px 22px;
-background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);
-border-bottom:1px solid var(--border);box-shadow:var(--sh-xs);
-}
+position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:12px 22px; background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px); border-bottom:1px solid var(--border);box-shadow:var(--sh-xs); }
 .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:var(--fs-md);white-space:nowrap;letter-spacing:-.3px}
 .topbar .brand .ic{font-size:24px;filter:drop-shadow(0 3px 8px rgba(99,91,255,.35))}
 .topbar .brand span:last-child{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .topbar .spacer{flex:1}
-.user-chip{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--border);
-padding:6px 13px;border-radius:var(--r-pill);font-size:var(--fs-sm);box-shadow:var(--sh-xs)}
+.user-chip{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--border); padding:6px 13px;border-radius:var(--r-pill);font-size:var(--fs-sm);box-shadow:var(--sh-xs)}
 .user-chip .role{color:var(--primary-d);font-weight:700}
-.menu-btn{display:none;background:var(--card2);border:1px solid var(--border);color:var(--txt);
-width:40px;height:40px;border-radius:var(--r-sm);font-size:18px}
+.menu-btn{display:none;background:var(--card2);border:1px solid var(--border);color:var(--txt); width:40px;height:40px;border-radius:var(--r-sm);font-size:18px}
 .layout{display:flex;min-height:calc(100vh - 58px)}
-.sidebar{width:248px;background:rgba(255,255,255,.6);backdrop-filter:blur(8px);
-border-left:1px solid var(--border);padding:18px 12px;flex-shrink:0;overflow-y:auto}
-.nav-group{font-size:var(--fs-xs);color:var(--txt3);text-transform:uppercase;letter-spacing:.7px;
-margin:20px 12px 8px;font-weight:800}
-.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--r-sm);
-color:var(--txt2);cursor:pointer;font-size:13.5px;margin-bottom:3px;font-weight:600;position:relative;
-transition:background .18s var(--ease),color .18s,transform .12s}
+.sidebar{width:248px;background:rgba(255,255,255,.6);backdrop-filter:blur(8px); border-left:1px solid var(--border);padding:18px 12px;flex-shrink:0;overflow-y:auto}
+.nav-group{font-size:var(--fs-xs);color:var(--txt3);text-transform:uppercase;letter-spacing:.7px; margin:20px 12px 8px;font-weight:800}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--r-sm); color:var(--txt2);cursor:pointer;font-size:13.5px;margin-bottom:3px;font-weight:600;position:relative; transition:background .18s var(--ease),color .18s,transform .12s}
 .nav-item .ic{font-size:18px;width:24px;text-align:center}
 .nav-item:hover{background:var(--primary-soft);color:var(--primary-d)}
 .nav-item.active{background:var(--grad);color:var(--txt-on);box-shadow:var(--sh-primary)}
-.nav-item.active::before{content:'';position:absolute;right:-12px;top:50%;transform:translateY(-50%);
-width:4px;height:60%;background:var(--primary);border-radius:var(--r-pill)}
+.nav-item.active::before{content:'';position:absolute;right:-12px;top:50%;transform:translateY(-50%); width:4px;height:60%;background:var(--primary);border-radius:var(--r-pill)}
 .main{flex:1;padding:26px;overflow-x:auto;min-width:0}
 .page{display:none;animation:fade .3s var(--ease-out)}
 .page.active{display:block}
@@ -159,18 +79,15 @@ width:4px;height:60%;background:var(--primary);border-radius:var(--r-pill)}
 .page-head h2{font-size:var(--fs-2xl);font-weight:800;letter-spacing:-.7px}
 .page-head .desc{color:var(--txt2);font-size:var(--fs-sm)}
 .page-head .spacer{flex:1}
-.card{background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-lg);
-padding:22px;box-shadow:var(--sh-sm);transition:box-shadow .25s var(--ease),transform .25s var(--ease);min-width:0;max-width:100%}
+.card{background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-lg); padding:22px;box-shadow:var(--sh-sm);transition:box-shadow .25s var(--ease),transform .25s var(--ease);min-width:0;max-width:100%}
 .card:hover{box-shadow:var(--sh-md)}
 .card+.card{margin-top:18px}
 .card-title{font-size:var(--fs-md);font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:-.3px}
 .grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;position:relative;overflow:hidden;
-border-top:3px solid var(--primary);box-shadow:var(--sh-xs);transition:transform .25s var(--ease-out),box-shadow .25s}
-.kpi::before{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px;
-background:radial-gradient(circle,var(--primary),transparent 70%);border-radius:50%;opacity:.06}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;position:relative;overflow:hidden; border-top:3px solid var(--primary);box-shadow:var(--sh-xs);transition:transform .25s var(--ease-out),box-shadow .25s}
+.kpi::before{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px; background:radial-gradient(circle,var(--primary),transparent 70%);border-radius:50%;opacity:.06}
 .kpi.g{border-top-color:#16a34a}.kpi.g .val{color:#15803d}.kpi.g::before{background:radial-gradient(circle,#16a34a,transparent 70%)}
 .kpi.r{border-top-color:#e11d48}.kpi.r .val{color:#be123c}.kpi.r::before{background:radial-gradient(circle,#e11d48,transparent 70%)}
 .kpi.a{border-top-color:#d97706}.kpi.a .val{color:#b45309}.kpi.a::before{background:radial-gradient(circle,#d97706,transparent 70%)}
@@ -183,10 +100,7 @@ background:radial-gradient(circle,var(--primary),transparent 70%);border-radius:
 .tbl-wrap{overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-xs);background:var(--surface);-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;white-space:nowrap}
 thead th{
-background:var(--grad2);color:var(--txt-on);font-weight:700;padding:13px 15px;text-align:right;
-position:sticky;top:0;z-index:5;font-size:var(--fs-sm);letter-spacing:.2px;
-box-shadow:0 2px 0 rgba(0,0,0,.06);
-}
+background:var(--grad2);color:var(--txt-on);font-weight:700;padding:13px 15px;text-align:right; position:sticky;top:0;z-index:5;font-size:var(--fs-sm);letter-spacing:.2px; box-shadow:0 2px 0 rgba(0,0,0,.06); }
 thead th:first-child{border-top-right-radius:var(--r-md)}
 thead th:last-child{border-top-left-radius:var(--r-md)}
 tbody td{padding:12px 15px;border-bottom:1px solid var(--border);color:var(--txt)}
@@ -223,29 +137,20 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .empty .ic{font-size:50px;margin-bottom:14px;opacity:.55;display:block}
 .access-deny{text-align:center;padding:64px 20px;color:var(--txt2)}
 .access-deny .ic{font-size:58px;margin-bottom:16px;display:block}
-.modal-bg{position:fixed;inset:0;background:rgba(26,28,46,.42);backdrop-filter:blur(5px);
-display:none;align-items:center;justify-content:center;z-index:200;padding:18px;animation:fade .2s}
+.modal-bg{position:fixed;inset:0;background:rgba(26,28,46,.42);backdrop-filter:blur(5px); display:none;align-items:center;justify-content:center;z-index:200;padding:18px;animation:fade .2s}
 .modal-bg.show{display:flex}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
-width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-lg);
-animation:popIn .32s var(--ease-out)}
-.modal-h{display:flex;align-items:center;padding:18px 22px;border-bottom:1px solid var(--border);
-position:sticky;top:0;background:var(--surface);z-index:1}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg); width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-lg); animation:popIn .32s var(--ease-out)}
+.modal-h{display:flex;align-items:center;padding:18px 22px;border-bottom:1px solid var(--border); position:sticky;top:0;background:var(--surface);z-index:1}
 .modal-h h3{font-size:var(--fs-lg);flex:1;font-weight:800;letter-spacing:-.3px}
-.modal-h .x{background:var(--card2);border:1px solid var(--border);color:var(--txt2);
-width:32px;height:32px;border-radius:var(--r-xs);font-size:16px;transition:.15s}
+.modal-h .x{background:var(--card2);border:1px solid var(--border);color:var(--txt2); width:32px;height:32px;border-radius:var(--r-xs);font-size:16px;transition:.15s}
 .modal-h .x:hover{background:var(--bad-bg);color:var(--red);border-color:var(--red)}
 .modal-b{padding:22px}
-.modal-f{padding:16px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-start;
-position:sticky;bottom:0;background:var(--surface)}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);
-background:var(--grad-green);color:#fff;padding:13px 24px;border-radius:var(--r-pill);font-weight:700;
-z-index:500;opacity:0;transition:.35s var(--ease-out);box-shadow:var(--sh-lg)}
+.modal-f{padding:16px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-start; position:sticky;bottom:0;background:var(--surface)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px); background:var(--grad-green);color:#fff;padding:13px 24px;border-radius:var(--r-pill);font-weight:700; z-index:500;opacity:0;transition:.35s var(--ease-out);box-shadow:var(--sh-lg)}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.err{background:var(--grad-red)}
 .shift-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
-.shift-tab{flex:1;min-width:120px;background:var(--surface);border:1.5px solid var(--border);
-border-radius:var(--r-md);padding:13px;text-align:center;cursor:pointer;transition:.18s var(--ease);box-shadow:var(--sh-xs)}
+.shift-tab{flex:1;min-width:120px;background:var(--surface);border:1.5px solid var(--border); border-radius:var(--r-md);padding:13px;text-align:center;cursor:pointer;transition:.18s var(--ease);box-shadow:var(--sh-xs)}
 .shift-tab:hover{border-color:var(--primary-l);transform:translateY(-2px);box-shadow:var(--sh-sm)}
 .shift-tab .t{font-size:var(--fs-base);font-weight:700;margin-bottom:3px}
 .shift-tab .h{font-size:var(--fs-xs);color:var(--txt3)}
@@ -268,12 +173,9 @@ border-radius:var(--r-md);padding:13px;text-align:center;cursor:pointer;transiti
 .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .bar-row .nm{width:150px;font-size:var(--fs-sm);color:var(--txt2);flex-shrink:0;font-weight:600}
 .bar-track{flex:1;background:var(--bg2);border-radius:var(--r-pill);height:24px;position:relative;overflow:hidden}
-.bar-fill{height:100%;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:flex-end;
-padding:0 10px;font-size:var(--fs-xs);font-weight:800;color:#fff;min-width:30px;box-shadow:var(--sh-xs)}
+.bar-fill{height:100%;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:flex-end; padding:0 10px;font-size:var(--fs-xs);font-weight:800;color:#fff;min-width:30px;box-shadow:var(--sh-xs)}
 .bar-row .vl{width:128px;text-align:left;font-size:var(--fs-sm);font-variant-numeric:tabular-nums;font-weight:600}
-.statrow{display:flex;align-items:center;justify-content:space-between;border-radius:var(--r-md);
-padding:12px 16px;margin-bottom:8px;background:var(--surface);border:1px solid var(--border);
-border-right:4px solid var(--primary);transition:border-color .18s var(--ease),box-shadow .18s;box-shadow:var(--sh-xs)}
+.statrow{display:flex;align-items:center;justify-content:space-between;border-radius:var(--r-md); padding:12px 16px;margin-bottom:8px;background:var(--surface);border:1px solid var(--border); border-right:4px solid var(--primary);transition:border-color .18s var(--ease),box-shadow .18s;box-shadow:var(--sh-xs)}
 .statrow:hover{box-shadow:var(--sh-sm);border-right-color:var(--primary)}
 .statrow .lab{font-size:var(--fs-sm);font-weight:600;color:var(--txt2)}
 .statrow .num{font-size:var(--fs-lg);font-weight:800;font-variant-numeric:tabular-nums;color:var(--txt)}
@@ -288,16 +190,12 @@ border-right:4px solid var(--primary);transition:border-color .18s var(--ease),b
 .st-indigo{border-right-color:#4f46e5}.st-indigo .num{color:#3730a3}
 .st-orange{border-right-color:#ea580c}.st-orange .num{color:#c2410c}
 .st-trader{border-right-color:#9333ea}.st-trader .num{color:#7e22ce}
-.owner-hero{background:var(--grad);border-radius:var(--r-xl);padding:26px 28px;margin-bottom:20px;
-box-shadow:var(--sh-lg);position:relative;overflow:hidden;animation:popIn .5s var(--ease-out) both;color:#fff}
-.owner-hero::after{content:'';position:absolute;left:-50px;top:-50px;width:220px;height:220px;
-background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%}
+.owner-hero{background:var(--grad);border-radius:var(--r-xl);padding:26px 28px;margin-bottom:20px; box-shadow:var(--sh-lg);position:relative;overflow:hidden;animation:popIn .5s var(--ease-out) both;color:#fff}
+.owner-hero::after{content:'';position:absolute;left:-50px;top:-50px;width:220px;height:220px; background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%}
 .owner-hero h2{font-size:var(--fs-2xl);color:#fff;margin-bottom:5px;font-weight:800;letter-spacing:-.6px}
 .owner-hero .d{color:rgba(255,255,255,.9);font-size:var(--fs-sm)}
-.owner-hero .date{position:absolute;left:26px;top:26px;background:rgba(255,255,255,.2);
-padding:7px 15px;border-radius:var(--r-pill);font-size:var(--fs-sm);color:#fff;font-weight:700;backdrop-filter:blur(4px)}
-.ov-val{position:relative;background:var(--warn-bg)!important;border-radius:var(--r-xs);padding:2px 8px;
-box-shadow:inset 0 0 0 1.5px var(--amber);font-weight:800;color:var(--amber)}
+.owner-hero .date{position:absolute;left:26px;top:26px;background:rgba(255,255,255,.2); padding:7px 15px;border-radius:var(--r-pill);font-size:var(--fs-sm);color:#fff;font-weight:700;backdrop-filter:blur(4px)}
+.ov-val{position:relative;background:var(--warn-bg)!important;border-radius:var(--r-xs);padding:2px 8px; box-shadow:inset 0 0 0 1.5px var(--amber);font-weight:800;color:var(--amber)}
 .ov-val::after{content:'✏';font-size:9px;margin-right:4px;opacity:.85}
 .ov-edit{cursor:pointer}
 .ov-edit:hover{outline:1.5px dashed var(--amber);outline-offset:2px;border-radius:var(--r-xs)}
@@ -309,9 +207,7 @@ box-shadow:inset 0 0 0 1.5px var(--amber);font-weight:800;color:var(--amber)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,91,255,.45)}50%{box-shadow:0 0 0 9px rgba(99,91,255,0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-left:5px}
-#saveInd{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);
-background:var(--grad2);color:#fff;padding:10px 20px;border-radius:var(--r-pill);font-weight:700;font-size:13px;
-z-index:600;opacity:0;transition:.3s var(--ease-out);box-shadow:var(--sh-lg);display:flex;align-items:center;gap:4px}
+#saveInd{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px); background:var(--grad2);color:#fff;padding:10px 20px;border-radius:var(--r-pill);font-weight:700;font-size:13px; z-index:600;opacity:0;transition:.3s var(--ease-out);box-shadow:var(--sh-lg);display:flex;align-items:center;gap:4px}
 #saveInd.show{transform:translateX(-50%) translateY(0);opacity:1}
 #saveInd.done{background:var(--grad-green)}
 .anim-kpi{animation:popIn .5s var(--ease-out) both}
@@ -324,8 +220,7 @@ z-index:600;opacity:0;transition:.3s var(--ease-out);box-shadow:var(--sh-lg);dis
 .main{padding:20px}
 }
 @media(max-width:880px){
-.sidebar{position:fixed;right:0;top:58px;bottom:0;z-index:60;transform:translateX(100%);
-transition:transform .28s var(--ease-out);box-shadow:var(--sh-lg);width:264px;overflow-y:auto}
+.sidebar{position:fixed;right:0;top:58px;bottom:0;z-index:60;transform:translateX(100%); transition:transform .28s var(--ease-out);box-shadow:var(--sh-lg);width:264px;overflow-y:auto}
 .sidebar.open{transform:none}
 .menu-btn{display:block}
 .g2,.g3,.g4,.g5{grid-template-columns:1fr}
@@ -370,7 +265,6 @@ th,td{padding:8px 7px}
 .page-head .ic-wrap{width:38px;height:38px;font-size:18px}
 .kpi .val{font-size:18px}
 }
-/* تحسينات اللمس على كل الشاشات الصغيرة */
 @media(hover:none) and (pointer:coarse){
 .nav-item,.btn,.btn-sec,.btn-sm,button{min-height:40px}
 input[type=checkbox]{width:20px;height:20px}
@@ -399,30 +293,25 @@ input[type=checkbox]{width:20px;height:20px}
 <div class="modal-bg" id="modalBg"><div class="modal" id="modal"></div></div>
 <div class="toast" id="toast"></div>
 <script>
-
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
-
-const APP_VERSION='29';
+const APP_VERSION='31';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
 const BAKKEY='poultry_erp_backups_v1';
-
 const SHIFTS=[
  {id:'s1',name:'الفترة 1',time:'12 ظهراً – 6 مساءً'},
  {id:'s2',name:'الفترة 2',time:'6 مساءً – 12 منتصف الليل'},
  {id:'s3',name:'الفترة 3',time:'12 منتصف الليل – 6 صباحاً'},
  {id:'s4',name:'الفترة 4',time:'6 صباحاً – 12 ظهراً'}
 ];
-
 const ROLES={
  super:{name:'Super Admin',color:'#a855f7',perms:'*'},
  owner:{name:'المالك (Owner)',color:'#eab308',perms:['owner','dash','reports','yearly']},
  admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','transfer','reports','yearly','workers','equipment','capa','checklist','symptoms','guide','users','settings']},
  acct:{name:'محاسب',color:'#22c55e',perms:['dash','sales','feed','reports','transfer']},
- farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales','workers','equipment','checklist','symptoms']},
+ farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales','reports','workers','equipment','checklist','symptoms']},
  view:{name:'مشاهد',color:'#06b6d4',perms:['dash','reports','yearly']}
 };
-
 function customRoles(){ return (DB.settings&&Array.isArray(DB.settings.customRoles))?DB.settings.customRoles:[]; }
 function roleDef(roleId){
  if(ROLES[roleId])return ROLES[roleId];
@@ -434,15 +323,12 @@ function allRolesList(){
  const built=Object.keys(ROLES).map(k=>({id:k,...ROLES[k]}));
  return built.concat(customRoles());
 }
-
 function roleShifts(roleId){ const r=roleDef(roleId); return Array.isArray(r.shifts)?r.shifts:[]; }
 function myAllowedShifts(){ const s=roleShifts(ME&&ME.role); return s.length?SHIFTS.filter(x=>s.includes(x.id)):SHIFTS; }
-
 const PERM_LABEL={dash:'لوحة التحكم',owner:'داش بورد المالك',daily:'التقرير اليومي',farms:'المزارع والدورات',
  feed:'إدارة العلف',meds:'الأدوية والتحصينات',sales:'مركز المبيعات',transfer:'التحويلات',
  reports:'التقارير',yearly:'البيانات السنوية',ross:'مرجع Ross',users:'المستخدمون',settings:'الإعدادات'};
 const PERM_KEYS=['daily','dash','owner','farms','feed','meds','sales','transfer','reports','yearly','ross','users','settings'];
-
 const DEFAULT_LABELS={
  company:'الشركة المصرية للاستصلاح الزراعي والإنتاج الحيواني والداجني',
  dead:'النافق', feed:'العلف', water:'المياه', weight:'الوزن',
@@ -450,7 +336,6 @@ const DEFAULT_LABELS={
  meds:'الأدوية', vaccine:'التحصين', sales:'المبيعات', culls:'السقاوات',
  chick:'الكتكوت', breed:'السلالة', age:'العمر', litter:'السبلة'
 };
-
 function defaultDB(){
  return {
  labels:{...DEFAULT_LABELS},
@@ -499,7 +384,6 @@ function defaultDB(){
  customRoles:[]}
  };
 }
-
 const FIREBASE_CONFIG = {
  apiKey: "AIzaSyAA6vTOsdSHD-5WQRxgyK8kf1KanJ0uX6E",
  authDomain: "br-mas.firebaseapp.com",
@@ -509,9 +393,7 @@ const FIREBASE_CONFIG = {
  messagingSenderId: "76312111488",
  appId: "1:76312111488:web:f09eea724c72ca07faf965"
 };
-
 let FB=null, FB_DB=null, FB_ON=false, FB_SYNCING=false, FB_REMOTE=false;
-
 ['apiKey','authDomain','databaseURL','projectId','storageBucket','messagingSenderId','appId'].forEach(k=>{
  const v=localStorage.getItem('fb_'+k); if(v)FIREBASE_CONFIG[k]=v;
 });
@@ -521,7 +403,6 @@ function fbInit(){
  try{
  if(!FB){FB=firebase.initializeApp(FIREBASE_CONFIG);FB_DB=firebase.database();}
  FB_ON=true;
-
  FB_DB.ref('erp').on('value',snap=>{
  const data=snap.val();
  if(!data)return;
@@ -541,7 +422,6 @@ function fbInit(){
  return true;
  }catch(e){console.error('FB init',e);return false;}
 }
-
 let _fbPushT=null;
 function fbPush(){
  if(!FB_ON||FB_REMOTE)return;
@@ -556,13 +436,11 @@ function fbPush(){
  .finally(()=>{setTimeout(()=>FB_SYNCING=false,400);});
  },700);
 }
-
 function ensureSaveInd(){let el=document.getElementById('saveInd');if(!el){el=document.createElement('div');el.id='saveInd';document.body.appendChild(el);}return el;}
 let _saveHideT=null;
 function showSaving(){const el=ensureSaveInd();clearTimeout(_saveHideT);el.className='show';el.innerHTML='<span class="spin"></span> جارٍ الحفظ…';}
 function showSaved(){const el=ensureSaveInd();el.className='show done';el.innerHTML='✓ تم الحفظ';_saveHideT=setTimeout(()=>{el.className='';},1400);}
 function hideSaving(){const el=ensureSaveInd();_saveHideT=setTimeout(()=>{el.className='';},600);}
-
 function cloudUploadNow(){
  if(!fbReady()){toast('أدخل إعدادات Firebase أولاً في الإعدادات',1);return;}
  if(!FB_ON)fbInit();
@@ -585,19 +463,15 @@ function updateSyncBadge(txt,err){
  el.textContent=(err?'⚠️ ':'☁️ ')+txt;
  el.style.color=err?'#fff':'';el.style.background=err?'var(--red)':'';
 }
-
 let DB=load();
 function load(){try{const r=localStorage.getItem(DBKEY);const d=r?JSON.parse(r):defaultDB();return normalizeDB(d);}catch(e){return defaultDB();}}
-
 function normalizeDB(d){
  if(!d||typeof d!=='object')return defaultDB();
  const def=defaultDB();
-
  ['users','farms','cycles','daily','feedMoves','medMoves','birdMoves','sales','yearlyRef','workers','wAbsence','medStock','equipment','faults','cleaning','issues','symptomLogs'].forEach(k=>{
  if(!Array.isArray(d[k]))d[k]=[];
  });
  if(!d.checkState||typeof d.checkState!=='object')d.checkState={};
-
  if(!d.labels||typeof d.labels!=='object')d.labels=def.labels;
  else{Object.keys(DEFAULT_LABELS).forEach(k=>{if(d.labels[k]===undefined)d.labels[k]=DEFAULT_LABELS[k];});}
  if(!d.settings||typeof d.settings!=='object')d.settings=def.settings;
@@ -614,19 +488,15 @@ function normalizeDB(d){
  if(d.settings.summerFactor==null)d.settings.summerFactor=4;
  if(d.settings.fcrTarget==null)d.settings.fcrTarget=2.0;
  if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
-
  if(!d.users.length)d.users=def.users;
  return d;
 }
 function save(){invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));autoBackup();if(FB_ON)fbPush();else if(typeof showSaved==='function')showSaved();}
-
 function loadBackups(){try{return JSON.parse(localStorage.getItem(BAKKEY))||{};}catch(e){return {};}}
 function autoBackup(){
-
  const baks=loadBackups();
  const day=todayISO();
  baks[day]={ts:Date.now(),data:DB};
-
  const days=Object.keys(baks).sort();
  while(days.length>30){const d=days.shift();delete baks[d];}
  try{localStorage.setItem(BAKKEY,JSON.stringify(baks));}
@@ -637,7 +507,6 @@ function autoBackup(){
 function restoreBackup(day){
  const baks=loadBackups();if(!baks[day])return;
  if(!confirm('استرجاع نسخة يوم '+day+'؟ سيتم استبدال البيانات الحالية.\n(سيتم حفظ نسخة طوارئ قبل الاسترجاع.)'))return;
-
  const baks2=loadBackups();baks2['_pre_restore']={ts:Date.now(),data:DB};
  try{localStorage.setItem(BAKKEY,JSON.stringify(baks2));}catch(e){}
  DB=JSON.parse(JSON.stringify(baks[day].data));
@@ -648,7 +517,6 @@ function deleteBackup(day){
  const baks=loadBackups();delete baks[day];localStorage.setItem(BAKKEY,JSON.stringify(baks));
  toast('تم حذف النسخة');renderSettings();
 }
-
 function cloudBackupKey(){ return todayISO(); }
 function maybeCloudBackup(){
  if(!FB_ON||!FB_DB)return;
@@ -659,7 +527,6 @@ function maybeCloudBackup(){
  if(snap.exists())return;
  const payload={ts:Date.now(),by:(ME&&ME.name)||'auto',data:DB};
  FB_DB.ref('backups/'+day).set(payload).then(()=>{
-
  FB_DB.ref('backups').once('value').then(s=>{
  const all=s.val()||{};const days=Object.keys(all).sort();
  while(days.length>30){const d=days.shift();FB_DB.ref('backups/'+d).remove();}
@@ -688,17 +555,13 @@ function restoreCloudBackup(day){
  });
 }
 function uid(p){return (p||'id')+Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-3);}
-
 let ME=null;
 function can(p){if(!ME)return false;const r=roleDef(ME.role);return r.perms==="*"||(Array.isArray(r.perms)&&r.perms.includes(p));}
 function L(k){return DB.labels[k]||k;}
-
 function fmt(n,d=0){if(n==null||isNaN(n))return '0';return Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function todayISO(){return new Date().toISOString().slice(0,10);}
 function rossRow(day){return ROSS308.find(r=>r.d===day)||null;}
-
 const VENT_MIN=[[0.05,0.080],[0.10,0.141],[0.15,0.208],[0.20,0.258],[0.25,0.305],[0.30,0.350],[0.35,0.393],[0.40,0.435],[0.45,0.475],[0.50,0.514],[0.55,0.552],[0.60,0.589],[0.65,0.625],[0.70,0.661],[0.75,0.696],[0.80,0.731],[0.85,0.765],[0.90,0.799],[0.95,0.832],[1.00,0.865],[1.20,0.994],[1.40,1.118],[1.60,1.237],[1.80,1.352],[2.00,1.464],[2.20,1.573],[2.40,1.680],[2.60,1.784],[2.80,1.886],[3.00,1.986],[3.20,2.085],[3.50,2.230]];
-
 const TEMP_REF=[[0,33,32],[3,31,30],[6,30,28],[9,29,27],[12,28,26],[15,27,25],[18,25,24],[21,24,22],[24,23,21],[28,22,20],[35,21,20],[42,20,19]];
 function ventRateForWeight(kg){
  if(kg<=VENT_MIN[0][0])return VENT_MIN[0][1];
@@ -717,13 +580,11 @@ function tempRefForAge(age){
 }
 function cycleById(id){return DB.cycles.find(c=>c.id===id);}
 function farmById(id){return DB.farms.find(f=>f.id===id);}
-
 function ageOnDate(cycle,dateISO){
  if(!cycle||!cycle.startDate)return 0;
  const a=new Date(cycle.startDate), b=new Date(dateISO);
  return Math.floor((b-a)/86400000)+1;
 }
-
 function dayAggregate(cycleId,houseId,dateISO){
  const recs=DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId&&d.date===dateISO);
  const sum=(k)=>recs.reduce((s,r)=>s+(Number(r[k])||0),0);
@@ -736,7 +597,6 @@ function dayAggregate(cycleId,houseId,dateISO){
  notes:closing.notes||'', recs
  };
 }
-
 function feedStock(cycleId){
  const cyc=cycleById(cycleId); if(!cyc)return 0;
  let stock=0;
@@ -744,17 +604,14 @@ function feedStock(cycleId){
  if(m.type==='in'||m.type==='transfer_in')stock+=Number(m.qty)||0;
  else if(m.type==='transfer_out'||m.type==='return')stock-=Number(m.qty)||0;
  });
-
  const used=DB.daily.filter(d=>d.cycleId===cycleId).reduce((s,d)=>s+(Number(d.feed)||0),0);
  return stock-used;
 }
-
 function cyclePlaced(cyc){
  if(!cyc)return 0;
  if(cyc.placedByHouse){return Object.values(cyc.placedByHouse).reduce((s,v)=>s+(Number(v)||0),0);}
  return Number(cyc.placed)||0;
 }
-
 function birdsRemaining(cycleId){
  const cyc=cycleById(cycleId); if(!cyc)return 0;
  let n=cyclePlaced(cyc);
@@ -766,51 +623,40 @@ function birdsRemaining(cycleId){
  });
  return n;
 }
-
 function birdsRemainingHouse(cycleId,houseId){
  const cyc=cycleById(cycleId); if(!cyc)return 0;
  let n=Number((cyc.placedByHouse||{})[houseId])||0;
-
  n-=DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId).reduce((s,d)=>s+(Number(d.dead)||0),0);
  return n;
 }
-
 function houseDeadCum(cycleId,houseId){return DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId).reduce((s,d)=>s+(Number(d.dead)||0),0);}
 function houseFeedCum(cycleId,houseId){return DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId).reduce((s,d)=>s+(Number(d.feed)||0),0);}
-
 function cycleSales(cycleId){
  const s=DB.sales.filter(x=>x.cycleId===cycleId);
  return {count:s.reduce((a,x)=>a+(Number(x.count)||0),0),
  weight:s.reduce((a,x)=>a+(Number(x.weight)||0),0),
  amount:s.reduce((a,x)=>a+(Number(x.amount)||0),0)};
 }
-
 function houseSales(cycleId,houseId){
  const s=DB.sales.filter(x=>x.cycleId===cycleId&&x.houseId===houseId);
  return {count:s.reduce((a,x)=>a+(Number(x.count)||0),0),
  weight:s.reduce((a,x)=>a+(Number(x.weight)||0),0),
  amount:s.reduce((a,x)=>a+(Number(x.amount)||0),0)};
 }
-
 function cycleFeedUsed(cycleId){return DB.daily.filter(d=>d.cycleId===cycleId).reduce((s,d)=>s+(Number(d.feed)||0),0);}
-
 function cycleCulls(cycleId){return DB.daily.filter(d=>d.cycleId===cycleId).reduce((s,d)=>s+(Number(d.culls)||0),0);}
-
 function lastWeight(cycleId){
  const recs=DB.daily.filter(d=>d.cycleId===cycleId&&Number(d.weight)>0).sort((a,b)=>a.date<b.date?1:-1);
  return recs.length?Number(recs[0].weight):0;
 }
-
 function saleAges(cyc){
  const s=DB.sales.filter(x=>x.cycleId===cyc.id).map(x=>ageOnDate(cyc,x.date)).filter(a=>a>0);
  if(!s.length)return {start:0,end:0,avg:0};
  return {start:Math.min(...s),end:Math.max(...s),avg:Math.round(s.reduce((a,b)=>a+b,0)/s.length)};
 }
-
 let _cfCache={}, _cfVer=0;
 function invalidateCache(){_cfCache={};_cfVer++;}
 function cycleFinal(cyc){
-
  const ck=cyc.id;
  if(_cfCache[ck])return _cfCache[ck];
  const _r=_cycleFinalCompute(cyc);
@@ -822,23 +668,26 @@ function _cycleFinalCompute(cyc){
  const dead=deadCumulative(cyc.id);
  const culls=cycleCulls(cyc.id);
  const sales=cycleSales(cyc.id);
- const feed=cycleFeedUsed(cyc.id);
+ const feedDaily=cycleFeedUsed(cyc.id);
+ const feedIn=feedInTotal(cyc.id);
+ const inv=cyc.endInventory||{};
+ const hasInv=inv.feed!==''&&inv.feed!=null&&!isNaN(Number(inv.feed));
+ const feedRemain=hasInv?Number(inv.feed):0;
+ const feed=hasInv?Math.max(0,feedIn-feedRemain):feedDaily;
+ const feedMethod=hasInv?'inv':'daily';
  const remain=birdsRemaining(cyc.id);
  const lw=lastWeight(cyc.id);
  const deadPct=placed?(dead/placed*100):0;
  const livability=100-deadPct;
  const avgFeedBird=sales.count?(feed/sales.count):0;
-
  const liveMeat=remain*(lw/1000);
  const totalMeat=sales.weight+liveMeat;
  const avgWeightBird=sales.count?(sales.weight/sales.count):(lw/1000);
  const fcr=totalMeat>0?(feed/totalMeat):0;
  const ages=saleAges(cyc);
-
  const costs=cyc.costs||{chick:0,feedKg:0,other:0};
  const chickCost=placed*(costs.chick||0);
  const feedCost=feed*(costs.feedKg||0);
-
  const expenses=cycleExpenses(cyc);
  const totalCost=chickCost+feedCost+expenses.total;
  const revenue=sales.amount;
@@ -849,27 +698,22 @@ function _cycleFinalCompute(cyc){
  const profitPerKg=totalMeat>0?(profit/totalMeat):0;
  const rofFeed=feed>0?(profit/feed):0;
  const cfcr=fcr>0?(fcr+((2-avgWeightBird)/4)):0;
-
  const fcrTargetKg=Number(DB.settings.fcrTarget)||2.0;
  const fcrDiff=fcrTargetKg-avgWeightBird;
  const adjFCR=fcr>0?(fcr+(fcrDiff/4.5)):0;
  const adjFCRValid=Math.abs(fcrDiff)<=0.227;
-
  const epefAge=ages.avg||ageOnDate(cyc,todayISO());
  const epef=(epefAge>0&&fcr>0)?((livability*avgWeightBird)/(epefAge*fcr)*100):0;
- const R={placed,dead,culls,sales,feed,remain,lw,deadPct,livability,avgFeedBird,
+ const R={placed,dead,culls,sales,feed,feedIn,feedRemain,feedMethod,feedDaily,remain,lw,deadPct,livability,avgFeedBird,
  liveMeat,totalMeat,avgWeightBird,fcr,ages,chickCost,feedCost,expenses,totalCost,
  revenue,traderDiscount,profit,avgPrice,costPerKg,profitPerKg,rofFeed,
  cfcr,adjFCR,adjFCRValid,fcrTargetKg,epef,costs};
-
  const ov=cyc.overrides||{};
  R._ov={};
  Object.keys(ov).forEach(k=>{ if(ov[k]!==''&&ov[k]!=null){ R[k]=Number(ov[k]); R._ov[k]=true; } });
  return R;
 }
-
 function isOverridden(cyc,key){return cyc.overrides&&cyc.overrides[key]!=null&&cyc.overrides[key]!=='';}
-
 const OV_FIELDS=[
  ['placed','عدد التسكين'],['dead','إجمالي النافق'],['deadPct','نسبة النافق %'],
  ['livability','الحياتية %'],['feed','العلف المستهلك'],['totalMeat','إجمالي اللحم'],
@@ -904,28 +748,21 @@ function saveOverrides(cycleId){
  save();closeModal();toast('تم حفظ التعديلات اليدوية ✓');renderReports();
 }
 function clearOverrides(cycleId){const cyc=cycleById(cycleId);cyc.overrides={};save();closeModal();toast('تم المسح — رجوع للقيم التلقائية');renderReports();}
-
 function ovCell(F,key,txt){return F._ov&&F._ov[key]?`<span class="ov-val">${txt}</span>`:txt;}
-
 const ST_COLORS=['st-blue','st-teal','st-green','st-purple','st-amber','st-cyan','st-rose','st-indigo','st-orange','st-slate'];
 function statRow(cls,icon,lab,val){return `<div class="statrow ${cls}"><span class="lab">${icon?icon+' ':''}${lab}</span><span class="num">${val}</span></div>`;}
-
 function statGrid(rows,cols){
  const body=rows.map((r,i)=>statRow(r[3]||ST_COLORS[i%ST_COLORS.length],r[0],r[1],r[2])).join('');
  return `<div class="grid ${cols||'g2'}" style="gap:9px">${body}</div>`;
 }
-
 function cycleExpenses(cyc){
  const items=[];
-
  const medTotal=DB.medMoves.filter(m=>m.cycleId===cyc.id).reduce((s,m)=>s+(Number(m.total)||0),0);
  if(medTotal>0)items.push({label:'أدوية ومطهرات وتحصينات (تلقائي)',amount:medTotal,auto:true});
-
  (cyc.expenses||[]).forEach(e=>items.push({label:e.label,amount:Number(e.amount)||0}));
  const total=items.reduce((s,i)=>s+i.amount,0);
  return {items,total};
 }
-
 function aggregateCycles(cycList){
  const A={placed:0,dead:0,culls:0,feed:0,salesCount:0,salesWeight:0,salesAmount:0,
  remain:0,totalMeat:0,revenue:0,totalCost:0,profit:0,n:cycList.length};
@@ -951,7 +788,6 @@ function aggregateCycles(cycList){
  A.fcrTargetKg=_fcrT;
  return A;
 }
-
 function cycleDayData(cyc,dateISO){
  const recs=DB.daily.filter(d=>d.cycleId===cyc.id&&d.date===dateISO);
  return {
@@ -962,27 +798,20 @@ function cycleDayData(cyc,dateISO){
  age:ageOnDate(cyc,dateISO)
  };
 }
-
 function activeFarms(){return DB.farms.filter(f=>DB.cycles.some(c=>c.farm===f.id&&c.status!=='مغلقة'));}
 function activeCycleOfFarm(farmId){return DB.cycles.find(c=>c.farm===farmId&&c.status!=='مغلقة');}
-
 function isManager(){return ME&&ME.role==='farm';}
 function myFarm(){ if(!ME||!ME.farm)return null; return farmById(ME.farm); }
 function myActiveCycle(){ const f=myFarm(); return f?activeCycleOfFarm(f.id):null; }
-
 function within24h(rec){ if(!rec||!rec._ts)return false; return (Date.now()-rec._ts) < 24*60*60*1000; }
 function canMgrEdit(rec){ if(!isManager())return true; return within24h(rec); }
-
 function deadCumulative(cycleId){
  return DB.daily.filter(d=>d.cycleId===cycleId).reduce((s,d)=>s+(Number(d.dead)||0),0);
 }
-
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-
 function toast(msg,err){const t=$('#toast');t.textContent=msg;t.className='toast show'+(err?' err':'');setTimeout(()=>t.className='toast',2200);}
-
 function printHTML(title, bodyHTML, subtitle){
  const company=esc(L('company')||'');
  const now=new Date().toLocaleString('ar-EG');
@@ -1006,8 +835,18 @@ function printHTML(title, bodyHTML, subtitle){
  .tbl-total td{background:#eef0ff!important;font-weight:800}
  .badge{padding:2px 8px;border-radius:10px;font-size:11px;background:#eee}
  h3{margin:16px 0 6px;color:#444;font-size:15px;border-right:4px solid #635bff;padding-right:8px}
+ .pcards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+ .pcard{background:#fafbff;border:1px solid #eaecf5;border-right:4px solid #635bff;border-radius:8px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+ .pcard .pc-l{font-size:12.5px;font-weight:600;color:#555}
+ .pcard .pc-v{font-size:15px;font-weight:800;text-align:left;white-space:nowrap}
+ .pcard .pc-s{display:block;font-size:9.5px;font-weight:500;color:#999;margin-top:1px}
+ .pcard-group{margin:6px 0}
  .ph-foot{margin-top:20px;border-top:1px solid #ddd;padding-top:8px;font-size:11px;color:#999;text-align:center}
- @media print{.no-print{display:none}body{margin:10px}}
+ @media print{
+  .no-print{display:none}body{margin:10px}
+  .pcard{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ }
  </style></head><body>
  <div class="ph-head"><div class="ph-co">🐔 ${company}</div>
  <div class="ph-meta">تاريخ الطباعة: ${now}</div></div>
@@ -1019,7 +858,6 @@ function printHTML(title, bodyHTML, subtitle){
  </body></html>`);
  w.document.close();
 }
-
 function printElement(elId,title,subtitle){
  const root=document.getElementById(elId);
  if(!root){toast('لا يوجد محتوى للطباعة',1);return;}
@@ -1027,70 +865,75 @@ function printElement(elId,title,subtitle){
  walkPrint(root,parts);
  printHTML(title, parts.join('')||root.innerHTML, subtitle);
 }
-
+const PRINT_COLORS={'st-blue':'#3b82f6','st-green':'#16a34a','st-amber':'#d97706','st-cyan':'#0891b2','st-purple':'#9333ea','st-rose':'#e11d48','st-teal':'#0d9488','st-slate':'#64748b','st-indigo':'#4f46e5','st-orange':'#ea580c','g':'#16a34a','r':'#e11d48','a':'#d97706','c':'#0891b2','p':'#9333ea'};
+function rowColor(el,def){
+ for(const c of (el.className||'').split(/\s+/)){ if(PRINT_COLORS[c])return PRINT_COLORS[c]; }
+ return def||'#635bff';
+}
 function walkPrint(node,parts){
  if(!node||!node.children)return;
- let pendingRows=[];
- const flushRows=()=>{
- if(!pendingRows.length)return;
- parts.push('<table class="kv"><tbody>'+pendingRows.map(([l,v])=>
- `<tr><td style="font-weight:700">${l}</td><td>${v}</td></tr>`).join('')+'</tbody></table>');
- pendingRows=[];
+ let pendingCards=[];
+ const flushCards=()=>{
+ if(!pendingCards.length)return;
+ parts.push('<div class="pcards">'+pendingCards.map(([l,v,sub,col])=>
+ `<div class="pcard" style="border-right-color:${col}"><div class="pc-l">${l}</div><div class="pc-v" style="color:${col}">${v}${sub?`<span class="pc-s">${sub}</span>`:''}</div></div>`).join('')+'</div>');
+ pendingCards=[];
  };
  [...node.children].forEach(ch=>{
  if(!ch.classList)return;
- if(ch.classList.contains('toolbar'))return;
+ if(ch.classList.contains('toolbar')||ch.classList.contains('no-print'))return;
  if(ch.classList.contains('card-title')){
- flushRows();
+ flushCards();
  const txt=ch.textContent.replace(/🖨️.*$/,'').replace(/\s+/g,' ').trim();
  if(txt)parts.push('<h3>'+esc(txt)+'</h3>');
  return;
  }
  if(ch.classList.contains('statrow')){
  const lbl=(ch.querySelector('.lab')||{}).textContent||'';
- const val=(ch.querySelector('.num')||{}).textContent||'';
- pendingRows.push([esc(lbl.trim()),esc(val.trim())]);
+ const numEl=ch.querySelector('.num');
+ let val=(numEl||{}).textContent||'';
+ let sub='';const hintEl=numEl&&numEl.querySelector('.hint');
+ if(hintEl){sub=hintEl.textContent.trim();val=val.replace(sub,'').trim();}
+ pendingCards.push([esc(lbl.trim()),esc(val.trim()),esc(sub),rowColor(ch)]);
  return;
  }
  if(ch.classList.contains('kpi')){
  const lbl=(ch.querySelector('.lbl')||{}).textContent||'';
  const val=(ch.querySelector('.val')||{}).textContent||'';
- pendingRows.push([esc(lbl.trim()),esc(val.trim())]);
+ const subEl=ch.querySelector('.sub');const sub=subEl?subEl.textContent.trim():'';
+ pendingCards.push([esc(lbl.trim()),esc(val.trim()),esc(sub),rowColor(ch)]);
  return;
  }
  if(ch.classList.contains('tbl-wrap')){
- flushRows();
+ flushCards();
  const t=ch.querySelector('table');
  if(t)parts.push(t.outerHTML);
  return;
  }
- if(ch.tagName==='TABLE'){ flushRows(); parts.push(ch.outerHTML); return; }
+ if(ch.tagName==='TABLE'){ flushCards(); parts.push(ch.outerHTML); return; }
  if(ch.classList.contains('hint')){
- flushRows();
+ flushCards();
  const txt=ch.textContent.trim();
  if(txt)parts.push('<div style="font-size:11px;color:#888;margin:4px 0">'+esc(txt)+'</div>');
  return;
  }
  if(ch.classList.contains('card')){
-
- flushRows();
+ flushCards();
  const sub=[]; walkPrint(ch,sub);
- if(sub.length)parts.push('<div style="margin:8px 0">'+sub.join('')+'</div>');
+ if(sub.length)parts.push('<div class="pcard-group">'+sub.join('')+'</div>');
  return;
  }
  if(ch.classList.contains('grid')){
-
- flushRows();
+ flushCards();
  walkPrint(ch,parts);
  return;
  }
-
- if(ch.querySelector&&(ch.querySelector('table')||ch.querySelector('.statrow')||ch.querySelector('.card-title'))){
- flushRows();
+ if(ch.querySelector&&(ch.querySelector('table')||ch.querySelector('.statrow')||ch.querySelector('.kpi')||ch.querySelector('.card-title'))){
+ flushCards();
  walkPrint(ch,parts);
  }
  });
- flushRows();
+ flushCards();
 }
 function printBtn(onclick){return `<button class="btn-sec btn-sm no-print" onclick="${onclick}">🖨️ طباعة</button>`;}
 function openModal(title,body,footer){
@@ -1100,7 +943,6 @@ function openModal(title,body,footer){
 }
 function closeModal(){$('#modalBg').classList.remove('show');}
 $('#modalBg').addEventListener('click',e=>{if(e.target.id==='modalBg')closeModal();});
-
 function renderLogin(){
  const opts=DB.users.map(u=>`<option value="${u.id}">${esc(u.name)} — ${roleDef(u.role).name}</option>`).join('');
  $('#login').innerHTML=`
@@ -1125,7 +967,6 @@ function doLogin(){
  renderApp();
 }
 function logout(){ME=null;$('#app').style.display='none';$('#login').style.display='flex';$('#lgPass').value='';$('#lgErr').textContent='';}
-
 const NAV=[
  {g:'الرئيسية',items:[
  {id:'owner',ic:'👑',name:'داش بورد المالك'},
@@ -1180,7 +1021,6 @@ function renderApp(){
  <div class="sidebar" id="sb">${nav}</div>
  <div class="main" id="main"></div>
  </div>`;
-
  go(ME.role==='farm'?'daily':ME.role==='owner'?'owner':'dash');
 }
 function toggleSidebar(){
@@ -1217,13 +1057,10 @@ function go(pg){
 function accessDenied(){return `<div class="access-deny"><div class="ic">🔒</div>
  <h3>لا تملك صلاحية الوصول لهذه الصفحة</h3>
  <p style="margin-top:8px">تواصل مع مدير النظام لمنحك الصلاحية المناسبة.</p></div>`;}
-
 let dailyState={farmId:null,cycleId:null,date:todayISO(),shift:'s1'};
 function renderDaily(){
-
  let myFarms=DB.farms;
  if(ME.role==='farm'&&ME.farm)myFarms=DB.farms.filter(f=>f.id===ME.farm);
-
  if(!myFarms.length){
  $('#main').innerHTML=pageHead('📝','التقرير اليومي للمزرعة','إدخال البيانات كل 6 ساعات')+
  `<div class="card"><div class="empty"><div class="ic">🏠</div>
@@ -1232,48 +1069,39 @@ function renderDaily(){
  }
  if(!dailyState.farmId||!myFarms.find(f=>f.id===dailyState.farmId))dailyState.farmId=myFarms[0].id;
  const farm=farmById(dailyState.farmId);
-
  const cycles=DB.cycles.filter(c=>c.farm===farm.id&&c.status!=='مغلقة');
  if(!dailyState.cycleId||!cycles.find(c=>c.id===dailyState.cycleId))dailyState.cycleId=cycles[0]?.id||null;
-
  const farmOpts=myFarms.map(f=>`<option value="${f.id}" ${f.id===dailyState.farmId?'selected':''}>${esc(f.name)}</option>`).join('');
  const cycOpts=cycles.map(c=>`<option value="${c.id}" ${c.id===dailyState.cycleId?'selected':''}>${esc(c.code)} — ${esc(c.breed||'')}</option>`).join('');
-
  let html=pageHead('📝','التقرير اليومي للمزرعة',
  'سجّل النافق والعلف والمياه كل 6 ساعات — ثم اقفل اليوم بالبيانات الكاملة');
-
  const lockFarm=(ME.role==='farm'&&ME.farm);
  const farmField=lockFarm
  ? `<div class="field"><label>🏠 المزرعة</label>
  <div style="padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-weight:700;color:var(--primary-l)">🏠 ${esc(farm.name)}</div></div>`
  : `<div class="field"><label>🏠 المزرعة</label><select onchange="dailyState.farmId=this.value;dailyState.cycleId=null;renderDaily()">${farmOpts}</select></div>`;
-
  html+=`<div class="card">
  <div class="row-fields g3">
  ${farmField}
  <div class="field"><label>🔄 الدورة</label><select onchange="dailyState.cycleId=this.value;renderDaily()">${cycOpts||'<option>لا توجد دورة نشطة</option>'}</select></div>
  <div class="field"><label>📅 التاريخ</label><input type="date" value="${dailyState.date}" onchange="dailyState.date=this.value;renderDaily()"></div>
  </div></div>`;
-
  if(!dailyState.cycleId){
  html+=`<div class="card"><div class="empty"><div class="ic">🔄</div>
  لا توجد دورة نشطة في هذه المزرعة.<br>${can('farms')?'ابدأ دورة جديدة من صفحة «المزارع والدورات».':'تواصل مع الإدارة لبدء الدورة.'}</div></div>`;
  $('#main').innerHTML=html; return;
  }
-
  const cyc=cycleById(dailyState.cycleId);
  const age=ageOnDate(cyc,dailyState.date);
  const ref=rossRow(age);
  const remain=birdsRemaining(cyc.id);
  const stock=feedStock(cyc.id);
-
  html+=`<div class="grid g4" style="margin-bottom:16px">
  ${kpi('c','📆 عمر القطيع',age>0?age+' يوم':'لم تبدأ','المرحلة: '+(ref?ref.ph:'-'))}
  ${kpi('','🐔 العدد المتبقي',fmt(remain),'تسكين: '+fmt(cyclePlaced(cyc)))}
  ${kpi('a','🌾 رصيد العلف',fmt(stock)+' كجم','')}
  ${kpi('p','🎯 الوزن المرجعي',ref?fmt(ref.w)+' جم':'-','Ross 308 — اليوم '+age)}
  </div>`;
-
  const shiftsAllowed=myAllowedShifts();
  if(!shiftsAllowed.some(s=>s.id===dailyState.shift))dailyState.shift=(shiftsAllowed[0]||SHIFTS[0]).id;
  html+=`<div class="card"><div class="card-title">⏱️ فترات اليوم (كل 6 ساعات)</div><div class="shift-tabs">`;
@@ -1284,19 +1112,16 @@ function renderDaily(){
  <div class="t">${s.name}</div><div class="h">${s.time}</div></div>`;
  });
  html+=`</div>`;
-
  const shift=SHIFTS.find(s=>s.id===dailyState.shift);
  const houses=farm.houses;
  const recHouse=(hid)=>DB.daily.find(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===dailyState.shift&&d.houseId===hid)||{};
  const farmRec=DB.daily.find(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===dailyState.shift&&d.houseId==='_farm_')||{};
-
  let rows=houses.map(h=>{
  const r=recHouse(h.id);
  return `<tr><td><b style="color:var(--primary-l)">${esc(h.name)}</b></td>
  <td class="num"><input type="number" min="0" data-h="${h.id}" data-k="dead" value="${r.dead??''}" placeholder="0" style="width:100px"></td>
  <td class="num"><input type="number" min="0" step="0.5" data-h="${h.id}" data-k="feed" value="${r.feed??''}" placeholder="0" style="width:120px"></td></tr>`;
  }).join('');
-
  html+=`<div class="divider"></div>
  <h4 style="margin-bottom:12px;color:var(--primary-l)">📥 إدخال ${shift.name} — ${shift.time}</h4>
  <div class="tbl-wrap" style="margin-bottom:12px"><table id="shiftTbl"><thead><tr>
@@ -1307,13 +1132,11 @@ function renderDaily(){
  </div>
  <button class="btn btn-sm" onclick="saveShift()">💾 حفظ الفترة (كل العنابر)</button>
  </div>`;
-
  const dayRecs=DB.daily.filter(d=>d.cycleId===cyc.id&&d.date===dailyState.date);
  const sumDead=dayRecs.reduce((s,d)=>s+(Number(d.dead)||0),0);
  const sumFeed=dayRecs.reduce((s,d)=>s+(Number(d.feed)||0),0);
  const sumWater=dayRecs.reduce((s,d)=>s+(Number(d.water)||0),0);
  const close=dayRecs.find(d=>d.closed)||{};
-
  let perHouse=houses.map(h=>{
  const hd=dayRecs.filter(d=>d.houseId===h.id);
  const dd=hd.reduce((s,d)=>s+(Number(d.dead)||0),0);
@@ -1321,7 +1144,6 @@ function renderDaily(){
  return `<tr><td><b>${esc(h.name)}</b></td><td class="num">${fmt(dd)}</td><td class="num">${fmt(ff)} كجم</td>
  <td class="num">${fmt(houseDeadCum(cyc.id,h.id))}</td><td class="num">${fmt(birdsRemainingHouse(cyc.id,h.id))}</td></tr>`;
  }).join('');
-
  html+=`<div class="card"><div class="card-title">📊 إجمالي اليوم لكل عنبر</div>
  <div class="tbl-wrap"><table><thead><tr><th>العنبر</th><th class="num">نافق اليوم</th>
  <th class="num">علف اليوم</th><th class="num">نافق تراكمي</th><th class="num">المتبقي</th></tr></thead><tbody>
@@ -1330,7 +1152,6 @@ function renderDaily(){
  <td class="num">${fmt(sumFeed)} كجم</td><td class="num">${fmt(deadCumulative(cyc.id))}</td>
  <td class="num">${fmt(birdsRemaining(cyc.id))}</td></tr>
  </tbody></table></div></div>`;
-
  html+=`<div class="card"><div class="card-title">🔒 تقفيل اليوم — إجمالي المزرعة + البيانات الختامية</div>
  <div class="grid g3" style="margin-bottom:14px">
  ${kpi('r','💀 إجمالي النافق اليوم',fmt(sumDead),'تراكمي: '+fmt(deadCumulative(cyc.id)))}
@@ -1357,15 +1178,11 @@ function renderDaily(){
  <button class="btn btn-green" onclick="closeDay()">🔒 تقفيل اليوم وحفظ السجل</button>
  ${close.closed?'<span class="badge b-ok" style="margin-right:10px">اليوم مُقفل ✓</span>':''}
  </div>`;
-
  html+=ventGuideCard(cyc,age,remain,(close.weight||(ref?ref.w:0)));
-
  $('#main').innerHTML=html;
-
  const wEl=document.getElementById('clWeight');
  if(wEl)wEl.addEventListener('input',()=>updateVentGuide(cyc,age,remain));
 }
-
 let ventSeason='summer';
 function ventGuideCard(cyc,age,remain,weightG){
  const birds=remain||cyclePlaced(cyc)||0;
@@ -1411,7 +1228,6 @@ function ventBodyHTML(cyc,age,birds,weightG){
  <div class="hint" style="margin-top:10px">القيم إرشادية وفق معدلات Aviagen 2018 للتهوية الدنيا؛ تهوية الصيف مضاعِف نفق (قابل للتعديل من الإعدادات). راقب سلوك الطيور والأمونيا وعدّل فعلياً. سعة المروحة ومضاعف الصيف يُعدّلان من ⚙️ الإعدادات.</div>`;
 }
 function updateVentGuide(cyc,age,remain){
-
  const c=cyc||cycleById(dailyState.cycleId);if(!c)return;
  const a=(typeof age==='number')?age:ageOnDate(c,dailyState.date);
  const rem=(typeof remain==='number')?remain:(birdsRemaining(c.id)||cyclePlaced(c)||0);
@@ -1427,11 +1243,9 @@ function updateVentGuide(cyc,age,remain){
  }
  if(body)body.innerHTML=ventBodyHTML(c,a,rem,w||(ref?ref.w:0));
 }
-
 function saveShift(){
  const cyc=cycleById(dailyState.cycleId);
  const farm=farmById(cyc.farm);
-
  farm.houses.forEach(h=>{
  const dInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="dead"]`);
  const fInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="feed"]`);
@@ -1443,7 +1257,6 @@ function saveShift(){
  else{DB.daily.push({id:uid('d'),cycleId:cyc.id,farmId:cyc.farm,houseId:h.id,
  date:dailyState.date,shift:dailyState.shift,closed:false,dead,feed,water:0});}
  });
-
  const water=$('#sfWater').value!==''?Number($('#sfWater').value):0;
  let wRec=DB.daily.find(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===dailyState.shift&&d.houseId==='_farm_');
  if(wRec){wRec.water=water;}
@@ -1459,10 +1272,8 @@ function closeDay(){
  dayRecs=[{id:uid('d'),cycleId:cyc.id,farmId:cyc.farm,houseId:'_farm_',date:dailyState.date,shift:'s1',dead:0,feed:0,water:0,closed:false}];
  DB.daily.push(dayRecs[0]);
  }
-
  let close=dayRecs.find(d=>d.houseId==='_farm_');
  if(!close){close={id:uid('d'),cycleId:cyc.id,farmId:cyc.farm,houseId:'_farm_',date:dailyState.date,shift:'s1',dead:0,feed:0,water:0};DB.daily.push(close);}
-
  DB.daily.filter(d=>d.cycleId===cyc.id&&d.date===dailyState.date).forEach(r=>r.closed=false);
  Object.assign(close,{closed:true,
  temp:v('#clTemp')||0,tempHi:v('#clHi')||0,tempLo:v('#clLo')||0,humidity:v('#clHum')||0,
@@ -1471,7 +1282,6 @@ function closeDay(){
  notes:$('#clNotes').value});
  save();toast('تم تقفيل اليوم وترحيله لشيت الدورة ✓');renderDaily();
 }
-
 function pageHead(ic,title,desc){
  return `<div class="page-head"><h2>${ic} ${esc(title)}</h2>
  <div class="desc">${esc(desc||'')}</div><div class="spacer"></div></div>`;
@@ -1481,7 +1291,6 @@ function kpi(cls,lbl,val,sub){
  <div class="val">${val}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`;
 }
 function emptyState(ic,msg){return `<div class="empty"><div class="ic">${ic}</div>${msg}</div>`;}
-
 function renderDash(){
  const activeCycles=DB.cycles.filter(c=>c.status!=='مغلقة');
  const totalBirds=activeCycles.reduce((s,c)=>s+birdsRemaining(c.id),0);
@@ -1491,9 +1300,7 @@ function renderDash(){
  const totalSalesAmt=DB.sales.reduce((s,x)=>s+(Number(x.amount)||0),0);
  const totalSold=DB.sales.reduce((s,x)=>s+(Number(x.count)||0),0);
  const totalFeed=DB.daily.reduce((s,d)=>s+(Number(d.feed)||0),0);
-
  let html=pageHead('📊','لوحة التحكم','نظرة سريعة على كل المزارع والدورات');
- // تنبيه أعراض خطيرة خلال آخر 3 أيام (لكل الدورات النشطة)
  const sevAlerts=(DB.symptomLogs||[]).filter(l=>{
   const d=(Date.now()-new Date(l.date))/86400000;
   return d<=3 && l.symptoms.some(k=>(symptomByKey(k)||{}).sev==='high') && DB.cycles.find(c=>c.id===l.cycleId&&c.status!=='مغلقة');
@@ -1520,7 +1327,6 @@ function renderDash(){
  ${kpi('p','⚖️ متوسط سعر البيع',totalSold?fmt(totalSalesAmt/DB.sales.reduce((s,x)=>s+(Number(x.weight)||0),0)||0,2)+' '+DB.settings.currency+'/كجم':'0','')}
  ${kpi('c','📝 سجلات يومية',fmt(DB.daily.filter(d=>d.closed).length),'أيام مُقفلة')}
  </div>`;
-
  if(DB.cycles.length){
  if(!dashState.cycleId||!cycleById(dashState.cycleId))dashState.cycleId=DB.cycles[0].id;
  const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${c.id===dashState.cycleId?'selected':''}>${esc(c.code)}</option>`).join('');
@@ -1536,7 +1342,6 @@ function renderDash(){
  <div class="legend" id="dashLegend"></div></div>
  </div>`;
  }
-
  html+=`<div class="card"><div class="card-title">🔄 الدورات النشطة</div>`;
  if(!activeCycles.length){html+=emptyState('🔄','لا توجد دورات نشطة بعد. ابدأ دورة من صفحة المزارع.');}
  else{
@@ -1568,41 +1373,33 @@ function drawDashChart(){
  ctx.clearRect(0,0,W,H);
  const pad={l:55,r:18,t:18,b:34};
  const metric=dashState.metric;
-
  const dates=[...new Set(DB.daily.filter(d=>d.cycleId===cyc.id).map(d=>d.date))].sort();
  let actual=[],cumDead=0;
  dates.forEach(dt=>{const d=cycleDayData(cyc,dt);cumDead+=d.dead;
  let v=metric==='weight'?d.weight:metric==='feed'?d.feed:cumDead;
  actual.push({age:d.age,v});});
  actual=actual.filter(p=>p.age>0);
-
  const maxAge=Math.max(actual.length?Math.max(...actual.map(p=>p.age)):1, 1);
  let ref=[];
  if(metric!=='dead'){ROSS308.filter(r=>r.d<=maxAge+1).forEach(r=>{ref.push({age:r.d,v:metric==='weight'?r.w:r.fd});});}
-
  const allV=[...actual.map(p=>p.v),...ref.map(p=>p.v)].filter(v=>v>0);
  const maxV=allV.length?Math.max(...allV)*1.1:1;const maxX=maxAge;
  const X=a=>pad.l+(a-1)/(Math.max(maxX-1,1))*(W-pad.l-pad.r);
  const Y=v=>H-pad.b-(v/maxV)*(H-pad.t-pad.b);
-
  ctx.strokeStyle='#e7e9f2';ctx.fillStyle='#9095af';ctx.font='11px Tahoma';ctx.lineWidth=1;
  for(let i=0;i<=4;i++){const y=pad.t+i*(H-pad.t-pad.b)/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
  ctx.textAlign='right';ctx.fillText(fmt(maxV*(1-i/4),0),pad.l-6,y+4);}
  ctx.textAlign='center';
  for(let a=1;a<=maxX;a+=Math.ceil(maxX/10)){ctx.fillText(a,X(a),H-pad.b+16);}
-
  function line(pts,color,dash){if(pts.length<1)return;ctx.strokeStyle=color;ctx.lineWidth=2.4;ctx.setLineDash(dash||[]);
  ctx.beginPath();pts.forEach((p,i)=>{const x=X(p.age),y=Y(p.v);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.setLineDash([]);}
  if(ref.length)line(ref,'#f5a623',[6,4]);
  if(actual.length)line(actual,'#635bff');
-
  ctx.fillStyle='#635bff';actual.forEach(p=>{ctx.beginPath();ctx.arc(X(p.age),Y(p.v),2.6,0,7);ctx.fill();});
-
  const ml={weight:'الوزن (جم)',feed:'العلف اليومي (جم)',dead:'النافق التراكمي'}[metric];
  $('#dashLegend').innerHTML=`<div class="it"><span class="sw" style="background:#635bff"></span>الفعلي — ${ml}</div>`+
  (ref.length?`<div class="it"><span class="sw" style="background:#f5a623"></span>مرجع Ross 308</div>`:'');
 }
-
 function renderFarms(){
  let html=pageHead('🏠','المزارع والدورات','إدارة المزارع والعنابر ودورات التربية');
  html+=`<div class="card"><div class="card-title">🏠 المزارع <div class="spacer" style="flex:1"></div>
@@ -1622,7 +1419,6 @@ function renderFarms(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  html+=`<div class="card"><div class="card-title">🔄 الدورات <div class="spacer" style="flex:1"></div>
  <button class="btn btn-sm" onclick="cycleModal()">+ دورة جديدة</button></div>`;
  if(!DB.cycles.length){html+=emptyState('🔄','لا توجد دورات. ابدأ دورة جديدة.');}
@@ -1635,6 +1431,7 @@ function renderFarms(){
  <td class="num">${fmt(birdsRemaining(c.id))}</td>
  <td><span class="badge ${c.status==='مغلقة'?'b-mut':'b-ok'}">${esc(c.status||'نشطة')}</span></td>
  <td class="num"><button class="btn-amber btn-xs" onclick="expensesModal('${c.id}')">💵 مصاريف</button>
+ <button class="btn-xs" style="background:#0d9488;color:#fff" onclick="inventoryModal('${c.id}')">📦 جرد آخر الدورة</button>
  <button class="btn-sec btn-xs" onclick="cycleModal('${c.id}')">تعديل</button>
  <button class="btn-red btn-xs" onclick="delCycle('${c.id}')">حذف</button></td></tr>`;
  });
@@ -1723,7 +1520,6 @@ function cyUpdateTotal(){
 function saveCycle(id){
  const code=$('#cyCode').value.trim();if(!code){toast('أدخل كود الدورة',1);return;}
  const farm=farmById($('#cyFarm').value);
-
  const placedByHouse={};
  (farm?.houses||[]).forEach(h=>{if(window._cyPlaced[h.id])placedByHouse[h.id]=Number(window._cyPlaced[h.id])||0;});
  const data={code,farm:$('#cyFarm').value,breed:$('#cyBreed').value.trim(),
@@ -1734,7 +1530,6 @@ function saveCycle(id){
 }
 function delCycle(id){if(!confirm('حذف الدورة وكل سجلاتها اليومية؟'))return;
  DB.cycles=DB.cycles.filter(c=>c.id!==id);DB.daily=DB.daily.filter(d=>d.cycleId!==id);save();renderFarms();toast('تم الحذف');}
-
 const EXPENSE_PRESETS=['أدوية ومطهرات','ديزل','نثريات','كهرباء','مياه','نشارة','رواتب','مكافآت','إيجار'];
 function expensesModal(id){
  const c=cycleById(id);if(!c)return;
@@ -1770,13 +1565,70 @@ function saveExpenses(){
  c.expenses=c.expenses.filter(e=>e.label.trim()||e.amount);
  save();closeModal();toast('تم حفظ المصاريف ✓');renderFarms();
 }
-
+function inventoryModal(id){
+ const c=cycleById(id);if(!c)return;
+ window._invCycle=id;
+ const inv=c.endInventory||{feed:'',gas:'',meds:[],_date:todayISO(),_note:''};
+ if(!Array.isArray(inv.meds))inv.meds=[];
+ c.endInventory=inv; // ensure reference
+ const feedIn=feedInTotal(c.id);
+ const feedConsumed=cycleFeedUsed(c.id);
+ openModal('📦 جرد آخر الدورة — '+esc(c.code),
+  `<div class="hint" style="margin-bottom:12px">سجّل المتبقّي فعلياً في المخزن آخر الدورة. <b>العلف المتبقّي/المرتجع</b> هيُطرح من إجمالي الوارد لحساب الاستهلاك الفعلي في تقرير ما بعد البيع.</div>
+   <div class="row-fields g2">
+     <div class="field"><label>تاريخ الجرد</label><input type="date" id="invDate" value="${inv._date||todayISO()}"></div>
+     <div class="field"><label>🌾 العلف المتبقّي / المرتجع (كجم)</label><input type="number" min="0" step="0.1" id="invFeed" value="${inv.feed!==''&&inv.feed!=null?inv.feed:''}" placeholder="0"></div>
+   </div>
+   <div class="kpi c" style="margin:8px 0">
+     <div class="lbl">📊 ملخص العلف</div>
+     <div style="font-size:13px;line-height:1.9;margin-top:4px">
+       الوارد الكلي: <b>${fmt(feedIn)} كجم</b><br>
+       المستهلك (من السجل اليومي): <b>${fmt(feedConsumed)} كجم</b><br>
+       <span id="invFeedNet">الصافي بعد طرح الجرد: <b>${fmt(feedIn-(Number(inv.feed)||0))} كجم</b></span>
+     </div>
+   </div>
+   <div class="field"><label>⛽ الجاز المتبقّي (لتر / أسطوانة)</label><input type="number" min="0" step="0.1" id="invGas" value="${inv.gas!==''&&inv.gas!=null?inv.gas:''}" placeholder="0"></div>
+   <div class="divider"></div>
+   <label style="font-size:12px;color:var(--txt2);font-weight:600">💊 جرد الأدوية والتحصينات المتبقّية</label>
+   <div id="invMedList" style="margin-top:8px">${invMedRows(inv.meds)}</div>
+   <button class="btn-sec btn-xs" style="margin-top:6px" onclick="inv_medAdd()">+ إضافة صنف دواء</button>
+   <div class="field" style="margin-top:12px"><label>📝 ملاحظات الجرد</label><textarea id="invNote" rows="2" placeholder="...">${esc(inv._note||'')}</textarea></div>`,
+  `<button class="btn btn-green" onclick="saveInventory()">حفظ الجرد</button>
+   <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+ setTimeout(()=>{const fi=$('#invFeed');if(fi)fi.addEventListener('input',()=>{
+   const net=feedIn-(Number(fi.value)||0);
+   const el=$('#invFeedNet');if(el)el.innerHTML='الصافي بعد طرح الجرد: <b>'+fmt(net)+' كجم</b>';
+ });},50);
+}
+function invMedRows(meds){
+ return (meds||[]).map((m,i)=>`<div class="pill-row" style="margin-bottom:7px;align-items:center;gap:6px">
+   <input value="${esc(m.name||'')}" style="flex:1" onchange="inv_medEdit(${i},'name',this.value)" placeholder="اسم الدواء/اللقاح">
+   <input type="number" min="0" step="0.01" value="${m.qty!=null?m.qty:''}" style="width:90px" onchange="inv_medEdit(${i},'qty',this.value)" placeholder="كمية">
+   <input value="${esc(m.unit||'')}" style="width:80px" onchange="inv_medEdit(${i},'unit',this.value)" placeholder="وحدة">
+   <button class="btn-red btn-xs" onclick="inv_medDel(${i})">✕</button></div>`).join('');
+}
+function inv_medAdd(){const c=cycleById(window._invCycle);c.endInventory.meds.push({name:'',qty:'',unit:''});$('#invMedList').innerHTML=invMedRows(c.endInventory.meds);}
+function inv_medEdit(i,k,v){const c=cycleById(window._invCycle);c.endInventory.meds[i][k]=(k==='qty')?(v===''?'':Number(v)):v;}
+function inv_medDel(i){const c=cycleById(window._invCycle);c.endInventory.meds.splice(i,1);$('#invMedList').innerHTML=invMedRows(c.endInventory.meds);}
+function saveInventory(){
+ const c=cycleById(window._invCycle);if(!c)return;
+ c.endInventory={
+   feed:$('#invFeed').value!==''?Number($('#invFeed').value):'',
+   gas:$('#invGas').value!==''?Number($('#invGas').value):'',
+   meds:(c.endInventory.meds||[]).filter(m=>m.name&&m.name.trim()),
+   _date:$('#invDate').value,_note:$('#invNote').value.trim(),_ts:Date.now()
+ };
+ save();closeModal();toast('تم حفظ الجرد ✓');renderFarms();
+}
+function feedInTotal(cycleId){
+ return DB.feedMoves.filter(m=>m.cycleId===cycleId&&(m.type==='in'||m.type==='transfer_in'))
+   .reduce((s,m)=>s+(Number(m.qty)||0),0);
+}
 function renderFeed(){
  const mgr=isManager();
  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
  let html=pageHead('🌾','إدارة العلف', mgr?('مزرعتك: '+esc(myFarm().name)+' — أضف العلف الوارد فقط. المستهلك يُخصم تلقائياً من التقرير اليومي'):'الوارد يُضاف للمخزون والمستهلك اليومي يُخصم — والمتبقي يُحسب تلقائياً');
  const myCycles = mgr ? DB.cycles.filter(c=>c.farm===ME.farm) : DB.cycles;
-
  html+=`<div class="card"><div class="card-title">📊 أرصدة العلف حسب الدورة</div>`;
  if(!myCycles.length){html+=emptyState('🌾','لا توجد دورات بعد.');}
  else{
@@ -1795,7 +1647,6 @@ function renderFeed(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  const addBtn = mgr
  ? `<button class="btn btn-sm" onclick="feedInModal()">+ علف وارد</button>`
  : `<button class="btn btn-sm" onclick="feedMoveModal()">+ حركة علف</button>`;
@@ -1825,7 +1676,6 @@ function renderFeed(){
  html+=`</div>`;
  $('#main').innerHTML=html;
 }
-
 function feedInModal(id){
  const cyc=myActiveCycle();
  if(!cyc){toast('لا توجد دورة نشطة في مزرعتك',1);return;}
@@ -1878,17 +1728,13 @@ function saveFeedMove(){
  save();closeModal();toast('تم تسجيل حركة العلف ✓');renderFeed();
 }
 function delFeedMove(id){const m=DB.feedMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف الحركة؟'))return;DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();}
-
 let medFilter={type:'',item:'',disease:''};
 function medKind(m){return m.kind||'vaccine';}
-
 const STOCK_MOVES={open:'موجود أول الدورة',carry:'مرحّل من السابقة',transfer:'محوّل (صادر)',return:'مرتجع للمخزن',closeAdj:'تعديل جرد'};
-
 function medConsumed(cycleId,kind,item){
  return DB.medMoves.filter(m=>m.cycleId===cycleId&&medKind(m)===kind&&m.item===item)
  .reduce((s,m)=>s+(Number(m.qty)||0),0);
 }
-
 function medBalance(cycleId,kind,item){
  const st=DB.medStock.filter(s=>s.cycleId===cycleId&&s.kind===kind&&s.item===item);
  let bal=0;
@@ -1900,13 +1746,11 @@ function medBalance(cycleId,kind,item){
  bal-=medConsumed(cycleId,kind,item);
  return bal;
 }
-
 function medItemsOfCycle(cycleId,kind){
  const a=DB.medStock.filter(s=>s.cycleId===cycleId&&s.kind===kind).map(s=>s.item);
  const b=DB.medMoves.filter(m=>m.cycleId===cycleId&&medKind(m)===kind).map(m=>m.item);
  return [...new Set([...a,...b])].filter(Boolean);
 }
-
 function medUnitOf(cycleId,kind,item){
  const s=DB.medStock.find(x=>x.cycleId===cycleId&&x.kind===kind&&x.item===item&&x.unit);
  if(s)return s.unit;
@@ -1923,13 +1767,11 @@ function renderMeds(){
  const vaccines = recs.filter(m=>medKind(m)==='vaccine');
  let drugs = recs.filter(m=>medKind(m)==='drug');
  let disinf = recs.filter(m=>medKind(m)==='disinfectant');
-
  html+=`<div class="card"><div class="toolbar">
  <button class="btn btn-sm" onclick="vacModal()">+ تسجيل تحصين</button>
  <button class="btn-green btn-sm" onclick="drugModal()">+ تسجيل دواء</button>
  <button class="btn-amber btn-sm" onclick="drugModal(null,'disinfectant')">+ تسجيل مطهر</button>
  </div></div>`;
-
  html+=`<div class="card" id="vacArea"><div class="card-title">💉 سجل التحصينات
  <div class="spacer" style="flex:1"></div>${vaccines.length?printBtn("printElement('vacArea','تقرير التحصينات')"):''}</div>`;
  if(!vaccines.length){html+=emptyState('💉','لا توجد تحصينات مسجّلة.');}
@@ -1954,7 +1796,6 @@ function renderMeds(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  if(isSuper){
  const types=DB.settings.medTypes||[];
  const drugItems=[...new Set(DB.medMoves.filter(m=>medKind(m)==='drug').map(m=>m.item))].filter(Boolean);
@@ -1972,7 +1813,6 @@ function renderMeds(){
  if(medFilter.item)drugs=drugs.filter(m=>m.item===medFilter.item);
  if(medFilter.disease)drugs=drugs.filter(m=>m.disease===medFilter.disease);
  }
-
  const dTotalCost=drugs.reduce((s,m)=>s+(Number(m.total)||0),0);
  html+=`<div class="card" id="drugArea"><div class="card-title">💊 سجل الأدوية
  <div class="spacer" style="flex:1"></div>
@@ -1999,7 +1839,6 @@ function renderMeds(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  const disTotalCost=disinf.reduce((s,m)=>s+(Number(m.total)||0),0);
  html+=`<div class="card" id="disArea"><div class="card-title">🧴 سجل المطهرات
  <div class="spacer" style="flex:1"></div>
@@ -2025,18 +1864,15 @@ function renderMeds(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  html+=medStockSection(mgr,scopeCycleIds(mgr));
  $('#main').innerHTML=html;
 }
 function scopeCycleIds(mgr){ return mgr?DB.cycles.filter(c=>c.farm===ME.farm).map(c=>c.id):DB.cycles.map(c=>c.id); }
 function medStockSection(mgr,cycleIds){
-
  if(!medStockCycle||!cycleIds.includes(medStockCycle))medStockCycle=cycleIds[0]||'';
  const cyc=cycleById(medStockCycle);
  let h=`<div class="card"><div class="card-title">📦 مخزون الأدوية والتحصينات والمطهرات</div>`;
  if(!DB.cycles.length||!cyc){return h+emptyState('📦','أضف دورة أولاً.')+`</div>`;}
-
  const cycOpts=(mgr?DB.cycles.filter(c=>c.farm===ME.farm):DB.cycles)
  .map(c=>`<option value="${c.id}" ${c.id===medStockCycle?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
  h+=`<div class="toolbar">
@@ -2048,7 +1884,6 @@ function medStockSection(mgr,cycleIds){
  <button class="btn-amber btn-sm" onclick="stockModal('disinfectant')">+ حركة مطهر</button>
  <button class="btn-amber btn-sm" onclick="carryForward()">🔄 ترحيل المتبقّي من دورة سابقة</button>
  </div>`;
-
  const KIND_TITLE={drug:'💊 أرصدة الأدوية',vaccine:'💉 أرصدة التحصينات',disinfectant:'🧴 أرصدة المطهرات'};
  ['drug','vaccine','disinfectant'].forEach(kind=>{
  const items=medItemsOfCycle(medStockCycle,kind);
@@ -2070,7 +1905,6 @@ function medStockSection(mgr,cycleIds){
  });
  h+=`</tbody></table></div>`;
  });
-
  const moves=DB.medStock.filter(s=>s.cycleId===medStockCycle);
  if(moves.length){
  h+=`<div class="card-title" style="font-size:14px;margin-top:14px">📜 سجل حركات المخزون</div>
@@ -2090,7 +1924,6 @@ let medStockCycle='';
 function stockModal(kind,id){
  const s=id?DB.medStock.find(x=>x.id===id):null;
  const cyc=cycleById(medStockCycle);if(!cyc){toast('اختر دورة',1);return;}
-
  const known=medItemsOfCycle(medStockCycle,kind);
  const units=DB.settings.medUnits||['لتر','سم','جم','كجم'];
  const moveOpts=Object.entries(STOCK_MOVES).filter(([k])=>k!=='carry').map(([k,v])=>`<option value="${k}" ${s&&s.move===k?'selected':''}>${v}</option>`).join('');
@@ -2119,10 +1952,8 @@ function saveStock(kind,id){
  save();closeModal();toast('تم الحفظ ✓');renderMeds();
 }
 function delStock(id){if(!confirm('حذف الحركة؟'))return;DB.medStock=DB.medStock.filter(s=>s.id!==id);save();renderMeds();}
-
 function carryForward(){
  const cyc=cycleById(medStockCycle);if(!cyc){toast('اختر دورة',1);return;}
-
  const others=DB.cycles.filter(c=>c.farm===cyc.farm&&c.id!==cyc.id);
  if(!others.length){toast('لا توجد دورة سابقة في نفس المزرعة',1);return;}
  const opts=others.map(c=>`<option value="${c.id}">${esc(c.code)}</option>`).join('');
@@ -2170,7 +2001,6 @@ function mdCycleField(m){
  const cycOpts=DB.cycles.map(c=>`<option value="${c.id}" ${m&&m.cycleId===c.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('');
  return `<div class="field"><label>الدورة</label><select id="mdCycle">${cycOpts}</select></div>`;
 }
-
 function vacModal(id){
  const m=id?DB.medMoves.find(x=>x.id===id):null;
  if(isManager()&&id&&!within24h(m)){toast('انتهت مهلة التعديل (24 ساعة)',1);return;}
@@ -2191,7 +2021,6 @@ function vacModal(id){
  `<button class="btn" onclick="saveVac('${id||''}')">حفظ</button><button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
 }
 function mdCalc(){const q=Number($('#mdQty').value)||0,p=Number($('#mdPrice').value)||0;$('#mdTotal').value=(q*p).toFixed(2);}
-
 function mfgBatchFields(m,selId,batchId){
  const mans=DB.settings.manufacturers||[];const mList=[...mans];
  if(m&&m.mfg&&!mList.includes(m.mfg))mList.unshift(m.mfg);
@@ -2211,7 +2040,6 @@ function saveVac(id){
  else{DB.medMoves.push({id:uid('md'),_ts:Date.now(),...data});}
  save();closeModal();toast('تم حفظ التحصين ✓');renderMeds();
 }
-
 function drugModal(id,kind){
  const m=id?DB.medMoves.find(x=>x.id===id):null;
  kind = kind || (m?medKind(m):'drug');
@@ -2223,7 +2051,6 @@ function drugModal(id,kind){
  const types=DB.settings.medTypes||[];
  const diseases=isDis?(DB.settings.disinfectUses||[]):(DB.settings.diseases||[]);
  const diseaseList=isDis?'disinfectUses':'diseases';
-
  const uList=[...units], tList=[...types], dList=[...diseases];
  if(m&&m.unit&&!uList.includes(m.unit))uList.unshift(m.unit);
  if(m&&m.medType&&!tList.includes(m.medType))tList.unshift(m.medType);
@@ -2261,7 +2088,6 @@ function drCalc(){
  const price=Number($('#drPrice').value)||0; const tot=$('#drTotal');
  if(tot&&!tot.dataset.touched)tot.value=(day*price).toFixed(2);
 }
-
 function addListItem(listKey,selId){
  const t=prompt('أضف عنصر جديد:');if(!t)return;
  const v=t.trim();if(!v)return;
@@ -2287,7 +2113,6 @@ function saveDrug(id,kind){
  save();closeModal();toast('تم الحفظ ✓');renderMeds();
 }
 function delMed(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف السجل؟'))return;DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();}
-
 function renderSales(){
  const mgr=isManager();
  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد. تواصل مع المدير العام.')}</div>`; return; }
@@ -2295,7 +2120,6 @@ function renderSales(){
  const myCycles = mgr ? DB.cycles.filter(c=>c.farm===ME.farm) : DB.cycles;
  const myCycleIds = myCycles.map(c=>c.id);
  const salesScope = mgr ? DB.sales.filter(s=>myCycleIds.includes(s.cycleId)||s.farmId===ME.farm) : DB.sales;
-
  const td=todayISO();
  const today=salesScope.filter(s=>s.date===td);
  const tc=today.reduce((s,x)=>s+(Number(x.count)||0),0);
@@ -2308,7 +2132,6 @@ function renderSales(){
  ${kpi('g','المبلغ',fmt(ta)+' '+DB.settings.currency,'')}
  ${kpi('a','متوسط السعر',tw?fmt(ta/tw,2)+' /كجم':'0','')}
  </div></div>`;
-
  html+=`<div class="card"><div class="card-title">📊 إجمالي المبيعات حسب الدورة</div>`;
  if(!myCycles.length){html+=emptyState('💰','لا توجد دورات.');}
  else{
@@ -2329,7 +2152,6 @@ function renderSales(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  html+=`<div class="card"><div class="card-title">🧾 سجل المبيعات <div class="spacer" style="flex:1"></div>
  <button class="btn btn-sm" onclick="saleModal()">+ بيع جديد</button></div>`;
  if(!salesScope.length){html+=emptyState('🧾','لا توجد مبيعات.');}
@@ -2405,14 +2227,12 @@ function saveSale(id){
  save();closeModal();toast(id?'تم تعديل البيع ✓':'تم تسجيل البيع ✓');renderSales();
 }
 function delSale(id){const s=DB.sales.find(x=>x.id===id);if(isManager()&&!within24h(s)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف البيع؟'))return;DB.sales=DB.sales.filter(s=>s.id!==id);save();renderSales();}
-
 function renderTransfer(){
  let html=pageHead('🔁','التحويلات','تحويل العلف والأدوية والطيور من وإلى المزارع + المرتجع');
  html+=`<div class="toolbar">
  <button class="btn btn-sm" onclick="transferModal('feed')">🌾 تحويل علف</button>
  <button class="btn btn-sm" onclick="transferModal('med')">💉 تحويل دواء</button>
  <button class="btn btn-sm" onclick="transferModal('bird')">🐔 تحويل طيور</button></div>`;
-
  html+=`<div class="card"><div class="card-title">🐔 حركات الطيور</div>`;
  if(!DB.birdMoves.length){html+=emptyState('🐔','لا توجد حركات طيور.');}
  else{
@@ -2463,7 +2283,6 @@ function saveTransfer(kind){
  save();closeModal();toast('تم تسجيل التحويل ✓');renderTransfer();
 }
 function delBirdMove(id){if(!confirm('حذف الحركة؟'))return;DB.birdMoves=DB.birdMoves.filter(m=>m.id!==id);save();renderTransfer();}
-
 let repState={tab:'daily_log',cycleId:null,farmId:null,from:'',to:'',day:todayISO(),week:1};
 const REP_TABS=[
  {id:'daily_log',name:'📋 السجل اليومي'},
@@ -2482,9 +2301,15 @@ const REP_TABS=[
  {id:'company',name:'🏛️ إجمالي الشركة'},
 ];
 function renderReports(){
- let html=pageHead('📈','التقارير','تقارير شاملة ومقارنات بالكتالوج وبين المزارع');
+ const mgr=isManager();
+ const MGR_TABS=['sales_daily','postsale','daily_log','litter'];
+ const visTabs=mgr?REP_TABS.filter(t=>MGR_TABS.includes(t.id)):REP_TABS;
+ if(mgr){
+   if(!visTabs.find(t=>t.id===repState.tab))repState.tab='sales_daily';
+   repState.farmId=ME.farm; // اقفل على مزرعته
+ }
+ let html=pageHead('📈',mgr?'تقارير مزرعتك':'التقارير',mgr?'تقرير المبيعات اليومي وما بعد البيع لمزرعتك':'تقارير شاملة ومقارنات بالكتالوج وبين المزارع');
  if(!DB.cycles.length){$('#main').innerHTML=html+`<div class="card">${emptyState('📈','لا توجد دورات بعد.')}</div>`;return;}
-
  html+=`<div class="card" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
  <span style="color:var(--txt2);font-size:13px;font-weight:600">🔎 حجم الخط:</span>
  <div class="seg">
@@ -2499,9 +2324,8 @@ function renderReports(){
  <div class="spacer" style="flex:1"></div>
  ${printBtn("printElement('repBody','"+esc((REP_TABS.find(t=>t.id===repState.tab)||{}).name||'تقرير')+"')")}
  </div>`;
-
  html+=`<div class="card"><div class="shift-tabs" style="flex-wrap:wrap">`+
- REP_TABS.map(t=>`<div class="shift-tab ${repState.tab===t.id?'active':''}" style="min-width:auto;flex:0 0 auto;padding:9px 14px" onclick="repState.tab='${t.id}';renderReports()"><div class="t" style="font-size:13px">${t.name}</div></div>`).join('')+
+ visTabs.map(t=>`<div class="shift-tab ${repState.tab===t.id?'active':''}" style="min-width:auto;flex:0 0 auto;padding:9px 14px" onclick="repState.tab='${t.id}';renderReports()"><div class="t" style="font-size:13px">${t.name}</div></div>`).join('')+
  `</div></div>`;
  const body={daily_log:repDailyLog,daily_cat:repDailyCat,week_cat:repWeekCat,
  farms_daily:repFarmsDaily,farms_week:repFarmsWeek,sales_daily:repSalesDaily,postsale:repPostSale,
@@ -2517,16 +2341,17 @@ function repZoom(d){repView.zoom=Math.max(70,Math.min(160,repView.zoom+d*10));re
 function repZoomReset(){repView.zoom=100;renderReports();}
 function repWidth(w){repView.width=w;renderReports();}
 function cycSelect(){
- if(!repState.cycleId)repState.cycleId=DB.cycles[0].id;
+ const list=isManager()?DB.cycles.filter(c=>c.farm===ME.farm):DB.cycles;
+ if(!list.length)return `<span class="hint">لا توجد دورات في مزرعتك</span>`;
+ if(!repState.cycleId||!list.find(c=>c.id===repState.cycleId))repState.cycleId=list[0].id;
  return `<select onchange="repState.cycleId=this.value;renderReports()">`+
- DB.cycles.map(c=>`<option value="${c.id}" ${c.id===repState.cycleId?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('')+`</select>`;
+ list.map(c=>`<option value="${c.id}" ${c.id===repState.cycleId?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')}</option>`).join('')+`</select>`;
 }
 function farmSelect(){
  if(!repState.farmId)repState.farmId=DB.farms[0]?.id;
  return `<select onchange="repState.farmId=this.value;repFarmTotalSelectedCycles=null;renderReports()">`+
  DB.farms.map(f=>`<option value="${f.id}" ${f.id===repState.farmId?'selected':''}>${esc(f.name)}</option>`).join('')+`</select>`;
 }
-
 function repDailyLog(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  let dates=[...new Set(DB.daily.filter(d=>d.cycleId===cyc.id).map(d=>d.date))].sort();
@@ -2563,7 +2388,6 @@ function repDailyLog(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function repDailyCat(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  let dates=[...new Set(DB.daily.filter(d=>d.cycleId===cyc.id).map(d=>d.date))].sort();
@@ -2586,7 +2410,6 @@ function repDailyCat(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function repWeekCat(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  let dates=[...new Set(DB.daily.filter(d=>d.cycleId===cyc.id).map(d=>d.date))].sort();
@@ -2594,7 +2417,6 @@ function repWeekCat(){
  <div class="card"><div class="card-title">📅 مقارنة أسبوعية مقابل Ross 308 — ${esc(cyc.code)}</div>`;
  if(!dates.length)return h+emptyState('📅','لا توجد سجلات.')+`</div>`;
  const placed=cyclePlaced(cyc)||0;
-
  const weeks={};
  dates.forEach(dt=>{const d=cycleDayData(cyc,dt);const w=Math.ceil(d.age/7);
  if(!weeks[w])weeks[w]={dead:0,feed:0,lastWeight:0,lastWeightAge:0,lastAge:0};
@@ -2610,7 +2432,6 @@ function repWeekCat(){
  Object.keys(weeks).map(Number).sort((a,b)=>a-b).forEach(w=>{
  const x=weeks[w];
  cumFeedKg+=x.feed;
-
  const feedPerBird = placed? (cumFeedKg/placed*1000) : 0;
  const refAge = x.lastWeightAge || x.lastAge;
  const ref=rossRow(refAge);
@@ -2624,7 +2445,6 @@ function repWeekCat(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function repFarmsDaily(){
  const af=activeFarms();
  let h=`<div class="card"><div class="toolbar"><label style="color:var(--txt2)">اليوم:</label>
@@ -2646,7 +2466,6 @@ function repFarmsDaily(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function repFarmsWeek(){
  const af=activeFarms();
  let h=`<div class="card"><div class="card-title">📆 الأداء الأسبوعي للمزارع النشطة + مرجع Ross</div>`;
@@ -2667,37 +2486,33 @@ function repFarmsWeek(){
  return h+`</tbody></table></div>
  <div class="card"><div class="hint">% للمرجع = متوسط الوزن الفعلي ÷ وزن Ross المستهدف لنفس العمر. أخضر ≥98% — أصفر 92-98% — أحمر <92%.</div></div>`;
 }
-
 let salesDay='';
 function repSalesDaily(){
- const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
-
+ const pool=isManager()?DB.cycles.filter(c=>c.farm===ME.farm):DB.cycles;
+ if(!pool.length){return `<div class="card">${emptyState('🧾','لا توجد دورات في مزرعتك.')}</div>`;}
+ let cyc=cycleById(repState.cycleId);
+ if(!cyc||(isManager()&&cyc.farm!==ME.farm))cyc=pool[0];
+ repState.cycleId=cyc.id;
  const saleDays=[...new Set(DB.sales.filter(s=>s.cycleId===cyc.id).map(s=>s.date))].sort();
  if(!salesDay||!saleDays.includes(salesDay))salesDay=saleDays[saleDays.length-1]||todayISO();
  const dayOpts=saleDays.length?saleDays.map(d=>`<option value="${d}" ${d===salesDay?'selected':''}>${esc(d)}</option>`).join(''):`<option value="${salesDay}">${esc(salesDay)}</option>`;
  let h=`<div class="card"><div class="toolbar">${cycSelect()}
  <label style="color:var(--txt2)">يوم البيع:</label>
  <select onchange="salesDay=this.value;renderReports()">${dayOpts}</select></div></div>`;
-
  const today=DB.sales.filter(s=>s.cycleId===cyc.id&&s.date===salesDay);
  const tCount=today.reduce((s,x)=>s+(Number(x.count)||0),0);
  const tWeight=today.reduce((s,x)=>s+(Number(x.weight)||0),0);
  const tAmount=today.reduce((s,x)=>s+(Number(x.amount)||0),0);
  const tAvgBird=tCount?(tWeight/tCount):0;
  const tPrice=tWeight?(tAmount/tWeight):0;
-
  const F=cycleFinal(cyc);
  const age=ageOnDate(cyc,salesDay);
  const feedTot=cycleFeedUsed(cyc.id);
-
  const feedInDay=DB.feedMoves.filter(m=>m.cycleId===cyc.id&&m.date===salesDay&&(m.type==='in'||m.type==='transfer_in'));
  const feedInQty=feedInDay.reduce((s,m)=>s+(Number(m.qty)||0),0);
-
  const feedInTotal=DB.feedMoves.filter(m=>m.cycleId===cyc.id&&(m.type==='in'||m.type==='transfer_in')).reduce((s,m)=>s+(Number(m.qty)||0),0);
-
  h+=`<div class="grid g2">`;
  const sr=(cls,lab,val,sub)=>`<div class="statrow ${cls}"><span class="lab">${lab}${sub?`<span class="hint" style="font-weight:400;margin-right:6px">${sub}</span>`:''}</span><span class="num">${val}</span></div>`;
-
  h+=`<div class="card"><div class="card-title" style="color:var(--primary)">📅 ${esc(salesDay)} — ${esc(farmById(cyc.farm)?.name||'')}</div>
  ${sr('st-blue','العدد المباع',fmt(tCount),'طائر')}
  ${sr('st-teal','الوزن المباع',fmt(tWeight,1),'كجم')}
@@ -2712,7 +2527,6 @@ function repSalesDaily(){
  ${feedInDay.map(m=>`<tr><td>${m.type==='transfer_in'?'محوّل وارد':'وارد مباشر'}</td><td class="num">${fmt(m.qty)}</td><td>${esc(m.note||'—')}</td></tr>`).join('')}
  </tbody></table></div>`:''}
  </div>`;
-
  h+=`<div class="card"><div class="card-title" style="color:var(--txt)">📊 إجمالي الدورة (تراكمي)</div>
  ${sr('st-slate','العمر',age>0?age+' يوم':'-')}
  ${sr('st-indigo','التسكين',fmt(F.placed),'طائر')}
@@ -2721,13 +2535,12 @@ function repSalesDaily(){
  ${sr(F.remain<0?'st-rose':'st-green','المتبقي',fmt(F.remain),'طائر')}
  ${sr('st-amber','متوسط الوزن',fmt(F.avgWeightBird,2),'كجم')}
  ${sr('st-teal','اللحم المباع',fmt(F.sales.weight,1),'كجم')}
- ${sr('st-teal','اللحم المتوقع',fmt(F.totalMeat,1),'مباع+متبقي حي')}
  ${sr('st-green','إجمالي المبلغ',fmt(F.sales.amount),DB.settings.currency)}
  ${sr('st-slate','متوسط السعر',fmt(F.avgPrice,2),DB.settings.currency+'/كجم')}
  ${sr('st-orange','العلف المستهلك',fmt(feedTot),'كجم')}
+ ${sr('st-teal','اللحم المتوقع',fmt(F.totalMeat,1),'مباع+متبقي حي')}
  </div>`;
  h+=`</div>`;
-
  h+=`<div class="card"><div class="card-title">🧾 عمليات البيع في ${esc(salesDay)}</div>`;
  if(!today.length){h+=emptyState('🧾','لا توجد مبيعات في هذا اليوم.');}
  else{
@@ -2745,13 +2558,11 @@ function repSalesDaily(){
  h+=`</div>`;
  return h;
 }
-
 function repPostSale(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  const farm=farmById(cyc.farm);const F=cycleFinal(cyc);
  let h=`<div class="card"><div class="toolbar">${cycSelect()}
  ${ME.role==='super'?`<button class="btn-amber btn-sm" onclick="overrideModal('${cyc.id}')">🎛️ تعديل يدوي</button>`:''}</div></div>`;
-
  const rows=[
  ['تاريخ التسكين',cyc.startDate||'-'],
  ['تاريخ آخر بيع',(DB.sales.filter(s=>s.cycleId===cyc.id).map(s=>s.date).sort().pop())||'-'],
@@ -2779,7 +2590,7 @@ function repPostSale(){
  ['💀','إجمالي النافق',ovCell(F,'dead',fmt(F.dead)),'st-rose'],
  ['📉','نسبة النافق',ovCell(F,'deadPct',F.deadPct.toFixed(2)+'%'),'st-rose'],
  ['❤️','حياتية الطيور',ovCell(F,'livability',F.livability.toFixed(2)+'%'),'st-green'],
- ['🌾','العلف المستهلك',ovCell(F,'feed',fmt(F.feed)+' كجم'),'st-orange'],
+ ['🌾','العلف المستهلك',`${ovCell(F,'feed',fmt(F.feed)+' كجم')}${F.feedMethod==='inv'?` <span class="hint" style="font-size:11px">الوارد ${fmt(F.feedIn)} − الجرد ${fmt(F.feedRemain)}</span>`:''}`,'st-orange'],
  ['🍽️','متوسط العلف للطائر',fmt(F.avgFeedBird,2)+' كجم','st-amber'],
  ['🥩','إجمالي اللحم المباع',fmt(F.sales.weight,1)+' كجم','st-teal'],
  ['🥩','إجمالي اللحم المتوقع',`${ovCell(F,'totalMeat',fmt(F.totalMeat,1)+' كجم')} <span class="hint" style="font-size:11px">مباع + متبقّي حي (${fmt(F.remain)} طائر)</span>`,'st-teal'],
@@ -2794,7 +2605,6 @@ function repPostSale(){
  const adjNote=!F.adjFCRValid?'<div class="hint" style="margin-top:6px;color:var(--amber)">⚠️ الفارق بين الوزن الفعلي والمستهدف يتجاوز 227 جم — القيمة تقديرية وقد تكون أقل دقة (حسب تنبيه دليل Ross 2025).</div>':'';
  h+=`<div class="card"><div class="card-title">🧾 تقرير ما بعد البيع — ${esc(farm?.name||'')} / ${esc(cyc.code)}</div>
  ${statGrid(srows,'g2')}${adjNote}</div>`;
-
  h+=`<div class="card"><div class="card-title">💵 الربحية</div><div class="grid g3" style="margin-bottom:12px">
  ${kpi('','الإيراد',fmt(F.revenue)+' '+DB.settings.currency,'متوسط سعر: '+fmt(F.avgPrice,2))}
  ${kpi('a','إجمالي التكلفة',fmt(F.totalCost)+' '+DB.settings.currency,'كتاكيت+علف+مصاريف')}
@@ -2806,7 +2616,6 @@ function repPostSale(){
  ${kpi('','خصم التجار',fmt(F.traderDiscount)+' '+DB.settings.currency,'')}
  </div>
  ${(F.totalCost===0)?'<div class="hint" style="margin-top:10px;color:var(--amber)">⚠️ أدخل التكاليف: أسعار الكتكوت/العلف من «تعديل الدورة» والمصاريف من زر «💵 مصاريف».</div>':'<div class="hint" style="margin-top:10px">للتفصيل الكامل بند ببند، افتح تبويب «💵 تقرير التكاليف التفصيلي».</div>'}</div>`;
-
  h+=`<div class="card"><div class="card-title">🏠 تفصيل العنابر حتى آخر يوم بيع</div>
  <div class="tbl-wrap"><table><thead><tr><th>العنبر</th><th class="num">التسكين</th>
  <th class="num">نافق العنبر</th><th class="num">عدد مباع</th><th class="num">وزن مباع</th>
@@ -2828,12 +2637,10 @@ function repPostSale(){
  <div class="hint" style="margin-top:8px">المتبقي الحي لكل عنبر = التسكين − (نافق العنبر + المباع من العنبر).</div></div>`;
  return h;
 }
-
 let repFarmTotalSelectedCycles=null;
 function repFarmTotal(){
  const farm=farmById(repState.farmId)||DB.farms[0]; repState.farmId=farm?.id;
  const allCycs=farm?DB.cycles.filter(c=>c.farm===farm.id):[];
-
  if(!repFarmTotalSelectedCycles||repFarmTotalSelectedCycles.length===0)
  repFarmTotalSelectedCycles=allCycs.map(c=>c.id);
  const selIds=repFarmTotalSelectedCycles;
@@ -2867,12 +2674,10 @@ function repFarmTotal(){
  ${kpi('p','FCR المعدّل',A.adjFCR>0?A.adjFCR.toFixed(3):'—','عند '+A.fcrTargetKg+' كجم')}
  ${kpi('','حياتية',A.livability.toFixed(1)+'%','')}
  </div></div>`;
-
  h+=`<div class="card"><div class="card-title">📊 مقارنة الدورات المختارة</div>
  <div class="tbl-wrap"><table><thead><tr><th>الدورة</th><th>الحالة</th><th class="num">تسكين</th>
  <th class="num">نافق%</th><th class="num">متوسط الوزن</th><th class="num">FCR</th>
  <th class="num">FCR معدّل</th><th class="num">EPEF</th><th class="num">الربح</th></tr></thead><tbody>`;
-
  [...cycs].sort((a,b)=>{const FA=cycleFinal(a),FB=cycleFinal(b);return (FA.adjFCR||FA.fcr)-(FB.adjFCR||FB.fcr);}).forEach(c=>{
  const F=cycleFinal(c);
  const adjBadge=!F.adjFCRValid?'<span title="فارق>227جم" style="color:var(--amber)">⚠️</span>':'';
@@ -2901,7 +2706,6 @@ function repFarmTotalSelAll(all){
  repFarmTotalSelectedCycles=all?(DB.cycles.filter(c=>c.farm===farm?.id).map(c=>c.id)):[];
  renderReports();
 }
-
 function repCompany(){
  const A=aggregateCycles(DB.cycles);
  let h=`<div class="card"><div class="card-title">🏛️ إجمالي الشركة — كل المزارع وكل الدورات</div>
@@ -2930,13 +2734,11 @@ function repCompany(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function repCostDetail(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  const F=cycleFinal(cyc);const farm=farmById(cyc.farm);
  let h=`<div class="card"><div class="toolbar">${cycSelect()}
  ${ME.role==='super'?`<button class="btn-amber btn-sm" onclick="overrideModal('${cyc.id}')">🎛️ تعديل يدوي</button>`:''}</div></div>`;
-
  const items=[
  {label:'كتاكيت',amount:F.chickCost},
  {label:'علف',amount:F.feedCost},
@@ -2958,7 +2760,6 @@ function repCostDetail(){
  <td class="num">${fmt(F.placed?totalCost/F.placed:0,2)}</td>
  <td class="num">${fmt(F.costPerKg,2)}</td><td class="num">100%</td></tr>`;
  h+=`</tbody></table></div></div>`;
-
  const palette=['#3b82f6','#22c55e','#f59e0b','#ef4444','#a855f7','#06b6d4','#eab308','#ec4899','#14b8a6','#f97316','#8b5cf6','#64748b'];
  h+=`<div class="card"><div class="card-title">📊 توزيع التكاليف (نسبة كل بند)</div>`;
  const sorted=[...items].sort((a,b)=>b.amount-a.amount);
@@ -2967,7 +2768,6 @@ function repCostDetail(){
  <div class="bar-track"><div class="bar-fill" style="width:${Math.max(pct,2)}%;background:${palette[i%palette.length]}">${pct.toFixed(1)}%</div></div>
  <div class="vl">${fmt(it.amount)} ${DB.settings.currency}</div></div>`;});
  h+=`</div>`;
-
  h+=`<div class="card"><div class="card-title">📈 النتيجة النهائية</div>
  <div class="grid g4" style="margin-bottom:12px">
  ${kpi('','العدد الوارد',fmt(F.placed),'')}
@@ -2990,7 +2790,6 @@ function repCostDetail(){
  </div>`;
  return h;
 }
-
 function repCompare(){
  let h=`<div class="card"><div class="card-title">📊 مقارنة المزارع المتقدمة — كل الدورات لكل مزرعة</div>`;
  if(!DB.farms.length)return h+emptyState('📊','لا توجد مزارع.')+`</div>`;
@@ -3040,7 +2839,6 @@ function repCompare(){
  FCR: أخضر ≤1.55 / أصفر ≤1.65 / أحمر >1.65 — EPEF: أخضر ≥380 / أصفر ≥330 / أحمر <330.</div></div>`;
  return h;
 }
-
 let priceCols=['','','','',''];
 function setPriceCol(i,v){priceCols[i]=v;}
 function applyPriceCmp(){renderReports();}
@@ -3072,7 +2870,6 @@ function repPriceCmp(){
  <div class="card" style="margin-top:0"><div class="hint">الربح المتوقع يخصم تكلفة الدورات وخصم التجار المسجّل. غيّر الأسعار في أي وقت واضغط «تطبيق» للمقارنة الفورية.</div></div></div>`;
  return h;
 }
-
 let litterDensity=0.65;
 let litterFactor=0.70;
 function repLitter(){
@@ -3108,7 +2905,6 @@ function repLitter(){
  h+=`<tr class="tbl-total"><td colspan="6">الإجمالي</td>
  <td class="num">${fmt(Twt,2)} طن</td><td class="num">${fmt(avgPerBird,2)}</td><td class="num">${fmt(Tvol,0)} م³</td></tr>`;
  h+=`</tbody></table></div></div>`;
-
  h+=`<div class="card"><div class="card-title">📚 منهجية الحساب والمراجع</div>
  <div style="font-size:13px;line-height:1.9;color:var(--txt2)">
  <b>المعادلة:</b><br>
@@ -3123,7 +2919,6 @@ function repLitter(){
  </div></div>`;
  return h;
 }
-
 function repVaccines(){
  const cyc=cycleById(repState.cycleId)||DB.cycles[0];repState.cycleId=cyc.id;
  const meds=DB.medMoves.filter(m=>m.cycleId===cyc.id).sort((a,b)=>(a.age||0)-(b.age||0));
@@ -3143,7 +2938,6 @@ function repVaccines(){
  <td class="num">${fmt(tT)}</td><td class="num">${fmt(placed?tT/placed:0,2)}</td></tr>`;
  return h+`</tbody></table></div></div>`;
 }
-
 function renderOwner(){
  const A=aggregateCycles(DB.cycles);
  const af=activeFarms();
@@ -3153,7 +2947,6 @@ function renderOwner(){
  <h2>👑 داش بورد المالك</h2>
  <div class="d">${esc(DB.labels.company)}</div>
  </div>`;
-
  const k=(cls,lbl,val,sub,cnt)=>`<div class="kpi ${cls} lift anim-kpi"><div class="lbl">${lbl}</div>
  <div class="val"><span class="cup" data-to="${cnt}">0</span>${val}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`;
  html+=`<div class="grid g4" style="margin-bottom:16px">
@@ -3168,7 +2961,6 @@ function renderOwner(){
  ${k('a','🌾 العلف الكلي',' كجم','',A.feed)}
  ${k('p','💵 متوسط سعر البيع',fmt(A.avgPrice,2)+' /كجم','',0)}
  </div>`;
-
  html+=`<div class="grid g2" style="margin-bottom:16px">
  <div class="card"><div class="card-title">💰 مبيعات وأرباح المزارع</div>
  <div class="chart-wrap"><canvas id="ownerBar" width="520" height="300"></canvas>
@@ -3178,7 +2970,6 @@ function renderOwner(){
  <div class="chart-wrap"><canvas id="ownerLine" width="520" height="300"></canvas>
  <div class="legend" id="ownerLineLeg"></div></div></div>
  </div>`;
-
  html+=`<div class="card"><div class="card-title">🔴 المزارع النشطة الآن مقابل المرجع</div>`;
  if(!af.length){html+=emptyState('🔴','لا توجد دورات نشطة.');}
  else{
@@ -3197,7 +2988,6 @@ function renderOwner(){
  html+=`</tbody></table></div>`;
  }
  html+=`</div>`;
-
  html+=`<div class="card"><div class="card-title">🏆 ترتيب المزارع حسب الربح (كل الدورات)</div>`;
  const rows=DB.farms.map(f=>({f,A:aggregateCycles(DB.cycles.filter(c=>c.farm===f.id))})).sort((a,b)=>b.A.profit-a.A.profit);
  if(!rows.length){html+=emptyState('🏆','لا توجد بيانات.');}
@@ -3212,11 +3002,9 @@ function renderOwner(){
  }
  html+=`</div>`;
  $('#main').innerHTML=html;
-
  try{runCountUps();}catch(e){console.warn("countup",e);}
  try{drawOwnerBar();}catch(e){console.warn("ownerBar",e);} try{drawOwnerLine();}catch(e){console.warn("ownerLine",e);}
 }
-
 function runCountUps(){
  $$('.cup').forEach(el=>{
  const to=Number(el.dataset.to)||0;if(!to){el.textContent='';return;}
@@ -3226,7 +3014,6 @@ function runCountUps(){
  requestAnimationFrame(step);
  });
 }
-
 function drawOwnerBar(){
  const cv=$('#ownerBar');if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
  ctx.clearRect(0,0,W,H);
@@ -3237,7 +3024,6 @@ function drawOwnerBar(){
  const gw=(W-pad.l-pad.r)/data.length;
  const Y=v=>H-pad.b-(v/maxV)*(H-pad.t-pad.b);
  ctx.strokeStyle='#e7e9f2';ctx.beginPath();ctx.moveTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
-
  let prog=0;function frame(){prog=Math.min(prog+0.06,1);ctx.clearRect(0,0,W,H);
  ctx.strokeStyle='#e7e9f2';ctx.beginPath();ctx.moveTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
  data.forEach((d,i)=>{const cx=pad.l+gw*i+gw/2;const bw=Math.min(gw*0.28,34);
@@ -3250,7 +3036,6 @@ function drawOwnerBar(){
  if(prog<1)requestAnimationFrame(frame);}
  frame();
 }
-
 function drawOwnerLine(){
  const cv=$('#ownerLine');if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
  ctx.clearRect(0,0,W,H);
@@ -3259,15 +3044,12 @@ function drawOwnerLine(){
  const maxAge=50,maxW=3500;
  const X=a=>pad.l+(a-1)/(maxAge-1)*(W-pad.l-pad.r);
  const Y=v=>H-pad.b-(v/maxW)*(H-pad.t-pad.b);
-
  ctx.strokeStyle='#e7e9f2';ctx.fillStyle='#9095af';ctx.font='10px Tahoma';
  for(let i=0;i<=4;i++){const y=pad.t+i*(H-pad.t-pad.b)/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
  ctx.textAlign='right';ctx.fillText(fmt(maxW*(1-i/4),0),pad.l-5,y+3);}
-
  ctx.strokeStyle='#fbbf24';ctx.lineWidth=2.2;ctx.setLineDash([6,4]);ctx.beginPath();
  ROSS308.filter(r=>r.d<=maxAge).forEach((r,i)=>{const x=X(r.d),y=Y(r.w);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
  ctx.stroke();ctx.setLineDash([]);
-
  const colors=['#7c5cff','#22d3ee','#22c55e','#fb5a6f','#c084fc','#fbbf24'];
  let leg=`<div class="it"><span class="sw" style="background:#fbbf24"></span>Ross 308</div>`;
  af.forEach((f,fi)=>{const cyc=activeCycleOfFarm(f.id);if(!cyc)return;
@@ -3279,7 +3061,6 @@ function drawOwnerLine(){
  leg+=`<div class="it"><span class="sw" style="background:${colors[fi%colors.length]}"></span>${esc(f.name)}</div>`;});
  const lg=$('#ownerLineLeg');if(lg)lg.innerHTML=leg;
 }
-
 function renderRoss(){
  let html=pageHead('📐','مرجع Ross 308 الاسترشادي','من كتالوج Aviagen — للاسترشاد عند إدخال الوزن يدوياً');
  html+=`<div class="card"><div class="tbl-wrap"><table><thead><tr>
@@ -3294,7 +3075,6 @@ function renderRoss(){
  html+=`</tbody></table></div></div>`;
  $('#main').innerHTML=html;
 }
-
 const YR_FIELDS=[
  ['placed','العدد الوارد'],['sold','العدد المباع'],['deadPct','نسبة النافق %'],
  ['salePrice','سعر البيع'],['chickPrice','سعر الكتكوت'],['feedPrice','سعر العلف'],
@@ -3308,7 +3088,6 @@ function renderYearly(){
  let html=pageHead('📅','البيانات السنوية المرجعية','بيانات إجمالية مستقلة لكل مزرعة عبر السنوات — للمقارنة بين الأعوام');
  const canEdit=can('yearly')&&(ME.role==='super'||ME.role==='admin');
  const years=[...new Set(DB.yearlyRef.map(r=>r.year))].sort();
-
  html+=`<div class="card"><div class="toolbar">
  ${canEdit?`<button class="btn btn-sm" onclick="yrModal()">+ إضافة سجل سنوي</button>`:''}
  ${canEdit?`<button class="btn-sec btn-sm" onclick="$('#yrImp').click()">⬆️ استيراد بيانات سنوية</button>
@@ -3317,12 +3096,10 @@ function renderYearly(){
  <div class="spacer" style="flex:1"></div>
  <span class="hint">السنوات المسجّلة: ${years.length?years.join('، '):'لا يوجد'}</span>
  </div></div>`;
-
  if(!DB.yearlyRef.length){
  html+=`<div class="card">${emptyState('📅','لا توجد بيانات سنوية بعد.'+(canEdit?' أضف أول سجل.':''))}</div>`;
  $('#main').innerHTML=html;return;
  }
-
  const clr=(v,g,y)=>v>=g?'b-ok':v>=y?'b-warn':'b-bad';
  years.forEach(yr=>{
  const rows=DB.yearlyRef.filter(r=>r.year===yr);
@@ -3353,7 +3130,6 @@ function renderYearly(){
  <td class="num">${fmt(T.feed)}</td><td class="num">${fmt(T.meat,1)}</td><td colspan="${canEdit?8:7}"></td></tr>`;
  html+=`</tbody></table></div></div>`;
  });
-
  if(years.length>=2){
  html+=`<div class="card"><div class="card-title">🔀 مقارنة بين السنوات (إجماليات الشركة)</div>
  <div class="tbl-wrap"><table><thead><tr><th>المؤشر</th>${years.map(y=>`<th class="num">${esc(y)}</th>`).join('')}<th class="num">التغير (الأحدث vs الأقدم)</th></tr></thead><tbody>`;
@@ -3410,18 +3186,15 @@ function yrExport(){const blob=new Blob([JSON.stringify(DB.yearlyRef,null,2)],{t
 function yrImport(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();
  r.onload=e=>{try{const arr=JSON.parse(e.target.result);if(!Array.isArray(arr))throw 0;
  arr.forEach(x=>{if(!x.id)x.id=uid('yr');});
-
  arr.forEach(x=>{const i=DB.yearlyRef.findIndex(o=>o.year===x.year&&o.farm===x.farm);
  if(i>=0)DB.yearlyRef[i]=x;else DB.yearlyRef.push(x);});
  save();toast('تم استيراد '+arr.length+' سجل ✓');renderYearly();
  }catch(err){toast('ملف غير صالح',1);}};r.readAsText(f);}
-
 function WJOBS(){return (DB.settings&&Array.isArray(DB.settings.workerJobs)&&DB.settings.workerJobs.length)?DB.settings.workerJobs:['عامل','مشرف','سايس','حارس','سائق','فني'];}
 const ABS_TYPES={absence:'غياب',leave:'إجازة',mission:'مأمورية'};
 let workersTab='list';
 function workerById(id){return DB.workers.find(w=>w.id===id);}
 function farmWorkers(farmId){return DB.workers.filter(w=>w.active!==false && w.farm===farmId);}
-
 function isAbsentOn(workerId,dateISO){
  return DB.wAbsence.find(a=>a.workerId===workerId && dateISO>=a.from && dateISO<=(a.to||a.from));
 }
@@ -3431,7 +3204,6 @@ function renderWorkers(){
  if(mgr&&!myFarm()){ $('#main').innerHTML=`<div class="card">${emptyState('🚫','لم يتم ربط حسابك بمزرعة بعد.')}</div>`; return; }
  const scopeFarm = mgr ? ME.farm : null;
  let html=pageHead('👷','حضور العمال', mgr?('مزرعتك: '+esc(myFarm().name)):'تتبّع حضور وغياب وإجازات العمال المقيمين، والتنقلات بين المزارع');
-
  const tabs=[['list','👥 العمال والحضور']];
  if(isSuper)tabs.push(['absence','📋 سجل الغياب والإجازات'],['moves','🔄 سجل التنقلات'],['report','📊 تقرير الحضور']);
  html+=`<div class="card"><div class="toolbar">${tabs.map(([k,t])=>
@@ -3442,7 +3214,6 @@ function renderWorkers(){
  else if(workersTab==='report')html+=wTabReport();
  $('#main').innerHTML=html;
 }
-
 let wAttDate=null;
 function wTabList(mgr,scopeFarm,isSuper){
  if(!wAttDate)wAttDate=todayISO();
@@ -3511,7 +3282,6 @@ function deactivateWorker(id){
  const w=workerById(id);if(w){w.active=false;w.endDate=todayISO();}
  save();closeModal();toast('تم إنهاء العمل');renderWorkers();
 }
-
 function moveWorkerModal(id){
  const w=workerById(id);if(!w)return;
  openModal('نقل عامل: '+esc(w.name),
@@ -3527,13 +3297,11 @@ function doMoveWorker(id){
  const newFarm=$('#mvFarm').value, date=$('#mvDate').value;
  if(!newFarm){toast('اختر مزرعة',1);return;}
  if(!Array.isArray(w.history))w.history=[];
-
  const last=w.history[w.history.length-1]; if(last&&!last.to)last.to=date;
  w.history.push({farm:newFarm,from:date});
  w.farm=newFarm;
  save();closeModal();toast('تم نقل العامل ✓');renderWorkers();
 }
-
 function absenceModal(workerId){
  const w=workerById(workerId);if(!w)return;
  openModal('تسجيل غياب/إجازة: '+esc(w.name),
@@ -3561,7 +3329,6 @@ function delAbsence(id){
  else if(!confirm('إلغاء هذا الغياب/الإجازة؟'))return;
  DB.wAbsence=DB.wAbsence.filter(x=>x.id!==id);save();toast('تم الإلغاء');renderWorkers();
 }
-
 function wTabAbsence(){
  let h=`<div class="card"><div class="card-title">📋 سجل الغياب والإجازات</div>`;
  if(!DB.wAbsence.length){return h+emptyState('📋','لا توجد سجلات.')+`</div>`;}
@@ -3577,7 +3344,6 @@ function wTabAbsence(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 function wTabMoves(){
  let h=`<div class="card"><div class="card-title">🔄 سجل تنقلات العمال بين المزارع</div>`;
  const moved=DB.workers.filter(w=>Array.isArray(w.history)&&w.history.length>1);
@@ -3590,7 +3356,6 @@ function wTabMoves(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 let wRepMonth=null;
 function wTabReport(){
  if(!wRepMonth)wRepMonth=todayISO().slice(0,7);
@@ -3621,7 +3386,6 @@ function wTabReport(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 const EQUIP_STATUS={working:'تعمل',stopped:'متوقفة',maint:'تحت الصيانة'};
 const FAULT_STATUS={open:'مفتوح',progress:'تحت الإصلاح',done:'تم الإصلاح'};
 let equipTab='list';
@@ -3630,7 +3394,6 @@ function farmLabelEquip(e){
  const f=farmById(e.farm)?.name||'-';
  return e.house&&e.house!=='_farm_'?`${f} — ${esc(e.house)}`:`${f} <span class="hint">(عام)</span>`;
 }
-
 function technicianList(){
  const fromWorkers=DB.workers.filter(w=>w.active!==false).map(w=>w.name);
  const fromFaults=DB.faults.map(f=>f.fixedBy).filter(Boolean);
@@ -3653,7 +3416,6 @@ function renderEquipment(){
  $('#main').innerHTML=html;
 }
 function eqScope(mgr){return mgr?DB.equipment.filter(e=>e.farm===ME.farm):DB.equipment;}
-
 function eqTabList(mgr){
  const list=eqScope(mgr);
  let h=`<div class="card"><div class="card-title">🛠️ المعدات
@@ -3679,7 +3441,6 @@ function equipModal(id){
  const e=id?equipById(id):{name:'',type:(DB.settings.equipTypes||[])[0]||'',farm:mgr?ME.farm:(DB.farms[0]?.id||''),house:'_farm_',status:'working',installDate:todayISO()};
  if(!e){toast('غير موجود',1);return;}
  const types=DB.settings.equipTypes||[];const tList=[...types];if(e.type&&!tList.includes(e.type))tList.unshift(e.type);
-
  let farmField;
  if(mgr){farmField=`<input type="hidden" id="eqFarm" value="${ME.farm}">`;}
  else{farmField=`<div class="field"><label>المزرعة</label><select id="eqFarm" onchange="eqHouseRefresh()">${DB.farms.map(f=>`<option value="${f.id}" ${e.farm===f.id?'selected':''}>${esc(f.name)}</option>`).join('')}</select></div>`;}
@@ -3725,7 +3486,6 @@ function delEquip(id){
  DB.faults=DB.faults.filter(f=>f.equipId!==id);
  save();closeModal();toast('تم الحذف');renderEquipment();
 }
-
 function eqTabMovable(mgr){
  const list=eqScope(mgr).filter(e=>e.movable);
  let h=`<div class="card" id="eqMovArea"><div class="card-title">🔄 المعدات المتنقّلة
@@ -3746,7 +3506,6 @@ function eqTabMovable(mgr){
  <button class="btn-sec btn-xs" onclick="equipModal('${e.id}')">تعديل</button></td></tr>`;
  });
  h+=`</tbody></table></div>`;
-
  const moved=list.filter(e=>Array.isArray(e.moveHistory)&&e.moveHistory.length);
  if(moved.length){
  h+=`<div class="card-title" style="font-size:14px;margin-top:16px">📜 سجل تنقلات المعدات</div>
@@ -3780,7 +3539,6 @@ function doMoveEquip(id){
  e.farm=to; e.house='_farm_';
  save();closeModal();toast('تم نقل المعدة ✓');renderEquipment();
 }
-
 let cleanFarm=null,cleanCycle=null;
 function eqTabCleaning(mgr){
  const farmId=mgr?ME.farm:(cleanFarm||DB.farms[0]?.id);
@@ -3840,7 +3598,6 @@ function saveCleaning(id){
  save();closeModal();toast('تم الحفظ ✓');renderEquipment();
 }
 function delCleaning(id){if(!confirm('حذف النشاط؟'))return;DB.cleaning=DB.cleaning.filter(c=>c.id!==id);save();renderEquipment();}
-
 function eqTabFaults(mgr){
  const myEquipIds=eqScope(mgr).map(e=>e.id);
  let faults=mgr?DB.faults.filter(f=>myEquipIds.includes(f.equipId)):DB.faults;
@@ -3891,7 +3648,6 @@ function faultModal(id,equipId){
  <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
 }
 function ftStatusChange(){
-
  if($('#ftStatus').value==='done'&&!$('#ftFixDate').value)$('#ftFixDate').value=todayISO();
 }
 function addTechnician(){
@@ -3909,23 +3665,19 @@ function saveFault(id){
  date:$('#ftDate').value,fixedBy:$('#ftFixedBy').value,fixDate:$('#ftFixDate').value,status,note:$('#ftNote').value.trim()};
  if(id){Object.assign(DB.faults.find(x=>x.id===id),data);}
  else{DB.faults.push({id:uid('ft'),_ts:Date.now(),...data});}
-
  if(e){ if(status==='done'){e.status='working';} else {e.status='maint';} }
  save();closeModal();toast('تم الحفظ ✓');renderEquipment();
 }
 function delFault(id){if(!confirm('حذف العطل؟'))return;DB.faults=DB.faults.filter(f=>f.id!==id);save();renderEquipment();}
-
 function eqTabReport(){
  let h=`<div class="card"><div class="card-title">📊 تقرير الصيانة</div>`;
  if(!DB.equipment.length){return h+emptyState('📊','لا توجد معدات.')+`</div>`;}
-
  h+=`<div class="grid g3" style="margin-bottom:8px">`;
  const tot=DB.equipment.length, working=DB.equipment.filter(e=>e.status==='working').length;
  const openF=DB.faults.filter(f=>f.status!=='done').length;
  h+=`<div class="statrow st-slate"><span class="lab">إجمالي المعدات</span><span class="num">${tot}</span></div>
  <div class="statrow st-green"><span class="lab">تعمل</span><span class="num">${working}</span></div>
  <div class="statrow st-amber"><span class="lab">أعطال مفتوحة</span><span class="num">${openF}</span></div></div>`;
-
  h+=`<div class="tbl-wrap"><table><thead><tr><th>المعدة</th><th>الموقع</th><th class="num">إجمالي الأعطال</th>
  <th class="num">مفتوحة</th><th class="num">إجمالي أيام التوقف</th></tr></thead><tbody>`;
  DB.equipment.map(e=>{
@@ -3940,7 +3692,6 @@ function eqTabReport(){
  });
  return h+`</tbody></table></div></div>`;
 }
-
 const CHECKLIST=[
  {cat:'التطهير والتنظيف',items:[
  {t:'إزالة الفرشة القديمة بالكامل وتنظيف العنبر',d:'مفيش بقايا زرق أو ريش من الدفعة السابقة'},
@@ -4008,7 +3759,6 @@ const CHECKLIST=[
  ]},
 ];
 const ISSUE_TYPES=['تغذية','تهوية','مياه','صحة','إدارة','معدات','أمان حيوي','أخرى'];
-
 function groupedIssues(farmId){
  const src=farmId?DB.issues.filter(i=>i.farmId===farmId):DB.issues;
  const map={};
@@ -4023,7 +3773,6 @@ function groupedIssues(farmId){
  return Object.values(map).sort((a,b)=>b.count-a.count);
 }
 function daysAgoFmt(d){if(!d)return'';const n=Math.floor((Date.now()-new Date(d))/86400000);return n+'يوم';}
-
 let capaTab='list', capaFarmFilter='', capaTypeFilter='', capaSearch='';
 function renderCapa(){
  const isSuper=ME.role==='super'||ME.role==='admin';
@@ -4038,7 +3787,6 @@ function renderCapa(){
  <button class="btn btn-sm" onclick="capaModal()">+ تسجيل مشكلة</button>
  ${printBtn("printElement('capaBody','الدروس المستفادة')")}
  </div></div>`;
-
  if(isSuper){
  const groups=groupedIssues('');
  html+=`<div class="grid g4" style="margin-bottom:4px">
@@ -4047,14 +3795,12 @@ function renderCapa(){
  ${kpi('c','مشاكل مفتوحة',fmt(DB.issues.filter(i=>i.status==='open').length),'')}
  ${kpi('','مع حلول مسجّلة',fmt(groups.filter(g=>g.solution).length),'')}
  </div>`;
-
  const critical=groups.filter(g=>g.count>=3);
  if(critical.length){
  html+=`<div class="card" style="border-color:#ef4444;background:#fff5f5"><div class="card-title" style="color:#ef4444">🚨 مشاكل تكررت ≥3 مرات — تحتاج إجراء وقائي عاجل</div>
  <div style="font-size:13px;line-height:2">${critical.slice(0,5).map(g=>`• <b>${esc(g.title)}</b> في ${esc(farmById(g.farmId)?.name||'-')} — <span class="badge b-bad">${g.count} مرات</span>`).join('<br>')}</div></div>`;
  }
  }
-
  let groups=groupedIssues(mgr?scopeFarm:'');
  if(capaFarmFilter&&!mgr)groups=groups.filter(g=>g.farmId===capaFarmFilter);
  if(capaTypeFilter)groups=groups.filter(g=>g.type===capaTypeFilter);
@@ -4122,7 +3868,6 @@ function capaRepeat(farmId,title,type){
  capaModal(null,farmId,title,type);
  setTimeout(()=>{const el=$('#cisTitle');if(el)el.value=title;},50);
 }
-
 let checkFarmId='';
 function renderChecklist(){
  const mgr=isManager();
@@ -4149,7 +3894,6 @@ function renderChecklist(){
  <b style="font-size:18px;color:${pctColor}">${pct}%</b>
  <span class="hint">${done}/${total} مكتمل</span>
  </div>`;
-
  const prevIssues=groupedIssues(checkFarmId);
  if(prevIssues.length){
  html+=`<div class="card" style="border-color:var(--amber);background:#fffbf0;margin-bottom:12px">
@@ -4186,7 +3930,6 @@ function checkSaveNote(val){
  if(!DB.checkState[checkFarmId])DB.checkState[checkFarmId]={};
  DB.checkState[checkFarmId]._notes=val;save();
 }
-
 function printChecklist(){
  const state=DB.checkState[checkFarmId]||{};
  let total=0,done=0;
@@ -4213,9 +3956,6 @@ function printChecklist(){
  if(notes)body+=`<h3>📝 ملاحظات</h3><div style="padding:10px;border:1px solid #ddd;border-radius:6px">${esc(notes)}</div>`;
  printHTML('فحص ما قبل الإدخال', body, farmName+' — مبني على معايير Ross 308');
 }
-
-/* ============ 🩺 الفحص اليومي للأعراض ============ */
-// كتالوج الأعراض مجمّعة حسب الجهاز/النوع. كل عرض: key, label, hint, sev (خطورة افتراضية)
 const SYMPTOMS=[
  {cat:'🫁 الجهاز التنفسي',items:[
   {k:'resp_gasp',t:'لهاث / فتح المنقار',h:'صعوبة تنفس، مد الرقبة',sev:'high'},
@@ -4270,7 +4010,6 @@ function renderSymptoms(){
  if(!symCycle||!cycs.find(c=>c.id===symCycle))symCycle=cycs[0]?.id||'';
  const cyc=cycleById(symCycle);
  let h=pageHead('🩺','الفحص اليومي للأعراض','يعلّم المشرف على الأعراض الظاهرة يومياً — وأي عرض خطير يرفع تنبيه فوري');
- // أدوات الاختيار
  h+=`<div class="card"><div class="toolbar">
    <label style="color:var(--txt2);font-size:13px">المزرعة:</label>
    <select onchange="symFarm=this.value;symCycle='';renderSymptoms()" ${mgr?'disabled':''}>
@@ -4283,7 +4022,6 @@ function renderSymptoms(){
    ${printBtn("printSymptoms()")}
  </div></div>`;
  if(!cyc){return void($('#main').innerHTML=h+`<div class="card">${emptyState('🩺','لا توجد دورة نشطة في هذه المزرعة.')}</div>`);}
- // التنبيهات النشطة (آخر 3 أيام فيها أعراض خطيرة)
  const logs=DB.symptomLogs.filter(l=>l.cycleId===symCycle).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
  const recent=logs.filter(l=>{const d=(Date.now()-new Date(l.date))/86400000;return d<=3;});
  const activeAlerts=recent.filter(l=>l.symptoms.some(k=>(symptomByKey(k)||{}).sev==='high'));
@@ -4298,7 +4036,6 @@ function renderSymptoms(){
     ${allHigh.map(k=>`<span class="badge b-bad">⚠️ ${esc((symptomByKey(k)||{}).t||k)}</span>`).join('')}</div>
   </div>`;
  }
- // ملخص اليوم
  const today=todayISO();
  const todayLog=logs.find(l=>l.date===today);
  h+=`<div class="card"><div class="card-title">📅 فحص اليوم (${today})</div>`;
@@ -4308,7 +4045,6 @@ function renderSymptoms(){
   h+=emptyState('📝','لم يُسجّل فحص اليوم بعد. اضغط «+ فحص اليوم».');
  }
  h+=`</div>`;
- // السجل التاريخي
  if(logs.length){
   h+=`<div class="card" id="symHistory"><div class="card-title">📜 سجل الفحوصات</div>
    <div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th class="num">العمر</th>
@@ -4405,7 +4141,6 @@ function printSymptoms(){
  }
  printHTML('سجل الفحص اليومي للأعراض', body, esc(farmById(symFarm)?.name||'')+' — '+esc(cyc.code));
 }
-
 let guideSheetIdx=0;
 function renderGuide(){
  $('#main').innerHTML=pageHead('📖','دليل Ross الإرشادي','22 إنفوجراف مبنية على دليل إدارة Ross 308 من Aviagen')+
@@ -4458,7 +4193,6 @@ function saveUser(id){
  save();closeModal();toast('تم الحفظ ✓');renderUsers();
 }
 function delUser(id){if(!confirm('حذف المستخدم؟'))return;DB.users=DB.users.filter(u=>u.id!==id);save();renderUsers();}
-
 function renderSettings(){
  const isSuper=ME.role==='super';
  let html=pageHead('⚙️','الإعدادات والمسميات','تعديل بيانات الشركة والمسميات والنسخ الاحتياطي');
@@ -4497,7 +4231,6 @@ function renderSettings(){
  <button class="btn-red btn-xs" onclick="removeLabel('${k}')">×</button></div></div>`).join('')}
  </div>
  <button class="btn btn-sm" onclick="saveLabels()">حفظ المسميات</button></div>`;
-
  const lists=[['medTypes','أنواع الأدوية'],['medUnits','وحدات القياس'],['diseases','الحالات المرضية'],['disinfectUses','أغراض التطهير'],['workerJobs','وظائف العمال'],['equipTypes','أنواع المعدات'],['faultTypes','أنواع الأعطال'],['manufacturers','الشركات المصنّعة'],['cleaningActs','أنشطة النظافة والتطهير']];
  html+=`<div class="card"><div class="card-title">📋 إدارة القوائم المنسدلة</div>
  <div class="hint" style="margin-bottom:12px">أضف أو احذف عناصر القوائم المستخدمة في النماذج (أنواع الأدوية، الوحدات، الحالات المرضية).</div>
@@ -4515,7 +4248,6 @@ function renderSettings(){
  </div></div>`;
  });
  html+=`</div></div>`;
-
  html+=`<div class="card"><div class="card-title">👤 الأدوار والوظائف
  <div class="spacer" style="flex:1"></div>
  <button class="btn btn-sm" onclick="roleModal()">+ وظيفة جديدة</button></div>
@@ -4543,7 +4275,6 @@ function renderSettings(){
  </div>
  <div class="hint">النسخة الحالية محفوظة محلياً في المتصفح (LocalStorage). الإصدار النهائي سيستخدم Firebase للمزامنة اللحظية والنسخ التلقائية.</div>
  </div>`;
-
  const baks=loadBackups();
  const days=Object.keys(baks).filter(d=>d!=='_pre_restore').sort().reverse();
  html+=`<div class="card"><div class="card-title">🗓️ النسخ التلقائية اليومية <span class="badge b-info" style="margin-right:8px">آخر 30 يوم</span></div>
@@ -4567,7 +4298,6 @@ function renderSettings(){
  }
  }
  html+=`</div>`;
-
  if(isSuper){
  html+=`<div class="card"><div class="card-title">☁️🗓️ النسخ الاحتياطية السحابية
  <span class="badge b-info" style="margin-right:8px">يومياً 3 صباحاً · آخر 30 نسخة</span>
@@ -4664,7 +4394,6 @@ function settingsRemoveItem(key,i){
  if(!confirm('حذف "'+DB.settings[key][i]+'" من القائمة؟'))return;
  DB.settings[key].splice(i,1);save();toast('تم الحذف ✓');renderSettings();
 }
-
 function roleModal(id){
  const r=id?customRoles().find(x=>x.id===id):{name:'',color:'#0ea5e9',perms:[],shifts:[]};
  if(!r){toast('غير موجود',1);return;}
@@ -4696,7 +4425,6 @@ function roleSave(id){
  save();closeModal();toast('تم حفظ الوظيفة ✓');renderSettings();
 }
 function roleDelete(id){
-
  const used=DB.users.filter(u=>u.role===id);
  if(used.length){toast('لا يمكن الحذف — '+used.length+' مستخدم على هذه الوظيفة. غيّر دورهم أولاً.',1);return;}
  if(!confirm('حذف الوظيفة؟'))return;
@@ -4707,13 +4435,9 @@ function exportDB(){const blob=new Blob([JSON.stringify(DB,null,2)],{type:'appli
 function importDB(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();
  r.onload=e=>{try{DB=JSON.parse(e.target.result);save();toast('تم الاستيراد ✓');renderApp();}catch(err){toast('ملف غير صالح',1);}};r.readAsText(f);}
 function resetDB(){if(!confirm('تصفير كل البيانات؟ لا يمكن التراجع.'))return;DB=defaultDB();save();toast('تم التصفير');renderApp();}
-
 const SHEETS=[];
-
 try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
-
 renderLogin();
-
 </script>
 <script>
 /* تسجيل Service Worker + تحديث تلقائي بدون أي تدخّل من المستخدم */
