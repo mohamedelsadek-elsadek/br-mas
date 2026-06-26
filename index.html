@@ -4,28 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نظام إدارة مزارع الدواجن - الشركة المصرية</title>
-<style>:root{
---bg:#f6f7fb; --bg2:#eef0f7; --surface:#ffffff; --card:#ffffff; --card2:#f8f9fd; --border:#e7e9f2; --border2:#d8dbe9; --ring:rgba(99,91,255,.35); --primary:#635bff; --primary-d:#5147e6; --primary-l:#8b85ff; --primary-soft:#eef0ff; --txt:#1a1c2e; --txt2:#5b607a; --txt3:#9095af; --txt-on:#ffffff; --green:#0f9d58; --green-l:#16c172; --red:#e23048;   --red-l:#fb5a6f; --amber:#d68310; --amber-l:#f5a623; --cyan:#0e9bbd;  --cyan-l:#22d3ee; --purple:#8b3ff0;--purple-l:#a855f7; --blue:#2f6bff;  --blue-l:#5b8def; --orange:#e8590c;--orange-l:#fb923c; --pink:#d6457f;  --pink-l:#ec4899; --teal:#0d9488;  --teal-l:#2dd4bf; --slate:#566073; --slate-l:#7c889e; --indigo:#4f46e5;--indigo-l:#818cf8; --ok-bg:rgba(15,157,88,.12); --warn-bg:rgba(214,131,16,.14); --bad-bg:rgba(226,48,72,.12); --info-bg:rgba(99,91,255,.12); --grad:linear-gradient(135deg,#635bff,#8b85ff 55%,#a855f7); --grad2:linear-gradient(135deg,#5147e6,#7c5cff); --grad-green:linear-gradient(135deg,#0f9d58,#16c172); --grad-red:linear-gradient(135deg,#e23048,#fb5a6f); --grad-blue:linear-gradient(135deg,#2f6bff,#5b8def); --grad-surface:linear-gradient(180deg,#ffffff,#fbfbfe); --r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px; --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --sh-xs:0 1px 2px rgba(26,28,46,.06); --sh-sm:0 2px 6px rgba(26,28,46,.07),0 1px 2px rgba(26,28,46,.05); --sh-md:0 8px 24px rgba(26,28,46,.09),0 2px 6px rgba(26,28,46,.05); --sh-lg:0 18px 48px rgba(26,28,46,.14),0 6px 16px rgba(26,28,46,.08); --sh-primary:0 8px 24px rgba(99,91,255,.32); --sh-focus:0 0 0 4px var(--ring); --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px; --fs-md:15px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:34px; --ease:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(.16,1,.3,1); }
+<style>:root{--bg:#f6f7fb; --bg2:#eef0f7; --surface:#ffffff; --card:#ffffff; --card2:#f8f9fd; --border:#e7e9f2; --border2:#d8dbe9; --ring:rgba(99,91,255,.35); --primary:#635bff; --primary-d:#5147e6; --primary-l:#8b85ff; --primary-soft:#eef0ff; --txt:#1a1c2e; --txt2:#5b607a; --txt3:#9095af; --txt-on:#ffffff; --green:#0f9d58; --green-l:#16c172; --red:#e23048;   --red-l:#fb5a6f; --amber:#d68310; --amber-l:#f5a623; --cyan:#0e9bbd;  --cyan-l:#22d3ee; --purple:#8b3ff0;--purple-l:#a855f7; --blue:#2f6bff;  --blue-l:#5b8def; --orange:#e8590c;--orange-l:#fb923c; --pink:#d6457f;  --pink-l:#ec4899; --teal:#0d9488;  --teal-l:#2dd4bf; --slate:#566073; --slate-l:#7c889e; --indigo:#4f46e5;--indigo-l:#818cf8; --ok-bg:rgba(15,157,88,.12); --warn-bg:rgba(214,131,16,.14); --bad-bg:rgba(226,48,72,.12); --info-bg:rgba(99,91,255,.12); --grad:linear-gradient(135deg,#635bff,#8b85ff 55%,#a855f7); --grad2:linear-gradient(135deg,#5147e6,#7c5cff); --grad-green:linear-gradient(135deg,#0f9d58,#16c172); --grad-red:linear-gradient(135deg,#e23048,#fb5a6f); --grad-blue:linear-gradient(135deg,#2f6bff,#5b8def); --grad-surface:linear-gradient(180deg,#ffffff,#fbfbfe); --r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px; --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --sh-xs:0 1px 2px rgba(26,28,46,.06); --sh-sm:0 2px 6px rgba(26,28,46,.07),0 1px 2px rgba(26,28,46,.05); --sh-md:0 8px 24px rgba(26,28,46,.09),0 2px 6px rgba(26,28,46,.05); --sh-lg:0 18px 48px rgba(26,28,46,.14),0 6px 16px rgba(26,28,46,.08); --sh-primary:0 8px 24px rgba(99,91,255,.32); --sh-focus:0 0 0 4px var(--ring); --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px; --fs-md:15px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:34px; --ease:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 html,body{overflow-x:hidden;max-width:100%}
-body{
-font-family:'Inter','Segoe UI','Helvetica Neue',Tahoma,Arial,sans-serif; background:
+body{font-family:'Inter','Segoe UI','Helvetica Neue',Tahoma,Arial,sans-serif; background:
 radial-gradient(900px 500px at 88% -8%,#eceaff,transparent 60%),
 radial-gradient(700px 500px at -5% 0%,#e7f6ff,transparent 55%),
-var(--bg); background-attachment:fixed; color:var(--txt); font-size:var(--fs-base); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+var(--bg); background-attachment:fixed; color:var(--txt); font-size:var(--fs-base); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
 ::-webkit-scrollbar{width:11px;height:11px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:var(--r-pill);border:3px solid var(--bg)}
 ::-webkit-scrollbar-thumb:hover{background:var(--primary-l)}
 ::selection{background:var(--primary-soft);color:var(--primary-d)}
-#login{
-position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px; background:
+#login{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px; background:
 radial-gradient(800px 500px at 75% -10%,#e4e1ff,transparent 60%),
 radial-gradient(700px 500px at 10% 110%,#dff3ff,transparent 55%),
-var(--bg); }
-.login-card{
-background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-xl); padding:44px 38px;width:100%;max-width:430px;box-shadow:var(--sh-lg);position:relative;overflow:hidden; animation:popIn .5s var(--ease-out) both; }
+var(--bg)}
+.login-card{background:var(--grad-surface);border:1px solid var(--border);border-radius:var(--r-xl); padding:44px 38px;width:100%;max-width:430px;box-shadow:var(--sh-lg);position:relative;overflow:hidden; animation:popIn .5s var(--ease-out) both}
 .login-card::before{content:'';position:absolute;inset:0 0 auto 0;height:5px;background:var(--grad)}
 .login-card .logo{font-size:54px;text-align:center;margin-bottom:10px;filter:drop-shadow(0 6px 14px rgba(99,91,255,.3))}
 .login-card h1{font-size:var(--fs-xl);text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:-.5px; background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -33,15 +29,13 @@ background:var(--grad-surface);border:1px solid var(--border);border-radius:var(
 .login-card label{display:block;font-size:var(--fs-sm);color:var(--txt2);margin:16px 0 7px;font-weight:600}
 .login-card select,.login-card input{width:100%}
 .login-err{color:var(--red);font-size:var(--fs-sm);text-align:center;margin-top:14px;min-height:16px;font-weight:600}
-input,select,textarea{
-background:var(--surface);border:1.5px solid var(--border);color:var(--txt); padding:11px 13px;border-radius:var(--r-sm);font-family:inherit;font-size:var(--fs-base); outline:none;transition:border-color .18s var(--ease),box-shadow .18s var(--ease),background .18s; max-width:100%; }
+input,select,textarea{background:var(--surface);border:1.5px solid var(--border);color:var(--txt); padding:11px 13px;border-radius:var(--r-sm);font-family:inherit;font-size:var(--fs-base); outline:none;transition:border-color .18s var(--ease),box-shadow .18s var(--ease),background .18s; max-width:100%}
 input:hover,select:hover,textarea:hover{border-color:var(--border2)}
 input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:var(--sh-focus)}
 input::placeholder{color:var(--txt3)}
 select{cursor:pointer}
 button{font-family:inherit;cursor:pointer;border:none;transition:transform .15s var(--ease),box-shadow .2s var(--ease),filter .2s,background .2s}
-.btn{
-background:var(--grad);color:var(--txt-on);padding:11px 20px;border-radius:var(--r-sm); font-size:var(--fs-base);font-weight:600;box-shadow:var(--sh-primary);letter-spacing:.1px; display:inline-flex;align-items:center;gap:7px; }
+.btn{background:var(--grad);color:var(--txt-on);padding:11px 20px;border-radius:var(--r-sm); font-size:var(--fs-base);font-weight:600;box-shadow:var(--sh-primary);letter-spacing:.1px; display:inline-flex;align-items:center;gap:7px}
 .btn:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 12px 28px rgba(99,91,255,.42)}
 .btn:active{transform:translateY(0);filter:brightness(.98)}
 .btn-lg{width:100%;padding:14px;font-size:var(--fs-md);margin-top:24px;justify-content:center}
@@ -54,8 +48,7 @@ background:var(--grad);color:var(--txt-on);padding:11px 20px;border-radius:var(-
 .btn-sm{padding:7px 13px;font-size:var(--fs-sm);border-radius:var(--r-xs)}
 .btn-xs{padding:5px 10px;font-size:var(--fs-xs);border-radius:var(--r-xs);box-shadow:none}
 #app{display:none;min-height:100vh}
-.topbar{
-position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:12px 22px; background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px); border-bottom:1px solid var(--border);box-shadow:var(--sh-xs); }
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:12px 22px; background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px); border-bottom:1px solid var(--border);box-shadow:var(--sh-xs)}
 .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:var(--fs-md);white-space:nowrap;letter-spacing:-.3px}
 .topbar .brand .ic{font-size:24px;filter:drop-shadow(0 3px 8px rgba(99,91,255,.35))}
 .topbar .brand span:last-child{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -74,7 +67,9 @@ position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;paddin
 .main{flex:1;padding:26px;overflow-x:auto;min-width:0}
 .page{display:none;animation:fade .3s var(--ease-out)}
 .page.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:none}
+}
 .page-head{display:flex;align-items:center;gap:13px;margin-bottom:24px;flex-wrap:wrap}
 .page-head h2{font-size:var(--fs-2xl);font-weight:800;letter-spacing:-.7px}
 .page-head .desc{color:var(--txt2);font-size:var(--fs-sm)}
@@ -84,23 +79,34 @@ position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;paddin
 .card+.card{margin-top:18px}
 .card-title{font-size:var(--fs-md);font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:-.3px}
 .grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;position:relative;overflow:hidden; border-top:3px solid var(--primary);box-shadow:var(--sh-xs);transition:transform .25s var(--ease-out),box-shadow .25s}
 .kpi::before{content:'';position:absolute;right:-20px;top:-20px;width:80px;height:80px; background:radial-gradient(circle,var(--primary),transparent 70%);border-radius:50%;opacity:.06}
-.kpi.g{border-top-color:#16a34a}.kpi.g .val{color:#15803d}.kpi.g::before{background:radial-gradient(circle,#16a34a,transparent 70%)}
-.kpi.r{border-top-color:#e11d48}.kpi.r .val{color:#be123c}.kpi.r::before{background:radial-gradient(circle,#e11d48,transparent 70%)}
-.kpi.a{border-top-color:#d97706}.kpi.a .val{color:#b45309}.kpi.a::before{background:radial-gradient(circle,#d97706,transparent 70%)}
-.kpi.c{border-top-color:#0891b2}.kpi.c .val{color:#0e7490}.kpi.c::before{background:radial-gradient(circle,#0891b2,transparent 70%)}
-.kpi.p{border-top-color:#9333ea}.kpi.p .val{color:#7e22ce}.kpi.p::before{background:radial-gradient(circle,#9333ea,transparent 70%)}
+.kpi.g{border-top-color:#16a34a}
+.kpi.g .val{color:#15803d}
+.kpi.g::before{background:radial-gradient(circle,#16a34a,transparent 70%)}
+.kpi.r{border-top-color:#e11d48}
+.kpi.r .val{color:#be123c}
+.kpi.r::before{background:radial-gradient(circle,#e11d48,transparent 70%)}
+.kpi.a{border-top-color:#d97706}
+.kpi.a .val{color:#b45309}
+.kpi.a::before{background:radial-gradient(circle,#d97706,transparent 70%)}
+.kpi.c{border-top-color:#0891b2}
+.kpi.c .val{color:#0e7490}
+.kpi.c::before{background:radial-gradient(circle,#0891b2,transparent 70%)}
+.kpi.p{border-top-color:#9333ea}
+.kpi.p .val{color:#7e22ce}
+.kpi.p::before{background:radial-gradient(circle,#9333ea,transparent 70%)}
 .kpi .lbl{font-size:var(--fs-sm);color:var(--txt2);margin-bottom:8px;display:flex;align-items:center;gap:7px;font-weight:600}
 .kpi .val{font-size:var(--fs-2xl);font-weight:800;letter-spacing:-1px;color:var(--txt);font-variant-numeric:tabular-nums;line-height:1.15}
 .kpi .sub{font-size:var(--fs-xs);color:var(--txt3);margin-top:6px;font-weight:500}
 .kpi.lift:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
 .tbl-wrap{overflow:auto;max-height:70vh;border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-xs);background:var(--surface);-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;white-space:nowrap}
-thead th{
-background:var(--grad2);color:var(--txt-on);font-weight:700;padding:13px 15px;text-align:right; position:sticky;top:0;z-index:5;font-size:var(--fs-sm);letter-spacing:.2px; box-shadow:0 2px 0 rgba(0,0,0,.06); }
+thead th{background:var(--grad2);color:var(--txt-on);font-weight:700;padding:13px 15px;text-align:right; position:sticky;top:0;z-index:5;font-size:var(--fs-sm);letter-spacing:.2px; box-shadow:0 2px 0 rgba(0,0,0,.06)}
 thead th:first-child{border-top-right-radius:var(--r-md)}
 thead th:last-child{border-top-left-radius:var(--r-md)}
 tbody td{padding:12px 15px;border-bottom:1px solid var(--border);color:var(--txt)}
@@ -179,17 +185,28 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .statrow:hover{box-shadow:var(--sh-sm);border-right-color:var(--primary)}
 .statrow .lab{font-size:var(--fs-sm);font-weight:600;color:var(--txt2)}
 .statrow .num{font-size:var(--fs-lg);font-weight:800;font-variant-numeric:tabular-nums;color:var(--txt)}
-.st-blue{border-right-color:#3b82f6}.st-blue .num{color:#1d4ed8}
-.st-green{border-right-color:#16a34a}.st-green .num{color:#15803d}
-.st-amber{border-right-color:#d97706}.st-amber .num{color:#b45309}
-.st-cyan{border-right-color:#0891b2}.st-cyan .num{color:#0e7490}
-.st-purple{border-right-color:#9333ea}.st-purple .num{color:#7e22ce}
-.st-rose{border-right-color:#e11d48}.st-rose .num{color:#be123c}
-.st-teal{border-right-color:#0d9488}.st-teal .num{color:#0f766e}
-.st-slate{border-right-color:#64748b}.st-slate .num{color:#475569}
-.st-indigo{border-right-color:#4f46e5}.st-indigo .num{color:#3730a3}
-.st-orange{border-right-color:#ea580c}.st-orange .num{color:#c2410c}
-.st-trader{border-right-color:#9333ea}.st-trader .num{color:#7e22ce}
+.st-blue{border-right-color:#3b82f6}
+.st-blue .num{color:#1d4ed8}
+.st-green{border-right-color:#16a34a}
+.st-green .num{color:#15803d}
+.st-amber{border-right-color:#d97706}
+.st-amber .num{color:#b45309}
+.st-cyan{border-right-color:#0891b2}
+.st-cyan .num{color:#0e7490}
+.st-purple{border-right-color:#9333ea}
+.st-purple .num{color:#7e22ce}
+.st-rose{border-right-color:#e11d48}
+.st-rose .num{color:#be123c}
+.st-teal{border-right-color:#0d9488}
+.st-teal .num{color:#0f766e}
+.st-slate{border-right-color:#64748b}
+.st-slate .num{color:#475569}
+.st-indigo{border-right-color:#4f46e5}
+.st-indigo .num{color:#3730a3}
+.st-orange{border-right-color:#ea580c}
+.st-orange .num{color:#c2410c}
+.st-trader{border-right-color:#9333ea}
+.st-trader .num{color:#7e22ce}
 .owner-hero{background:var(--grad);border-radius:var(--r-xl);padding:26px 28px;margin-bottom:20px; box-shadow:var(--sh-lg);position:relative;overflow:hidden;animation:popIn .5s var(--ease-out) both;color:#fff}
 .owner-hero::after{content:'';position:absolute;left:-50px;top:-50px;width:220px;height:220px; background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);border-radius:50%}
 .owner-hero h2{font-size:var(--fs-2xl);color:#fff;margin-bottom:5px;font-weight:800;letter-spacing:-.6px}
@@ -202,25 +219,31 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .ref-good{color:var(--green);font-weight:700}
 .ref-bad{color:var(--amber);font-weight:700}
 .spacer{flex:1}
-@keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes growBar{from{width:0!important}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,91,255,.45)}50%{box-shadow:0 0 0 9px rgba(99,91,255,0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.97)}
+to{opacity:1;transform:none}
+}
+@keyframes growBar{from{width:0!important}
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,91,255,.45)}
+50%{box-shadow:0 0 0 9px rgba(99,91,255,0)}
+}
+@keyframes spin{to{transform:rotate(360deg)}
+}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-left:5px}
 #saveInd{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px); background:var(--grad2);color:#fff;padding:10px 20px;border-radius:var(--r-pill);font-weight:700;font-size:13px; z-index:600;opacity:0;transition:.3s var(--ease-out);box-shadow:var(--sh-lg);display:flex;align-items:center;gap:4px}
 #saveInd.show{transform:translateX(-50%) translateY(0);opacity:1}
 #saveInd.done{background:var(--grad-green)}
 .anim-kpi{animation:popIn .5s var(--ease-out) both}
-.anim-kpi:nth-child(1){animation-delay:.04s}.anim-kpi:nth-child(2){animation-delay:.1s}
-.anim-kpi:nth-child(3){animation-delay:.16s}.anim-kpi:nth-child(4){animation-delay:.22s}
+.anim-kpi:nth-child(1){animation-delay:.04s}
+.anim-kpi:nth-child(2){animation-delay:.1s}
+.anim-kpi:nth-child(3){animation-delay:.16s}
+.anim-kpi:nth-child(4){animation-delay:.22s}
 .grow{animation:growBar 1s var(--ease-out) both}
 .pulse{animation:pulse 2s infinite}
-@media(max-width:1024px){
-.g4,.g5{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1024px){.g4,.g5{grid-template-columns:repeat(2,1fr)}
 .main{padding:20px}
 }
-@media(max-width:880px){
-.sidebar{position:fixed;right:0;top:58px;bottom:0;z-index:60;transform:translateX(100%); transition:transform .28s var(--ease-out);box-shadow:var(--sh-lg);width:264px;overflow-y:auto}
+@media(max-width:880px){.sidebar{position:fixed;right:0;top:58px;bottom:0;z-index:60;transform:translateX(100%); transition:transform .28s var(--ease-out);box-shadow:var(--sh-lg);width:264px;overflow-y:auto}
 .sidebar.open{transform:none}
 .menu-btn{display:block}
 .g2,.g3,.g4,.g5{grid-template-columns:1fr}
@@ -232,8 +255,7 @@ td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .sb-overlay{display:none;position:fixed;inset:58px 0 0 0;background:rgba(0,0,0,.4);z-index:55;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .sb-overlay.show{display:block}
 }
-@media(max-width:520px){
-.topbar{padding:9px 12px;gap:6px}
+@media(max-width:520px){.topbar{padding:9px 12px;gap:6px}
 .brand span:last-child{display:none}
 .main{padding:12px 10px}
 .card{padding:14px 13px;border-radius:var(--r-md)}
@@ -260,13 +282,11 @@ th,td{padding:8px 7px}
 .user-chip .role{font-size:10px}
 .nav-item{padding:13px 14px}
 }
-@media(max-width:400px){
-.brand .ic{font-size:18px}
+@media(max-width:400px){.brand .ic{font-size:18px}
 .page-head .ic-wrap{width:38px;height:38px;font-size:18px}
 .kpi .val{font-size:18px}
 }
-@media(hover:none) and (pointer:coarse){
-.nav-item,.btn,.btn-sec,.btn-sm,button{min-height:40px}
+@media(hover:none) and (pointer:coarse){.nav-item,.btn,.btn-sec,.btn-sm,button{min-height:40px}
 input[type=checkbox]{width:20px;height:20px}
 }</style>
 
@@ -294,9 +314,21 @@ input[type=checkbox]{width:20px;height:20px}
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
-const APP_VERSION='31';
+const APP_VERSION='34';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
+const DEVKEY='poultry_erp_device_name';
+function deviceName(){return localStorage.getItem(DEVKEY)||'';}
+function setDeviceName(n){if(n&&n.trim())localStorage.setItem(DEVKEY,n.trim());}
+function ensureDeviceName(){
+ let n=deviceName();
+ if(!n){
+  n=(typeof prompt==='function')?prompt('اسم هذا الجهاز؟ (مثال: موبايل، لابتوب المكتب) — يظهر في مؤشر آخر تعديل:',''):'';
+  if(!n||!n.trim())n='جهاز '+Math.floor(Math.random()*900+100);
+  setDeviceName(n);
+ }
+ return deviceName();
+}
 const BAKKEY='poultry_erp_backups_v1';
 const SHIFTS=[
  {id:'s1',name:'الفترة 1',time:'12 ظهراً – 6 مساءً'},
@@ -368,6 +400,7 @@ function defaultDB(){
  issues:[],
  checkState:{},
  symptomLogs:[],   // الفحص اليومي للأعراض {id,farmId,cycleId,date,age,symptoms:[keys],severity,affected,note,by,_ts}
+ _meta:{rev:0,at:0,by:''},   // مؤشر المزامنة: رقم المراجعة + وقت آخر تعديل + اسم الجهاز
  settings:{currency:'ج.م',breedDefault:'Ross 308',
  medTypes:['مضاد حيوي','مضاد كوكسيديا','مضاد كولستريديا','فيتامينات','مطهر','محفز مناعة','أحماض عضوية','أخرى'],
  medUnits:['لتر','سم','جم','كجم'],
@@ -416,6 +449,7 @@ function fbInit(){
  FB_REMOTE=false;
  if(ME&&document.getElementById('app').style.display!=='none'){go(CUR);}
  updateSyncBadge('متزامن ✓');
+ updateRevIndicator();
  },err=>{console.warn('FB read error',err);updateSyncBadge('خطأ اتصال',true);});
  updateSyncBadge('متصل ☁️');
  startCloudBackupTimer();
@@ -463,6 +497,23 @@ function updateSyncBadge(txt,err){
  el.textContent=(err?'⚠️ ':'☁️ ')+txt;
  el.style.color=err?'#fff':'';el.style.background=err?'var(--red)':'';
 }
+function revText(){
+ const m=(DB&&DB._meta)||{rev:0,at:0,by:''};
+ if(!m.rev)return '🔄 لا تعديلات بعد';
+ let t='';
+ if(m.at){try{t=new Date(m.at).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});}catch(e){t='';}}
+ const by=m.by||'—';
+ return `🔄 تحديث #${m.rev}${t?' · '+t:''} · ${esc(by)}`;
+}
+function updateRevIndicator(){
+ const el=document.getElementById('revInd');
+ if(el)el.textContent=revText();
+}
+function saveDeviceName(){
+ const v=$('#stDevice').value.trim();
+ if(!v){toast('اكتب اسم الجهاز',1);return;}
+ setDeviceName(v);toast('تم حفظ اسم الجهاز ✓');updateRevIndicator();
+}
 let DB=load();
 function load(){try{const r=localStorage.getItem(DBKEY);const d=r?JSON.parse(r):defaultDB();return normalizeDB(d);}catch(e){return defaultDB();}}
 function normalizeDB(d){
@@ -489,9 +540,23 @@ function normalizeDB(d){
  if(d.settings.fcrTarget==null)d.settings.fcrTarget=2.0;
  if(!Array.isArray(d.settings.customRoles))d.settings.customRoles=[];
  if(!d.users.length)d.users=def.users;
+ if(!d._meta||typeof d._meta!=='object')d._meta={rev:0,at:0,by:''};
+ if(typeof d._meta.rev!=='number')d._meta.rev=0;
  return d;
 }
-function save(){invalidateCache();localStorage.setItem(DBKEY,JSON.stringify(DB));autoBackup();if(FB_ON)fbPush();else if(typeof showSaved==='function')showSaved();}
+function save(){
+ invalidateCache();
+ if(!FB_REMOTE){
+  if(!DB._meta)DB._meta={rev:0,at:0,by:''};
+  DB._meta.rev=(DB._meta.rev||0)+1;
+  DB._meta.at=Date.now();
+  DB._meta.by=deviceName()||'—';
+ }
+ localStorage.setItem(DBKEY,JSON.stringify(DB));
+ autoBackup();
+ if(FB_ON)fbPush();else if(typeof showSaved==='function')showSaved();
+ updateRevIndicator();
+}
 function loadBackups(){try{return JSON.parse(localStorage.getItem(BAKKEY))||{};}catch(e){return {};}}
 function autoBackup(){
  const baks=loadBackups();
@@ -964,6 +1029,7 @@ function doLogin(){
  const u=DB.users.find(x=>x.id===id);
  if(!u||u.pass!==pass){$('#lgErr').textContent='كلمة المرور غير صحيحة';return;}
  ME=u; $('#login').style.display='none'; $('#app').style.display='block';
+ ensureDeviceName();
  renderApp();
 }
 function logout(){ME=null;$('#app').style.display='none';$('#login').style.display='flex';$('#lgPass').value='';$('#lgErr').textContent='';}
@@ -1011,6 +1077,7 @@ function renderApp(){
  <div class="brand"><span class="ic">🐔</span><span>مزارع الدواجن</span></div>
  <div class="spacer"></div>
  <span id="syncBadge" class="badge b-info" style="font-size:11.5px">${FB_ON?'☁️ متصل':'💾 محلي'}</span>
+ <span id="revInd" class="badge b-mut" style="font-size:11px" title="مؤشر المزامنة — رقم التحديث · وقته · الجهاز">${revText()}</span>
  <span class="badge b-mut" style="font-size:10.5px" title="رقم الإصدار وتاريخ البناء">v${typeof APP_VERSION!=='undefined'?APP_VERSION:'-'}${typeof BUILD_DATE!=='undefined'?' · '+BUILD_DATE:''}</span>
  <div class="user-chip"><span class="uname">${esc(ME.name)}</span>
  <span class="role" style="color:${r.color}">${r.name}</span></div>
@@ -1119,14 +1186,15 @@ function renderDaily(){
  let rows=houses.map(h=>{
  const r=recHouse(h.id);
  return `<tr><td><b style="color:var(--primary-l)">${esc(h.name)}</b></td>
- <td class="num"><input type="number" min="0" data-h="${h.id}" data-k="dead" value="${r.dead??''}" placeholder="0" style="width:100px"></td>
- <td class="num"><input type="number" min="0" step="0.5" data-h="${h.id}" data-k="feed" value="${r.feed??''}" placeholder="0" style="width:120px"></td></tr>`;
+ <td class="num"><input type="number" min="0" data-h="${h.id}" data-k="dead" value="${r.dead??''}" placeholder="0" style="width:90px"></td>
+ <td class="num"><input type="number" min="0" step="0.5" data-h="${h.id}" data-k="feed" value="${r.feed??''}" placeholder="0" style="width:110px"></td>
+ <td class="num"><input type="number" min="0" step="1" data-h="${h.id}" data-k="weight" value="${r.weight??''}" placeholder="0" style="width:100px"></td></tr>`;
  }).join('');
  html+=`<div class="divider"></div>
  <h4 style="margin-bottom:12px;color:var(--primary-l)">📥 إدخال ${shift.name} — ${shift.time}</h4>
  <div class="tbl-wrap" style="margin-bottom:12px"><table id="shiftTbl"><thead><tr>
- <th>العنبر</th><th class="num">💀 النافق</th><th class="num">🌾 العلف (كجم)</th></tr></thead><tbody>
- ${rows||'<tr><td colspan=3 class="empty">لا توجد عنابر لهذه المزرعة</td></tr>'}</tbody></table></div>
+ <th>العنبر</th><th class="num">💀 النافق</th><th class="num">🌾 العلف (كجم)</th><th class="num">⚖️ الوزن (جم)</th></tr></thead><tbody>
+ ${rows||'<tr><td colspan=4 class="empty">لا توجد عنابر لهذه المزرعة</td></tr>'}</tbody></table></div>
  <div class="row-fields g3" style="margin-bottom:12px">
  <div class="field"><label>💧 المياه للمزرعة (لتر) — الفترة</label><input type="number" min="0" id="sfWater" value="${farmRec.water??''}" placeholder="0"></div>
  </div>
@@ -1141,15 +1209,20 @@ function renderDaily(){
  const hd=dayRecs.filter(d=>d.houseId===h.id);
  const dd=hd.reduce((s,d)=>s+(Number(d.dead)||0),0);
  const ff=hd.reduce((s,d)=>s+(Number(d.feed)||0),0);
+ const wRec=hd.filter(d=>Number(d.weight)>0).map(d=>Number(d.weight));
+ const wAvg=wRec.length?(wRec.reduce((s,w)=>s+w,0)/wRec.length):0;
  return `<tr><td><b>${esc(h.name)}</b></td><td class="num">${fmt(dd)}</td><td class="num">${fmt(ff)} كجم</td>
+ <td class="num">${wAvg?fmt(wAvg)+' جم':'-'}</td>
  <td class="num">${fmt(houseDeadCum(cyc.id,h.id))}</td><td class="num">${fmt(birdsRemainingHouse(cyc.id,h.id))}</td></tr>`;
  }).join('');
+ const allW=dayRecs.filter(d=>Number(d.weight)>0).map(d=>Number(d.weight));
+ const farmWAvg=allW.length?(allW.reduce((s,w)=>s+w,0)/allW.length):0;
  html+=`<div class="card"><div class="card-title">📊 إجمالي اليوم لكل عنبر</div>
  <div class="tbl-wrap"><table><thead><tr><th>العنبر</th><th class="num">نافق اليوم</th>
- <th class="num">علف اليوم</th><th class="num">نافق تراكمي</th><th class="num">المتبقي</th></tr></thead><tbody>
+ <th class="num">علف اليوم</th><th class="num">⚖️ الوزن</th><th class="num">نافق تراكمي</th><th class="num">المتبقي</th></tr></thead><tbody>
  ${perHouse}
  <tr class="tbl-total"><td>إجمالي المزرعة</td><td class="num">${fmt(sumDead)}</td>
- <td class="num">${fmt(sumFeed)} كجم</td><td class="num">${fmt(deadCumulative(cyc.id))}</td>
+ <td class="num">${fmt(sumFeed)} كجم</td><td class="num">${farmWAvg?fmt(farmWAvg)+' جم':'-'}</td><td class="num">${fmt(deadCumulative(cyc.id))}</td>
  <td class="num">${fmt(birdsRemaining(cyc.id))}</td></tr>
  </tbody></table></div></div>`;
  html+=`<div class="card"><div class="card-title">🔒 تقفيل اليوم — إجمالي المزرعة + البيانات الختامية</div>
@@ -1249,13 +1322,15 @@ function saveShift(){
  farm.houses.forEach(h=>{
  const dInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="dead"]`);
  const fInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="feed"]`);
- if(!dInp&&!fInp)return;
+ const wInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="weight"]`);
+ if(!dInp&&!fInp&&!wInp)return;
  const dead=dInp&&dInp.value!==''?Number(dInp.value):0;
  const feed=fInp&&fInp.value!==''?Number(fInp.value):0;
+ const weight=wInp&&wInp.value!==''?Number(wInp.value):'';
  let rec=DB.daily.find(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===dailyState.shift&&d.houseId===h.id);
- if(rec){rec.dead=dead;rec.feed=feed;}
+ if(rec){rec.dead=dead;rec.feed=feed;rec.weight=weight;}
  else{DB.daily.push({id:uid('d'),cycleId:cyc.id,farmId:cyc.farm,houseId:h.id,
- date:dailyState.date,shift:dailyState.shift,closed:false,dead,feed,water:0});}
+ date:dailyState.date,shift:dailyState.shift,closed:false,dead,feed,weight,water:0});}
  });
  const water=$('#sfWater').value!==''?Number($('#sfWater').value):0;
  let wRec=DB.daily.find(d=>d.cycleId===cyc.id&&d.date===dailyState.date&&d.shift===dailyState.shift&&d.houseId==='_farm_');
@@ -3224,15 +3299,17 @@ function wTabList(mgr,scopeFarm,isSuper){
  <input type="date" value="${wAttDate}" onchange="wAttDate=this.value;renderWorkers()" style="width:150px">
  <button class="btn btn-sm" onclick="workerModal()">+ عامل جديد</button></div>`;
  if(!workers.length){h+=emptyState('👷','لا يوجد عمال مسجّلون.'+(mgr?'':' أضف أول عامل.'));return h+`</div>`;}
- h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>الوظيفة</th>${mgr?'':'<th>المزرعة</th>'}
+ h+=`<div class="tbl-wrap"><table><thead><tr><th>العامل</th><th>الوظيفة</th><th>📱 التليفون</th>${mgr?'':'<th>المزرعة</th>'}
  <th>الحالة اليوم (${esc(wAttDate)})</th><th></th></tr></thead><tbody>`;
  workers.forEach(w=>{
  const ab=isAbsentOn(w.id,wAttDate);
  const status = ab? `<span class="badge ${ab.type==='leave'?'b-info':ab.type==='mission'?'b-warn':'b-bad'}">${ABS_TYPES[ab.type]||'غياب'}${ab.to&&ab.to!==ab.from?` (حتى ${esc(ab.to)})`:''}</span>`
  : `<span class="badge b-ok">✅ حاضر</span>`;
- h+=`<tr><td><b>${esc(w.name)}</b></td><td>${esc(w.job||'-')}</td>${mgr?'':`<td>${esc(farmById(w.farm)?.name||'-')}</td>`}
+ const phoneCell=w.phone?`<a href="tel:${esc(w.phone)}" style="color:var(--primary-d);text-decoration:none">${esc(w.phone)}</a>`:'-';
+ h+=`<tr><td><b>${esc(w.name)}</b>${w.address?`<div class="hint" style="font-size:11px">📍 ${esc(w.address)}</div>`:''}</td><td>${esc(w.job||'-')}</td><td>${phoneCell}</td>${mgr?'':`<td>${esc(farmById(w.farm)?.name||'-')}</td>`}
  <td>${status}</td>
  <td class="num">
+ <button class="btn-sec btn-xs" onclick="workerProfileModal('${w.id}')">📋 الملف</button>
  ${ab?`<button class="btn-sec btn-xs" onclick="delAbsence('${ab.id}')">إلغاء الغياب</button>`
  :`<button class="btn-amber btn-xs" onclick="absenceModal('${w.id}')">تسجيل غياب/إجازة</button>`}
  ${isSuper?`<button class="btn-sec btn-xs" onclick="workerModal('${w.id}')">تعديل</button>
@@ -3265,7 +3342,13 @@ function workerModal(id){
  <select id="wkJob">${jobOpts}</select></div>
  </div>
  ${farmField}
- <div class="field"><label>تاريخ بداية العمل</label><input type="date" id="wkStart" value="${w.startDate||todayISO()}"></div>`,
+ <div class="field"><label>الدورة الحالية <span class="hint">(اختياري)</span></label>
+ <select id="wkCycle"><option value="">— بدون —</option>${DB.cycles.filter(c=>c.farm===(w.farm||(DB.farms[0]?.id))).map(c=>`<option value="${c.id}" ${w.cycleId===c.id?'selected':''}>${esc(c.code)}</option>`).join('')}</select></div>
+ <div class="row-fields g2">
+ <div class="field"><label>📱 رقم التليفون</label><input id="wkPhone" type="tel" value="${esc(w.phone||'')}" placeholder="010xxxxxxxx"></div>
+ <div class="field"><label>تاريخ بداية العمل</label><input type="date" id="wkStart" value="${w.startDate||todayISO()}"></div>
+ </div>
+ <div class="field"><label>📍 العنوان</label><input id="wkAddress" value="${esc(w.address||'')}" placeholder="العنوان بالتفصيل"></div>`,
  `<button class="btn btn-green" onclick="saveWorker('${id||''}')">حفظ</button>
  ${id&&isSuper?`<button class="btn-red" onclick="deactivateWorker('${id}')">إنهاء العمل</button>`:''}
  <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
@@ -3273,8 +3356,12 @@ function workerModal(id){
 function saveWorker(id){
  const name=$('#wkName').value.trim();if(!name){toast('أدخل اسم العامل',1);return;}
  const farm=$('#wkFarm').value, job=$('#wkJob').value, startDate=$('#wkStart').value;
- if(id){const w=workerById(id);Object.assign(w,{name,job,farm,startDate});}
- else{DB.workers.push({id:uid('wk'),name,job,farm,startDate,active:true,history:[{farm,from:startDate}]});}
+ const phone=$('#wkPhone').value.trim(), address=$('#wkAddress').value.trim();
+ const cycleId=($('#wkCycle')&&$('#wkCycle').value)||'';
+ if(id){const w=workerById(id);Object.assign(w,{name,job,farm,startDate,phone,address});
+   if(cycleId&&Array.isArray(w.history)&&w.history.length){const last=w.history[w.history.length-1];if(last&&last.farm===farm&&!last.cycleId)last.cycleId=cycleId;}
+ }
+ else{DB.workers.push({id:uid('wk'),name,job,farm,startDate,phone,address,active:true,history:[{farm,from:startDate,cycleId}]});}
  save();closeModal();toast('تم الحفظ ✓');renderWorkers();
 }
 function deactivateWorker(id){
@@ -3287,18 +3374,27 @@ function moveWorkerModal(id){
  openModal('نقل عامل: '+esc(w.name),
  `<div class="hint" style="margin-bottom:10px">المزرعة الحالية: <b>${esc(farmById(w.farm)?.name||'-')}</b></div>
  <div class="field"><label>المزرعة الجديدة</label>
- <select id="mvFarm">${DB.farms.filter(f=>f.id!==w.farm).map(f=>`<option value="${f.id}">${esc(f.name)}</option>`).join('')}</select></div>
+ <select id="mvFarm" onchange="mvFillCycles()">${DB.farms.filter(f=>f.id!==w.farm).map(f=>`<option value="${f.id}">${esc(f.name)}</option>`).join('')}</select></div>
+ <div class="field"><label>الدورة التي سيعمل بها <span class="hint">(اختياري)</span></label>
+ <select id="mvCycle"></select></div>
  <div class="field"><label>تاريخ النقل</label><input type="date" id="mvDate" value="${todayISO()}"></div>`,
  `<button class="btn btn-green" onclick="doMoveWorker('${id}')">تأكيد النقل</button>
  <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+ setTimeout(mvFillCycles,30);
+}
+function mvFillCycles(){
+ const fid=$('#mvFarm')?.value; const sel=$('#mvCycle'); if(!sel)return;
+ const cycs=DB.cycles.filter(c=>c.farm===fid);
+ sel.innerHTML='<option value="">— بدون تحديد دورة —</option>'+
+   cycs.map(c=>`<option value="${c.id}">${esc(c.code)} (${esc(c.status||'نشطة')})</option>`).join('');
 }
 function doMoveWorker(id){
  const w=workerById(id);if(!w)return;
- const newFarm=$('#mvFarm').value, date=$('#mvDate').value;
+ const newFarm=$('#mvFarm').value, date=$('#mvDate').value, cycleId=$('#mvCycle').value||'';
  if(!newFarm){toast('اختر مزرعة',1);return;}
  if(!Array.isArray(w.history))w.history=[];
  const last=w.history[w.history.length-1]; if(last&&!last.to)last.to=date;
- w.history.push({farm:newFarm,from:date});
+ w.history.push({farm:newFarm,from:date,cycleId});
  w.farm=newFarm;
  save();closeModal();toast('تم نقل العامل ✓');renderWorkers();
 }
@@ -3328,6 +3424,102 @@ function delAbsence(id){
  if(isManager()&&a&&!within24h(a)){ if(!confirm('هذا السجل أقدم من 24 ساعة. متأكد من الإلغاء؟'))return; }
  else if(!confirm('إلغاء هذا الغياب/الإجازة؟'))return;
  DB.wAbsence=DB.wAbsence.filter(x=>x.id!==id);save();toast('تم الإلغاء');renderWorkers();
+}
+function daysBetween(from,to){
+ if(!from)return 0;
+ const a=new Date(from), b=new Date(to||todayISO());
+ return Math.max(0,Math.round((b-a)/86400000)+1);
+}
+function absenceDaysInRange(workerId,from,to){
+ const recs=DB.wAbsence.filter(a=>a.workerId===workerId);
+ let absence=0,leave=0,mission=0;
+ const rangeFrom=new Date(from), rangeTo=new Date(to||todayISO());
+ recs.forEach(a=>{
+  const af=new Date(a.from), at=new Date(a.to||a.from);
+  const s=af>rangeFrom?af:rangeFrom, e=at<rangeTo?at:rangeTo;
+  if(s<=e){const d=Math.round((e-s)/86400000)+1;
+   if(a.type==='leave')leave+=d;else if(a.type==='mission')mission+=d;else absence+=d;}
+ });
+ return {absence,leave,mission,total:absence+leave+mission};
+}
+function workerProfileModal(id){
+ const w=workerById(id);if(!w)return;
+ const hist=Array.isArray(w.history)&&w.history.length?w.history:[{farm:w.farm,from:w.startDate,cycleId:w.cycleId}];
+ let stationsHTML='', totalDays=0, totalAbs=0, totalLeave=0, totalMission=0;
+ const farmSet=new Set(), cycSet=new Set();
+ hist.forEach((st,i)=>{
+  const to=st.to||(i===hist.length-1?'':hist[i].to);
+  const endDate=st.to||todayISO();
+  const days=daysBetween(st.from,st.to);
+  totalDays+=days;
+  farmSet.add(st.farm);
+  const farm=farmById(st.farm);
+  const cyc=st.cycleId?cycleById(st.cycleId):null;
+  if(cyc)cycSet.add(cyc.id);
+  const abs=absenceDaysInRange(w.id,st.from,endDate);
+  totalAbs+=abs.absence; totalLeave+=abs.leave; totalMission+=abs.mission;
+  let perf='—';
+  if(cyc){
+   const F=cycleFinal(cyc);
+   perf=`نافق: <b>${F.deadPct.toFixed(1)}%</b> · FCR: <b>${F.fcr?F.fcr.toFixed(2):'-'}</b>`;
+  }
+  stationsHTML+=`<tr>
+   <td><b>${esc(farm?.name||'-')}</b></td>
+   <td>${cyc?esc(cyc.code):'<span class="hint">بدون دورة</span>'}</td>
+   <td>${esc(st.from||'-')}</td>
+   <td>${st.to?esc(st.to):'<span class="badge b-ok">حالياً</span>'}</td>
+   <td class="num">${days}</td>
+   <td style="font-size:12px">${perf}</td>
+   <td class="num" style="font-size:12px">${abs.total?`غياب ${abs.absence} · إجازة ${abs.leave} · مأمورية ${abs.mission}`:'—'}</td>
+  </tr>`;
+ });
+ const body=`
+  <div class="grid g2" style="margin-bottom:8px">
+   <div class="kpi"><div class="lbl">👷 العامل</div><div class="val" style="font-size:18px">${esc(w.name)}</div><div class="sub">${esc(w.job||'')} ${w.phone?'· 📱 '+esc(w.phone):''}</div></div>
+   <div class="kpi c"><div class="lbl">📅 إجمالي أيام الخدمة</div><div class="val">${fmt(totalDays)}</div><div class="sub">${farmSet.size} مزرعة · ${cycSet.size} دورة</div></div>
+  </div>
+  <div class="grid g3" style="margin-bottom:10px">
+   ${kpi('r','أيام الغياب',fmt(totalAbs),'')}
+   ${kpi('a','أيام الإجازة',fmt(totalLeave),'')}
+   ${kpi('p','أيام المأمورية',fmt(totalMission),'')}
+  </div>
+  <div class="card-title" style="font-size:14px">🗺️ محطات العمل</div>
+  <div class="tbl-wrap" style="max-height:38vh"><table><thead><tr>
+   <th>المزرعة</th><th>الدورة</th><th>من</th><th>إلى</th><th class="num">أيام</th><th>أداء الدورة</th><th>الغياب بالفترة</th>
+  </tr></thead><tbody>${stationsHTML}</tbody></table></div>
+  <div class="field" style="margin-top:12px"><label>⭐ تقييم وملاحظات على العامل</label>
+   <textarea id="wkEval" rows="3" placeholder="مستوى الأداء، الالتزام، ملاحظات...">${esc(w.evaluation||'')}</textarea></div>`;
+ openModal('📋 ملف العامل: '+esc(w.name),body,
+  `<button class="btn btn-green" onclick="saveWorkerEval('${id}')">💾 حفظ التقييم</button>
+   ${printBtn("printWorkerProfile('"+id+"')")}
+   <button class="btn-sec" onclick="closeModal()">إغلاق</button>`);
+}
+function saveWorkerEval(id){
+ const w=workerById(id);if(!w)return;
+ w.evaluation=$('#wkEval').value.trim();
+ save();toast('تم حفظ التقييم ✓');
+}
+function printWorkerProfile(id){
+ const w=workerById(id);if(!w)return;
+ const hist=Array.isArray(w.history)&&w.history.length?w.history:[{farm:w.farm,from:w.startDate,cycleId:w.cycleId}];
+ let totalDays=0,totalAbs=0,totalLeave=0,totalMission=0;const farmSet=new Set(),cycSet=new Set();
+ let rows='';
+ hist.forEach(st=>{
+  const days=daysBetween(st.from,st.to);totalDays+=days;farmSet.add(st.farm);
+  const farm=farmById(st.farm);const cyc=st.cycleId?cycleById(st.cycleId):null;if(cyc)cycSet.add(cyc.id);
+  const abs=absenceDaysInRange(w.id,st.from,st.to||todayISO());
+  totalAbs+=abs.absence;totalLeave+=abs.leave;totalMission+=abs.mission;
+  let perf='—';if(cyc){const F=cycleFinal(cyc);perf=`نافق ${F.deadPct.toFixed(1)}% · FCR ${F.fcr?F.fcr.toFixed(2):'-'}`;}
+  rows+=`<tr><td>${esc(farm?.name||'-')}</td><td>${cyc?esc(cyc.code):'بدون'}</td><td>${esc(st.from||'-')}</td><td>${esc(st.to||'حالياً')}</td><td>${days}</td><td>${perf}</td><td>${abs.total?`غياب ${abs.absence}/إجازة ${abs.leave}/مأمورية ${abs.mission}`:'—'}</td></tr>`;
+ });
+ const body=`<div style="margin-bottom:12px;padding:10px;background:#f8faff;border-radius:8px">
+   <b>الوظيفة:</b> ${esc(w.job||'-')} &nbsp;|&nbsp; <b>التليفون:</b> ${esc(w.phone||'-')} &nbsp;|&nbsp; <b>العنوان:</b> ${esc(w.address||'-')}<br>
+   <b>إجمالي الخدمة:</b> ${fmt(totalDays)} يوم &nbsp;|&nbsp; <b>${farmSet.size}</b> مزرعة &nbsp;|&nbsp; <b>${cycSet.size}</b> دورة<br>
+   <b>الغياب:</b> ${totalAbs} يوم &nbsp;|&nbsp; <b>الإجازات:</b> ${totalLeave} يوم &nbsp;|&nbsp; <b>المأموريات:</b> ${totalMission} يوم</div>
+   <h3>محطات العمل</h3>
+   <table><thead><tr><th>المزرعة</th><th>الدورة</th><th>من</th><th>إلى</th><th>أيام</th><th>أداء الدورة</th><th>الغياب</th></tr></thead><tbody>${rows}</tbody></table>
+   ${w.evaluation?`<h3>التقييم والملاحظات</h3><div style="padding:10px;border:1px solid #ddd;border-radius:6px">${esc(w.evaluation)}</div>`:''}`;
+ printHTML('ملف العامل — '+esc(w.name), body, esc(w.job||''));
 }
 function wTabAbsence(){
  let h=`<div class="card"><div class="card-title">📋 سجل الغياب والإجازات</div>`;
@@ -4217,6 +4409,14 @@ function renderSettings(){
  <input type="number" step="0.1" min="0.5" max="4" id="stFcrTarget" value="${Number(DB.settings.fcrTarget)||2.0}" ${isSuper?'':'disabled'}>
  <div class="hint">الوزن المرجعي الذي يُعدَّل عليه FCR للمقارنة العادلة بين الدورات ذات الأوزان المختلفة — معادلة Ross 2025: FCR معدّل = FCR + (الوزن المستهدف - الوزن الفعلي) ÷ 4.5</div></div>
  </div></div>`;
+ html+=`<div class="card"><div class="card-title">🔄 مؤشر المزامنة واسم الجهاز</div>
+ <div class="field"><label>اسم هذا الجهاز</label>
+ <div style="display:flex;gap:8px"><input id="stDevice" value="${esc(deviceName())}" placeholder="مثال: موبايل، لابتوب المكتب" style="flex:1">
+ <button class="btn btn-sm" onclick="saveDeviceName()">حفظ الاسم</button></div>
+ <div class="hint">يظهر في مؤشر «آخر تعديل» أعلى الشاشة، عشان تعرف أي جهاز عمل آخر تحديث.</div></div>
+ <div class="statrow st-indigo"><span class="lab">حالة آخر تعديل</span><span class="num">${revText()}</span></div>
+ <div class="hint" style="margin-top:8px">طريقة التأكد من المزامنة: سجّل عملية على جهاز ولاحظ رقم التحديث، ثم افتح جهاز آخر — لو ظهر نفس الرقم بنفس الوقت والاسم يبقى التزامن تمّ.</div>
+ </div>`;
  if(isSuper){
  const lblKeys=Object.keys(DB.labels).filter(k=>k!=='company');
  html+=`<div class="card"><div class="card-title">🏷️ تعديل المسميات
