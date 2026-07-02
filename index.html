@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نظام إدارة مزارع الدواجن - الشركة المصرية</title>
 <style>:root{--bg:#f6f7fb; --bg2:#eef0f7; --surface:#ffffff; --card:#ffffff; --card2:#f8f9fd; --border:#e7e9f2; --border2:#d8dbe9; --ring:rgba(99,91,255,.35); --primary:#635bff; --primary-d:#5147e6; --primary-l:#8b85ff; --primary-soft:#eef0ff; --txt:#1a1c2e; --txt2:#5b607a; --txt3:#9095af; --txt-on:#ffffff; --green:#0f9d58; --green-l:#16c172; --red:#e23048;   --red-l:#fb5a6f; --amber:#d68310; --amber-l:#f5a623; --cyan:#0e9bbd;  --cyan-l:#22d3ee; --purple:#8b3ff0;--purple-l:#a855f7; --blue:#2f6bff;  --blue-l:#5b8def; --orange:#e8590c;--orange-l:#fb923c; --pink:#d6457f;  --pink-l:#ec4899; --teal:#0d9488;  --teal-l:#2dd4bf; --slate:#566073; --slate-l:#7c889e; --indigo:#4f46e5;--indigo-l:#818cf8; --ok-bg:rgba(15,157,88,.12); --warn-bg:rgba(214,131,16,.14); --bad-bg:rgba(226,48,72,.12); --info-bg:rgba(99,91,255,.12); --grad:linear-gradient(135deg,#635bff,#8b85ff 55%,#a855f7); --grad2:linear-gradient(135deg,#5147e6,#7c5cff); --grad-green:linear-gradient(135deg,#0f9d58,#16c172); --grad-red:linear-gradient(135deg,#e23048,#fb5a6f); --grad-blue:linear-gradient(135deg,#2f6bff,#5b8def); --grad-surface:linear-gradient(180deg,#ffffff,#fbfbfe); --r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px; --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --sh-xs:0 1px 2px rgba(26,28,46,.06); --sh-sm:0 2px 6px rgba(26,28,46,.07),0 1px 2px rgba(26,28,46,.05); --sh-md:0 8px 24px rgba(26,28,46,.09),0 2px 6px rgba(26,28,46,.05); --sh-lg:0 18px 48px rgba(26,28,46,.14),0 6px 16px rgba(26,28,46,.08); --sh-primary:0 8px 24px rgba(99,91,255,.32); --sh-focus:0 0 0 4px var(--ring); --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px; --fs-md:15px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:34px; --ease:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(.16,1,.3,1)}
+:root[data-theme=dark]{--bg:#0f1117;--bg2:#161923;--surface:#1a1d28;--card:#1a1d28;--card2:#22263340;--border:#2a2e3d;--border2:#353a4d;--txt:#e8eaf2;--txt2:#a0a6bd;--txt3:#6b7189;--primary-soft:#2a2570;--ok-bg:rgba(15,157,88,.18);--warn-bg:rgba(214,131,16,.2);--bad-bg:rgba(226,48,72,.18);--info-bg:rgba(99,91,255,.2);--grad-surface:linear-gradient(180deg,#1a1d28,#161923);--sh-xs:0 1px 2px rgba(0,0,0,.3);--sh-sm:0 2px 6px rgba(0,0,0,.35);--sh-md:0 8px 24px rgba(0,0,0,.4);--sh-lg:0 18px 48px rgba(0,0,0,.5)}
+:root[data-theme=dark] .qa-bar button{background:var(--surface)!important;border-color:var(--border2)!important}
+:root[data-theme=dark] table td{background:transparent}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 html,body{overflow-x:hidden;max-width:100%}
@@ -314,7 +317,7 @@ input[type=checkbox]{width:20px;height:20px}
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
-const APP_VERSION='45';
+const APP_VERSION='48';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
 const DEVKEY='poultry_erp_device_name';
@@ -797,7 +800,17 @@ function birdsRemaining(cycleId){
 function birdsRemainingHouse(cycleId,houseId){
  const cyc=cycleById(cycleId); if(!cyc)return 0;
  let n=Number((cyc.placedByHouse||{})[houseId])||0;
- n-=DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId).reduce((s,d)=>s+(Number(d.dead)||0),0);
+ // اطرح النافق والإعدام لهذا العنبر
+ n-=DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId)
+   .reduce((s,d)=>s+(Number(d.dead)||0)+(Number(d.culls)||0),0);
+ // اطرح المبيعات المرتبطة بهذا العنبر
+ n-=DB.sales.filter(s=>s.cycleId===cycleId&&s.houseId===houseId)
+   .reduce((s,x)=>s+(Number(x.count)||0),0);
+ // التحويلات المرتبطة بالعنبر (إن وُجدت)
+ DB.birdMoves.filter(m=>m.cycleId===cycleId&&m.houseId===houseId).forEach(m=>{
+  if(m.type==='transfer_in')n+=Number(m.qty)||0;
+  else if(m.type==='transfer_out')n-=Number(m.qty)||0;
+ });
  return n;
 }
 function houseDeadCum(cycleId,houseId){return DB.daily.filter(d=>d.cycleId===cycleId&&d.houseId===houseId).reduce((s,d)=>s+(Number(d.dead)||0),0);}
@@ -984,6 +997,31 @@ const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function toast(msg,err){const t=$('#toast');t.textContent=msg;t.className='toast show'+(err?' err':'');setTimeout(()=>t.className='toast',2200);}
+// ===== نظام التراجع (Undo) — يحفظ لقطة قبل الحذف ويعرض زر تراجع =====
+let _undoSnap=null,_undoTimer=null;
+function snapshotForUndo(label,after){
+ try{_undoSnap={data:JSON.stringify(DB),label:label||'العملية',after:after||null,at:Date.now()};}catch(e){_undoSnap=null;}
+}
+function toastUndo(msg){
+ const t=$('#toast');if(!t)return;
+ t.innerHTML=esc(msg)+' <button onclick="doUndo()" style="margin-right:10px;background:#fff;color:#111;border:none;border-radius:6px;padding:3px 12px;font-weight:700;cursor:pointer;font-size:13px">↩️ تراجع</button>';
+ t.className='toast show';
+ clearTimeout(_undoTimer);
+ _undoTimer=setTimeout(()=>{t.className='toast';_undoSnap=null;},8000);
+}
+function doUndo(){
+ if(!_undoSnap){toast('لا يوجد ما يمكن التراجع عنه',1);return;}
+ try{
+  DB=normalizeDB(JSON.parse(_undoSnap.data));
+  invalidateCache();
+  const after=_undoSnap.after;
+  _undoSnap=null;clearTimeout(_undoTimer);
+  save();
+  toast('تم التراجع ✓');
+  if(after&&typeof window[after]==='function')window[after]();
+  else if(typeof go==='function')go(CUR);
+ }catch(e){toast('تعذّر التراجع',1);}
+}
 function printHTML(title, bodyHTML, subtitle){
  const company=esc(L('company')||'');
  const now=new Date().toLocaleString('ar-EG');
@@ -1114,6 +1152,58 @@ function openModal(title,body,footer){
  $('#modalBg').classList.add('show');
 }
 function closeModal(){$('#modalBg').classList.remove('show');}
+// ===== 🔍 البحث الشامل =====
+// ===== 📲 مشاركة واتساب =====
+function shareWhatsApp(text){
+ const url='https://wa.me/?text='+encodeURIComponent(text);
+ window.open(url,'_blank');
+}
+function shareDailySalesWA(){
+ const cyc=cycleById(repState.cycleId);if(!cyc){toast('اختر دورة',1);return;}
+ const F=cycleFinal(cyc);
+ const today=DB.sales.filter(s=>s.cycleId===cyc.id&&s.date===salesDay);
+ const tc=today.reduce((s,x)=>s+(Number(x.count)||0),0);
+ const tw=today.reduce((s,x)=>s+(Number(x.weight)||0),0);
+ const ta=today.reduce((s,x)=>s+(Number(x.amount)||0),0);
+ const cur=DB.settings.currency;
+ let msg=`🐔 *تقرير مبيعات ${salesDay}*\n`;
+ msg+=`المزرعة: ${farmById(cyc.farm)?.name||''}\nالدورة: ${cyc.code}\n`;
+ msg+=`─────────────\n`;
+ msg+=`📦 *مبيعات اليوم:*\n`;
+ msg+=`العدد: ${fmt(tc)} طائر\nالوزن: ${tw} كجم\nالمبلغ: ${fmt(ta)} ${cur}\n`;
+ msg+=`متوسط الوزن: ${tc?(tw/tc).toFixed(2):0} كجم\nالسعر: ${tw?(ta/tw).toFixed(2):0} ${cur}/كجم\n`;
+ msg+=`─────────────\n`;
+ msg+=`📊 *إجمالي الدورة:*\n`;
+ msg+=`العمر: ${ageOnDate(cyc,salesDay)} يوم\nالتسكين: ${fmt(F.placed)}\nالنافق: ${fmt(F.dead)} (${F.deadPct.toFixed(1)}%)\n`;
+ msg+=`المباع: ${fmt(F.sales.count)}\nالمتبقي: ${fmt(F.remain)}\nالعلف الوارد: ${fmt(Math.round(F.feedIn))} كجم\n`;
+ msg+=`إجمالي المبلغ: ${fmt(F.sales.amount)} ${cur}\n`;
+ shareWhatsApp(msg);
+}
+function globalSearchModal(){
+ openModal('🔍 بحث شامل',
+ `<input id="gsInput" placeholder="اكتب اسم دورة، مزرعة، عامل، أو رقم..." oninput="gsRun(this.value)" style="width:100%;font-size:16px;padding:12px" autocomplete="off">
+  <div id="gsResults" style="margin-top:12px;max-height:50vh;overflow-y:auto"></div>`,
+ `<button class="btn-sec" onclick="closeModal()">إغلاق</button>`);
+ setTimeout(()=>{const i=document.getElementById('gsInput');if(i)i.focus();},100);
+}
+function gsRun(q){
+ const box=document.getElementById('gsResults');if(!box)return;
+ q=(q||'').trim();
+ if(q.length<1){box.innerHTML='<div class="hint" style="text-align:center;padding:20px">ابدأ الكتابة للبحث...</div>';return;}
+ const res=[];const ql=q.toLowerCase();
+ DB.farms.forEach(f=>{if((f.name||'').toLowerCase().includes(ql))res.push({ic:'🏠',t:f.name,s:'مزرعة',go:'farms'});});
+ DB.cycles.forEach(c=>{if((c.code||'').toLowerCase().includes(ql)||(c.breed||'').toLowerCase().includes(ql))res.push({ic:'🔄',t:c.code,s:'دورة · '+(farmById(c.farm)?.name||'')+' · '+(c.status||''),go:'farms'});});
+ DB.workers.forEach(w=>{if((w.name||'').toLowerCase().includes(ql)||(w.phone||'').includes(q)||(w.job||'').toLowerCase().includes(ql))res.push({ic:'👷',t:w.name,s:(w.job||'')+' · '+(farmById(w.farm)?.name||''),go:'workers'});});
+ DB.sales.filter(s=>(s.date||'').includes(q)||String(s.amount).includes(q)||String(s.count).includes(q)).slice(0,5).forEach(s=>{
+  res.push({ic:'💰',t:fmt(s.amount)+' '+DB.settings.currency,s:'بيع · '+s.date+' · '+(cycleById(s.cycleId)?.code||''),go:'sales'});
+ });
+ if(!res.length){box.innerHTML='<div class="hint" style="text-align:center;padding:20px">لا توجد نتائج لـ «'+esc(q)+'»</div>';return;}
+ box.innerHTML=res.slice(0,20).map(r=>`
+  <div onclick="closeModal();go('${r.go}')" style="display:flex;align-items:center;gap:12px;padding:11px;border-radius:10px;cursor:pointer;border:1px solid var(--border)" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='transparent'">
+   <span style="font-size:20px">${r.ic}</span>
+   <div style="flex:1"><b style="font-size:14px">${esc(r.t)}</b><div class="hint" style="font-size:11px">${esc(r.s)}</div></div>
+   <span style="color:var(--txt3)">←</span></div>`).join('');
+}
 $('#modalBg').addEventListener('click',e=>{if(e.target.id==='modalBg')closeModal();});
 function renderLogin(){
  const opts=DB.users.map(u=>`<option value="${u.id}">${esc(u.name)} — ${roleDef(u.role).name}</option>`).join('');
@@ -1185,6 +1275,8 @@ function renderApp(){
  <div class="spacer"></div>
  <span id="syncBadge" class="badge b-info" style="font-size:11.5px">${FB_ON?'☁️ متصل':'💾 محلي'}</span>
  <span id="revInd" class="badge b-mut" style="font-size:11px" title="مؤشر المزامنة — رقم التحديث · وقته · الجهاز">${revText()}</span>
+ <button onclick="toggleTheme()" title="الوضع الليلي/النهاري" style="background:none;border:none;cursor:pointer;font-size:18px;padding:2px 6px">${localStorage.getItem('poultry_theme')==='dark'?'☀️':'🌙'}</button>
+ <button onclick="globalSearchModal()" title="بحث شامل" style="background:none;border:none;cursor:pointer;font-size:17px;padding:2px 6px">🔍</button>
  <span class="badge b-mut" style="font-size:10.5px" title="رقم الإصدار وتاريخ البناء">v${typeof APP_VERSION!=='undefined'?APP_VERSION:'-'}${typeof BUILD_DATE!=='undefined'?' · '+BUILD_DATE:''}</span>
  <div class="user-chip"><span class="uname">${esc(ME.name)}</span>
  <span class="role" style="color:${r.color}">${r.name}</span></div>
@@ -1298,7 +1390,11 @@ function renderDaily(){
  <td class="num"><input type="number" min="0" step="1" data-h="${h.id}" data-k="weight" value="${r.weight??''}" placeholder="0" style="width:100px"></td></tr>`;
  }).join('');
  html+=`<div class="divider"></div>
- <h4 style="margin-bottom:12px;color:var(--primary-l)">📥 إدخال ${shift.name} — ${shift.time}</h4>
+ <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+ <h4 style="margin:0;color:var(--primary-l)">📥 إدخال ${shift.name} — ${shift.time}</h4>
+ <div class="spacer" style="flex:1"></div>
+ <button class="btn-sec btn-xs" onclick="copyYesterday()" title="نسخ العلف من أمس (نفس الفترة)">📋 نسخ علف الأمس</button>
+ </div>
  <div class="tbl-wrap" style="margin-bottom:12px"><table id="shiftTbl"><thead><tr>
  <th>العنبر</th><th class="num">💀 النافق</th><th class="num">🌾 العلف (كجم)</th><th class="num">⚖️ الوزن (جم)</th></tr></thead><tbody>
  ${rows||'<tr><td colspan=4 class="empty">لا توجد عنابر لهذه المزرعة</td></tr>'}</tbody></table></div>
@@ -1326,13 +1422,14 @@ function renderDaily(){
  const farmWAvg=allW.length?(allW.reduce((s,w)=>s+w,0)/allW.length):0;
  const dayWRecs=dayRecs.filter(d=>Number(d.weight)>0&&d.houseId);
  const autoWeight=dayWRecs.length?Math.round(dayWRecs.reduce((s,d)=>s+Number(d.weight),0)/dayWRecs.length):null;
+ const sumRemain=houses.reduce((s,h)=>s+birdsRemainingHouse(cyc.id,h.id),0);
  html+=`<div class="card"><div class="card-title">📊 إجمالي اليوم لكل عنبر</div>
  <div class="tbl-wrap"><table><thead><tr><th>العنبر</th><th class="num">نافق اليوم</th>
  <th class="num">علف اليوم</th><th class="num">⚖️ الوزن</th><th class="num">نافق تراكمي</th><th class="num">المتبقي</th></tr></thead><tbody>
  ${perHouse}
  <tr class="tbl-total"><td>إجمالي المزرعة</td><td class="num">${fmt(sumDead)}</td>
  <td class="num">${fmt(sumFeed)} كجم</td><td class="num">${farmWAvg?fmt(farmWAvg)+' جم':'-'}</td><td class="num">${fmt(deadCumulative(cyc.id))}</td>
- <td class="num">${fmt(birdsRemaining(cyc.id))}</td></tr>
+ <td class="num">${fmt(sumRemain)}</td></tr>
  </tbody></table></div></div>`;
  html+=`<div class="card"><div class="card-title">🔒 تقفيل اليوم — إجمالي المزرعة + البيانات الختامية</div>
  <div class="grid g3" style="margin-bottom:14px">
@@ -1425,6 +1522,19 @@ function updateVentGuide(cyc,age,remain){
  }
  if(body)body.innerHTML=ventBodyHTML(c,a,rem,w||(ref?ref.w:0));
 }
+function copyYesterday(){
+ const cyc=cycleById(dailyState.cycleId);if(!cyc){toast('اختر دورة أولاً',1);return;}
+ const y=new Date(dailyState.date);y.setDate(y.getDate()-1);
+ const yISO=y.toISOString().slice(0,10);
+ const farm=farmById(cyc.farm);let n=0;
+ farm.houses.forEach(h=>{
+  const yRec=DB.daily.find(d=>d.cycleId===cyc.id&&d.date===yISO&&d.shift===dailyState.shift&&d.houseId===h.id);
+  const fInp=$(`#shiftTbl input[data-h="${h.id}"][data-k="feed"]`);
+  if(yRec&&fInp&&Number(yRec.feed)>0){fInp.value=yRec.feed;n++;}
+ });
+ if(n)toast(`تم نسخ علف ${n} عنبر من ${yISO} ✓`);
+ else toast('لا توجد بيانات علف للأمس',1);
+}
 function saveShift(){
  const cyc=cycleById(dailyState.cycleId);
  const farm=farmById(cyc.farm);
@@ -1485,6 +1595,45 @@ function renderDash(){
  const totalSold=DB.sales.reduce((s,x)=>s+(Number(x.count)||0),0);
  const totalFeed=DB.daily.reduce((s,d)=>s+(Number(d.feed)||0),0);
  let html=pageHead('📊','لوحة التحكم','نظرة سريعة على كل المزارع والدورات');
+ // 🚀 شاشة ترحيب لأول مرة (لا توجد مزارع بعد)
+ if(!DB.farms.length && (ME.role==='super'||ME.role==='admin')){
+  html+=`<div class="card" style="text-align:center;padding:32px 20px;background:var(--grad);color:#fff;margin-bottom:16px">
+   <div style="font-size:44px;margin-bottom:10px">🐔</div>
+   <h2 style="margin:0 0 8px;font-size:22px">أهلاً بك في نظام إدارة مزارع الدواجن!</h2>
+   <p style="opacity:.9;margin:0 0 20px;font-size:14px">ابدأ في ٣ خطوات بسيطة — كل خطوة تفتح التي بعدها</p>
+   <div style="display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto;text-align:right">
+    <div onclick="go('farms')" style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.15);border-radius:12px;padding:14px;cursor:pointer">
+     <span style="background:#fff;color:#635bff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800">1</span>
+     <div style="flex:1"><b>أضف مزرعتك الأولى</b><div style="font-size:12px;opacity:.85">حدّد الاسم وعدد العنابر</div></div>
+     <span>←</span></div>
+    <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border-radius:12px;padding:14px;opacity:.7">
+     <span style="background:rgba(255,255,255,.3);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800">2</span>
+     <div style="flex:1"><b>ابدأ دورة جديدة</b><div style="font-size:12px;opacity:.85">عدد الكتاكيت والسلالة والتكاليف</div></div></div>
+    <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border-radius:12px;padding:14px;opacity:.7">
+     <span style="background:rgba(255,255,255,.3);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800">3</span>
+     <div style="flex:1"><b>سجّل تقريرك اليومي</b><div style="font-size:12px;opacity:.85">النافق والعلف والوزن لكل عنبر</div></div></div>
+   </div>
+   <button onclick="go('farms')" class="btn btn-lg" style="margin-top:20px;background:#fff;color:#635bff">🏠 ابدأ الآن — أضف مزرعة</button>
+  </div>`;
+  $('#main').innerHTML=html;
+  return;
+ }
+ // ⚡ شريط إجراءات سريعة — وصول مباشر لأكثر المهام تكراراً
+ const qa=[];
+ if(can('daily'))qa.push(['daily','📝','تسجيل يومي','#635bff']);
+ if(can('sales'))qa.push(['sales','💰','تسجيل بيع','#16a34a']);
+ if(can('feed'))qa.push(['feed','🌾','وارد علف','#d97706']);
+ if(can('meds'))qa.push(['meds','💉','دواء/تحصين','#0891b2']);
+ if(can('workers'))qa.push(['workers','✅','حضور العمال','#f97316']);
+ if(can('reports'))qa.push(['reports','📈','التقارير','#9333ea']);
+ if(qa.length){
+  html+=`<div class="qa-bar" style="display:flex;gap:10px;overflow-x:auto;padding:4px 0 12px;margin-bottom:8px">
+  ${qa.map(([pg,ic,lbl,col])=>`<button onclick="go('${pg}')" style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:5px;background:#fff;border:1.5px solid ${col}22;border-radius:14px;padding:12px 16px;cursor:pointer;min-width:78px;transition:.15s" onmouseover="this.style.background='${col}0d'" onmouseout="this.style.background='#fff'">
+   <span style="font-size:24px">${ic}</span>
+   <span style="font-size:12px;font-weight:700;color:${col}">${lbl}</span>
+  </button>`).join('')}
+  </div>`;
+ }
  const sevAlerts=(DB.symptomLogs||[]).filter(l=>{
   const d=(Date.now()-new Date(l.date))/86400000;
   return d<=3 && l.symptoms.some(k=>(symptomByKey(k)||{}).sev==='high') && DB.cycles.find(c=>c.id===l.cycleId&&c.status!=='مغلقة');
@@ -1946,7 +2095,7 @@ function saveFeedMove(){
  other:(type.startsWith('transfer'))?$('#fdOther').value:null,note:$('#fdNote').value});
  save();closeModal();toast('تم تسجيل حركة العلف ✓');renderFeed();
 }
-function delFeedMove(id){const m=DB.feedMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف الحركة؟'))return;tombstone(id);DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();}
+function delFeedMove(id){const m=DB.feedMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}snapshotForUndo('حذف حركة علف','renderFeed');tombstone(id);DB.feedMoves=DB.feedMoves.filter(m=>m.id!==id);save();renderFeed();toastUndo('تم حذف الحركة');}
 let medFilter={type:'',item:'',disease:''};
 function medKind(m){return m.kind||'vaccine';}
 const STOCK_MOVES={open:'موجود أول الدورة',carry:'مرحّل من السابقة',transfer:'محوّل (صادر)',return:'مرتجع للمخزن',closeAdj:'تعديل جرد'};
@@ -2170,7 +2319,7 @@ function saveStock(kind,id){
  else{DB.medStock.push({id:uid('sk'),_ts:Date.now(),...data});}
  save();closeModal();toast('تم الحفظ ✓');renderMeds();
 }
-function delStock(id){if(!confirm('حذف الحركة؟'))return;tombstone(id);DB.medStock=DB.medStock.filter(s=>s.id!==id);save();renderMeds();}
+function delStock(id){snapshotForUndo('حذف مخزون','renderMeds');tombstone(id);DB.medStock=DB.medStock.filter(s=>s.id!==id);save();renderMeds();toastUndo('تم حذف الحركة');}
 function carryForward(){
  const cyc=cycleById(medStockCycle);if(!cyc){toast('اختر دورة',1);return;}
  const others=DB.cycles.filter(c=>c.farm===cyc.farm&&c.id!==cyc.id);
@@ -2331,7 +2480,7 @@ function saveDrug(id,kind){
  else{DB.medMoves.push({id:uid('md'),_ts:Date.now(),...data});}
  save();closeModal();toast('تم الحفظ ✓');renderMeds();
 }
-function delMed(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف السجل؟'))return;tombstone(id);DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();}
+function delMed(id){const m=DB.medMoves.find(x=>x.id===id);if(isManager()&&!within24h(m)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}snapshotForUndo('حذف دواء','renderMeds');tombstone(id);DB.medMoves=DB.medMoves.filter(m=>m.id!==id);save();renderMeds();toastUndo('تم حذف السجل');}
 let salesFilter={q:'',cyc:''};
 function renderSales(){
  const mgr=isManager();
@@ -2481,7 +2630,7 @@ function saveSale(id){
  else{DB.sales.push({id:uid('s'),_ts:Date.now(),...data});}
  save();closeModal();toast(id?'تم تعديل البيع ✓':'تم تسجيل البيع ✓');renderSales();
 }
-function delSale(id){const s=DB.sales.find(x=>x.id===id);if(isManager()&&!within24h(s)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}if(!confirm('حذف البيع؟'))return;tombstone(id);DB.sales=DB.sales.filter(s=>s.id!==id);save();renderSales();}
+function delSale(id){const s=DB.sales.find(x=>x.id===id);if(isManager()&&!within24h(s)){toast('انتهت مهلة الحذف (24 ساعة)',1);return;}snapshotForUndo('حذف بيع','renderSales');tombstone(id);DB.sales=DB.sales.filter(s=>s.id!==id);save();renderSales();toastUndo('تم حذف البيع');}
 function renderTransfer(){
  let html=pageHead('🔁','التحويلات','تحويل العلف والأدوية والطيور من وإلى المزارع + المرتجع');
  html+=`<div class="toolbar">
@@ -2853,6 +3002,7 @@ function repOwnerSales(){
   <label style="color:var(--txt2)">يوم البيع:</label>
   <select onchange="salesDay=this.value;renderReports()">${dayOpts}</select>
   <div class="spacer" style="flex:1"></div>
+  <button class="btn-sec btn-sm no-print" onclick="shareDailySalesWA()" style="background:#25d366;color:#fff;border-color:#25d366">📲 واتساب</button>
   <button class="btn-sec btn-sm no-print" onclick="printOwnerSales()">🖨️ طباعة</button>
   <span class="hint">المزرعة: <b>${esc(farmById(cyc.farm)?.name||'')}</b> · الدورة: <b>${esc(cyc.code)}</b></span>
  </div></div>`;
@@ -5038,7 +5188,7 @@ function saveSymptom(id){
  toast(hasHigh?'⚠️ تم الحفظ — أعراض خطيرة مرصودة!':'تم حفظ الفحص ✓',hasHigh);
  renderSymptoms();
 }
-function delSymptom(id){if(!confirm('حذف هذا الفحص؟'))return;tombstone(id);DB.symptomLogs=DB.symptomLogs.filter(x=>x.id!==id);save();renderSymptoms();}
+function delSymptom(id){snapshotForUndo('حذف فحص','renderSymptoms');tombstone(id);DB.symptomLogs=DB.symptomLogs.filter(x=>x.id!==id);save();renderSymptoms();toastUndo('تم حذف الفحص');}
 function printSymptoms(){
  const cyc=cycleById(symCycle);if(!cyc){toast('اختر دورة',1);return;}
  const logs=DB.symptomLogs.filter(l=>l.cycleId===symCycle).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
@@ -5132,6 +5282,7 @@ function renderSettings(){
  <input type="number" step="0.1" min="0.5" max="4" id="stFcrTarget" value="${Number(DB.settings.fcrTarget)||2.0}" ${isSuper?'':'disabled'}>
  <div class="hint">الوزن المرجعي الذي يُعدَّل عليه FCR للمقارنة العادلة بين الدورات ذات الأوزان المختلفة — معادلة Ross 2025: FCR معدّل = FCR + (الوزن المستهدف - الوزن الفعلي) ÷ 4.5</div></div>
  </div></div>`;
+ html+=`<div class="card"><div class="card-title">📱 تثبيت التطبيق</div><div class="hint" style="margin-bottom:10px">ثبّت النظام كتطبيق على الموبايل أو الكمبيوتر — يفتح بضغطة ويعمل بدون متصفح.</div><button class="btn btn-sm" onclick="installApp()">⬇️ تثبيت التطبيق الآن</button></div>`;
  html+=`<div class="card"><div class="card-title">🔄 مؤشر المزامنة واسم الجهاز</div>
  <div class="field"><label>اسم هذا الجهاز</label>
  <div style="display:flex;gap:8px"><input id="stDevice" value="${esc(deviceName())}" placeholder="مثال: موبايل، لابتوب المكتب" style="flex:1">
@@ -5395,6 +5546,22 @@ function importDB(inp){const f=inp.files[0];if(!f)return;const r=new FileReader(
 function resetDB(){if(!confirm('تصفير كل البيانات؟ لا يمكن التراجع.'))return;DB=defaultDB();save();toast('تم التصفير');renderApp();}
 const SHEETS=[];
 try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
+function toggleTheme(){
+ const cur=localStorage.getItem('poultry_theme')==='dark'?'':'dark';
+ if(cur==='dark'){document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('poultry_theme','dark');}
+ else{document.documentElement.removeAttribute('data-theme');localStorage.setItem('poultry_theme','light');}
+ if(ME&&typeof go==='function')go(CUR);
+}
+function applyTheme(){
+ if(localStorage.getItem('poultry_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');
+}
+applyTheme();
+let _deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_deferredInstall=e;});
+function installApp(){
+ if(_deferredInstall){_deferredInstall.prompt();_deferredInstall=null;}
+ else toast('لتثبيت التطبيق: من قائمة المتصفح اختر «إضافة إلى الشاشة الرئيسية»',0);
+}
 renderLogin();
 </script>
 <script>
