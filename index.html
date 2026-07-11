@@ -342,8 +342,8 @@ const SHIFTS=[
 const ROLES={
  super:{name:'Super Admin',color:'#a855f7',perms:'*'},
  owner:{name:'المالك (Owner)',color:'#eab308',perms:['owner','dash','reports','yearly']},
- admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','transfer','reports','yearly','workers','equipment','capa','checklist','symptoms','guide','users','settings']},
- acct:{name:'محاسب',color:'#22c55e',perms:['dash','sales','feed','reports','transfer']},
+ admin:{name:'مدير عام',color:'#3b82f6',perms:['dash','owner','farms','daily','feed','meds','sales','expenses','transfer','reports','yearly','workers','equipment','capa','checklist','symptoms','guide','users','settings']},
+ acct:{name:'محاسب',color:'#22c55e',perms:['dash','sales','expenses','feed','reports','transfer']},
  farm:{name:'مدير مزرعة',color:'#f59e0b',perms:['daily','feed','meds','sales','reports','workers','equipment','checklist','symptoms']},
  attend:{name:'مراقب الحضور',color:'#f97316',perms:['workers']},
  view:{name:'مشاهد',color:'#06b6d4',perms:['dash','reports','yearly']}
@@ -1290,6 +1290,7 @@ const NAV=[
  {id:'feed',ic:'🌾',name:'إدارة العلف'},
  {id:'meds',ic:'💉',name:'الأدوية والتحصينات'},
  {id:'sales',ic:'💰',name:'مركز المبيعات'},
+ {id:'expenses',ic:'💵',name:'مصاريف الدورات'},
  {id:'transfer',ic:'🔁',name:'التحويلات'},
  ]},
  {g:'التحليل',items:[
@@ -1354,7 +1355,7 @@ function go(pg){
  $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.pg===pg));
  closeSidebar();
  const R={owner:renderOwner,dash:renderDash,daily:renderDaily,farms:renderFarms,feed:renderFeed,
- meds:renderMeds,sales:renderSales,transfer:renderTransfer,reports:renderReports,
+ meds:renderMeds,sales:renderSales,expenses:renderExpenses,transfer:renderTransfer,reports:renderReports,
  ross:renderRoss,yearly:renderYearly,workers:renderWorkers,equipment:renderEquipment,
  capa:renderCapa,checklist:renderChecklist,symptoms:renderSymptoms,guide:renderGuide,
  users:renderUsers,settings:renderSettings};
@@ -1960,6 +1961,114 @@ function saveCycle(id){
 }
 function delCycle(id){if(!confirm('حذف الدورة وكل سجلاتها اليومية؟'))return;
  tombstone(id);DB.daily.filter(d=>d.cycleId===id).forEach(d=>tombstone(d.id));DB.cycles=DB.cycles.filter(c=>c.id!==id);DB.daily=DB.daily.filter(d=>d.cycleId!==id);save();renderFarms();toast('تم الحذف');}
+/* ==================== صفحة مصاريف الدورات (تقرير حي) ==================== */
+function cyclePlaced(c){return Object.values(c.placedByHouse||{}).reduce((s,v)=>s+(Number(v)||0),0);}
+function cycleSoldCount(c){return DB.sales.filter(x=>x.cycleId===c.id).reduce((s,x)=>s+(Number(x.count)||0),0);}
+function cycleMedsTotal(c){return DB.medMoves.filter(m=>m.cycleId===c.id).reduce((s,m)=>s+(Number(m.total)||0),0);}
+function cycleExpenseRows(c){
+ if(!c.expenses)c.expenses=EXPENSE_PRESETS.map(l=>({id:uid('e'),label:l,amount:0}));
+ if(!c.expManual)c.expManual={chick:0,feed:0};
+ const placed=cyclePlaced(c);
+ const feedKg=cycleFeedUsed(c.id);
+ const rows=[];
+ const chickAuto=(Number(c.costs&&c.costs.chick)||0)>0;
+ rows.push({key:'chick',label:'🐣 كتاكيت'+(chickAuto?` <span style="font-size:11px;color:var(--txt3)">(${fmt(placed)} × ${fmt(c.costs.chick,2)} تلقائي)</span>`:' <span style="font-size:11px;color:var(--txt3)">(يدوي — سجّل سعر الكتكوت في تعديل الدورة ليُحسب تلقائياً)</span>'),
+  amount:chickAuto?placed*c.costs.chick:(Number(c.expManual.chick)||0),auto:chickAuto,manualKey:'chick'});
+ const feedAuto=(Number(c.costs&&c.costs.feedKg)||0)>0;
+ rows.push({key:'feed',label:'🌾 علف'+(feedAuto?` <span style="font-size:11px;color:var(--txt3)">(${fmt(feedKg)} كجم × ${fmt(c.costs.feedKg,2)} تلقائي)</span>`:' <span style="font-size:11px;color:var(--txt3)">(يدوي — سجّل سعر الكيلو في تعديل الدورة ليُحسب تلقائياً)</span>'),
+  amount:feedAuto?feedKg*c.costs.feedKg:(Number(c.expManual.feed)||0),auto:feedAuto,manualKey:'feed'});
+ rows.push({key:'meds',label:'💉 أدوية وتحصينات <span style="font-size:11px;color:var(--txt3)">(تلقائي من سجلاتها)</span>',amount:cycleMedsTotal(c),auto:true});
+ c.expenses.forEach((e,i)=>rows.push({key:'m'+i,label:e.label,amount:Number(e.amount)||0,idx:i}));
+ return rows;
+}
+function renderExpenses(){
+ const cycles=DB.cycles.slice().sort((a,b)=>String(b.startDate||'').localeCompare(String(a.startDate||'')));
+ if(!cycles.length){$('#main').innerHTML='<div class="card"><div class="hint">لسه مفيش دورات — اعمل دورة من «المزارع والدورات» الأول.</div></div>';return;}
+ if(!window._expPage||!cycleById(window._expPage))window._expPage=(cycles.find(c=>c.status==='نشطة')||cycles[0]).id;
+ const c=cycleById(window._expPage);
+ const rows=cycleExpenseRows(c);
+ const placed=cyclePlaced(c)||0;
+ const sold=cycleSoldCount(c)||0;
+ const total=rows.reduce((s,r)=>s+r.amount,0)+(Number(c.traderDiscount)||0);
+ const opts=cycles.map(x=>`<option value="${x.id}" ${x.id===window._expPage?'selected':''}>${esc(x.code)} — ${esc((farmById(x.farm)||{}).name||'')}</option>`).join('');
+ const tr=rows.map(r=>{
+  const perChick=placed?r.amount/placed:0;
+  const perBird=sold?r.amount/sold:0;
+  const pct=total?r.amount/total*100:0;
+  const amountCell=r.auto?`<b>${fmt(r.amount,2)}</b>`
+   :(r.manualKey
+     ?`<input type="number" min="0" step="0.01" value="${r.amount||''}" style="width:130px" onchange="expManualSet('${r.manualKey}',this.value)" placeholder="0">`
+     :`<input type="number" min="0" step="0.01" value="${r.amount||''}" style="width:130px" onchange="expRowAmount(${r.idx},this.value)" placeholder="0">`);
+  const labelCell=(r.idx!=null)
+   ?`<input value="${esc(r.label)}" style="width:100%;min-width:130px" onchange="expRowLabel(${r.idx},this.value)" placeholder="بند التكلفة">`
+   :r.label;
+  const del=(r.idx!=null)?`<button class="btn-red btn-xs" onclick="expRowDel(${r.idx})">✕</button>`:'';
+  return `<tr><td>${labelCell}</td><td>${amountCell}</td><td>${fmt(perChick,2)}</td><td>${fmt(perBird,2)}</td><td><b>${fmt(pct,1)}%</b></td><td>${del}</td></tr>`;
+ }).join('');
+ const disc=Number(c.traderDiscount)||0;
+ const discRow=`<tr><td>💸 خصم التجار</td>
+  <td><input type="number" min="0" step="0.01" value="${disc||''}" style="width:130px" onchange="expDiscountSet(this.value)" placeholder="0"></td>
+  <td>${fmt(placed?disc/placed:0,2)}</td><td>${fmt(sold?disc/sold:0,2)}</td><td><b>${fmt(total?disc/total*100:0,1)}%</b></td><td></td></tr>`;
+ $('#main').innerHTML=`
+ <div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+   <h3 style="margin:0">💵 مصاريف الدورة — تقرير حي</h3>
+   <select onchange="window._expPage=this.value;renderExpenses()" style="min-width:230px">${opts}</select>
+  </div>
+  <div class="hint" style="margin:10px 0 12px">كل بند بيظهر جنبه فورًا: <b>تكلفة الكتكوت</b> (÷ التسكين ${fmt(placed)}) و<b>تكلفة الطائر المباع</b> (÷ المباع ${fmt(sold)}) و<b>نسبته %</b> من الإجمالي. الكتاكيت والعلف تلقائي لو أسعارهم مسجلة في «تعديل الدورة»، وإلا اكتبهم يدوي هنا.</div>
+  <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">
+   <thead><tr><th>البند</th><th>المبلغ (${DB.settings.currency})</th><th>تكلفة/كتكوت</th><th>تكلفة/طائر مباع</th><th>%</th><th style="width:40px"></th></tr></thead>
+   <tbody>${tr}${discRow}</tbody>
+   <tfoot><tr style="font-weight:800"><td style="padding:13px 15px">الإجمالي العام</td>
+    <td style="padding:13px 15px">${fmt(total,2)}</td>
+    <td style="padding:13px 15px">${fmt(placed?total/placed:0,2)}</td>
+    <td style="padding:13px 15px">${fmt(sold?total/sold:0,2)}</td>
+    <td style="padding:13px 15px">100%</td><td></td></tr></tfoot>
+  </table></div>
+  <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;align-items:center">
+   <button class="btn-sec btn-xs" onclick="expRowAdd()">+ إضافة بند</button>
+   <button class="btn-sec btn-xs" onclick="expPasteOpen()">🤖 لصق مصاريف</button>
+  </div>
+ </div>`;
+}
+function expManualSet(k,v){const c=cycleById(window._expPage);if(!c.expManual)c.expManual={};c.expManual[k]=Number(v)||0;save();renderExpenses();}
+function expDiscountSet(v){const c=cycleById(window._expPage);c.traderDiscount=Number(v)||0;save();renderExpenses();}
+function expRowAmount(i,v){const c=cycleById(window._expPage);c.expenses[i].amount=Number(v)||0;save();renderExpenses();}
+function expRowLabel(i,v){const c=cycleById(window._expPage);c.expenses[i].label=v;save();}
+function expRowAdd(){const c=cycleById(window._expPage);if(!c.expenses)c.expenses=[];c.expenses.push({id:uid('e'),label:'',amount:0});save();renderExpenses();}
+function expRowDel(i){const c=cycleById(window._expPage);c.expenses.splice(i,1);save();renderExpenses();}
+function expArDigits(t){const m={'٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9','٫':'.',',':''};return String(t||'').replace(/[٠-٩٫,]/g,c=>m[c]!==undefined?m[c]:c);}
+function expPasteOpen(){
+ openModal('🤖 لصق مصاريف الدورة',
+  `<div class="hint" style="margin-bottom:10px">صوّر ورقة الحسابات وابعتها لكلود، والصق الناتج هنا — كل سطر: <b>بند = مبلغ</b> (أو بند ومسافة ومبلغ). الأرقام العربي والفواصل مفهومة. البنود المحسوبة تلقائيًا (كتاكيت/علف بسعر مسجل، والأدوية) بيتم تجاهلها حفاظًا على الحساب الآلي.</div>
+   <textarea id="expPasteTa" rows="9" style="width:100%;direction:rtl" placeholder="ديزل = 205144&#10;كهرباء 22146&#10;نثريات ١٥١٣٨٥&#10;رواتب = 150000"></textarea>`,
+  `<button class="btn btn-green" onclick="expPasteApply()">اقرا واعتمد</button>
+   <button class="btn-sec" onclick="closeModal()">إلغاء</button>`);
+}
+function expPasteApply(){
+ const c=cycleById(window._expPage);if(!c)return;
+ if(!c.expenses)c.expenses=[];
+ const lines=($('#expPasteTa').value||'').split(/\r?\n/);
+ const chickAuto=(Number(c.costs&&c.costs.chick)||0)>0, feedAuto=(Number(c.costs&&c.costs.feedKg)||0)>0;
+ let n=0,skipped=0;
+ lines.forEach(line=>{
+  line=expArDigits(line).trim().replace(/^\s*(?:[-•*]|\d+[.)])\s*/,'');
+  if(!line)return;
+  let m=line.match(/^(.+?)\s*[=:|]\s*([\d.]+)\s*$/);
+  if(!m)m=line.match(/^(.+?)\s+([\d.]+)\s*$/);
+  if(!m)return;
+  const label=m[1].trim(), amount=parseFloat(m[2]);
+  if(!label||isNaN(amount)||amount<0)return;
+  if(/كتاكيت|كتكوت/.test(label)){ if(chickAuto){skipped++;return;} if(!c.expManual)c.expManual={}; c.expManual.chick=amount; n++; return; }
+  if(/^(علف|العلف)/.test(label)){ if(feedAuto){skipped++;return;} if(!c.expManual)c.expManual={}; c.expManual.feed=amount; n++; return; }
+  if(/(أدوية|ادويه|الادوية|تحصين)/.test(label)&&cycleMedsTotal(c)>0){skipped++;return;}
+  const ex=c.expenses.find(e=>(e.label||'').trim()===label);
+  if(ex)ex.amount=amount; else c.expenses.push({id:uid('e'),label:label,amount:amount});
+  n++;
+ });
+ save();closeModal();renderExpenses();
+ toast('اتسجل '+n+' بند'+(skipped?(' — واتجاهلنا '+skipped+' محسوب تلقائي'):'')+' ✓');
+}
 const EXPENSE_PRESETS=['أدوية ومطهرات','ديزل','نثريات','كهرباء','مياه','نشارة','رواتب','مكافآت','إيجار'];
 function expensesModal(id){
  const c=cycleById(id);if(!c)return;
