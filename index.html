@@ -324,7 +324,16 @@ input[type=checkbox]{width:20px;height:20px}
  .modal-f{padding:12px 14px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--border);display:flex;gap:10px}
  .modal-f .btn,.modal-f .btn-green,.modal-f .btn-sec{flex:1;min-height:50px;font-size:16px;font-weight:800}
  .sidebar{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
-}</style>
+}
+/* ===== ⚡ وضع الأداء للأندرويد (perf-lite) — بلور وأنيميشن أقل = سلاسة أعلى ===== */
+.perf-lite .topbar{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+.perf-lite .sidebar{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+.perf-lite .sb-overlay{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.perf-lite .modal-bg{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(26,28,46,.55)}
+.perf-lite .owner-hero .date{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,255,255,.3)}
+.perf-lite .page,.perf-lite .modal,.perf-lite .modal-bg,.perf-lite .login-card,.perf-lite .owner-hero,.perf-lite .anim-kpi,.perf-lite .grow,.perf-lite .pulse{animation:none!important}
+/* 🔒 قفل سكرول الخلفية والقايمة/المودال مفتوحين (كل الأجهزة) */
+html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-behavior:none}</style>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -351,8 +360,11 @@ input[type=checkbox]{width:20px;height:20px}
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
-const APP_VERSION='69';
-const BUILD_DATE='2026-06-21';
+const APP_VERSION='70';
+const BUILD_DATE='2026-07-14';
+// ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
+const PERF_LITE=/Android/i.test(navigator.userAgent||'');
+if(PERF_LITE)document.documentElement.classList.add('perf-lite');
 const DBKEY='poultry_erp_db_v1';
 const DEVKEY='poultry_erp_device_name';
 function deviceName(){return localStorage.getItem(DEVKEY)||'';}
@@ -1263,8 +1275,15 @@ function openModal(title,body,footer){
  $('#modal').innerHTML=`<div class="modal-h"><h3>${esc(title)}</h3><button class="x" onclick="closeModal()">✕</button></div>
  <div class="modal-b">${body}</div>${footer?`<div class="modal-f">${footer}</div>`:''}`;
  $('#modalBg').classList.add('show');
+ updScrollLock();
 }
-function closeModal(){$('#modalBg').classList.remove('show');}
+function closeModal(){$('#modalBg').classList.remove('show');updScrollLock();}
+// 🔒 يقفل سكرول الخلفية لو فيه مودال مفتوح أو القايمة الجانبية مفتوحة (موبايل)
+function updScrollLock(){
+ const m=document.getElementById('modalBg'),sb=document.getElementById('sb');
+ const lock=(m&&m.classList.contains('show'))||(sb&&sb.classList.contains('open')&&window.innerWidth<=880);
+ document.documentElement.classList.toggle('scroll-lock',!!lock);
+}
 // ===== 🔍 البحث الشامل =====
 // ===== 📲 مشاركة واتساب =====
 function shareWhatsApp(text){
@@ -1408,11 +1427,13 @@ function toggleSidebar(){
  const sb=$('#sb'),ov=$('#sbOverlay');
  const open=sb.classList.toggle('open');
  if(ov)ov.classList.toggle('show',open);
+ updScrollLock();
 }
 function closeSidebar(){
  const sb=$('#sb'),ov=$('#sbOverlay');
  if(sb)sb.classList.remove('open');
  if(ov)ov.classList.remove('show');
+ updScrollLock();
 }
 // 📱 الشريط السفلي أُلغي بطلب المستخدم — الدالة فارغة للحفاظ على التوافق
 function updateBottomNav(){}
@@ -4513,6 +4534,10 @@ function renderOwner(){
  try{drawOwnerBar();}catch(e){console.warn("ownerBar",e);} try{drawOwnerLine();}catch(e){console.warn("ownerLine",e);}
 }
 function runCountUps(){
+ if(typeof PERF_LITE!=='undefined'&&PERF_LITE){ // ⚡ أندرويد: القيمة فوراً بدون أنيميشن
+  $$('.cup').forEach(el=>{const to=Number(el.dataset.to)||0;el.textContent=to?fmt(to,0):'';});
+  return;
+ }
  $$('.cup').forEach(el=>{
  const to=Number(el.dataset.to)||0;if(!to){el.textContent='';return;}
  const dur=900,t0=performance.now();const neg=to<0;
@@ -4531,7 +4556,8 @@ function drawOwnerBar(){
  const gw=(W-pad.l-pad.r)/data.length;
  const Y=v=>H-pad.b-(v/maxV)*(H-pad.t-pad.b);
  ctx.strokeStyle='#e7e9f2';ctx.beginPath();ctx.moveTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
- let prog=0;function frame(){prog=Math.min(prog+0.06,1);ctx.clearRect(0,0,W,H);
+ let prog=(typeof PERF_LITE!=='undefined'&&PERF_LITE)?0.94:0; // ⚡ أندرويد: فريم واحد نهائي
+ function frame(){prog=Math.min(prog+0.06,1);ctx.clearRect(0,0,W,H);
  ctx.strokeStyle='#e7e9f2';ctx.beginPath();ctx.moveTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
  data.forEach((d,i)=>{const cx=pad.l+gw*i+gw/2;const bw=Math.min(gw*0.28,34);
  const hs=(H-pad.t-(H-pad.b))*0;
@@ -6118,6 +6144,7 @@ function runDeviceDiag(){
  // دعم dvh (مشكلة الأندرويد القديم)
  let dvhOK=false;try{dvhOK=CSS&&CSS.supports&&CSS.supports('height','1dvh');}catch(e){}
  rows.push(['دعم dvh (مودالات)',dvhOK?'✅ مدعوم':'⚠️ غير مدعوم — تم تفعيل البديل vh']);
+ rows.push(['وضع الأداء ⚡',(typeof PERF_LITE!=='undefined'&&PERF_LITE)?'✅ مفعّل (أندرويد — بدون بلور/أنيميشن)':'— عادي (iPhone/كمبيوتر)']);
  // Service Worker
  if('serviceWorker' in navigator){
   navigator.serviceWorker.getRegistrations().then(regs=>{
