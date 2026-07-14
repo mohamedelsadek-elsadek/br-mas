@@ -291,6 +291,39 @@ th,td{padding:8px 7px}
 }
 @media(hover:none) and (pointer:coarse){.nav-item,.btn,.btn-sec,.btn-sm,button{min-height:40px}
 input[type=checkbox]{width:20px;height:20px}
+}
+/* ===== 📱 تجربة موبايل احترافية ===== */
+.modal{display:flex;flex-direction:column;max-height:92vh}
+.modal-b{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.modal-f{position:sticky;bottom:0;background:var(--surface);z-index:5}
+#bottomNav{display:none;position:fixed;bottom:0;right:0;left:0;background:var(--surface);border-top:1px solid var(--border);z-index:900;padding:5px 4px calc(5px + env(safe-area-inset-bottom));justify-content:space-around;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+#bottomNav button{flex:1;max-width:88px;background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:10.5px;color:var(--txt2);padding:5px 2px;cursor:pointer;border-radius:12px;font-family:inherit}
+#bottomNav button.on{color:var(--primary);font-weight:800;background:var(--primary-soft)}
+#bottomNav button .ic{font-size:21px;line-height:1.15}
+@media(max-width:880px){
+ html{-webkit-text-size-adjust:100%}
+ body{overscroll-behavior-y:contain}
+ input,select,textarea{font-size:16px!important;min-height:44px;border-radius:11px}
+ input[type=date]{min-width:0}
+ button,.btn,.btn-sec{min-height:42px}
+ .btn-xs{min-height:34px!important;font-size:12px}
+ #main{padding:12px 10px calc(86px + env(safe-area-inset-bottom))!important}
+ .topbar{position:sticky;top:0;z-index:80;padding-top:calc(8px + env(safe-area-inset-top))}
+ .card{padding:14px 12px;border-radius:15px}
+ .grid.g4,.grid.g3{grid-template-columns:1fr 1fr;gap:10px}
+ .kpi .val{font-size:19px}
+ .tbl-wrap{-webkit-overflow-scrolling:touch;border-radius:12px}
+ table th,table td{padding:10px 8px;font-size:12.5px;white-space:nowrap}
+ .qa-bar button{min-width:72px!important;padding:10px 12px!important}
+ .shift-tabs{overflow-x:auto;flex-wrap:nowrap!important;-webkit-overflow-scrolling:touch}
+ .shift-tab{flex:0 0 auto!important}
+ .modal-bg{align-items:flex-end;padding:0}
+ .modal{width:100%!important;max-width:100%!important;height:96dvh;max-height:96dvh;border-radius:20px 20px 0 0;margin:0}
+ .modal-h{padding:14px 16px;position:sticky;top:0;background:var(--surface);z-index:5}
+ .modal-f{padding:12px 14px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--border);display:flex;gap:10px}
+ .modal-f .btn,.modal-f .btn-green,.modal-f .btn-sec{flex:1;min-height:50px;font-size:16px;font-weight:800}
+ #bottomNav{display:flex}
+ .sidebar{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
 }</style>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -314,10 +347,11 @@ input[type=checkbox]{width:20px;height:20px}
 <div id="login"></div>
 <div id="app"></div>
 <div class="modal-bg" id="modalBg"><div class="modal" id="modal"></div></div>
+<nav id="bottomNav"></nav>
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 42, "g": 11, "fd": 13, "fc": 13, "fcr": 0.31, "ph": "ما قبل البادئ"}, {"d": 2, "w": 56, "g": 14, "fd": 16, "fc": 29, "fcr": 0.518, "ph": "ما قبل البادئ"}, {"d": 3, "w": 72, "g": 16, "fd": 19, "fc": 48, "fcr": 0.667, "ph": "ما قبل البادئ"}, {"d": 4, "w": 89, "g": 17, "fd": 22, "fc": 70, "fcr": 0.787, "ph": "ما قبل البادئ"}, {"d": 5, "w": 108, "g": 19, "fd": 26, "fc": 96, "fcr": 0.889, "ph": "ما قبل البادئ"}, {"d": 6, "w": 129, "g": 21, "fd": 29, "fc": 125, "fcr": 0.969, "ph": "ما قبل البادئ"}, {"d": 7, "w": 152, "g": 23, "fd": 33, "fc": 158, "fcr": 1.039, "ph": "ما قبل البادئ"}, {"d": 8, "w": 178, "g": 26, "fd": 37, "fc": 195, "fcr": 1.096, "ph": "ما قبل البادئ"}, {"d": 9, "w": 206, "g": 28, "fd": 41, "fc": 236, "fcr": 1.146, "ph": "ما قبل البادئ"}, {"d": 10, "w": 237, "g": 31, "fd": 46, "fc": 282, "fcr": 1.19, "ph": "ما قبل البادئ"}, {"d": 11, "w": 271, "g": 34, "fd": 51, "fc": 333, "fcr": 1.229, "ph": "البادئ"}, {"d": 12, "w": 308, "g": 37, "fd": 56, "fc": 389, "fcr": 1.263, "ph": "البادئ"}, {"d": 13, "w": 348, "g": 40, "fd": 62, "fc": 451, "fcr": 1.296, "ph": "البادئ"}, {"d": 14, "w": 391, "g": 43, "fd": 68, "fc": 519, "fcr": 1.327, "ph": "البادئ"}, {"d": 15, "w": 437, "g": 46, "fd": 74, "fc": 593, "fcr": 1.357, "ph": "البادئ"}, {"d": 16, "w": 486, "g": 49, "fd": 80, "fc": 673, "fcr": 1.385, "ph": "البادئ"}, {"d": 17, "w": 539, "g": 53, "fd": 86, "fc": 759, "fcr": 1.408, "ph": "البادئ"}, {"d": 18, "w": 595, "g": 56, "fd": 92, "fc": 851, "fcr": 1.43, "ph": "البادئ"}, {"d": 19, "w": 654, "g": 59, "fd": 99, "fc": 950, "fcr": 1.452, "ph": "البادئ"}, {"d": 20, "w": 716, "g": 62, "fd": 105, "fc": 1055, "fcr": 1.473, "ph": "البادئ"}, {"d": 21, "w": 781, "g": 65, "fd": 111, "fc": 1166, "fcr": 1.493, "ph": "البادئ"}, {"d": 22, "w": 849, "g": 68, "fd": 117, "fc": 1283, "fcr": 1.511, "ph": "البادئ"}, {"d": 23, "w": 920, "g": 71, "fd": 122, "fc": 1405, "fcr": 1.527, "ph": "النامي"}, {"d": 24, "w": 993, "g": 73, "fd": 128, "fc": 1533, "fcr": 1.544, "ph": "النامي"}, {"d": 25, "w": 1069, "g": 76, "fd": 133, "fc": 1666, "fcr": 1.558, "ph": "النامي"}, {"d": 26, "w": 1147, "g": 78, "fd": 138, "fc": 1804, "fcr": 1.572, "ph": "النامي"}, {"d": 27, "w": 1227, "g": 80, "fd": 143, "fc": 1947, "fcr": 1.587, "ph": "النامي"}, {"d": 28, "w": 1309, "g": 82, "fd": 148, "fc": 2095, "fcr": 1.6, "ph": "النامي"}, {"d": 29, "w": 1393, "g": 84, "fd": 153, "fc": 2248, "fcr": 1.614, "ph": "النامي"}, {"d": 30, "w": 1479, "g": 86, "fd": 157, "fc": 2405, "fcr": 1.626, "ph": "النامي"}, {"d": 31, "w": 1566, "g": 87, "fd": 162, "fc": 2567, "fcr": 1.639, "ph": "النامي"}, {"d": 32, "w": 1654, "g": 88, "fd": 166, "fc": 2733, "fcr": 1.652, "ph": "النامي"}, {"d": 33, "w": 1744, "g": 90, "fd": 170, "fc": 2903, "fcr": 1.664, "ph": "النامي"}, {"d": 34, "w": 1834, "g": 90, "fd": 174, "fc": 3077, "fcr": 1.677, "ph": "النامي"}, {"d": 35, "w": 1925, "g": 91, "fd": 178, "fc": 3255, "fcr": 1.691, "ph": "النامي"}, {"d": 36, "w": 2017, "g": 92, "fd": 181, "fc": 3436, "fcr": 1.703, "ph": "الناهي"}, {"d": 37, "w": 2110, "g": 93, "fd": 185, "fc": 3621, "fcr": 1.716, "ph": "الناهي"}, {"d": 38, "w": 2203, "g": 93, "fd": 188, "fc": 3809, "fcr": 1.729, "ph": "الناهي"}, {"d": 39, "w": 2296, "g": 93, "fd": 192, "fc": 4001, "fcr": 1.742, "ph": "الناهي"}, {"d": 40, "w": 2389, "g": 93, "fd": 195, "fc": 4196, "fcr": 1.756, "ph": "الناهي"}, {"d": 41, "w": 2482, "g": 93, "fd": 198, "fc": 4394, "fcr": 1.77, "ph": "الناهي"}, {"d": 42, "w": 2575, "g": 93, "fd": 201, "fc": 4595, "fcr": 1.785, "ph": "الناهي"}, {"d": 43, "w": 2667, "g": 92, "fd": 203, "fc": 4798, "fcr": 1.799, "ph": "الناهي"}, {"d": 44, "w": 2759, "g": 92, "fd": 206, "fc": 5004, "fcr": 1.814, "ph": "الناهي"}, {"d": 45, "w": 2849, "g": 90, "fd": 208, "fc": 5212, "fcr": 1.829, "ph": "الناهي"}, {"d": 46, "w": 2939, "g": 90, "fd": 211, "fc": 5423, "fcr": 1.845, "ph": "الناهي"}, {"d": 47, "w": 3027, "g": 88, "fd": 213, "fc": 5636, "fcr": 1.862, "ph": "الناهي"}, {"d": 48, "w": 3114, "g": 87, "fd": 214, "fc": 5850, "fcr": 1.878, "ph": "الناهي"}];
-const APP_VERSION='60';
+const APP_VERSION='62';
 const BUILD_DATE='2026-06-21';
 const DBKEY='poultry_erp_db_v1';
 const DEVKEY='poultry_erp_device_name';
@@ -618,7 +652,23 @@ function save(){
   const now=Date.now();
   MERGE_ARRAYS.forEach(k=>{ if(Array.isArray(DB[k]))DB[k].forEach(r=>{ if(r&&r.id&&!r._ts)r._ts=now; }); });
  }
- localStorage.setItem(DBKEY,JSON.stringify(DB));
+ try{
+  localStorage.setItem(DBKEY,JSON.stringify(DB));
+ }catch(e){
+  // امتلأ التخزين (شائع على Safari/الماك) — امسح النسخ الاحتياطية المحلية القديمة وحاول تاني
+  try{
+   const baks=loadBackups();
+   const days=Object.keys(baks).filter(k=>!k.startsWith('_')).sort();
+   while(days.length>3){delete baks[days.shift()];}
+   localStorage.setItem(BAKKEY,JSON.stringify(baks));
+   localStorage.setItem(DBKEY,JSON.stringify(DB));
+   toast('⚠️ التخزين المحلي كان ممتلئاً — تم تنظيف نسخ قديمة والحفظ نجح');
+  }catch(e2){
+   try{localStorage.removeItem(BAKKEY);localStorage.setItem(DBKEY,JSON.stringify(DB));
+    toast('⚠️ تم مسح النسخ المحلية لإفساح مساحة — النسخ السحابية سليمة');}
+   catch(e3){toast('❌ التخزين المحلي ممتلئ! البيانات محفوظة سحابياً فقط — نظّف بيانات الموقع من إعدادات المتصفح',1);}
+  }
+ }
  autoBackup();
  if(FB_ON)fbPush();else if(typeof showSaved==='function')showSaved();
  updateRevIndicator();
@@ -1351,11 +1401,26 @@ function closeSidebar(){
  if(sb)sb.classList.remove('open');
  if(ov)ov.classList.remove('show');
 }
+// 📱 الشريط السفلي للموبايل — أهم 4 صفحات + المزيد
+function updateBottomNav(){
+ const nav=document.getElementById('bottomNav');if(!nav||!ME)return;
+ const items=[];
+ if(can('dash'))items.push(['dash','📊','الرئيسية']);
+ else if(can('owner'))items.push(['owner','👑','الرئيسية']);
+ if(can('daily'))items.push(['daily','📝','اليومي']);
+ if(can('sales'))items.push(['sales','💰','المبيعات']);
+ if(can('reports'))items.push(['reports','📈','التقارير']);
+ if(can('workers')&&items.length<4)items.push(['workers','👷','العمال']);
+ nav.innerHTML=items.slice(0,4).map(([pg,ic,lbl])=>
+  `<button class="${CUR===pg?'on':''}" onclick="go('${pg}')"><span class="ic">${ic}</span>${lbl}</button>`).join('')+
+  `<button onclick="toggleSidebar()"><span class="ic">☰</span>المزيد</button>`;
+}
 function go(pg){
  if(!can(pg)){$('#main').innerHTML=accessDenied();return;}
  CUR=pg;
  $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.pg===pg));
  closeSidebar();
+ updateBottomNav();
  const R={owner:renderOwner,dash:renderDash,daily:renderDaily,farms:renderFarms,feed:renderFeed,
  meds:renderMeds,sales:renderSales,transfer:renderTransfer,reports:renderReports,
  ross:renderRoss,yearly:renderYearly,workers:renderWorkers,equipment:renderEquipment,
@@ -3788,28 +3853,30 @@ function repCycleEnd(){
  const fcrSold=meat?(feed/meat):0;                   // معامل التحويل (على اللحم المباع)
  const opts=pool.map(c=>`<option value="${c.id}" ${c.id===cyc.id?'selected':''}>${esc(c.code)} — ${esc(farmById(c.farm)?.name||'')} ${c.status==='مغلقة'?'🔒':'🟢'}</option>`).join('');
  // ===== التنسيق مطابق للإكسل: تسميات يمين بحدود، قيم رمادية مائلة بخط برتقالي سفلي، تواريخ حمراء =====
+ // dd/mm/yyyy زي الإكسل
+ const dmy=iso=>{if(!iso)return '—';const p=iso.split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:iso;};
+ // FCR إضافي: معدّل Ross
+ const adjFcr=(F.adjFCRValid&&F.adjFCR)?F.adjFCR:0;
+ // ===== التنسيق مطابق للإكسل: التسميات (يمين) بيج، القيم بيضاء رمادية مائلة بخط برتقالي مزدوج =====
  const S={
-  lbl:'background:#f8f6f0;border:1px solid #333;padding:9px 14px;font-weight:800;font-size:14.5px;text-align:right;color:#111;white-space:nowrap',
-  val:'border:1px solid #333;border-bottom:3px double #e8862d;padding:9px 14px;text-align:center;font-weight:700;font-style:italic;font-size:15px;color:#7a7a7a',
+  lbl:'background:#e9e2d0;border:1px solid #333;padding:9px 14px;font-weight:800;font-size:14.5px;text-align:right;color:#111;white-space:nowrap',
+  val:'background:#fff;border:1px solid #333;border-bottom:3px double #e8862d;padding:9px 14px;text-align:center;font-weight:700;font-style:italic;font-size:15.5px;color:#808080',
   red:'color:#c00000;font-weight:800;font-style:italic',
  };
  const row=(label,val,valStyle)=>`<tr><td style="${S.val};${valStyle||''}">${val}</td><td style="${S.lbl}">${label}</td></tr>`;
  let h=`<div class="card no-print"><div class="card-title">🏁 تقرير نهاية الدورة</div>
  <div class="toolbar"><select onchange="cycEndState.cycleId=this.value;renderReports()" style="flex:1">${opts}</select>
  <button class="btn-sec btn-sm" onclick="printElement('cycEndTbl','تقرير نهاية الدورة')">🖨️ طباعة</button></div></div>`;
- h+=`<div id="cycEndTbl"><div class="card" style="max-width:640px;margin:0 auto">
- <table style="width:100%;border-collapse:collapse;direction:rtl;background:#fff">
+ h+=`<div id="cycEndTbl"><div class="card" style="max-width:820px;margin:0 auto">
+ <div style="display:flex;gap:14px;direction:rtl;align-items:flex-start;flex-wrap:wrap">
+ <table style="flex:1;min-width:380px;border-collapse:collapse;direction:rtl;background:#fff">
   <tr>
-   <td style="${S.val};background:#e8e3d8;border-bottom:1px solid #333"><span style="${S.red}">${esc(cyc.startDate||'')}</span></td>
+   <td style="${S.val};background:#e0d8c4;border-bottom:1px solid #333"><span style="${S.red}">${dmy(cyc.startDate)}</span></td>
    <td style="${S.lbl}">تاريخ التسكين :</td>
   </tr>
   <tr>
-   <td style="${S.val};background:#e8e3d8;border-bottom:1px solid #333"><span style="${S.red}">${esc(lastSale||'—')}</span></td>
-   <td style="${S.lbl}">تاريخ البيع</td>
-  </tr>
-  <tr>
-   <td style="${S.val};border-bottom:1px solid #333"><span style="${S.red}">${esc(farm?.name||'')} · ${esc(cyc.code)}</span></td>
-   <td style="${S.lbl}"><span style="${S.red}">المزرعه / الدوره</span></td>
+   <td style="${S.val};background:#e0d8c4;border-bottom:1px solid #333"><span style="${S.red}">${dmy(lastSale)}</span></td>
+   <td style="${S.lbl}">تاريخ  البيع</td>
   </tr>
   ${row('الكتاكيت الوارد',fmt(placed))}
   ${row('العدد المباع',fmt(sold))}
@@ -3823,8 +3890,20 @@ function repCycleEnd(){
   ${row('عمر بدايه البيع',ageStart)}
   ${row('عمر نهايه البيع',ageEnd.toFixed(2))}
   ${row('متوسط العمر',avgAge.toFixed(2))}
-  ${row('معامل التحويل',fcrSold.toFixed(3))}
+  ${row('معامل التحويل (FCR)',fcrSold.toFixed(3))}
+  ${row('FCR المعدّل — Ross',adjFcr?adjFcr.toFixed(3):'—')}
  </table>
+ <table style="flex:0 0 220px;border-collapse:collapse;direction:rtl;background:#fff">
+  <tr><td style="${S.val};border-bottom:1px solid #333">${esc(farm?.name||'')}</td>
+      <td style="${S.lbl}"><span style="${S.red}">المزرعه</span></td></tr>
+  <tr><td style="${S.val};border-bottom:1px solid #333">${esc(cyc.code)}</td>
+      <td style="${S.lbl}"><span style="${S.red}">الدوره</span></td></tr>
+  <tr><td style="${S.val};border-bottom:1px solid #333;font-style:normal;color:#111;font-weight:800">${Math.round(avgAge)}</td>
+      <td style="${S.lbl}">عمر</td></tr>
+  <tr><td style="${S.val};border-bottom:1px solid #333;font-style:normal;color:#111;font-weight:800">${fmt(sold)}</td>
+      <td style="${S.lbl}">عدد</td></tr>
+ </table>
+ </div>
  </div></div>`;
  return h;
 }
@@ -6361,6 +6440,10 @@ function applyTheme(){
  if(localStorage.getItem('poultry_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');
 }
 applyTheme();
+// أي خطأ صامت يظهر كرسالة واضحة بدل ما «يعلق» بدون تفسير
+window.addEventListener('error',function(ev){
+ try{toast('⚠️ خطأ: '+(ev.message||'غير معروف').slice(0,80),1);}catch(_){}
+});
 let _deferredInstall=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_deferredInstall=e;});
 function installApp(){
