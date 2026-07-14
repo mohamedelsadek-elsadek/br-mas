@@ -1,6 +1,6 @@
 /* Service Worker — نظام إدارة مزارع الدواجن
    الصفحة: شبكة أولاً (أحدث نسخة دائماً) · الأصول: كاش أولاً مع تحديث بالخلفية */
-const C='brmas-v71';
+const C='brmas-v72';
 self.addEventListener('install',e=>{self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil((async()=>{
   const keys=await caches.keys();
