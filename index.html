@@ -341,6 +341,7 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkJyLW1hcyDigJQg2YXYstin2LHYuSDYp9mE2K/ZiNin2KzZhiIsICJzaG9ydF9uYW1lIjogIkJyLW1hcyIsICJkZXNjcmlwdGlvbiI6ICLZhti42KfZhSDYpdiv2KfYsdipINmF2LLYp9ix2Lkg2KfZhNiv2YjYp9is2YYiLCAic3RhcnRfdXJsIjogIi4iLCAic2NvcGUiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGQwYjFmIiwgInRoZW1lX2NvbG9yIjogIiM2MzViZmYiLCAiZGlyIjogInJ0bCIsICJsYW5nIjogImFyIiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJMU1USWlJR2hsYVdkb2REMGlOVEV5SWlCMmFXVjNRbTk0UFNJd0lEQWdOVEV5SURVeE1pSStDanhrWldaelBqeHNhVzVsWVhKSGNtRmthV1Z1ZENCcFpEMGlZbWNpSUhneFBTSXdJaUI1TVQwaU1DSWdlREk5SWpFaUlIa3lQU0l4SWo0S1BITjBiM0FnYjJabWMyVjBQU0l3SWlCemRHOXdMV052Ykc5eVBTSWpOak0xWW1abUlpOCtQSE4wYjNBZ2IyWm1jMlYwUFNJd0xqVTFJaUJ6ZEc5d0xXTnZiRzl5UFNJak9HSTROV1ptSWk4K1BITjBiM0FnYjJabWMyVjBQU0l4SWlCemRHOXdMV052Ykc5eVBTSWpZVGcxTldZM0lpOCtDand2YkdsdVpXRnlSM0poWkdsbGJuUStQQzlrWldaelBnbzhjbVZqZENCM2FXUjBhRDBpTlRFeUlpQm9aV2xuYUhROUlqVXhNaUlnY25nOUlqRXhNaUlnWm1sc2JEMGlkWEpzS0NOaVp5a2lMejRLUENFdExTRFlyTml6MllVZzJLZlpoTm1CMkxIWXJ0aXBJQzB0UGdvOFpXeHNhWEJ6WlNCamVEMGlNalV3SWlCamVUMGlNekl3SWlCeWVEMGlNVEl3SWlCeWVUMGlNVEV3SWlCbWFXeHNQU0lqWm1abVptWm1JaTgrQ2p3aExTMGcyS2ZaaE5peDJLUFlzeUF0TFQ0S1BHTnBjbU5zWlNCamVEMGlNekl3SWlCamVUMGlNakUxSWlCeVBTSTNPQ0lnWm1sc2JEMGlJMlptWm1abVppSXZQZ284SVMwdElOaW4yWVRZdWRpeDJZRWdMUzArQ2p4d1lYUm9JR1E5SWswek1EQWdNVFV3SUhFeE1pQXRNelFnTXpBZ0xURXdJSEV4TkNBdE16QWdNekFnTFRRZ2NURTRJQzB5TkNBeU9DQTRJSEUySURJMklDMHlNQ0F6TkNCNklpQm1hV3hzUFNJalptSTFZVFptSWk4K0Nqd2hMUzBnMktmWmhObUYyWWJaZ3RpbjJMRWdMUzArQ2p4d1lYUm9JR1E5SWswek9USWdNakV3SUd3ME5pQXhOQ0JzTFRRMElESXlJSG9pSUdacGJHdzlJaU5tTldFMk1qTWlMejRLUENFdExTRFlwOW1FMllUWXV0aXZJQzB0UGdvOGNHRjBhQ0JrUFNKTk16WXdJREkxTUNCeE1UQWdNekFnTFRFd0lEUXdJSEV0TWpJZ0xUWWdMVEUySUMwek5DQjZJaUJtYVd4c1BTSWpabUkxWVRabUlpOCtDandoTFMwZzJLZlpoTmk1MllyWmhpQXRMVDRLUEdOcGNtTnNaU0JqZUQwaU16TTRJaUJqZVQwaU1qQXdJaUJ5UFNJeE15SWdabWxzYkQwaUl6RmhNV015WlNJdlBnbzhZMmx5WTJ4bElHTjRQU0l6TkRNaUlHTjVQU0l4T1RZaUlISTlJalFpSUdacGJHdzlJaU5tWm1ZaUx6NEtQQ0V0TFNEWXA5bUUyS3paaHRpbjJLMGdMUzArQ2p4d1lYUm9JR1E5SWsweU1UQWdNekF3SUhFM01DQXRNekFnTVRJd0lERXdJSEV0TkRBZ056QWdMVEV5TUNBME1DQjZJaUJtYVd4c1BTSWpaV1ZtTUdabUlpOCtDandoTFMwZzJLZlpoTml3MllyWmhDQXRMVDRLUEhCaGRHZ2daRDBpVFRFek1DQXlOekFnY1MwMU1DQXRNekFnTFRjd0lDMDNNQ0J4TkRRZ05pQTNNQ0F6TUNCNklpQm1hV3hzUFNJalpXVm1NR1ptSWk4K0NqeHdZWFJvSUdROUlrMHhNakFnTXpBd0lIRXROVFlnTFRFd0lDMDROQ0F0TkRRZ2NUUTJJQzAySURnMElERXlJSG9pSUdacGJHdzlJaU5tWm1abVptWWlMejRLUENFdExTRFlwOW1FMktQWXNkaXMyWVFnTFMwK0NqeHdZWFJvSUdROUlrMHlNVEFnTkRJMUlHd3dJRE00SUUweE9UWWdORFl6SUd3eU9DQXdJRTB4T1RZZ05EWXpJR3d0TVRRZ01UUWdUVEl5TkNBME5qTWdiREUwSURFMElpQnpkSEp2YTJVOUlpTm1OV0UyTWpNaUlITjBjbTlyWlMxM2FXUjBhRDBpT1NJZ2MzUnliMnRsTFd4cGJtVmpZWEE5SW5KdmRXNWtJaUJtYVd4c1BTSnViMjVsSWk4K0NqeHdZWFJvSUdROUlrMHlPRFVnTkRJMUlHd3dJRE00SUUweU56RWdORFl6SUd3eU9DQXdJRTB5TnpFZ05EWXpJR3d0TVRRZ01UUWdUVEk1T1NBME5qTWdiREUwSURFMElpQnpkSEp2YTJVOUlpTm1OV0UyTWpNaUlITjBjbTlyWlMxM2FXUjBhRDBpT1NJZ2MzUnliMnRsTFd4cGJtVmpZWEE5SW5KdmRXNWtJaUJtYVd4c1BTSnViMjVsSWk4K0Nqd3ZjM1puUGdvPSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSJ9LCB7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSTFNVElpSUdobGFXZG9kRDBpTlRFeUlpQjJhV1YzUW05NFBTSXdJREFnTlRFeUlEVXhNaUkrQ2p4a1pXWnpQanhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpWW1jaUlIZ3hQU0l3SWlCNU1UMGlNQ0lnZURJOUlqRWlJSGt5UFNJeElqNEtQSE4wYjNBZ2IyWm1jMlYwUFNJd0lpQnpkRzl3TFdOdmJHOXlQU0lqTmpNMVltWm1JaTgrUEhOMGIzQWdiMlptYzJWMFBTSXdMalUxSWlCemRHOXdMV052Ykc5eVBTSWpPR0k0TldabUlpOCtQSE4wYjNBZ2IyWm1jMlYwUFNJeElpQnpkRzl3TFdOdmJHOXlQU0lqWVRnMU5XWTNJaTgrQ2p3dmJHbHVaV0Z5UjNKaFpHbGxiblErUEM5a1pXWnpQZ284Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NuZzlJakV4TWlJZ1ptbHNiRDBpZFhKc0tDTmlaeWtpTHo0S1BDRXRMU0RZck5pejJZVWcyS2ZaaE5tQjJMSFlydGlwSUMwdFBnbzhaV3hzYVhCelpTQmplRDBpTWpVd0lpQmplVDBpTXpJd0lpQnllRDBpTVRJd0lpQnllVDBpTVRFd0lpQm1hV3hzUFNJalptWm1abVptSWk4K0Nqd2hMUzBnMktmWmhOaXgyS1BZc3lBdExUNEtQR05wY21Oc1pTQmplRDBpTXpJd0lpQmplVDBpTWpFMUlpQnlQU0kzT0NJZ1ptbHNiRDBpSTJabVptWm1aaUl2UGdvOElTMHRJTmluMllUWXVkaXgyWUVnTFMwK0NqeHdZWFJvSUdROUlrMHpNREFnTVRVd0lIRXhNaUF0TXpRZ016QWdMVEV3SUhFeE5DQXRNekFnTXpBZ0xUUWdjVEU0SUMweU5DQXlPQ0E0SUhFMklESTJJQzB5TUNBek5DQjZJaUJtYVd4c1BTSWpabUkxWVRabUlpOCtDandoTFMwZzJLZlpoTm1GMlliWmd0aW4yTEVnTFMwK0NqeHdZWFJvSUdROUlrMHpPVElnTWpFd0lHdzBOaUF4TkNCc0xUUTBJREl5SUhvaUlHWnBiR3c5SWlObU5XRTJNak1pTHo0S1BDRXRMU0RZcDltRTJZVFl1dGl2SUMwdFBnbzhjR0YwYUNCa1BTSk5Nell3SURJMU1DQnhNVEFnTXpBZ0xURXdJRFF3SUhFdE1qSWdMVFlnTFRFMklDMHpOQ0I2SWlCbWFXeHNQU0lqWm1JMVlUWm1JaTgrQ2p3aExTMGcyS2ZaaE5pNTJZclpoaUF0TFQ0S1BHTnBjbU5zWlNCamVEMGlNek00SWlCamVUMGlNakF3SWlCeVBTSXhNeUlnWm1sc2JEMGlJekZoTVdNeVpTSXZQZ284WTJseVkyeGxJR040UFNJek5ETWlJR041UFNJeE9UWWlJSEk5SWpRaUlHWnBiR3c5SWlObVptWWlMejRLUENFdExTRFlwOW1FMkt6Wmh0aW4ySzBnTFMwK0NqeHdZWFJvSUdROUlrMHlNVEFnTXpBd0lIRTNNQ0F0TXpBZ01USXdJREV3SUhFdE5EQWdOekFnTFRFeU1DQTBNQ0I2SWlCbWFXeHNQU0lqWldWbU1HWm1JaTgrQ2p3aExTMGcyS2ZaaE5pdzJZclpoQ0F0TFQ0S1BIQmhkR2dnWkQwaVRURXpNQ0F5TnpBZ2NTMDFNQ0F0TXpBZ0xUY3dJQzAzTUNCeE5EUWdOaUEzTUNBek1DQjZJaUJtYVd4c1BTSWpaV1ZtTUdabUlpOCtDanh3WVhSb0lHUTlJazB4TWpBZ016QXdJSEV0TlRZZ0xURXdJQzA0TkNBdE5EUWdjVFEySUMwMklEZzBJREV5SUhvaUlHWnBiR3c5SWlObVptWm1abVlpTHo0S1BDRXRMU0RZcDltRTJLUFlzZGlzMllRZ0xTMCtDanh3WVhSb0lHUTlJazB5TVRBZ05ESTFJR3d3SURNNElFMHhPVFlnTkRZeklHd3lPQ0F3SUUweE9UWWdORFl6SUd3dE1UUWdNVFFnVFRJeU5DQTBOak1nYkRFMElERTBJaUJ6ZEhKdmEyVTlJaU5tTldFMk1qTWlJSE4wY205clpTMTNhV1IwYUQwaU9TSWdjM1J5YjJ0bExXeHBibVZqWVhBOUluSnZkVzVrSWlCbWFXeHNQU0p1YjI1bElpOCtDanh3WVhSb0lHUTlJazB5T0RVZ05ESTFJR3d3SURNNElFMHlOekVnTkRZeklHd3lPQ0F3SUUweU56RWdORFl6SUd3dE1UUWdNVFFnVFRJNU9TQTBOak1nYkRFMElERTBJaUJ6ZEhKdmEyVTlJaU5tTldFMk1qTWlJSE4wY205clpTMTNhV1IwYUQwaU9TSWdjM1J5YjJ0bExXeHBibVZqWVhBOUluSnZkVzVrSWlCbWFXeHNQU0p1YjI1bElpOCtDand2YzNablBnbz0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLCAicHVycG9zZSI6ICJhbnkgbWFza2FibGUifV19">
 <meta name="theme-color" content="#635bff">
 <meta name="mobile-web-app-capable" content="yes">
@@ -359,11 +360,70 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 62, "g": 18, "fd": 12, "fc": 12, "fcr": 0.196, "ph": "البادئ"}, {"d": 2, "w": 81, "g": 19, "fd": 16, "fc": 28, "fcr": 0.352, "ph": "البادئ"}, {"d": 3, "w": 102, "g": 21, "fd": 20, "fc": 48, "fcr": 0.476, "ph": "البادئ"}, {"d": 4, "w": 125, "g": 23, "fd": 24, "fc": 72, "fcr": 0.577, "ph": "البادئ"}, {"d": 5, "w": 151, "g": 26, "fd": 27, "fc": 100, "fcr": 0.658, "ph": "البادئ"}, {"d": 6, "w": 181, "g": 29, "fd": 31, "fc": 131, "fcr": 0.724, "ph": "البادئ"}, {"d": 7, "w": 213, "g": 32, "fd": 35, "fc": 166, "fcr": 0.78, "ph": "البادئ"}, {"d": 8, "w": 249, "g": 36, "fd": 39, "fc": 206, "fcr": 0.826, "ph": "البادئ"}, {"d": 9, "w": 288, "g": 39, "fd": 44, "fc": 249, "fcr": 0.865, "ph": "البادئ"}, {"d": 10, "w": 330, "g": 42, "fd": 48, "fc": 297, "fcr": 0.9, "ph": "البادئ"}, {"d": 11, "w": 376, "g": 46, "fd": 52, "fc": 349, "fcr": 0.93, "ph": "النامي"}, {"d": 12, "w": 425, "g": 49, "fd": 57, "fc": 406, "fcr": 0.957, "ph": "النامي"}, {"d": 13, "w": 477, "g": 52, "fd": 62, "fc": 468, "fcr": 0.982, "ph": "النامي"}, {"d": 14, "w": 533, "g": 56, "fd": 67, "fc": 535, "fcr": 1.005, "ph": "النامي"}, {"d": 15, "w": 592, "g": 59, "fd": 72, "fc": 608, "fcr": 1.026, "ph": "النامي"}, {"d": 16, "w": 655, "g": 62, "fd": 77, "fc": 685, "fcr": 1.047, "ph": "النامي"}, {"d": 17, "w": 720, "g": 66, "fd": 83, "fc": 768, "fcr": 1.066, "ph": "النامي"}, {"d": 18, "w": 789, "g": 69, "fd": 88, "fc": 856, "fcr": 1.086, "ph": "النامي"}, {"d": 19, "w": 860, "g": 72, "fd": 94, "fc": 950, "fcr": 1.105, "ph": "النامي"}, {"d": 20, "w": 935, "g": 74, "fd": 100, "fc": 1050, "fcr": 1.123, "ph": "النامي"}, {"d": 21, "w": 1012, "g": 77, "fd": 105, "fc": 1155, "fcr": 1.142, "ph": "النامي"}, {"d": 22, "w": 1092, "g": 80, "fd": 111, "fc": 1266, "fcr": 1.16, "ph": "النامي"}, {"d": 23, "w": 1174, "g": 82, "fd": 117, "fc": 1383, "fcr": 1.178, "ph": "النامي"}, {"d": 24, "w": 1258, "g": 85, "fd": 122, "fc": 1505, "fcr": 1.196, "ph": "النامي"}, {"d": 25, "w": 1345, "g": 87, "fd": 128, "fc": 1633, "fcr": 1.214, "ph": "الناهي"}, {"d": 26, "w": 1434, "g": 89, "fd": 134, "fc": 1767, "fcr": 1.233, "ph": "الناهي"}, {"d": 27, "w": 1524, "g": 91, "fd": 139, "fc": 1907, "fcr": 1.251, "ph": "الناهي"}, {"d": 28, "w": 1616, "g": 92, "fd": 145, "fc": 2051, "fcr": 1.269, "ph": "الناهي"}, {"d": 29, "w": 1710, "g": 94, "fd": 150, "fc": 2202, "fcr": 1.288, "ph": "الناهي"}, {"d": 30, "w": 1805, "g": 95, "fd": 156, "fc": 2357, "fcr": 1.306, "ph": "الناهي"}, {"d": 31, "w": 1901, "g": 96, "fd": 161, "fc": 2518, "fcr": 1.325, "ph": "الناهي"}, {"d": 32, "w": 1999, "g": 97, "fd": 166, "fc": 2684, "fcr": 1.343, "ph": "الناهي"}, {"d": 33, "w": 2097, "g": 98, "fd": 171, "fc": 2855, "fcr": 1.362, "ph": "الناهي"}, {"d": 34, "w": 2196, "g": 99, "fd": 176, "fc": 3031, "fcr": 1.381, "ph": "الناهي"}, {"d": 35, "w": 2296, "g": 100, "fd": 180, "fc": 3211, "fcr": 1.399, "ph": "الناهي"}, {"d": 36, "w": 2396, "g": 100, "fd": 185, "fc": 3396, "fcr": 1.418, "ph": "الناهي"}, {"d": 37, "w": 2496, "g": 100, "fd": 189, "fc": 3584, "fcr": 1.437, "ph": "الناهي"}, {"d": 38, "w": 2597, "g": 101, "fd": 193, "fc": 3777, "fcr": 1.456, "ph": "الناهي"}, {"d": 39, "w": 2697, "g": 101, "fd": 197, "fc": 3974, "fcr": 1.474, "ph": "الناهي"}, {"d": 40, "w": 2798, "g": 100, "fd": 201, "fc": 4175, "fcr": 1.493, "ph": "الناهي"}, {"d": 41, "w": 2898, "g": 100, "fd": 204, "fc": 4379, "fcr": 1.512, "ph": "الناهي"}, {"d": 42, "w": 2998, "g": 100, "fd": 207, "fc": 4586, "fcr": 1.531, "ph": "الناهي"}, {"d": 43, "w": 3097, "g": 100, "fd": 211, "fc": 4797, "fcr": 1.55, "ph": "الناهي"}, {"d": 44, "w": 3197, "g": 99, "fd": 213, "fc": 5010, "fcr": 1.569, "ph": "الناهي"}, {"d": 45, "w": 3295, "g": 98, "fd": 216, "fc": 5226, "fcr": 1.587, "ph": "الناهي"}, {"d": 46, "w": 3393, "g": 98, "fd": 219, "fc": 5445, "fcr": 1.606, "ph": "الناهي"}, {"d": 47, "w": 3490, "g": 97, "fd": 221, "fc": 5666, "fcr": 1.625, "ph": "الناهي"}, {"d": 48, "w": 3586, "g": 96, "fd": 223, "fc": 5890, "fcr": 1.644, "ph": "الناهي"}, {"d": 49, "w": 3681, "g": 95, "fd": 225, "fc": 6115, "fcr": 1.663, "ph": "الناهي"}, {"d": 50, "w": 3776, "g": 94, "fd": 227, "fc": 6342, "fcr": 1.681, "ph": "الناهي"}, {"d": 51, "w": 3869, "g": 93, "fd": 229, "fc": 6571, "fcr": 1.7, "ph": "الناهي"}, {"d": 52, "w": 3961, "g": 92, "fd": 230, "fc": 6801, "fcr": 1.719, "ph": "الناهي"}, {"d": 53, "w": 4052, "g": 91, "fd": 231, "fc": 7032, "fcr": 1.738, "ph": "الناهي"}, {"d": 54, "w": 4142, "g": 90, "fd": 233, "fc": 7265, "fcr": 1.756, "ph": "الناهي"}, {"d": 55, "w": 4230, "g": 89, "fd": 233, "fc": 7498, "fcr": 1.775, "ph": "الناهي"}, {"d": 56, "w": 4318, "g": 87, "fd": 234, "fc": 7733, "fcr": 1.793, "ph": "الناهي"}];
-const APP_VERSION='85';
+const APP_VERSION='87';
 const BUILD_DATE='2026-07-14';
 // ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
 const PERF_LITE=/Android/i.test(navigator.userAgent||'');
 if(PERF_LITE)document.documentElement.classList.add('perf-lite');
+/* 🔐 v86: تجزئة SHA-256 خالصة بدون مكتبات — لإنهاء تخزين كلمات المرور كنص صريح */
+function sha256Hex(ascii){
+ function rr(v,c){return(v>>>c)|(v<<(32-c));}
+ var mW=Math.pow,mC=mW(2,32),i,j,result='';
+ var words=[],asciiBitLength=ascii.length*8;
+ var hash=sha256Hex.h=sha256Hex.h||[],k=sha256Hex.k=sha256Hex.k||[],primeCounter=k.length;
+ var isComposite={};
+ for(var candidate=2;primeCounter<64;candidate++){
+  if(!isComposite[candidate]){
+   for(i=0;i<313;i+=candidate)isComposite[i]=candidate;
+   hash[primeCounter]=(mW(candidate,.5)*mC)|0;
+   k[primeCounter++]=(mW(candidate,1/3)*mC)|0;
+  }
+ }
+ ascii+='\x80';
+ while(ascii.length%64-56)ascii+='\x00';
+ for(i=0;i<ascii.length;i++){
+  j=ascii.charCodeAt(i);if(j>>8)return'';
+  words[i>>2]|=j<<((3-i)%4)*8;
+ }
+ words[words.length]=(asciiBitLength/mC)|0;
+ words[words.length]=asciiBitLength;
+ for(j=0;j<words.length;){
+  var w=words.slice(j,j+=16),oldHash=hash;
+  hash=hash.slice(0,8);
+  for(i=0;i<64;i++){
+   var w15=w[i-15],w2=w[i-2];
+   var a=hash[0],e=hash[4];
+   var temp1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]
+    +(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+   var temp2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+   hash=[(temp1+temp2)|0].concat(hash);
+   hash[4]=(hash[4]+temp1)|0;
+  }
+  for(i=0;i<8;i++)hash[i]=(hash[i]+oldHash[i])|0;
+ }
+ for(i=0;i<8;i++)for(j=3;j+1;j--){
+  var b=(hash[i]>>(j*8))&255;
+  result+=((b<16)?0:'')+b.toString(16);
+ }
+ return result;
+}
+function hashPass(pass,salt){
+ // ندعم اليونيكود بتحويل UTF-8
+ const utf8=unescape(encodeURIComponent(String(salt)+'|'+String(pass)));
+ return sha256Hex(utf8);
+}
+/* ترحيل تلقائي: أي مستخدم لسه باسورده نص صريح → يتحول لتجزئة ويتشال النص فوراً */
+function migratePasswords(){
+ let n=0;
+ (DB.users||[]).forEach(u=>{
+  if(u&&u.pass!=null&&!u.passH){
+   u.salt=uid('s')+Math.random().toString(36).slice(2,10);
+   u.passH=hashPass(u.pass,u.salt);
+   delete u.pass;u._ts=Date.now();n++;
+  }
+ });
+ if(n){save();console.log('🔐 اتحولت',n,'كلمة مرور لتجزئة آمنة');}
+}
 // ⏱️ v72: مراقب المهام الطويلة — بيغذي سطر «مهام طويلة» في التشخيص 🩺
 const _longTasks={n:0,max:0};
 try{new PerformanceObserver(list=>{list.getEntries().forEach(e=>{_longTasks.n++;if(e.duration>_longTasks.max)_longTasks.max=e.duration;});}).observe({entryTypes:['longtask']});}catch(e){}
@@ -486,10 +546,23 @@ let FB=null, FB_DB=null, FB_ON=false, FB_SYNCING=false, FB_REMOTE=false, _syncRe
  const v=localStorage.getItem('fb_'+k); if(v)FIREBASE_CONFIG[k]=v;
 });
 function fbReady(){return FIREBASE_CONFIG.databaseURL && FIREBASE_CONFIG.apiKey;}
+/* 🔐 v86: حماية السحابة (اختياري) — املا البيانات دي بعد إنشاء مستخدم حماية في Firebase Console
+   وتغيير القواعد لـ auth != null (الخطوات في رسالة التسليم). سيبها فاضية = الوضع الحالي زي ما هو */
+const FB_AUTH_EMAIL='';   // مثال: 'app@br-mas.local'
+const FB_AUTH_PASS='';    // كلمة مرور مستخدم الحماية
 function fbInit(){
  if(!fbReady()){console.log('Firebase غير مُهيّأ — يعمل أوف لاين');return false;}
  try{
  if(!FB){FB=firebase.initializeApp(FIREBASE_CONFIG);FB_DB=firebase.database();}
+ // تسجيل دخول الحماية قبل القراءة/الكتابة (لو مفعّل)
+ if(FB_AUTH_EMAIL&&FB_AUTH_PASS&&firebase.auth){
+  const au=firebase.auth();
+  if(!au.currentUser){
+   au.signInWithEmailAndPassword(FB_AUTH_EMAIL,FB_AUTH_PASS)
+    .then(()=>console.log('🔐 حماية السحابة متصلة'))
+    .catch(e=>{console.warn('فشل دخول حماية السحابة:',e.message);updateSyncBadge('خطأ حماية السحابة',true);});
+  }
+ }
  FB_ON=true;
  FB_DB.ref('erp').on('value',snap=>{
   const data=snap.val();
@@ -1396,7 +1469,11 @@ function renderLogin(){
 function doLogin(){
  const id=$('#lgUser').value, pass=$('#lgPass').value;
  const u=DB.users.find(x=>x.id===id);
- if(!u||u.pass!==pass){$('#lgErr').textContent='كلمة المرور غير صحيحة';return;}
+ // 🔐 v86: المقارنة بالتجزئة — مع دعم مؤقت للنص القديم وتحويله فوراً عند أول دخول
+ let ok=false;
+ if(u&&u.passH){ok=hashPass(pass,u.salt||'')===u.passH;}
+ else if(u&&u.pass!=null){ok=u.pass===pass;if(ok){u.salt=uid('s')+Math.random().toString(36).slice(2,10);u.passH=hashPass(pass,u.salt);delete u.pass;u._ts=Date.now();save();}}
+ if(!ok){$('#lgErr').textContent='كلمة المرور غير صحيحة';return;}
  ME=u; $('#login').style.display='none'; $('#app').style.display='block';
  ensureDeviceName();
  renderApp();
@@ -1543,7 +1620,7 @@ function renderDaily(){
  const stock=feedStock(cyc.id);
  html+=`<div class="grid g4" style="margin-bottom:16px">
  ${kpi('c','📆 عمر القطيع',age>0?age+' يوم':'لم تبدأ','المرحلة: '+(ref?ref.ph:'-'))}
- ${kpi('','🐔 العدد المتبقي',fmt(remain),'تسكين: '+fmt(cyclePlaced(cyc)))}
+ <div onclick="remainBreakdownModal('${cyc.id}')" style="cursor:pointer" title="اضغط لتحليل الرقم">${kpi('','🐔 العدد المتبقي 🔬',fmt(remain),'تسكين: '+fmt(cyclePlaced(cyc))+' · اضغط للتحليل')}</div>
  ${kpi('a','🌾 رصيد العلف',fmt(stock)+' كجم','')}
  ${kpi('p','🎯 الوزن المرجعي',ref?fmt(ref.w)+' جم':'-','Ross 308 — اليوم '+age)}
  </div>`;
@@ -3644,6 +3721,39 @@ function printOwnerSales(){
  setTimeout(()=>{try{w.print();}catch(e){}},350);
 }
 /* 🏠 تقرير العنابر أثناء البيع */
+/* 🔬 v87: تحليل العدد المتبقي — يفكك المعادلة رقم رقم ويكشف أي خصم مخفي بمصدره */
+function remainBreakdownModal(cycleId){
+ const cyc=cycleById(cycleId);if(!cyc)return;
+ const placed=cyclePlaced(cyc);
+ const dl=DB.daily.filter(d=>d.cycleId===cycleId);
+ const houseDead=dl.filter(d=>d.houseId!=='_farm_').reduce((s,d)=>s+(Number(d.dead)||0),0);
+ const farmDead=dl.filter(d=>d.houseId==='_farm_').reduce((s,d)=>s+(Number(d.dead)||0),0);
+ const houseCulls=dl.filter(d=>d.houseId!=='_farm_').reduce((s,d)=>s+(Number(d.culls)||0),0);
+ const farmCullRecs=dl.filter(d=>d.houseId==='_farm_'&&(Number(d.culls)||0)>0).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+ const farmCulls=farmCullRecs.reduce((s,d)=>s+(Number(d.culls)||0),0);
+ const sl=DB.sales.filter(s=>s.cycleId===cycleId);
+ const salesN=sl.reduce((s,x)=>s+(Number(x.count)||0),0);
+ const mv=DB.birdMoves.filter(m=>m.cycleId===cycleId);
+ const mvIn=mv.filter(m=>m.type==='transfer_in').reduce((s,m)=>s+(Number(m.qty)||Number(m.count)||0),0);
+ const mvOut=mv.filter(m=>m.type==='transfer_out').reduce((s,m)=>s+(Number(m.qty)||Number(m.count)||0),0);
+ const remain=birdsRemaining(cycleId);
+ const sample=farmCullRecs.slice(0,6).map(d=>`<div class="hint" style="font-size:11px">· ${esc(d.date||'')} → ${fmt(d.culls)}</div>`).join('');
+ const row=(lab,val,n,extra)=>`<tr><td>${lab}</td><td class="num"><b>${val}</b></td><td class="num" style="font-size:11px">${n}</td><td style="font-size:11px">${extra||''}</td></tr>`;
+ openModal('🔬 تحليل العدد المتبقي — '+esc(cyc.code),`
+ <div class="tbl-wrap"><table><thead><tr><th>البند</th><th class="num">القيمة</th><th class="num">سجلات</th><th>ملاحظات</th></tr></thead><tbody>
+ ${row('🏠 التسكين','+ '+fmt(placed),'—','من بيانات الدورة')}
+ ${row('💀 نافق (العنابر)','− '+fmt(houseDead),dl.filter(d=>d.houseId!=='_farm_'&&(Number(d.dead)||0)>0).length,'')}
+ ${farmDead?row('💀 نافق (تقفيل اليوم)','− '+fmt(farmDead),dl.filter(d=>d.houseId==='_farm_'&&(Number(d.dead)||0)>0).length,''):''}
+ ${houseCulls?row('🔪 إعدام (العنابر)','− '+fmt(houseCulls),dl.filter(d=>d.houseId!=='_farm_'&&(Number(d.culls)||0)>0).length,''):''}
+ ${farmCulls?row('🔪 إعدام (تقفيل اليوم)','− '+fmt(farmCulls),farmCullRecs.length,`<span style="color:#E65100">⚠️ لو دي أرقام سقاوات من الخانة القديمة الغلط → <span style="text-decoration:underline;cursor:pointer;font-weight:700" onclick="closeModal();convertCullsToDrinkers('${cycleId}')">حوّلها بضغطة</span></span>${sample}`):''}
+ ${row('💰 مبيعات','− '+fmt(salesN),sl.length,'')}
+ ${mvIn?row('🔁 تحويلات واردة','+ '+fmt(mvIn),mv.filter(m=>m.type==='transfer_in').length,''):''}
+ ${mvOut?row('🔁 تحويلات صادرة','− '+fmt(mvOut),mv.filter(m=>m.type==='transfer_out').length,''):''}
+ <tr class="tbl-total"><td><b>= العدد المتبقي</b></td><td class="num"><b>${fmt(remain)}</b></td><td colspan="2"></td></tr>
+ </tbody></table></div>
+ <div class="hint" style="margin-top:8px">المعادلة: التسكين − النافق − الإعدام − المبيعات ± التحويلات. أي بند مش ظاهر = صفر.</div>
+ `,`<button class="btn-sec" onclick="closeModal()">إغلاق</button>`);
+}
 /* 🔍 v80: مفتش السجلات غير المربوطة بعنبر — الحل النهائي للفروقات
    بيجمع كل السجلات (يومي/بيع/تحويل) اللي عنبرها مش من عنابر المزرعة الحالية ويعرضها للتصليح */
 function orphanBirdRecords(cyc){
@@ -6398,7 +6508,7 @@ function userModal(id){
  `<div class="row-fields g2">
  <div class="field"><label>الاسم</label><input id="usName" value="${esc(u.name)}"></div>
  <div class="field"><label>اسم الدخول</label><input id="usUser" value="${esc(u.username)}"></div>
- <div class="field"><label>كلمة المرور</label><input id="usPass" value="${esc(u.pass)}"></div>
+ <div class="field"><label>كلمة المرور 🔐</label><input type="password" id="usPass" value="" placeholder="${id?'اتركها فارغة للإبقاء على الحالية':'كلمة مرور جديدة'}" autocomplete="new-password"></div>
  <div class="field"><label>الدور</label><select id="usRole">${roleOpts}</select></div>
  <div class="field"><label>المزرعة (لمدير المزرعة)</label><select id="usFarm">${farmOpts}</select></div>
  </div>`,
@@ -6407,8 +6517,17 @@ function userModal(id){
 function saveUser(id){
  const name=$('#usName').value.trim(),username=$('#usUser').value.trim();
  if(!name||!username){toast('أكمل البيانات',1);return;}
- const data={name,username,pass:$('#usPass').value,role:$('#usRole').value,farm:$('#usFarm').value||null};
- if(id){Object.assign(DB.users.find(x=>x.id===id),data);}else{DB.users.push({id:uid('u'),...data});}
+ const pw=$('#usPass').value;
+ const data={name,username,role:$('#usRole').value,farm:$('#usFarm').value||null};
+ if(id){
+  const u=DB.users.find(x=>x.id===id);
+  if(pw){u.salt=uid('s')+Math.random().toString(36).slice(2,10);u.passH=hashPass(pw,u.salt);delete u.pass;}
+  Object.assign(u,data);u._ts=Date.now();
+ }else{
+  if(!pw){toast('أدخل كلمة مرور للمستخدم الجديد',1);return;}
+  const salt=uid('s')+Math.random().toString(36).slice(2,10);
+  DB.users.push({id:uid('u'),...data,salt,passH:hashPass(pw,salt),_ts:Date.now()});
+ }
  save();closeModal();toast('تم الحفظ ✓');renderUsers();
 }
 function delUser(id){if(!confirm('حذف المستخدم؟'))return;tombstone(id);DB.users=DB.users.filter(u=>u.id!==id);save();renderUsers();}
@@ -6830,6 +6949,7 @@ function importDB(inp){const f=inp.files[0];if(!f)return;const r=new FileReader(
  r.onload=e=>{try{DB=JSON.parse(e.target.result);save();toast('تم الاستيراد ✓');renderApp();}catch(err){toast('ملف غير صالح',1);}};r.readAsText(f);}
 function resetDB(){if(!confirm('تصفير كل البيانات؟ لا يمكن التراجع.'))return;DB=defaultDB();save();toast('تم التصفير');renderApp();}
 const SHEETS=[];
+try{ migratePasswords(); }catch(e){console.warn('migrate',e);}
 try{ if(fbReady()&&window.firebase) fbInit(); }catch(e){console.warn(e);}
 function toggleTheme(){
  const cur=localStorage.getItem('poultry_theme')==='dark'?'':'dark';
