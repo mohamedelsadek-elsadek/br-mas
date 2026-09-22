@@ -124,6 +124,16 @@ td.editable{cursor:pointer;border-radius:var(--r-xs);transition:.15s}
 td.editable:hover{background:var(--primary-soft);box-shadow:inset 0 0 0 1.5px var(--primary)}
 td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
 .badge{display:inline-block;padding:4px 11px;border-radius:var(--r-pill);font-size:var(--fs-xs);font-weight:700;letter-spacing:.2px}
+.norefs .refc,.norefs .refv{display:none!important}
+#printOv{position:fixed;inset:0;z-index:99999;background:#fff;display:flex;flex-direction:column}
+#printOvBar{flex:0 0 auto;display:flex;gap:9px;align-items:center;padding:10px 14px;border-bottom:1px solid #e7e9f2;background:#f8f9fd}
+#printOvFrame{flex:1 1 auto;width:100%;border:0;background:#fff}
+@media print{
+ body.printing>*:not(#printOv){display:none!important}
+ #printOv{position:static;inset:auto;height:auto}
+ #printOvBar{display:none!important}
+ #printOvFrame{height:auto;min-height:100vh}
+}
 .b-ok{background:var(--ok-bg);color:var(--green)}
 .b-warn{background:var(--warn-bg);color:var(--amber)}
 .b-bad{background:var(--bad-bg);color:var(--red)}
@@ -362,7 +372,7 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 62, "g": 18, "fd": 12, "fc": 12, "fcr": 0.196, "ph": "البادئ"}, {"d": 2, "w": 81, "g": 19, "fd": 16, "fc": 28, "fcr": 0.352, "ph": "البادئ"}, {"d": 3, "w": 102, "g": 21, "fd": 20, "fc": 48, "fcr": 0.476, "ph": "البادئ"}, {"d": 4, "w": 125, "g": 23, "fd": 24, "fc": 72, "fcr": 0.577, "ph": "البادئ"}, {"d": 5, "w": 151, "g": 26, "fd": 27, "fc": 100, "fcr": 0.658, "ph": "البادئ"}, {"d": 6, "w": 181, "g": 29, "fd": 31, "fc": 131, "fcr": 0.724, "ph": "البادئ"}, {"d": 7, "w": 213, "g": 32, "fd": 35, "fc": 166, "fcr": 0.78, "ph": "البادئ"}, {"d": 8, "w": 249, "g": 36, "fd": 39, "fc": 206, "fcr": 0.826, "ph": "البادئ"}, {"d": 9, "w": 288, "g": 39, "fd": 44, "fc": 249, "fcr": 0.865, "ph": "البادئ"}, {"d": 10, "w": 330, "g": 42, "fd": 48, "fc": 297, "fcr": 0.9, "ph": "البادئ"}, {"d": 11, "w": 376, "g": 46, "fd": 52, "fc": 349, "fcr": 0.93, "ph": "النامي"}, {"d": 12, "w": 425, "g": 49, "fd": 57, "fc": 406, "fcr": 0.957, "ph": "النامي"}, {"d": 13, "w": 477, "g": 52, "fd": 62, "fc": 468, "fcr": 0.982, "ph": "النامي"}, {"d": 14, "w": 533, "g": 56, "fd": 67, "fc": 535, "fcr": 1.005, "ph": "النامي"}, {"d": 15, "w": 592, "g": 59, "fd": 72, "fc": 608, "fcr": 1.026, "ph": "النامي"}, {"d": 16, "w": 655, "g": 62, "fd": 77, "fc": 685, "fcr": 1.047, "ph": "النامي"}, {"d": 17, "w": 720, "g": 66, "fd": 83, "fc": 768, "fcr": 1.066, "ph": "النامي"}, {"d": 18, "w": 789, "g": 69, "fd": 88, "fc": 856, "fcr": 1.086, "ph": "النامي"}, {"d": 19, "w": 860, "g": 72, "fd": 94, "fc": 950, "fcr": 1.105, "ph": "النامي"}, {"d": 20, "w": 935, "g": 74, "fd": 100, "fc": 1050, "fcr": 1.123, "ph": "النامي"}, {"d": 21, "w": 1012, "g": 77, "fd": 105, "fc": 1155, "fcr": 1.142, "ph": "النامي"}, {"d": 22, "w": 1092, "g": 80, "fd": 111, "fc": 1266, "fcr": 1.16, "ph": "النامي"}, {"d": 23, "w": 1174, "g": 82, "fd": 117, "fc": 1383, "fcr": 1.178, "ph": "النامي"}, {"d": 24, "w": 1258, "g": 85, "fd": 122, "fc": 1505, "fcr": 1.196, "ph": "النامي"}, {"d": 25, "w": 1345, "g": 87, "fd": 128, "fc": 1633, "fcr": 1.214, "ph": "الناهي"}, {"d": 26, "w": 1434, "g": 89, "fd": 134, "fc": 1767, "fcr": 1.233, "ph": "الناهي"}, {"d": 27, "w": 1524, "g": 91, "fd": 139, "fc": 1907, "fcr": 1.251, "ph": "الناهي"}, {"d": 28, "w": 1616, "g": 92, "fd": 145, "fc": 2051, "fcr": 1.269, "ph": "الناهي"}, {"d": 29, "w": 1710, "g": 94, "fd": 150, "fc": 2202, "fcr": 1.288, "ph": "الناهي"}, {"d": 30, "w": 1805, "g": 95, "fd": 156, "fc": 2357, "fcr": 1.306, "ph": "الناهي"}, {"d": 31, "w": 1901, "g": 96, "fd": 161, "fc": 2518, "fcr": 1.325, "ph": "الناهي"}, {"d": 32, "w": 1999, "g": 97, "fd": 166, "fc": 2684, "fcr": 1.343, "ph": "الناهي"}, {"d": 33, "w": 2097, "g": 98, "fd": 171, "fc": 2855, "fcr": 1.362, "ph": "الناهي"}, {"d": 34, "w": 2196, "g": 99, "fd": 176, "fc": 3031, "fcr": 1.381, "ph": "الناهي"}, {"d": 35, "w": 2296, "g": 100, "fd": 180, "fc": 3211, "fcr": 1.399, "ph": "الناهي"}, {"d": 36, "w": 2396, "g": 100, "fd": 185, "fc": 3396, "fcr": 1.418, "ph": "الناهي"}, {"d": 37, "w": 2496, "g": 100, "fd": 189, "fc": 3584, "fcr": 1.437, "ph": "الناهي"}, {"d": 38, "w": 2597, "g": 101, "fd": 193, "fc": 3777, "fcr": 1.456, "ph": "الناهي"}, {"d": 39, "w": 2697, "g": 101, "fd": 197, "fc": 3974, "fcr": 1.474, "ph": "الناهي"}, {"d": 40, "w": 2798, "g": 100, "fd": 201, "fc": 4175, "fcr": 1.493, "ph": "الناهي"}, {"d": 41, "w": 2898, "g": 100, "fd": 204, "fc": 4379, "fcr": 1.512, "ph": "الناهي"}, {"d": 42, "w": 2998, "g": 100, "fd": 207, "fc": 4586, "fcr": 1.531, "ph": "الناهي"}, {"d": 43, "w": 3097, "g": 100, "fd": 211, "fc": 4797, "fcr": 1.55, "ph": "الناهي"}, {"d": 44, "w": 3197, "g": 99, "fd": 213, "fc": 5010, "fcr": 1.569, "ph": "الناهي"}, {"d": 45, "w": 3295, "g": 98, "fd": 216, "fc": 5226, "fcr": 1.587, "ph": "الناهي"}, {"d": 46, "w": 3393, "g": 98, "fd": 219, "fc": 5445, "fcr": 1.606, "ph": "الناهي"}, {"d": 47, "w": 3490, "g": 97, "fd": 221, "fc": 5666, "fcr": 1.625, "ph": "الناهي"}, {"d": 48, "w": 3586, "g": 96, "fd": 223, "fc": 5890, "fcr": 1.644, "ph": "الناهي"}, {"d": 49, "w": 3681, "g": 95, "fd": 225, "fc": 6115, "fcr": 1.663, "ph": "الناهي"}, {"d": 50, "w": 3776, "g": 94, "fd": 227, "fc": 6342, "fcr": 1.681, "ph": "الناهي"}, {"d": 51, "w": 3869, "g": 93, "fd": 229, "fc": 6571, "fcr": 1.7, "ph": "الناهي"}, {"d": 52, "w": 3961, "g": 92, "fd": 230, "fc": 6801, "fcr": 1.719, "ph": "الناهي"}, {"d": 53, "w": 4052, "g": 91, "fd": 231, "fc": 7032, "fcr": 1.738, "ph": "الناهي"}, {"d": 54, "w": 4142, "g": 90, "fd": 233, "fc": 7265, "fcr": 1.756, "ph": "الناهي"}, {"d": 55, "w": 4230, "g": 89, "fd": 233, "fc": 7498, "fcr": 1.775, "ph": "الناهي"}, {"d": 56, "w": 4318, "g": 87, "fd": 234, "fc": 7733, "fcr": 1.793, "ph": "الناهي"}];
-const APP_VERSION='121';
+const APP_VERSION='122';
 const BUILD_DATE='2026-07-14';
 // ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
 const PERF_LITE=/Android/i.test(navigator.userAgent||'');
@@ -1015,6 +1025,18 @@ function birdsRemaining(cycleId){
  });
  return n;
 }
+/* 🐔 v122: العدد الحي عند عمر معيّن — للاستهلاك التراكمي الصحيح بعد البيع الجزئي */
+function birdsRemainingOn(cyc,age){
+ if(!cyc||!cyc.startDate)return cyclePlaced(cyc);
+ const d=new Date(cyc.startDate+'T12:00:00');d.setDate(d.getDate()+(Number(age)||1)-1);
+ const to=d.toISOString().slice(0,10);
+ let n=cyclePlaced(cyc);
+ n-=DB.daily.filter(x=>x.cycleId===cyc.id&&x.date<=to).reduce((s,x)=>s+(Number(x.dead)||0)+(Number(x.culls)||0),0);
+ n-=DB.sales.filter(x=>x.cycleId===cyc.id&&x.date<=to).reduce((s,x)=>s+(Number(x.count)||0),0);
+ (DB.birdMoves||[]).filter(m=>m.cycleId===cyc.id&&m.date<=to).forEach(m=>{
+  n+=(m.type==='transfer_in'?1:-1)*(Number(m.qty)||Number(m.count)||0);});
+ return Math.max(1,n);
+}
 function birdsRemainingHouse(cycleId,houseId){
  const cyc=cycleById(cycleId); if(!cyc)return 0;
  let n=Number((cyc.placedByHouse||{})[houseId])||0;
@@ -1317,12 +1339,38 @@ function doUndo(){
   else if(typeof go==='function')go(CUR);
  }catch(e){toast('تعذّر التراجع',1);}
 }
+/* 🚫 v122: إخفاء كل البيانات المرجعية (Ross) من أي تقرير — للطباعة/التصدير/العرض */
+let repNoRefs=false;
+function toggleNoRefs(){repNoRefs=!repNoRefs;renderReports();toast(repNoRefs?'🚫 البيانات المرجعية مخفية':'✅ البيانات المرجعية ظاهرة');}
+function _isRefTxt(t){return /مرجع|Ross\s*Ref|للمرجع|المرجعي/i.test(t||'');}
+function applyNoRefs(root){
+ if(!root)return;
+ root.classList.add('norefs');
+ root.querySelectorAll('table').forEach(t=>{
+  const hRows=[...t.querySelectorAll('thead tr')];
+  const hasSpan=[...t.querySelectorAll('tr')].some(tr=>[...tr.children].some(c=>(Number(c.getAttribute('colspan'))||1)>1));
+  const idx=new Set();
+  hRows.forEach(tr=>[...tr.children].forEach((th,i)=>{if(_isRefTxt(th.textContent))idx.add(i);}));
+  if(idx.size&&!hasSpan){
+   hRows.forEach(tr=>[...tr.children].forEach((c,i)=>{if(idx.has(i))c.classList.add('refc');}));
+   t.querySelectorAll('tbody tr').forEach(tr=>[...tr.children].forEach((c,i)=>{if(idx.has(i))c.classList.add('refc');}));
+  }
+  // صفوف مرجعية كاملة (تقرير القياسات: Ross Ref. Weight / FCR)
+  t.querySelectorAll('tbody tr').forEach(tr=>{const c0=tr.children[0];
+   if(c0&&tr.children.length>1&&_isRefTxt(c0.textContent))tr.classList.add('refc');});
+ });
+ // أسطر «مرجع 213» الصغيرة تحت الأرقام + بانر تعديل المرجع
+ root.querySelectorAll('.hint').forEach(x=>{const t=(x.textContent||'').trim();
+  if(/^مرجع(\s|:|$)/.test(t)||/المرجع معدّل على وزن استقبال/.test(t))x.classList.add('refv');});
+ // بادچ الفرق ▲/▼ عن المرجع
+ root.querySelectorAll('.badge').forEach(x=>{if(/^[\u25B2\u25BC]/.test((x.textContent||'').trim()))x.classList.add('refv');});
+ // خطوط Ross في الرسوم البيانية
+ root.querySelectorAll('svg text,svg g').forEach(x=>{if(/Ross/i.test(x.textContent||''))x.classList.add('refv');});
+}
 function printHTML(title, bodyHTML, subtitle){
  const company=esc(L('company')||'');
  const now=new Date().toLocaleString('ar-EG');
- const w=window.open('','_blank');
- if(!w){toast('فعّل النوافذ المنبثقة للطباعة',1);return;}
- w.document.write(`<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>${esc(title)}</title>
+ const doc=`<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"><title>${esc(title)}</title>
  <style>
  *{box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
  body{margin:24px;color:#1a1a2e}
@@ -1349,10 +1397,11 @@ function printHTML(title, bodyHTML, subtitle){
  .ph-foot{margin-top:20px;border-top:1px solid #ddd;padding-top:8px;font-size:11px;color:#999;text-align:center}
  @media print{
   .no-print{display:none}body{margin:10px}
+  .norefs .refc,.norefs .refv{display:none!important}
   .pcard{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
  }
- </style></head><body>
+ </style></head><body class="${repNoRefs?'norefs':''}">
  <div class="ph-head"><div class="ph-co">🐔 ${company}</div>
  <div class="ph-meta">تاريخ الطباعة: ${now}</div></div>
  <h1>${esc(title)}</h1>${subtitle?`<div class="ph-sub">${esc(subtitle)}</div>`:''}
@@ -1360,8 +1409,52 @@ function printHTML(title, bodyHTML, subtitle){
  <div class="ph-foot">نظام إدارة مزارع الدواجن — تقرير مُصدّر آلياً</div>
  <div class="no-print" style="text-align:center;margin-top:18px">
  <button onclick="window.print()" style="background:#635bff;color:#fff;border:none;padding:10px 26px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:700">🖨️ طباعة</button></div>
- </body></html>`);
- w.document.close();
+ </body></html>`;
+ /* 🖨️ v122: Safari بيسيب نافذة about:blank فاضية أحياناً لو اتكتبت من غير document.open().
+    بنكتب صح، وبنتأكد بعدها إن فيه محتوى — لو لأ بنعرض المعاينة جوه الصفحة نفسها. */
+ let w=null;
+ try{w=window.open('','_blank');}catch(_){w=null;}
+ if(w){
+  try{
+   w.document.open();w.document.write(doc);w.document.close();
+   setTimeout(()=>{
+    try{
+     const b=w.document&&w.document.body;
+     if(!b||!b.children||b.children.length<2){w.close();printOverlay(doc);}
+    }catch(_){ }
+   },420);
+   return;
+  }catch(_){try{w.close();}catch(__){}}
+ }
+ printOverlay(doc);
+}
+/* 🖨️ v122: معاينة/طباعة داخل نفس الصفحة — بديل مضمون لو النوافذ المنبثقة متمنوعة أو فاضية */
+function printOverlay(docHTML){
+ let ov=document.getElementById('printOv');
+ if(ov)ov.remove();
+ ov=document.createElement('div');
+ ov.id='printOv';
+ ov.innerHTML=`<div id="printOvBar" class="no-print">
+   <button onclick="printOverlayGo()" style="background:#635bff;color:#fff;border:none;padding:9px 22px;border-radius:8px;font-weight:700;cursor:pointer">🖨️ طباعة</button>
+   <button onclick="printOverlayClose()" style="background:#e7e9f2;color:#1a1c2e;border:none;padding:9px 18px;border-radius:8px;font-weight:700;cursor:pointer">إغلاق</button>
+   <span style="color:#666;font-size:12px">معاينة الطباعة</span></div>
+  <iframe id="printOvFrame" title="معاينة"></iframe>`;
+ document.body.appendChild(ov);
+ const f=document.getElementById('printOvFrame');
+ try{
+  const d=f.contentDocument||f.contentWindow.document;
+  d.open();d.write(docHTML);d.close();
+ }catch(e){ov.remove();toast('تعذّرت المعاينة — جرب 📄 PDF',1);return;}
+ document.body.classList.add('printing');
+}
+function printOverlayGo(){
+ const f=document.getElementById('printOvFrame');if(!f)return;
+ try{f.contentWindow.focus();f.contentWindow.print();}
+ catch(e){try{window.print();}catch(_){toast('تعذّرت الطباعة',1);}}
+}
+function printOverlayClose(){
+ const ov=document.getElementById('printOv');if(ov)ov.remove();
+ document.body.classList.remove('printing');
 }
 function printElement(elId,title,subtitle){
  const root=document.getElementById(elId);
@@ -1418,6 +1511,7 @@ function walkPrint(node,parts){
  if(ch.tagName==='TABLE'){ flushCards(); parts.push(ch.outerHTML); return; }
  if(ch.classList.contains('hint')){
  flushCards();
+ if(repNoRefs&&(ch.classList.contains('refv')||/^مرجع(\s|:|$)/.test(ch.textContent.trim())))return;
  const txt=ch.textContent.trim();
  if(txt)parts.push('<div style="font-size:11px;color:#888;margin:4px 0">'+esc(txt)+'</div>');
  return;
@@ -3902,6 +3996,7 @@ function renderReports(){
  <div class="spacer" style="flex:1"></div>
  <button class="btn-sec btn-sm" onclick="exportReportCSV('repBody','${esc((REP_TABS.find(t=>t.id===repState.tab)||{}).name||'تقرير').replace(/[^\u0600-\u06FF\w]/g,'_')}')">📊 تصدير Excel</button>
  ${printBtn("printElement('repBody','"+esc((REP_TABS.find(t=>t.id===repState.tab)||{}).name||'تقرير')+"')")}
+ <button class="btn-sec btn-sm no-print" onclick="toggleNoRefs()" style="${repNoRefs?'background:var(--amber);color:#1a1a2e;border-color:var(--amber);font-weight:800':''}" title="إخفاء/إظهار كل أعمدة وأرقام Ross المرجعية في التقرير والطباعة والـ PDF">${repNoRefs?'🚫 المرجعي مخفي':'🎯 بدون المرجعي'}</button>
  <button class="btn-sec btn-sm no-print" onclick="repPDF()" title="إنشاء ملف PDF حقيقي بحدود التقرير">📄 PDF</button>
  <button class="btn-sec btn-sm no-print" onclick="repShot()" title="صورة PNG بحدود منطقة التقرير">📸 سكرين شوت</button>
  <button class="btn-sm no-print" style="background:#128C7E;color:#fff;border:none;border-radius:9px;padding:8px 13px;cursor:pointer;font-weight:700" onclick="repShareWAPdf()" title="إرسال التقرير كملف PDF عبر واتساب">📲 واتساب PDF</button>
@@ -3923,6 +4018,7 @@ function renderReports(){
  html+=`<div id="repBody" style="zoom:${repView.zoom/100};max-width:${wmax};margin:0 auto"></div>`;
  $('#main').innerHTML=html;
  $('#repBody').innerHTML=body();
+ if(repNoRefs)applyNoRefs($('#repBody'));
 }
 let repView={zoom:100,width:'full'};
 /* 📸 v93: تصوير منطقة التقرير كصورة PNG بحدودها — بدون مكتبات (SVG foreignObject) */
@@ -4000,10 +4096,15 @@ function repPDF(){
     const pdfBytes=buildImagePdfBytes(new Uint8Array(buf),w,ht);
     _pdfBlob=new Blob([pdfBytes],{type:'application/pdf'});
     const sizeKB=Math.round(_pdfBlob.size/1024);
-    const url=URL.createObjectURL(_pdfBlob);
+    /* 🔍 v122: Safari بيفتح روابط blob: في تبويب فاضي — فبنعرض نفس صفحة الـ PDF
+       كصورة جوه المودال (هي نفس محتوى الملف بالظبط، صفحة واحدة). */
+    const imgUrl=URL.createObjectURL(blob);
     openModal('📄 ملف PDF جاهز',
      `<div class="hint" style="text-align:center">التقرير بحدوده كاملة — صفحة واحدة (${sizeKB} KB)</div>
-      <div style="text-align:center;margin-top:10px"><a href="${url}" target="_blank" class="btn-sec btn-sm" style="text-decoration:none;display:inline-block">🔍 فتح ومعاينة</a></div>`,
+      <div style="margin-top:10px;max-height:58vh;overflow:auto;border:1px solid var(--border);border-radius:10px;background:#fff">
+       <img src="${imgUrl}" alt="معاينة التقرير" style="display:block;width:100%;height:auto">
+      </div>
+      <div class="hint" style="text-align:center;margin-top:7px">دي معاينة صفحة الـ PDF — اضغط «حفظ PDF» عشان تنزّل الملف.</div>`,
      `<button class="btn" style="background:#25d366;border-color:#25d366" onclick="pdfShare()">📲 واتساب PDF</button>
       <button class="btn btn-green" onclick="pdfSave()">💾 حفظ PDF</button>
       <button class="btn-sec" onclick="closeModal()">إغلاق</button>`);
@@ -4218,11 +4319,15 @@ function repWeekCat(){
  <th class="num">علف الأسبوع</th><th class="num">علف تراكمي/طائر (جم)</th>
  <th class="num">آخر وزن مُسجّل</th><th class="num">وزن المرجع (نفس العمر)</th>
  <th class="num">% للمرجع</th></tr></thead><tbody>`;
- let cumFeedKg=0;
+ let cumFeedKg=0,cumFpbC=0,prevRemain=placed;
  Object.keys(weeks).map(Number).sort((a,b)=>a-b).forEach(w=>{
  const x=weeks[w];
  cumFeedKg+=x.feed;
- const feedPerBird = placed? (cumFeedKg/placed*1000) : 0;
+ /* 🌾 v122: على متوسط العدد الحي في الأسبوع — مش على التسكين */
+ const remNow=Math.max(1,birdsRemainingOn(cyc,x.lastAge));
+ const avgW=Math.max(1,(prevRemain+remNow)/2);prevRemain=remNow;
+ cumFpbC+=x.feed*1000/avgW;
+ const feedPerBird=cumFpbC;
  const refAge = x.lastWeightAge || x.lastAge;
  const ref=rossRefFor(cyc,refAge);
  const wt=x.lastWeight;
@@ -4283,7 +4388,7 @@ function repFarmsWeek(){
   const daily=DB.daily.filter(d=>d.cycleId===cyc.id);
   const sales=DB.sales.filter(s=>s.cycleId===cyc.id);
   const moves=DB.birdMoves.filter(m=>m.cycleId===cyc.id);
-  let cumDead=0,cumCulls=0,cumFeed=0,cumSold=0,cumSoldW=0,cumMoveNet=0,prevW=0;
+  let cumDead=0,cumCulls=0,cumFeed=0,cumSold=0,cumSoldW=0,cumMoveNet=0,prevW=0,cumFpb=0;
   const nWk=Math.ceil(age/7);
   let rows='';
   for(let w=1;w<=nWk;w++){
@@ -4302,8 +4407,12 @@ function repFarmsWeek(){
    const aliveAvg=Math.max(1,(aliveStart+aliveEnd)/2);
    const wkDeadPct=aliveStart>0?(wkDead/aliveStart*100):0;
    const cumDeadPct=placed?(cumDead/placed*100):0;
+   /* 🌾 v122: علف/طائر التراكمي = مجموع الاستهلاك الأسبوعي لكل طائر (كل أسبوع على متوسط عدده الحي).
+      الطريقة القديمة (العلف الكلي ÷ العدد المتبقي) كانت بتنفخ الرقم بعد أي بيع جزئي،
+      لأن العلف اللي أكلته الطيور المباعة كان بيتقسم على الطيور الباقية بس. */
    const fpbWk=wkFeed*1000/aliveAvg;
-   const fpbCum=cumFeed*1000/aliveEnd;
+   cumFpb+=fpbWk;
+   const fpbCum=cumFpb;
    const wrecs=daily.filter(d=>Number(d.weight)>0&&d.date<=to).sort((a,b)=>a.date<b.date?1:-1);
    const wEnd=wrecs.length?Number(wrecs[0].weight):0;
    const wkGain=wEnd&&prevW?(wEnd-prevW):(wEnd&&w===1?wEnd-cycleChickW(cyc):0);
@@ -5645,8 +5754,12 @@ function _weeklyMeasure(cyc){
   if(t>0){o.tSum+=t;o.tN++;}if(hh>0){o.hSum+=hh;o.hN++;}});
  const maxAge=Math.max(0,...Object.keys(byAge).map(Number),...Object.keys(clByAge).map(Number));
  const weeks=Math.max(1,Math.min(10,Math.ceil(maxAge/7)));
+ /* 🌾 v122: المبيعات والتحويلات بتتخصم من العدد الحي، والعلف/طائر بقى مجموع الأسبوعي */
+ const dISO_=a=>{if(!cyc.startDate)return '';const dd=new Date(cyc.startDate+'T12:00:00');dd.setDate(dd.getDate()+a-1);return dd.toISOString().slice(0,10);};
+ const salesW=DB.sales.filter(x=>x.cycleId===cyc.id);
+ const movesW=(DB.birdMoves||[]).filter(m=>m.cycleId===cyc.id);
  const out=[];
- let cumDead=0,cumFeed=0;
+ let cumDead=0,cumFeed=0,cumSold=0,cumSoldW=0,cumMove=0,cumFpb=0;
  for(let w=1;w<=weeks;w++){
   const d1=(w-1)*7+1,d2=w*7;
   let wkDead=0,wkFeed=0,tSum=0,tN=0,hSum=0,hN=0,wEnd=0;
@@ -5656,17 +5769,24 @@ function _weeklyMeasure(cyc){
    const c=clByAge[a];
    if(c){tSum+=c.tSum;tN+=c.tN;hSum+=c.hSum;hN+=c.hN;}
   }
-  cumDead+=wkDead;cumFeed+=wkFeed;
-  const aliveEnd=Math.max(0,placed-cumDead);
-  const aliveAvg=Math.max(1,placed-cumDead+wkDead/2);
+  const from_=dISO_(d1),to_=dISO_(d2);
+  const inWk_=r=>from_&&r.date>=from_&&r.date<=to_;
+  const wkSold=salesW.filter(inWk_).reduce((s,x)=>s+(Number(x.count)||0),0);
+  const wkSoldW=salesW.filter(inWk_).reduce((s,x)=>s+(Number(x.weight)||0),0);
+  const wkMove=movesW.filter(inWk_).reduce((s,m)=>s+(m.type==='transfer_in'?1:-1)*(Number(m.qty)||Number(m.count)||0),0);
+  const aliveStart0=Math.max(0,placed+cumMove-cumDead-cumSold);
+  cumDead+=wkDead;cumFeed+=wkFeed;cumSold+=wkSold;cumSoldW+=wkSoldW;cumMove+=wkMove;
+  const aliveEnd=Math.max(0,placed+cumMove-cumDead-cumSold);
+  const aliveAvg=Math.max(1,(aliveStart0+aliveEnd)/2||1);
   // مرجع Ross لو مفيش وزن مسجل
   const ref=rossRefFor(cyc,Math.min(d2,56));
   const bw=wEnd||0;
-  const feedPerBird=aliveAvg?(cumFeed*1000/aliveAvg):0;      // جم/طائر تراكمي
   const wkFeedPerBird=aliveAvg?(wkFeed*1000/aliveAvg):0;     // جم/طائر أسبوعي
-  const meat=aliveEnd*(bw/1000);
+  cumFpb+=wkFeedPerBird;
+  const feedPerBird=cumFpb;                                  // جم/طائر تراكمي = مجموع الأسبوعي
+  const meat=aliveEnd*(bw/1000)+cumSoldW;                    // وزن الحي + وزن المباع
   const fcr=meat>0?(cumFeed/meat):0;
-  const aliveStart=Math.max(0,placed-(cumDead-wkDead));
+  const aliveStart=aliveStart0;
   // v120: الأسبوع الأول بيتقارن بوزن الكتكوت عمر يوم (مش صفر)
   const prevBw=out.length?(out[out.length-1].bw||0):chickW;
   out.push({week:w,d1,d2,bw,refBw:ref?ref.w:0,wkDead,cumDead,
