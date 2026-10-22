@@ -741,11 +741,30 @@ function fbPush(){
   try{ payload=fbSafe(DB); }
   catch(e){ console.warn('fbSafe',e); _fbDone(false,'تعذّر تجهيز البيانات'); return; }
   try{
-   const pr=FB_DB.ref('erp').set(payload);
-   if(pr&&typeof pr.then==='function'){
-    pr.then(()=>_fbDone(true))
-      .catch(e=>{console.warn('FB write',e);_fbDone(false,(e&&e.message)||'فشل الحفظ السحابي');});
-   }else _fbDone(true);
+   /* 🛡️ SafeSync: بدل set() الأعمى — transaction بتدمج على آخر نسخة فعلية في السحابة (صف بصف + المحذوفات)،
+      فجهاز كان أوفلاين أو فاتح من امبارح مايمسحش اللي اتسجل من جهاز تاني في الوقت ده */
+   const localStr=JSON.stringify(payload);
+   FB_DB.ref('erp').transaction(cur=>{
+    if(!cur)return JSON.parse(localStr);
+    const res=mergeDB(JSON.parse(localStr),normalizeDB(cur));
+    const m=fbSafe(res.db);
+    const lm=JSON.parse(localStr)._meta||{};
+    if(m&&lm&&(lm.at||0)>=((m._meta||{}).at||0))m._meta=lm;
+    return m;
+   },(e,committed,snap)=>{
+    if(e){console.warn('FB write',e);_fbDone(false,(e&&e.message)||'فشل الحفظ السحابي');return;}
+    if(committed&&snap){
+     try{
+      const v=snap.val();
+      /* لو الدمج جاب صفوف من جهاز تاني والمستخدم ماعدّلش حاجة أثناء الرفع → حدّث الشاشة */
+      if(v&&JSON.stringify(fbSafe(DB))===localStr&&JSON.stringify(v)!==localStr){
+       FB_REMOTE=true;DB=normalizeDB(v);invalidateCache();try{localStorage.setItem(DBKEY,JSON.stringify(DB));}catch(_e){}FB_REMOTE=false;
+       clearTimeout(_syncRenderT);_syncRenderT=setTimeout(()=>{const typing=document.activeElement&&['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName);const modalOpen=document.getElementById('modalBg')&&document.getElementById('modalBg').classList.contains('show');if(ME&&document.getElementById('app').style.display!=='none'&&!typing&&!modalOpen){go(CUR);}},300);
+      }
+     }catch(_e){}
+    }
+    _fbDone(true);
+   },false);
   }catch(e){
    // الرمية المتزامنة اللي كانت بتعلّق كل حاجة
    const bad=fbFindBad(DB,'',0);
