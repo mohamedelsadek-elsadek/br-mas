@@ -412,6 +412,8 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 .ow-ach-i span{font-size:12px;color:var(--txt3)}
 .ow-ach-i b{font-size:var(--fs-md);font-variant-numeric:tabular-nums}
 .ow-ach-i em{font-style:normal;font-size:11px;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ow-note{background:var(--info-bg);border-color:transparent;color:var(--txt);font-size:var(--fs-sm)}
+.ow-note2{margin-top:-6px}
 .ow-tip{position:fixed;z-index:3000;display:none;pointer-events:none;background:var(--surface);color:var(--txt);border:1px solid var(--border2);box-shadow:var(--sh-md);border-radius:10px;padding:8px 11px;font-size:12px;line-height:1.7;max-width:260px;direction:rtl}
 @media (max-width:700px){.ow-2{grid-template-columns:1fr}.ow-pulse{font-size:12px}}
 @media (prefers-reduced-motion:reduce){.ow-bar,.ow-tl,.ow-eff-i,.ow-ach-i,.ow-age-bar i{animation:none}.ow-dotlive{animation:none}}
@@ -444,7 +446,7 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 62, "g": 18, "fd": 12, "fc": 12, "fcr": 0.196, "ph": "البادئ"}, {"d": 2, "w": 81, "g": 19, "fd": 16, "fc": 28, "fcr": 0.352, "ph": "البادئ"}, {"d": 3, "w": 102, "g": 21, "fd": 20, "fc": 48, "fcr": 0.476, "ph": "البادئ"}, {"d": 4, "w": 125, "g": 23, "fd": 24, "fc": 72, "fcr": 0.577, "ph": "البادئ"}, {"d": 5, "w": 151, "g": 26, "fd": 27, "fc": 100, "fcr": 0.658, "ph": "البادئ"}, {"d": 6, "w": 181, "g": 29, "fd": 31, "fc": 131, "fcr": 0.724, "ph": "البادئ"}, {"d": 7, "w": 213, "g": 32, "fd": 35, "fc": 166, "fcr": 0.78, "ph": "البادئ"}, {"d": 8, "w": 249, "g": 36, "fd": 39, "fc": 206, "fcr": 0.826, "ph": "البادئ"}, {"d": 9, "w": 288, "g": 39, "fd": 44, "fc": 249, "fcr": 0.865, "ph": "البادئ"}, {"d": 10, "w": 330, "g": 42, "fd": 48, "fc": 297, "fcr": 0.9, "ph": "البادئ"}, {"d": 11, "w": 376, "g": 46, "fd": 52, "fc": 349, "fcr": 0.93, "ph": "النامي"}, {"d": 12, "w": 425, "g": 49, "fd": 57, "fc": 406, "fcr": 0.957, "ph": "النامي"}, {"d": 13, "w": 477, "g": 52, "fd": 62, "fc": 468, "fcr": 0.982, "ph": "النامي"}, {"d": 14, "w": 533, "g": 56, "fd": 67, "fc": 535, "fcr": 1.005, "ph": "النامي"}, {"d": 15, "w": 592, "g": 59, "fd": 72, "fc": 608, "fcr": 1.026, "ph": "النامي"}, {"d": 16, "w": 655, "g": 62, "fd": 77, "fc": 685, "fcr": 1.047, "ph": "النامي"}, {"d": 17, "w": 720, "g": 66, "fd": 83, "fc": 768, "fcr": 1.066, "ph": "النامي"}, {"d": 18, "w": 789, "g": 69, "fd": 88, "fc": 856, "fcr": 1.086, "ph": "النامي"}, {"d": 19, "w": 860, "g": 72, "fd": 94, "fc": 950, "fcr": 1.105, "ph": "النامي"}, {"d": 20, "w": 935, "g": 74, "fd": 100, "fc": 1050, "fcr": 1.123, "ph": "النامي"}, {"d": 21, "w": 1012, "g": 77, "fd": 105, "fc": 1155, "fcr": 1.142, "ph": "النامي"}, {"d": 22, "w": 1092, "g": 80, "fd": 111, "fc": 1266, "fcr": 1.16, "ph": "النامي"}, {"d": 23, "w": 1174, "g": 82, "fd": 117, "fc": 1383, "fcr": 1.178, "ph": "النامي"}, {"d": 24, "w": 1258, "g": 85, "fd": 122, "fc": 1505, "fcr": 1.196, "ph": "النامي"}, {"d": 25, "w": 1345, "g": 87, "fd": 128, "fc": 1633, "fcr": 1.214, "ph": "الناهي"}, {"d": 26, "w": 1434, "g": 89, "fd": 134, "fc": 1767, "fcr": 1.233, "ph": "الناهي"}, {"d": 27, "w": 1524, "g": 91, "fd": 139, "fc": 1907, "fcr": 1.251, "ph": "الناهي"}, {"d": 28, "w": 1616, "g": 92, "fd": 145, "fc": 2051, "fcr": 1.269, "ph": "الناهي"}, {"d": 29, "w": 1710, "g": 94, "fd": 150, "fc": 2202, "fcr": 1.288, "ph": "الناهي"}, {"d": 30, "w": 1805, "g": 95, "fd": 156, "fc": 2357, "fcr": 1.306, "ph": "الناهي"}, {"d": 31, "w": 1901, "g": 96, "fd": 161, "fc": 2518, "fcr": 1.325, "ph": "الناهي"}, {"d": 32, "w": 1999, "g": 97, "fd": 166, "fc": 2684, "fcr": 1.343, "ph": "الناهي"}, {"d": 33, "w": 2097, "g": 98, "fd": 171, "fc": 2855, "fcr": 1.362, "ph": "الناهي"}, {"d": 34, "w": 2196, "g": 99, "fd": 176, "fc": 3031, "fcr": 1.381, "ph": "الناهي"}, {"d": 35, "w": 2296, "g": 100, "fd": 180, "fc": 3211, "fcr": 1.399, "ph": "الناهي"}, {"d": 36, "w": 2396, "g": 100, "fd": 185, "fc": 3396, "fcr": 1.418, "ph": "الناهي"}, {"d": 37, "w": 2496, "g": 100, "fd": 189, "fc": 3584, "fcr": 1.437, "ph": "الناهي"}, {"d": 38, "w": 2597, "g": 101, "fd": 193, "fc": 3777, "fcr": 1.456, "ph": "الناهي"}, {"d": 39, "w": 2697, "g": 101, "fd": 197, "fc": 3974, "fcr": 1.474, "ph": "الناهي"}, {"d": 40, "w": 2798, "g": 100, "fd": 201, "fc": 4175, "fcr": 1.493, "ph": "الناهي"}, {"d": 41, "w": 2898, "g": 100, "fd": 204, "fc": 4379, "fcr": 1.512, "ph": "الناهي"}, {"d": 42, "w": 2998, "g": 100, "fd": 207, "fc": 4586, "fcr": 1.531, "ph": "الناهي"}, {"d": 43, "w": 3097, "g": 100, "fd": 211, "fc": 4797, "fcr": 1.55, "ph": "الناهي"}, {"d": 44, "w": 3197, "g": 99, "fd": 213, "fc": 5010, "fcr": 1.569, "ph": "الناهي"}, {"d": 45, "w": 3295, "g": 98, "fd": 216, "fc": 5226, "fcr": 1.587, "ph": "الناهي"}, {"d": 46, "w": 3393, "g": 98, "fd": 219, "fc": 5445, "fcr": 1.606, "ph": "الناهي"}, {"d": 47, "w": 3490, "g": 97, "fd": 221, "fc": 5666, "fcr": 1.625, "ph": "الناهي"}, {"d": 48, "w": 3586, "g": 96, "fd": 223, "fc": 5890, "fcr": 1.644, "ph": "الناهي"}, {"d": 49, "w": 3681, "g": 95, "fd": 225, "fc": 6115, "fcr": 1.663, "ph": "الناهي"}, {"d": 50, "w": 3776, "g": 94, "fd": 227, "fc": 6342, "fcr": 1.681, "ph": "الناهي"}, {"d": 51, "w": 3869, "g": 93, "fd": 229, "fc": 6571, "fcr": 1.7, "ph": "الناهي"}, {"d": 52, "w": 3961, "g": 92, "fd": 230, "fc": 6801, "fcr": 1.719, "ph": "الناهي"}, {"d": 53, "w": 4052, "g": 91, "fd": 231, "fc": 7032, "fcr": 1.738, "ph": "الناهي"}, {"d": 54, "w": 4142, "g": 90, "fd": 233, "fc": 7265, "fcr": 1.756, "ph": "الناهي"}, {"d": 55, "w": 4230, "g": 89, "fd": 233, "fc": 7498, "fcr": 1.775, "ph": "الناهي"}, {"d": 56, "w": 4318, "g": 87, "fd": 234, "fc": 7733, "fcr": 1.793, "ph": "الناهي"}];
-const APP_VERSION='128';
+const APP_VERSION='129';
 const BUILD_DATE='2026-10-30';
 // ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
 const PERF_LITE=/Android/i.test(navigator.userAgent||'');
@@ -7426,7 +7428,21 @@ function _owTipInit(){
 }
 function _owYears(){
  const ys=new Set(DB.cycles.filter(c=>c.status==='مغلقة').map(cycleYear).filter(Boolean));
+ try{yrAllRows().forEach(r=>{if(r.year)ys.add(String(r.year));});}catch(e){}
  return [...ys].sort();
+}
+/* v129: سنين قبل الدورات المتسجلة (2024، 2025) ليها إجماليات سنوية بس — الداش بورد بيقرا منها */
+function _owYearRows(per){let rows=[];try{rows=yrAllRows();}catch(e){rows=DB.yearlyRef||[];}return per==='all'?rows:rows.filter(r=>String(r.year)===per);}
+function _owAggYear(rows){
+ const s=k=>rows.reduce((t,r)=>t+(Number(r[k])||0),0);
+ const placed=s('placed'),sold=s('sold'),meat=s('meat'),feed=s('feed'),profit=s('netCycles');
+ const salesAmount=rows.reduce((t,r)=>t+(Number(r.salePrice)||0)*(Number(r.meat)||0),0);
+ const cost=rows.reduce((t,r)=>t+(Number(r.costKg)||0)*(Number(r.meat)||0),0);
+ let sw=0,sv=0;rows.forEach(r=>{const w=Number(r.sold)||0;if(Number(r.epef)>0){sw+=w;sv+=w*Number(r.epef);}});
+ const deadPct=placed?(placed-sold)/placed*100:0;
+ return {salesAmount,salesCount:sold,profit,profitPerKg:meat?profit/meat:0,totalMeat:meat,feed,fcr:meat?feed/meat:0,
+  livability:100-deadPct,placed,deadPct,dead:placed-sold,avgPrice:meat?salesAmount/meat:0,costPerKg:meat?cost/meat:0,
+  avgWeight:sold?meat/sold:0,epef:sw?sv/sw:0,n:rows.reduce((t,r)=>t+(Number(r.cycles)||0),0)};
 }
 function _owCycles(){
  const p=ownerState.period;const closed=DB.cycles.filter(c=>c.status==='مغلقة');
@@ -7570,16 +7586,29 @@ function _owEffort(cycles){
   ${E.map(([ic,t,v],i)=>`<div class="ow-eff-i" style="animation-delay:${i*60}ms"><div class="ic">${ic}</div><b class="cup" data-to="${v}">0</b><span>${t}</span></div>`).join('')}
  </div></div>`;
 }
+function _owFarmYearTable(rows){
+ if(!rows.length)return '';
+ const R=rows.slice().sort((a,b)=>(Number(b.netCycles)||0)-(Number(a.netCycles)||0));
+ return `<div class="card"><div class="card-title">🧮 المزارع في سنة ${esc(ownerState.period)}</div><div class="tbl-wrap"><table><thead><tr><th>المزرعة</th><th class="num">الوارد</th><th class="num">نافق%</th><th class="num">FCR</th><th class="num">م.الوزن</th><th class="num">EPEF</th><th class="num">الصافي</th></tr></thead><tbody>
+  ${R.map(r=>`<tr><td><b>${esc(r.farm)}</b></td><td class="num">${fmt(r.placed)}</td><td class="num"><span class="badge ${r.deadPct<5?'b-ok':r.deadPct<8?'b-warn':'b-bad'}">${fmt(r.deadPct,1)}%</span></td><td class="num">${fmt(r.fcr,2)}</td><td class="num">${fmt(r.avgWeight,2)}</td><td class="num">${fmt(r.epef,0)}</td><td class="num"><b class="${Number(r.netCycles)>=0?'t-ok':'t-bad'}">${fmt(r.netCycles)}</b></td></tr>`).join('')}
+ </tbody></table></div></div>`;
+}
 function renderOwner(){
  try{yrAutoSync();}catch(e){}
  const per=ownerState.period;const years=_owYears();
  if(per!=='all'&&!years.includes(per))ownerState.period='all';
- const cycles=_owCycles();const A=aggregateCycles(cycles);
+ const cycles=_owCycles();
+ const yrRows=_owYearRows(ownerState.period);
+ // لو الفترة فيها سنين من غير دورات تفصيلية (2024/2025) → الأرقام من الإجماليات السنوية عشان تبقى كاملة
+ const useYear=ownerState.period==='all'||!cycles.length;
+ const A=useYear&&yrRows.length?_owAggYear(yrRows):aggregateCycles(cycles);
+ const yrsIn=[...new Set(yrRows.map(r=>String(r.year)))].sort();
+ const noDetail=!cycles.length;
  const af=activeFarms();const liveCycles=DB.cycles.filter(c=>c.status!=='مغلقة');
  const birdsNow=liveCycles.reduce((s,c)=>s+Math.max(0,birdsRemaining(c.id)),0);
  const today=new Date().toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
  const hr=new Date().getHours();const hi=hr<12?'صباح الخير':hr<18?'مساء الخير':'مساء النور';
- const epefAvg=(()=>{let sw=0,sv=0;cycles.forEach(c=>{const F=cycleFinal(c);if(F.epef>0&&F.sales.count){sw+=F.sales.count;sv+=F.epef*F.sales.count;}});return sw?sv/sw:0;})();
+ const epefAvg=useYear&&yrRows.length?A.epef:(()=>{let sw=0,sv=0;cycles.forEach(c=>{const F=cycleFinal(c);if(F.epef>0&&F.sales.count){sw+=F.sales.count;sv+=F.epef*F.sales.count;}});return sw?sv/sw:0;})();
  const wins=cycles.filter(c=>cycleFinal(c).profit>=0).length;
  let html=`<div id="owRoot"><div class="owner-hero ow-hero">
   <div class="date">📅 ${today}</div>
@@ -7588,8 +7617,8 @@ function renderOwner(){
   <div class="d">${esc(DB.labels.company)}</div>
   <div class="ow-pulse"><span class="ow-dotlive"></span><b>${liveCycles.length}</b> دورة شغالة الآن · <b>${fmt(birdsNow)}</b> طائر في العنابر · <b>${DB.farms.length}</b> مزارع</div>
  </div>
- <div class="ow-chips" role="tablist">${['all'].concat(years).map(y=>`<button class="ow-chip ${ownerState.period===y?'on':''}" role="tab" aria-selected="${ownerState.period===y}" onclick="ownerSetPeriod('${y}')">${y==='all'?'كل الدورات':'سنة '+y}</button>`).join('')}
-  <span class="hint">${cycles.length} دورة مقفولة · ${wins} كسبانة</span></div>`;
+ <div class="ow-chips" role="tablist">${['all'].concat(years).map(y=>`<button class="ow-chip ${ownerState.period===y?'on':''}" role="tab" aria-selected="${ownerState.period===y}" onclick="ownerSetPeriod('${y}')">${y==='all'?'كل السنين':'سنة '+y}</button>`).join('')}
+  <span class="hint">${useYear&&yrRows.length?'من البيانات السنوية '+yrsIn.join(' + ')+(cycles.length?' · ':''):''}${cycles.length?cycles.length+' دورة مقفولة متسجلة بالتفصيل · '+wins+' كسبانة':''}</span></div>`;
  const k=(cls,lbl,val,sub,cnt,dec)=>`<div class="kpi ${cls} lift anim-kpi"><div class="lbl">${lbl}</div>
  <div class="val"><span class="cup" data-to="${cnt}" ${dec?`data-dec="${dec}"`:''}>0</span>${val}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`;
  html+=`<div class="grid g4 ow-kpis">
@@ -7597,22 +7626,28 @@ function renderOwner(){
   ${k(A.profit>=0?'g':'r','📈 صافي '+(A.profit>=0?'الربح':'الخسارة'),' ج',(A.profitPerKg>=0?'+':'')+A.profitPerKg.toFixed(2)+' ج لكل كيلو',A.profit)}
   ${k('a','🍗 لحم اتنتج',' طن',fmt(A.totalMeat)+' كجم',Math.round(A.totalMeat/1000))}
   ${k('c','🌾 FCR',A.fcr.toFixed(2),'حياتية '+A.livability.toFixed(1)+'%',0)}
-  ${k('','🐔 اتسكّن',' كتكوت',A.n+' دورة',A.placed)}
+  ${k('','🐔 اتسكّن',' كتكوت',(A.n?A.n+' دورة':(useYear?'إجمالي سنوي':'')),A.placed)}
   ${k('r','💀 النافق',A.deadPct.toFixed(2)+'%',fmt(A.dead)+' طائر',0)}
   ${k('p','💵 سعر البيع',A.avgPrice.toFixed(1)+' ج/كجم','تكلفة الكيلو '+A.costPerKg.toFixed(1)+' ج',0)}
   ${k('c','⚡ EPEF',fmt(epefAvg),'م. الوزن '+A.avgWeight.toFixed(2)+' كجم',0)}
  </div>`;
  html+=`<div class="card"><div class="card-title">🔴 المزارع الشغالة دلوقتي</div>${af.length?`<div class="ow-lives">${af.map(_owLiveCard).join('')}</div>`:emptyState('🔴','لا توجد دورات نشطة.')}</div>`;
- html+=_owEffort(cycles);
- html+=`<div class="grid g2 ow-2">${_owYearChart()}${_owMonthly(cycles)}</div>`;
- html+=_owTimeline(cycles);
- html+=_owAchievements(cycles);
+ const note=noDetail?`<div class="card ow-note">📒 سنة ${esc(ownerState.period)} متسجلة كإجماليات سنوية لكل مزرعة بس — الدورات بالتفصيل (المبيعات الشهرية، الخط الزمني، الأرقام القياسية) متسجلة في البرنامج من ديسمبر 2025.</div>`
+  :(ownerState.period==='all'&&yrsIn.length>1?`<div class="hint ow-note2">الأرقام فوق إجمالي ${yrsIn.join(' + ')} من البيانات السنوية · الأقسام اللي تحت (المبيعات الشهرية، الخط الزمني، الأرقام القياسية) من الدورات المتسجلة بالتفصيل (من ديسمبر 2025).</div>`:'');
+ html+=note;
+ if(!noDetail)html+=_owEffort(cycles);
+ html+=`<div class="grid g2 ow-2">${_owYearChart()}${noDetail?_owFarmYearTable(yrRows):_owMonthly(cycles)}</div>`;
+ if(!noDetail){html+=_owTimeline(cycles);html+=_owAchievements(cycles);}
  html+=`<div class="grid g2 ow-2"><div class="card"><div class="card-title">🏆 ترتيب المزارع حسب الربح</div>`;
- const rows=DB.farms.map(f=>({f,A:aggregateCycles(cycles.filter(c=>c.farm===f.id))})).filter(r=>r.A.n).sort((a,b)=>b.A.profit-a.A.profit);
+ let rows;
+ if(useYear&&yrRows.length){const G={};yrRows.forEach(r=>{const k=_yrNorm(r.farm);(G[k]=G[k]||{name:r.farm,rs:[]}).rs.push(r);});
+  rows=Object.values(G).map(g=>({f:{name:g.name},A:_owAggYear(g.rs)}));}
+ else rows=DB.farms.map(f=>({f,A:aggregateCycles(cycles.filter(c=>c.farm===f.id))})).filter(r=>r.A.n);
+ rows.sort((a,b)=>b.A.profit-a.A.profit);
  if(!rows.length){html+=emptyState('🏆','لا توجد بيانات.');}
  else{const maxAbs=Math.max(...rows.map(r=>Math.abs(r.A.profit)),1);
   rows.forEach((r,i)=>{const pct=Math.abs(r.A.profit)/maxAbs*100;const pos=r.A.profit>=0;
-   html+=`<div class="bar-row" data-tip="${esc(`<b>${esc(r.f.name)}</b><br>${r.A.n} دورة · FCR ${r.A.fcr.toFixed(2)} · نافق ${r.A.deadPct.toFixed(1)}%<br>مبيعات ${fmt(r.A.salesAmount)} ج`)}"><div class="nm">${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${esc(r.f.name)}</div>
+   html+=`<div class="bar-row" data-tip="${esc(`<b>${esc(r.f.name)}</b><br>${r.A.n?r.A.n+' دورة · ':''}FCR ${r.A.fcr.toFixed(2)} · نافق ${r.A.deadPct.toFixed(1)}%<br>مبيعات ${fmt(r.A.salesAmount)} ج`)}"><div class="nm">${['🥇','🥈','🥉'][i]||(i+1)+'.'} ${esc(r.f.name)}</div>
    <div class="bar-track"><div class="bar-fill grow" style="width:${Math.max(pct,3)}%;background:${pos?'linear-gradient(90deg,#16a34a,#22c55e)':'linear-gradient(90deg,#e11d48,#fb5a6f)'}">${fmt(r.A.profit,0)}</div></div>
    <div class="vl">${r.A.profitPerKg>=0?'+':''}${fmt(r.A.profitPerKg,2)}/كجم</div></div>`;});}
  html+=`</div><div class="card"><div class="card-title">📈 الوزن مقابل Ross — المزارع النشطة</div>
