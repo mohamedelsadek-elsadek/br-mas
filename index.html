@@ -414,6 +414,10 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 .ow-ach-i em{font-style:normal;font-size:11px;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ow-note{background:var(--info-bg);border-color:transparent;color:var(--txt);font-size:var(--fs-sm)}
 .ow-note2{margin-top:-6px}
+.ro-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:5px;vertical-align:middle;border:1.5px solid rgba(255,255,255,.85)}
+.ro-c1{background:#f59e0b}.ro-c2{background:#06b6d4}
+.ro-t1{color:#b45309;font-weight:700}.ro-t2{color:#0e7490;font-weight:700}
+:root[data-theme=dark] .ro-t1{color:#fbbf24}:root[data-theme=dark] .ro-t2{color:#67e8f9}
 .ow-tip{position:fixed;z-index:3000;display:none;pointer-events:none;background:var(--surface);color:var(--txt);border:1px solid var(--border2);box-shadow:var(--sh-md);border-radius:10px;padding:8px 11px;font-size:12px;line-height:1.7;max-width:260px;direction:rtl}
 @media (max-width:700px){.ow-2{grid-template-columns:1fr}.ow-pulse{font-size:12px}}
 @media (prefers-reduced-motion:reduce){.ow-bar,.ow-tl,.ow-eff-i,.ow-ach-i,.ow-age-bar i{animation:none}.ow-dotlive{animation:none}}
@@ -446,7 +450,7 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 62, "g": 18, "fd": 12, "fc": 12, "fcr": 0.196, "ph": "البادئ"}, {"d": 2, "w": 81, "g": 19, "fd": 16, "fc": 28, "fcr": 0.352, "ph": "البادئ"}, {"d": 3, "w": 102, "g": 21, "fd": 20, "fc": 48, "fcr": 0.476, "ph": "البادئ"}, {"d": 4, "w": 125, "g": 23, "fd": 24, "fc": 72, "fcr": 0.577, "ph": "البادئ"}, {"d": 5, "w": 151, "g": 26, "fd": 27, "fc": 100, "fcr": 0.658, "ph": "البادئ"}, {"d": 6, "w": 181, "g": 29, "fd": 31, "fc": 131, "fcr": 0.724, "ph": "البادئ"}, {"d": 7, "w": 213, "g": 32, "fd": 35, "fc": 166, "fcr": 0.78, "ph": "البادئ"}, {"d": 8, "w": 249, "g": 36, "fd": 39, "fc": 206, "fcr": 0.826, "ph": "البادئ"}, {"d": 9, "w": 288, "g": 39, "fd": 44, "fc": 249, "fcr": 0.865, "ph": "البادئ"}, {"d": 10, "w": 330, "g": 42, "fd": 48, "fc": 297, "fcr": 0.9, "ph": "البادئ"}, {"d": 11, "w": 376, "g": 46, "fd": 52, "fc": 349, "fcr": 0.93, "ph": "النامي"}, {"d": 12, "w": 425, "g": 49, "fd": 57, "fc": 406, "fcr": 0.957, "ph": "النامي"}, {"d": 13, "w": 477, "g": 52, "fd": 62, "fc": 468, "fcr": 0.982, "ph": "النامي"}, {"d": 14, "w": 533, "g": 56, "fd": 67, "fc": 535, "fcr": 1.005, "ph": "النامي"}, {"d": 15, "w": 592, "g": 59, "fd": 72, "fc": 608, "fcr": 1.026, "ph": "النامي"}, {"d": 16, "w": 655, "g": 62, "fd": 77, "fc": 685, "fcr": 1.047, "ph": "النامي"}, {"d": 17, "w": 720, "g": 66, "fd": 83, "fc": 768, "fcr": 1.066, "ph": "النامي"}, {"d": 18, "w": 789, "g": 69, "fd": 88, "fc": 856, "fcr": 1.086, "ph": "النامي"}, {"d": 19, "w": 860, "g": 72, "fd": 94, "fc": 950, "fcr": 1.105, "ph": "النامي"}, {"d": 20, "w": 935, "g": 74, "fd": 100, "fc": 1050, "fcr": 1.123, "ph": "النامي"}, {"d": 21, "w": 1012, "g": 77, "fd": 105, "fc": 1155, "fcr": 1.142, "ph": "النامي"}, {"d": 22, "w": 1092, "g": 80, "fd": 111, "fc": 1266, "fcr": 1.16, "ph": "النامي"}, {"d": 23, "w": 1174, "g": 82, "fd": 117, "fc": 1383, "fcr": 1.178, "ph": "النامي"}, {"d": 24, "w": 1258, "g": 85, "fd": 122, "fc": 1505, "fcr": 1.196, "ph": "النامي"}, {"d": 25, "w": 1345, "g": 87, "fd": 128, "fc": 1633, "fcr": 1.214, "ph": "الناهي"}, {"d": 26, "w": 1434, "g": 89, "fd": 134, "fc": 1767, "fcr": 1.233, "ph": "الناهي"}, {"d": 27, "w": 1524, "g": 91, "fd": 139, "fc": 1907, "fcr": 1.251, "ph": "الناهي"}, {"d": 28, "w": 1616, "g": 92, "fd": 145, "fc": 2051, "fcr": 1.269, "ph": "الناهي"}, {"d": 29, "w": 1710, "g": 94, "fd": 150, "fc": 2202, "fcr": 1.288, "ph": "الناهي"}, {"d": 30, "w": 1805, "g": 95, "fd": 156, "fc": 2357, "fcr": 1.306, "ph": "الناهي"}, {"d": 31, "w": 1901, "g": 96, "fd": 161, "fc": 2518, "fcr": 1.325, "ph": "الناهي"}, {"d": 32, "w": 1999, "g": 97, "fd": 166, "fc": 2684, "fcr": 1.343, "ph": "الناهي"}, {"d": 33, "w": 2097, "g": 98, "fd": 171, "fc": 2855, "fcr": 1.362, "ph": "الناهي"}, {"d": 34, "w": 2196, "g": 99, "fd": 176, "fc": 3031, "fcr": 1.381, "ph": "الناهي"}, {"d": 35, "w": 2296, "g": 100, "fd": 180, "fc": 3211, "fcr": 1.399, "ph": "الناهي"}, {"d": 36, "w": 2396, "g": 100, "fd": 185, "fc": 3396, "fcr": 1.418, "ph": "الناهي"}, {"d": 37, "w": 2496, "g": 100, "fd": 189, "fc": 3584, "fcr": 1.437, "ph": "الناهي"}, {"d": 38, "w": 2597, "g": 101, "fd": 193, "fc": 3777, "fcr": 1.456, "ph": "الناهي"}, {"d": 39, "w": 2697, "g": 101, "fd": 197, "fc": 3974, "fcr": 1.474, "ph": "الناهي"}, {"d": 40, "w": 2798, "g": 100, "fd": 201, "fc": 4175, "fcr": 1.493, "ph": "الناهي"}, {"d": 41, "w": 2898, "g": 100, "fd": 204, "fc": 4379, "fcr": 1.512, "ph": "الناهي"}, {"d": 42, "w": 2998, "g": 100, "fd": 207, "fc": 4586, "fcr": 1.531, "ph": "الناهي"}, {"d": 43, "w": 3097, "g": 100, "fd": 211, "fc": 4797, "fcr": 1.55, "ph": "الناهي"}, {"d": 44, "w": 3197, "g": 99, "fd": 213, "fc": 5010, "fcr": 1.569, "ph": "الناهي"}, {"d": 45, "w": 3295, "g": 98, "fd": 216, "fc": 5226, "fcr": 1.587, "ph": "الناهي"}, {"d": 46, "w": 3393, "g": 98, "fd": 219, "fc": 5445, "fcr": 1.606, "ph": "الناهي"}, {"d": 47, "w": 3490, "g": 97, "fd": 221, "fc": 5666, "fcr": 1.625, "ph": "الناهي"}, {"d": 48, "w": 3586, "g": 96, "fd": 223, "fc": 5890, "fcr": 1.644, "ph": "الناهي"}, {"d": 49, "w": 3681, "g": 95, "fd": 225, "fc": 6115, "fcr": 1.663, "ph": "الناهي"}, {"d": 50, "w": 3776, "g": 94, "fd": 227, "fc": 6342, "fcr": 1.681, "ph": "الناهي"}, {"d": 51, "w": 3869, "g": 93, "fd": 229, "fc": 6571, "fcr": 1.7, "ph": "الناهي"}, {"d": 52, "w": 3961, "g": 92, "fd": 230, "fc": 6801, "fcr": 1.719, "ph": "الناهي"}, {"d": 53, "w": 4052, "g": 91, "fd": 231, "fc": 7032, "fcr": 1.738, "ph": "الناهي"}, {"d": 54, "w": 4142, "g": 90, "fd": 233, "fc": 7265, "fcr": 1.756, "ph": "الناهي"}, {"d": 55, "w": 4230, "g": 89, "fd": 233, "fc": 7498, "fcr": 1.775, "ph": "الناهي"}, {"d": 56, "w": 4318, "g": 87, "fd": 234, "fc": 7733, "fcr": 1.793, "ph": "الناهي"}];
-const APP_VERSION='129';
+const APP_VERSION='130';
 const BUILD_DATE='2026-10-30';
 // ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
 const PERF_LITE=/Android/i.test(navigator.userAgent||'');
@@ -7737,6 +7741,10 @@ function renderRoss(){
 /* 📅 v128: البيانات السنوية التلقائية — من 2026 وطالع كل دورة بتتقفل بتدخل في سنتها لوحدها
    السنة = سنة آخر يوم بيع في الدورة · الأرقام من cycleFinal نفسها (نفس أرقام البيان النهائي) */
 const YR_AUTO_FROM=2026;
+/* v130: RO Cost Price % = (سعر البيع − تكلفة الكيلو) ÷ تكلفة الكيلو × 100 — هامش الربح على سعر التكلفة
+         RO Chick Price % = (الصافي ÷ عدد الكتاكيت) ÷ سعر الكتكوت × 100 — الربح لكل كتكوت كنسبة من تمنه */
+const yrRoCost=(price,costKg)=>(Number(costKg)>0&&Number(price)>0)?((price-costKg)/costKg*100):null;
+const yrRoChick=(net,placed,chickPrice)=>(Number(placed)>0&&Number(chickPrice)>0)?((net/placed)/chickPrice*100):null;
 const _yrNorm=s=>String(s||'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim();
 function cycleEndDate(c){
  const s=DB.sales.filter(x=>x.cycleId===c.id&&x.date).map(x=>x.date).sort();
@@ -7770,7 +7778,9 @@ function yrAutoRows(){
    feed:Math.round(T.feed),meat:r1(T.meat,1),avgWeight:r1(avgW,2),avgAge:r1(age,1),
    fcr:r1(fcr,2),cfcr:r1(fcr?fcr+((2-avgW)/4):0,2),
    epef:r1((age>0&&fcr>0)?((100-deadPct)*avgW/(age*fcr)*100):0,1),
-   netCycles:Math.round(T.profit),rof:r1(T.meat?T.profit/T.meat:0,1),roKgFeed:r1(T.feed?T.profit/T.feed:0,1),roCp:null});
+   netCycles:Math.round(T.profit),rof:r1(T.meat?T.profit/T.meat:0,1),roKgFeed:r1(T.feed?T.profit/T.feed:0,1),
+   roCp:r1(yrRoCost(T.weight?T.amount/T.weight:0,T.meat?T.cost/T.meat:0),1),
+   roChick:r1(yrRoChick(T.profit,T.placedInv,T.placedInv?T.chickCost/T.placedInv:0),1)});
  });
  return out;
 }
@@ -7781,7 +7791,7 @@ function yrAllRows(){
  return DB.yearlyRef.filter(r=>!r.auto&&!keys.has(r.year+'|'+_yrNorm(r.farm))).concat(auto);
 }
 // يحفظ الصفوف التلقائية في السحابة (للأدمن بس) — لو اتغيرت بس، عشان ما نعملش زحمة مزامنة
-const _YR_CMP=['placed','sold','deadPct','salePrice','chickPrice','feedPrice','costKg','feed','meat','avgWeight','avgAge','fcr','cfcr','epef','netCycles','rof','roKgFeed','cycles','farm'];
+const _YR_CMP=['placed','sold','deadPct','salePrice','chickPrice','feedPrice','costKg','feed','meat','avgWeight','avgAge','fcr','cfcr','epef','netCycles','rof','roKgFeed','roCp','roChick','cycles','farm'];
 function yrAutoSync(){
  if(!ME||!(ME.role==='super'||ME.role==='admin'))return false;
  if(!Array.isArray(DB.yearlyRef))DB.yearlyRef=[];
@@ -7803,7 +7813,7 @@ const YR_FIELDS=[
  ['costKg','تكلفة الكيلو'],['feed','العلف المستهلك'],['meat','إجمالي اللحم'],
  ['avgWeight','متوسط الوزن'],['avgAge','متوسط العمر'],['fcr','التحويل'],
  ['cfcr','cfcr'],['epef','عامل الكفاءة الأوربي'],['netCycles','صافي الدورات'],
- ['rof','ROF on kg'],['roKgFeed','RO KG FEED'],['roCp','RO CP'],
+ ['rof','ROF on kg'],['roKgFeed','RO KG FEED'],['roCp','RO Cost Price %'],['roChick','RO Chick Price %'],
 ];
 let yrYear='';
 function renderYearly(){
@@ -7835,7 +7845,7 @@ function renderYearly(){
  <th class="num">نافق%</th><th class="num">سعر البيع</th><th class="num">تكلفة الكيلو</th>
  <th class="num">العلف</th><th class="num">اللحم</th><th class="num">م.الوزن</th><th class="num">م.العمر</th>
  <th class="num">FCR</th><th class="num">cfcr</th><th class="num">EPEF</th>
- <th class="num">ROF</th><th class="num">RO/علف</th><th class="num">RO CP</th>
+ <th class="num">ROF</th><th class="num">RO/علف</th><th class="num" title="RO Cost Price = (سعر البيع − تكلفة الكيلو) ÷ تكلفة الكيلو"><span class="ro-dot ro-c1"></span>RO تكلفة %</th><th class="num" title="RO Chick Price = الربح لكل كتكوت ÷ سعر الكتكوت"><span class="ro-dot ro-c2"></span>RO كتكوت %</th>
  ${canEdit?'<th></th>':''}</tr></thead><tbody>`;
  rows.forEach(r=>{
  html+=`<tr><td><b>${esc(r.farm)}</b>${r.auto?` <span class="hint" title="محسوبة من ${r.cycles} دورة مقفولة">· ${r.cycles} دورة</span>`:''}</td><td class="num">${fmt(r.placed)}</td><td class="num">${fmt(r.sold)}</td>
@@ -7846,7 +7856,7 @@ function renderYearly(){
  <td class="num"><span class="badge ${clr(2-(r.fcr||2),0.45,0.35)}">${fmt(r.fcr,2)}</span></td>
  <td class="num"><span class="badge ${clr(2-(r.cfcr||2),0.45,0.35)}">${fmt(r.cfcr,2)}</span></td>
  <td class="num"><span class="badge ${clr(r.epef||0,380,330)}">${fmt(r.epef,0)}</span></td>
- <td class="num">${fmt(r.rof,1)}</td><td class="num">${fmt(r.roKgFeed,1)}</td><td class="num">${r.roCp==null||r.roCp===''?'—':fmt(r.roCp,1)}</td>
+ <td class="num">${fmt(r.rof,1)}</td><td class="num">${fmt(r.roKgFeed,1)}</td><td class="num ro-t1">${r.roCp==null||r.roCp===''?'—':fmt(r.roCp,1)+'%'}</td><td class="num ro-t2">${r.roChick==null||r.roChick===''?'—':fmt(r.roChick,1)+'%'}</td>
  ${canEdit?(r.auto?`<td class="num"><span class="badge b-info">🔄 تلقائي</span></td>`:`<td class="num"><button class="btn-sec btn-xs" onclick="yrModal('${r.id}')">تعديل</button>
  <button class="btn-red btn-xs" onclick="yrDel('${r.id}')">حذف</button></td>`):''}</tr>`;
  });
@@ -7861,17 +7871,19 @@ function renderYearly(){
  const T_epef=(T_age>0&&T_fcr>0)?(((100-Tdead)*T_avgW)/(T_age*T_fcr)*100):wAvg('epef','sold');
  const T_rof=wAvg('rof','meat');
  const T_roFeed=wAvg('roKgFeed','feed');
- const T_roCp=wAvg('roCp','meat');
+ const T_roCp=yrRoCost(T_price,T_costKg);
+ const T_net=rows.reduce((t,r)=>t+(Number(r.netCycles)||0),0);
+ const T_roChick=yrRoChick(T_net,T.placed,wAvg('chickPrice','placed'));
  html+=`<tr class="tbl-total"><td>إجمالي ${esc(yr)}</td><td class="num">${fmt(T.placed)}</td><td class="num">${fmt(T.sold)}</td>
  <td class="num">${Tdead.toFixed(1)}%</td>
  <td class="num">${fmt(T_price,1)}</td><td class="num">${fmt(T_costKg,1)}</td>
  <td class="num">${fmt(T.feed)}</td><td class="num">${fmt(T.meat,1)}</td>
  <td class="num">${fmt(T_avgW,2)}</td><td class="num">${fmt(T_age,1)}</td>
  <td class="num">${fmt(T_fcr,2)}</td><td class="num">${fmt(T_cfcr,2)}</td><td class="num">${fmt(T_epef,0)}</td>
- <td class="num">${fmt(T_rof,1)}</td><td class="num">${fmt(T_roFeed,1)}</td><td class="num">${fmt(T_roCp,1)}</td>
+ <td class="num">${fmt(T_rof,1)}</td><td class="num">${fmt(T_roFeed,1)}</td><td class="num">${T_roCp==null?'—':fmt(T_roCp,1)+'%'}</td><td class="num">${T_roChick==null?'—':fmt(T_roChick,1)+'%'}</td>
  ${canEdit?'<td></td>':''}</tr>`;
  html+=`</tbody></table></div>
- <div class="hint" style="margin-top:6px">${nAuto?'🔄 سنة '+esc(yr)+' بتتحسب لوحدها من الدورات المقفولة (السنة = سنة آخر يوم بيع) ومن نفس أرقام البيان النهائي · ':''}صف الإجمالي: الكميات مجاميع · متوسط الوزن = اللحم ÷ المباع · FCR = العلف ÷ اللحم · السعر والتكلفة والعوائد متوسطات مرجّحة باللحم · العمر مرجّح بعدد المباع · EPEF محسوب من إجماليات السنة.</div></div>`;
+ <div class="hint" style="margin-top:6px">${nAuto?'🔄 سنة '+esc(yr)+' بتتحسب لوحدها من الدورات المقفولة (السنة = سنة آخر يوم بيع) ومن نفس أرقام البيان النهائي · ':''}<span class="ro-dot ro-c1"></span><b>RO تكلفة (Cost Price)</b> = (سعر البيع − تكلفة الكيلو) ÷ تكلفة الكيلو · <span class="ro-dot ro-c2"></span><b>RO كتكوت (Chick Price)</b> = (الصافي ÷ عدد الكتاكيت) ÷ سعر الكتكوت · صف الإجمالي: الكميات مجاميع · متوسط الوزن = اللحم ÷ المباع · FCR = العلف ÷ اللحم · السعر والتكلفة والعوائد متوسطات مرجّحة باللحم · العمر مرجّح بعدد المباع · EPEF محسوب من إجماليات السنة.</div></div>`;
  });
  if(years.length>=2){
  html+=`<div class="card"><div class="card-title">🔀 مقارنة بين السنوات (إجماليات الشركة)</div>
@@ -7919,6 +7931,9 @@ function yrSave(id){
  if(!year||!farm){toast('أدخل السنة واسم المزرعة',1);return;}
  const data={year,farm};
  YR_FIELDS.forEach(([k])=>{const v=$('#yr_'+k).value;data[k]=v===''?0:Number(v);});
+ // v130: النسبتين بيتحسبوا من أرقام الصف نفسه
+ {const a=yrRoCost(data.salePrice,data.costKg),b=yrRoChick(data.netCycles,data.placed,data.chickPrice);
+  data.roCp=a==null?0:Math.round(a*10)/10;data.roChick=b==null?0:Math.round(b*10)/10;}
  if(id){Object.assign(DB.yearlyRef.find(x=>x.id===id),data);}
  else{DB.yearlyRef.push({id:uid('yr'),...data});}
  save();closeModal();toast('تم الحفظ ✓');renderYearly();
