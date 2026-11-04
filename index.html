@@ -428,6 +428,8 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 .xl-grid td{padding:2px 4px!important}
 .xl-grid tr.xl-row td{background:var(--info-bg,#eef2ff)}
 .xl-grid .xl-saved{background:var(--ok-bg,#dcfce7)!important;transition:background .6s}
+.xl-grid tr.wh-zero td{opacity:.6}
+.xl-grid tr.wh-zero td:focus-within{opacity:1}
 </style>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -456,7 +458,7 @@ html.scroll-lock,html.scroll-lock body{overflow:hidden!important;overscroll-beha
 <div class="toast" id="toast"></div>
 <script>
 const ROSS308=[{"d": 1, "w": 62, "g": 18, "fd": 12, "fc": 12, "fcr": 0.196, "ph": "البادئ"}, {"d": 2, "w": 81, "g": 19, "fd": 16, "fc": 28, "fcr": 0.352, "ph": "البادئ"}, {"d": 3, "w": 102, "g": 21, "fd": 20, "fc": 48, "fcr": 0.476, "ph": "البادئ"}, {"d": 4, "w": 125, "g": 23, "fd": 24, "fc": 72, "fcr": 0.577, "ph": "البادئ"}, {"d": 5, "w": 151, "g": 26, "fd": 27, "fc": 100, "fcr": 0.658, "ph": "البادئ"}, {"d": 6, "w": 181, "g": 29, "fd": 31, "fc": 131, "fcr": 0.724, "ph": "البادئ"}, {"d": 7, "w": 213, "g": 32, "fd": 35, "fc": 166, "fcr": 0.78, "ph": "البادئ"}, {"d": 8, "w": 249, "g": 36, "fd": 39, "fc": 206, "fcr": 0.826, "ph": "البادئ"}, {"d": 9, "w": 288, "g": 39, "fd": 44, "fc": 249, "fcr": 0.865, "ph": "البادئ"}, {"d": 10, "w": 330, "g": 42, "fd": 48, "fc": 297, "fcr": 0.9, "ph": "البادئ"}, {"d": 11, "w": 376, "g": 46, "fd": 52, "fc": 349, "fcr": 0.93, "ph": "النامي"}, {"d": 12, "w": 425, "g": 49, "fd": 57, "fc": 406, "fcr": 0.957, "ph": "النامي"}, {"d": 13, "w": 477, "g": 52, "fd": 62, "fc": 468, "fcr": 0.982, "ph": "النامي"}, {"d": 14, "w": 533, "g": 56, "fd": 67, "fc": 535, "fcr": 1.005, "ph": "النامي"}, {"d": 15, "w": 592, "g": 59, "fd": 72, "fc": 608, "fcr": 1.026, "ph": "النامي"}, {"d": 16, "w": 655, "g": 62, "fd": 77, "fc": 685, "fcr": 1.047, "ph": "النامي"}, {"d": 17, "w": 720, "g": 66, "fd": 83, "fc": 768, "fcr": 1.066, "ph": "النامي"}, {"d": 18, "w": 789, "g": 69, "fd": 88, "fc": 856, "fcr": 1.086, "ph": "النامي"}, {"d": 19, "w": 860, "g": 72, "fd": 94, "fc": 950, "fcr": 1.105, "ph": "النامي"}, {"d": 20, "w": 935, "g": 74, "fd": 100, "fc": 1050, "fcr": 1.123, "ph": "النامي"}, {"d": 21, "w": 1012, "g": 77, "fd": 105, "fc": 1155, "fcr": 1.142, "ph": "النامي"}, {"d": 22, "w": 1092, "g": 80, "fd": 111, "fc": 1266, "fcr": 1.16, "ph": "النامي"}, {"d": 23, "w": 1174, "g": 82, "fd": 117, "fc": 1383, "fcr": 1.178, "ph": "النامي"}, {"d": 24, "w": 1258, "g": 85, "fd": 122, "fc": 1505, "fcr": 1.196, "ph": "النامي"}, {"d": 25, "w": 1345, "g": 87, "fd": 128, "fc": 1633, "fcr": 1.214, "ph": "الناهي"}, {"d": 26, "w": 1434, "g": 89, "fd": 134, "fc": 1767, "fcr": 1.233, "ph": "الناهي"}, {"d": 27, "w": 1524, "g": 91, "fd": 139, "fc": 1907, "fcr": 1.251, "ph": "الناهي"}, {"d": 28, "w": 1616, "g": 92, "fd": 145, "fc": 2051, "fcr": 1.269, "ph": "الناهي"}, {"d": 29, "w": 1710, "g": 94, "fd": 150, "fc": 2202, "fcr": 1.288, "ph": "الناهي"}, {"d": 30, "w": 1805, "g": 95, "fd": 156, "fc": 2357, "fcr": 1.306, "ph": "الناهي"}, {"d": 31, "w": 1901, "g": 96, "fd": 161, "fc": 2518, "fcr": 1.325, "ph": "الناهي"}, {"d": 32, "w": 1999, "g": 97, "fd": 166, "fc": 2684, "fcr": 1.343, "ph": "الناهي"}, {"d": 33, "w": 2097, "g": 98, "fd": 171, "fc": 2855, "fcr": 1.362, "ph": "الناهي"}, {"d": 34, "w": 2196, "g": 99, "fd": 176, "fc": 3031, "fcr": 1.381, "ph": "الناهي"}, {"d": 35, "w": 2296, "g": 100, "fd": 180, "fc": 3211, "fcr": 1.399, "ph": "الناهي"}, {"d": 36, "w": 2396, "g": 100, "fd": 185, "fc": 3396, "fcr": 1.418, "ph": "الناهي"}, {"d": 37, "w": 2496, "g": 100, "fd": 189, "fc": 3584, "fcr": 1.437, "ph": "الناهي"}, {"d": 38, "w": 2597, "g": 101, "fd": 193, "fc": 3777, "fcr": 1.456, "ph": "الناهي"}, {"d": 39, "w": 2697, "g": 101, "fd": 197, "fc": 3974, "fcr": 1.474, "ph": "الناهي"}, {"d": 40, "w": 2798, "g": 100, "fd": 201, "fc": 4175, "fcr": 1.493, "ph": "الناهي"}, {"d": 41, "w": 2898, "g": 100, "fd": 204, "fc": 4379, "fcr": 1.512, "ph": "الناهي"}, {"d": 42, "w": 2998, "g": 100, "fd": 207, "fc": 4586, "fcr": 1.531, "ph": "الناهي"}, {"d": 43, "w": 3097, "g": 100, "fd": 211, "fc": 4797, "fcr": 1.55, "ph": "الناهي"}, {"d": 44, "w": 3197, "g": 99, "fd": 213, "fc": 5010, "fcr": 1.569, "ph": "الناهي"}, {"d": 45, "w": 3295, "g": 98, "fd": 216, "fc": 5226, "fcr": 1.587, "ph": "الناهي"}, {"d": 46, "w": 3393, "g": 98, "fd": 219, "fc": 5445, "fcr": 1.606, "ph": "الناهي"}, {"d": 47, "w": 3490, "g": 97, "fd": 221, "fc": 5666, "fcr": 1.625, "ph": "الناهي"}, {"d": 48, "w": 3586, "g": 96, "fd": 223, "fc": 5890, "fcr": 1.644, "ph": "الناهي"}, {"d": 49, "w": 3681, "g": 95, "fd": 225, "fc": 6115, "fcr": 1.663, "ph": "الناهي"}, {"d": 50, "w": 3776, "g": 94, "fd": 227, "fc": 6342, "fcr": 1.681, "ph": "الناهي"}, {"d": 51, "w": 3869, "g": 93, "fd": 229, "fc": 6571, "fcr": 1.7, "ph": "الناهي"}, {"d": 52, "w": 3961, "g": 92, "fd": 230, "fc": 6801, "fcr": 1.719, "ph": "الناهي"}, {"d": 53, "w": 4052, "g": 91, "fd": 231, "fc": 7032, "fcr": 1.738, "ph": "الناهي"}, {"d": 54, "w": 4142, "g": 90, "fd": 233, "fc": 7265, "fcr": 1.756, "ph": "الناهي"}, {"d": 55, "w": 4230, "g": 89, "fd": 233, "fc": 7498, "fcr": 1.775, "ph": "الناهي"}, {"d": 56, "w": 4318, "g": 87, "fd": 234, "fc": 7733, "fcr": 1.793, "ph": "الناهي"}];
-const APP_VERSION='134';
+const APP_VERSION='135';
 const BUILD_DATE='2026-11-04';
 // ⚡ وضع الأداء: الأندرويد بيعاني من backdrop-filter والأنيميشن الثقيل — نلغيهم تلقائياً
 const PERF_LITE=/Android/i.test(navigator.userAgent||'');
@@ -3543,21 +3545,24 @@ function whBalHtml(){
  }
  h+=`<div class="card" id="whBalArea"><div class="card-title">📦 رصيد المخزن بتاريخ ${esc(todayISO())}<div class="spacer" style="flex:1"></div>${printBtn("printElement('whBalArea','رصيد مخزن الشركة المصرية')")}</div>${whFilterBar(false)}`;
  if(!items.length){h+=emptyState('📦','لا توجد أصناف.')+'</div>';return h;}
- h+=`<div class="tbl-wrap"><table><thead><tr><th>#</th><th>الصنف</th><th>المورد</th><th>الوحدة</th><th class="num">وارد</th><th class="num">منصرف</th><th class="num">الرصيد</th><th class="num">السعر</th><th class="num">القيمة</th><th>الانتهاء</th><th class="no-print"></th></tr></thead><tbody>`;
+ let xr=0;h+=`<div style="font-size:12px;color:var(--txt3);margin-bottom:8px">الجدول بيتعدّل زي الإكسيل: الأسهم للتنقل و<b>Enter</b> ينزل لتحت، والتعديل بيتحفظ لوحده. تعديل «الرصيد» بيسجّل تسوية جرد بالفرق.</div><datalist id="whSuppDL2">${[...new Set((DB.whItems||[]).map(x=>x.supp).filter(Boolean))].sort().map(s=>`<option value="${esc(s)}">`).join('')}</datalist><datalist id="whUnitDL2">${[...new Set((DB.whItems||[]).map(x=>x.unit).filter(Boolean))].sort().map(s=>`<option value="${esc(s)}">`).join('')}</datalist>
+ <div class="tbl-wrap"><table class="xl-grid" id="whBalGrid"><thead><tr><th>#</th><th>الصنف</th><th>المورد</th><th>الوحدة</th><th class="num">وارد</th><th class="num">منصرف</th><th class="num">الرصيد</th><th class="num">السعر</th><th class="num">القيمة</th><th>الانتهاء</th><th class="no-print"></th></tr></thead><tbody>`;
  Object.keys(WH_GROUPS).forEach(g=>{
   const gi=items.filter(i=>i.g===g);if(!gi.length)return;
   h+=`<tr><td colspan="11" style="background:var(--bg2);font-weight:800">${WH_GROUPS[g]} <span class="badge b-info">${fmt(byG[g]||0)} ${cur}</span></td></tr>`;
   gi.slice().sort((a,b)=>(a.row||999)-(b.row||999)||String(a.name).localeCompare(b.name,'ar')).forEach((i,n)=>{
    const b=bal[i.id];const v=Math.max(0,b.q)*(Number(i.price)||0);const d=whDaysTo(i.exp);
    const outTxt=whQ(b.out+b.kw)+(b.kw?`<div style="font-size:10.5px;color:var(--txt3)">منها مصنع ${whQ(b.kw)}</div>`:'');
-   h+=`<tr${b.q<=0?' style="opacity:.55"':''}><td class="num">${n+1}</td><td><b>${esc(i.name)}</b></td><td>${esc(i.supp||'-')}</td><td>${esc(i.unit||'')}</td>
-   <td class="num">${whQ(b.in)}</td><td class="num">${outTxt}</td><td class="num"><b style="color:${b.q<0?'var(--red)':''}">${whQ(b.q)}</b></td>
-   <td class="num">${i.price?whQ(i.price):'-'}</td><td class="num">${v?fmt(v):'-'}</td>
-   <td>${i.exp?`<span class="badge ${d<0?'b-bad':d<=60?'b-warn':'b-mut'}">${esc(i.exp)}</span>`:'-'}</td>
+   const r=xr++;const X=(c,f,val,attrs)=>`<input class="xl" data-r="${r}" data-c="${c}" data-id="${i.id}" data-f="${f}" value="${esc(val==null?'':val)}" ${attrs||''}>`;
+   h+=`<tr${b.q<=0?' class="wh-zero"':''}><td class="num">${n+1}</td><td>${X(0,'name',i.name,'style="min-width:140px;font-weight:700"')}</td><td>${X(1,'supp',i.supp,'list="whSuppDL2" style="min-width:100px"')}</td><td>${X(2,'unit',i.unit,'list="whUnitDL2" style="width:75px"')}</td>
+   <td class="num">${whQ(b.in)}</td><td class="num">${outTxt}</td><td class="num">${X(3,'bal',whQ(b.q).replace(/,/g,''),'inputmode="decimal" style="width:80px;text-align:center;font-weight:800'+(b.q<0?';color:var(--red)':'')+'"')}</td>
+   <td class="num">${X(4,'price',i.price||'','inputmode="decimal" style="width:75px;text-align:center"')}</td><td class="num" data-val="${i.id}">${v?fmt(v):'-'}</td>
+   <td>${X(5,'exp',i.exp,'type="date" style="width:135px'+(i.exp&&d<0?';color:var(--red)':i.exp&&d<=60?';color:var(--amber)':'')+'"')}</td>
    <td class="no-print"><button class="btn-sec btn-sm" onclick="whState.item='${i.id}';whState.tab='moves';renderStore()" title="حركات الصنف">📜</button> <button class="btn-sec btn-sm" onclick="whItemModal('${i.id}')">✏️</button></td></tr>`;
   });
  });
  h+=`<tr class="tbl-total"><td colspan="8">إجمالي قيمة المخزن</td><td class="num">${fmt(tv)}</td><td colspan="2"></td></tr></tbody></table></div></div>`;
+ setTimeout(()=>xlGridAttach('whBalGrid',whCellSave),0);
  return h;
 }
 function whMovesHtml(){
@@ -3706,15 +3711,26 @@ function xlGridAttach(tableId,onSave){
 function whCellSave(el){
  const i=whItem(el.dataset.id);if(!i)return;const f=el.dataset.f;let v=el.value;
  if(f==='name'){v=v.trim();if(!v){toast('اسم الصنف مايبقاش فاضي',1);el.value=el._last=i.name;return;}}
+ if(f==='bal'){
+  v=whNum(v);if(!isFinite(v)){toast('رقم غير صحيح',1);el.value=el._last;return;}
+  const cur=whBalances()[i.id].q,diff=Math.round((v-cur)*1000)/1000;
+  if(diff){DB.whMoves.push({id:uid('wm'),item:i.id,date:todayISO(),type:'adj',qty:diff,price:Number(i.price)||0,note:'تعديل الرصيد من الجدول',_ts:Date.now()});save();toast('اتسجلت تسوية '+(diff>0?'+':'')+whQ(diff));}
+  whRefreshRow(i.id,el);return;
+ }
  if(['price','min','open'].includes(f)){v=whNum(v);if(!(v>=0)){toast('رقم غير صحيح',1);el.value=el._last=f==='open'?'':(i[f]||'');return;}}
  if(f==='open'){
   const ops=(DB.whMoves||[]).filter(m=>m.item===i.id&&m.type==='open');
   if(ops.length){ops[0].qty=v;ops[0]._ts=Date.now();ops.slice(1).forEach(m=>{tombstone(m.id);});DB.whMoves=DB.whMoves.filter(m=>!(m.type==='open'&&m.item===i.id&&m!==ops[0]));if(!v){tombstone(ops[0].id);DB.whMoves=DB.whMoves.filter(m=>m!==ops[0]);}}
   else if(v>0)DB.whMoves.push({id:uid('wm'),item:i.id,date:todayISO(),type:'open',qty:v,price:Number(i.price)||0,party:i.supp||'',note:'رصيد أول المدة',_ts:Date.now()});
  }else{i[f]=typeof v==='string'?v.trim():v;i._ts=Date.now();}
- save();
- const b=document.querySelector(`#whGrid td[data-bal="${i.id}"]`);if(b)b.textContent=whQ(whBalances()[i.id].q);
- el.classList.add('xl-saved');setTimeout(()=>el.classList.remove('xl-saved'),600);
+ save();whRefreshRow(i.id,el);
+}
+function whRefreshRow(id,el){
+ const i=whItem(id),q=whBalances()[id].q;
+ document.querySelectorAll(`td[data-bal="${id}"]`).forEach(b=>b.textContent=whQ(q));
+ document.querySelectorAll(`.xl[data-f="bal"][data-id="${id}"]`).forEach(b=>{if(b!==document.activeElement||b===el){b.value=whQ(q).replace(/,/g,'');b._last=b.value;}});
+ const v=Math.max(0,q)*(Number(i&&i.price)||0);document.querySelectorAll(`td[data-val="${id}"]`).forEach(c=>c.textContent=v?fmt(v):'-');
+ if(el){el.classList.add('xl-saved');setTimeout(()=>el.classList.remove('xl-saved'),600);}
 }
 function whItemModal(id){
  const i=id?whItem(id):null;
